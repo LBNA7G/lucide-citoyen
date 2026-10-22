@@ -1,4 +1,4 @@
-# SAVRÉO — version 0.6
+# SAVRÉO — version 0.7
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
@@ -13,6 +13,12 @@ SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour appren
 ## Démarrage personnalisé (v0.6)
 
 Au premier lancement, SAVRÉO demande un prénom ou pseudo, l'une des tranches d'âge 12–15 / 16–20 / 21–28 ans et propose un choix de genre **facultatif**. Les données sont conservées localement sans compte ; aucune de ces préférences n'est envoyée au coach IA ou au flux d'actualité. Le prénom s'affiche sur l'accueil, l'âge aide à sélectionner les situations et leçons proposées, et le genre ne change que certaines formules de bienvenue. Aucun sujet n'est bloqué. Les préférences se modifient depuis « Mon parcours » et peuvent être effacées avec les données locales. La clé locale historique reste utilisée pour conserver la progression existante.
+
+## Centres d'intérêt (v0.7)
+
+Une seconde étape facultative permet de sélectionner **jusqu'à 3 sujets** : argent & travail, droits, actualité & société, expression & débat, réseaux & information, culture & réflexion. Le choix est enregistré dans la progression locale, n'est pas envoyé aux services externes et reste modifiable dans le profil. Il influence la recommandation d'un Déclic et de la prochaine leçon ; la sélection vide conserve une recommandation adaptée à la tranche d'âge. L'ensemble des modules reste librement accessible.
+
+Pour vérifier la migration : utiliser une session vierge, une session v0.6 existante sans centres d'intérêt, puis modifier les préférences dans le profil et les exporter/effacer.
 
 ## Ce qui fonctionne
 
