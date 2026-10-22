@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "purpose": "SAVRÉO — registre de revue humaine des contenus éducatifs et civiques",
-  "generated_from": "app.js, curriculum-beta.js et civic-pack-01.js",
+  "generated_from": "app.js + curriculum-beta.js + civic-pack-01.js + essentials-pack-02.js",
   "review_policy": "pending_external_review jusqu'à relecture documentée et signée par un expert autorisé",
   "items": [
     {
@@ -1075,6 +1075,582 @@
       "reviewed_at": null,
       "next_review_at": null,
       "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "essential:ess-01",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Médias",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-02",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Médias",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-03",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Numérique",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-04",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Numérique",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-05",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Médias",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-06",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Citoyenneté",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-07",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Expression",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-08",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Expression",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unesco.org/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-09",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Numérique",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-10",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Statistiques",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-11",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Citoyenneté",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-12",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Travail",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-13",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-14",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-15",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Consommation",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-16",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Consommation",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.service-public.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-17",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Sécurité",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-18",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Médias",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-19",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Statistiques",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-20",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Esprit critique",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-21",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Citoyenneté",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-22",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Santé publique",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.who.int/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-23",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-24",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Consommation",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.service-public.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-25",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-26",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-27",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Travail",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.service-public.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-28",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Finances publiques",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-29",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Finances publiques",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-30",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Économie",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-31",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Institutions",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://european-union.europa.eu/index_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
+    },
+    {
+      "id": "essential:ess-32",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Statistiques",
+      "classification": "micro-apprentissage transversal",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant / expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Nouvelle fiche non certifiée ; source à vérifier, explication et précision par âge à valider."
     }
   ]
 }
