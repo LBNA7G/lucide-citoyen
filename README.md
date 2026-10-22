@@ -1,6 +1,17 @@
-# SAVRÉO — version 1.2 bêta
+# SAVRÉO — version 1.4 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Version 1.4 bêta — 240 unités hors ligne en cours de validation
+
+- **240 unités pédagogiques uniques écrites** : 18 situations, 12 leçons, 10 fiches de droits, 24 civiques et 176 micro-exercices.
+- **80 à 176 micro-exercices** par enrichissement progressif des packs : 32 savoirs essentiels, 48 culture générale/sciences, 48 choix quotidiens/contrats/logement et 48 institutions/vie publique/budgets.
+- 59 exercices conseillés aux 12–15 ans, 59 aux 16–20 ans, 58 aux 21–28 ans dans les packs micro-learning. Aucune interdiction d'accès aux autres âges.
+- Révision espacée pour les micro-exercices : rappels à 1, 3, 7, 14, 30 jours selon les réponses ; progression locale préservée avec le même stockage que les versions antérieures.
+- Catalogue discret, plié au départ, avec choix explicite de tranche d'âge.
+- Les nouveaux packs sont prévus dans le préchargement du service worker. Les liens externes, le flux d'actualité et les documents en ligne nécessitent toujours une connexion.
+- Tests automatiques, registre, sources documentaires et validation externe **distincts** : aucune revue par experts ou cohorte de 24 jeunes encore réalisée.
+- Voir [protocole 24 jeunes](docs/PILOT_24_YOUNG_USERS.md) et [guide de validation éditoriale](docs/EDITORIAL_REVIEW_PLAYBOOK.md).
 
 ## Version 1.2 bêta — nouveaux savoirs et annuaire documentaire
 
@@ -8,7 +19,7 @@ SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour appren
 - **Réponses réparties entre A/B/C** pour réduire la réussite automatique par clic sur la première option. Chaque fiche contient une explication et au moins une source institutionnelle.
 - **Première bibliothèque documentaire des partis** : 12 partis belges correspondant à l’échantillon complet du chiffrage BFP de 2024, 5 documents français sélectionnés initialement à titre illustratif, **non exhaustifs**. Sources datées et directement attribuées, ordre alphabétique ; aucune note électorale ni classement.
 - **Données non vérifiées laissées vides** : dirigeants, bilan des mandats, procédures et décisions judiciaires, chiffres particuliers et résultats détaillés. L'absence de donnée ne signifie ni absence de fait ni constat de faute.
-- **96 unités pédagogiques uniques hors ligne** au total ; les 17 entrées documentaires partisanes et les archives d’actualité sont comptées séparément. Registre de relecture à 96 entrées, toutes en attente de validation indépendante.
+- **96 unités pédagogiques uniques hors ligne au stade v1.2** ; les 17 entrées documentaires partisanes et les archives d’actualité sont comptées séparément. Registre de relecture à 96 entrées, toutes en attente de validation indépendante.
 - **Tests techniques** couvrant le rendu et l’apprentissage hors ligne, le catalogue, les quiz, l’annuaire, les contrastes de base et la conservation de la progression.
 - **Actualités** : le flux en ligne existant est limité aux titres officiels nationaux ; les sources municipales et régionales disposent d’accès directs, pas encore d’agrégation automatique exhaustive.
 
