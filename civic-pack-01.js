@@ -1,4 +1,4 @@
-/* SAVRÉO — premiers repères civiques hors ligne. Documents pédagogiques, pas un avis de vote. */
+/* SAVRÉO — premiers repères civiques hors ligne, sans recommandation électorale. */
 (function(){'use strict';window.SAVREO_CIVIC={
   "version": "pilot-01",
   "updated": "2026-10-22",
@@ -601,6 +601,79 @@
         "topic": "Lois et institutions",
         "label": "Vie publique",
         "url": "https://www.vie-publique.fr"
+      }
+    ]
+  },
+  "snapshots": [
+    {
+      "id": "budget-wallonie-2026-10-12",
+      "country": "BE",
+      "scope": "Région wallonne",
+      "date": "2026-10-12",
+      "type": "Communication gouvernementale",
+      "title": "Une trajectoire budgétaire annoncée pour 2027–2029",
+      "summary": "Le Gouvernement wallon a présenté des orientations budgétaires et des mesures envisagées pour les prochaines années.",
+      "verification": "Les montants, les dates et les conditions doivent être confirmés dans les textes adoptés et leurs publications officielles. Ce communiqué n'établit pas à lui seul les droits d'une personne.",
+      "impact": "Aides, fiscalité, financement des services publics.",
+      "source": {
+        "label": "Wallonie — trajectoire budgétaire publiée le 12 octobre 2026",
+        "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse/2026-10-12"
+      }
+    },
+    {
+      "id": "conseil-paris-2026-10",
+      "country": "FR",
+      "scope": "Ville de Paris",
+      "date": "2026-10-09",
+      "type": "Archives des délibérations",
+      "title": "Comment retrouver les décisions du Conseil de Paris d’octobre",
+      "summary": "La Ville de Paris publie des documents relatifs aux séances du Conseil des 6 au 9 octobre 2026 : comptes rendus, débats et délibérations.",
+      "verification": "Une délibération publiée doit être consultée dans sa version exacte pour connaître son objet, son vote et sa portée. Un simple ordre du jour ne prouve pas son adoption.",
+      "impact": "Transports, environnement, équipements et services locaux selon les dossiers.",
+      "source": {
+        "label": "Ville de Paris — archives du Conseil",
+        "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
+      }
+    }
+  ],
+  "localSources": {
+    "BE": [
+      {
+        "scope": "Fédéral",
+        "label": "Communiqués et Conseil des ministres",
+        "url": "https://news.belgium.be/fr"
+      },
+      {
+        "scope": "Région wallonne",
+        "label": "Communiqués du Gouvernement wallon",
+        "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse"
+      },
+      {
+        "scope": "Ville de Mons",
+        "label": "Plateforme des décisions du conseil communal de Mons",
+        "url": "https://www.mons.be/fr/ma-commune/vie-politique/conseil-communal/ordres-du-jour-et-proces-verbaux/plateforme-deliberations"
+      },
+      {
+        "scope": "Ville de Mons",
+        "label": "Participation citoyenne à Mons",
+        "url": "https://participation.mons.be"
+      }
+    ],
+    "FR": [
+      {
+        "scope": "National",
+        "label": "Vie publique — vie institutionnelle",
+        "url": "https://www.vie-publique.fr"
+      },
+      {
+        "scope": "National",
+        "label": "Ministère de l'Intérieur — résultats électoraux",
+        "url": "https://www.elections.interieur.gouv.fr/resultats"
+      },
+      {
+        "scope": "Ville de Paris",
+        "label": "Délibérations et comptes rendus du Conseil de Paris",
+        "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
       }
     ]
   }
