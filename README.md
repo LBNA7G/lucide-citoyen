@@ -8,7 +8,7 @@ Une application web mobile d'éducation civique et d'expression critique, centr�
 - **Dico** : définitions claires, exercices et validation des mots.
 - **Argumenter** : entraînement à la position, concession, argument, exemple, conclusion et analyse locale de structure.
 - **Coach IA (optionnel)** : analyse sémantique par le serveur Vercel, réécriture fidèle, objections. **Désactivé par défaut.**
-- **Radar** : flux officiels, affichage de la source et date de consultation ; flux BE limité à l'emploi, flux FR Service-Public. Ne constitue pas un suivi exhaustif des décisions politiques.
+- **Radar** : flux officiels, affichage de la source et date de consultation ; flux BE des communiqués fédéraux, flux FR Service-Public. Ne constitue pas un suivi exhaustif des décisions politiques.
 - **Missions quotidiennes** et points XP ; progression locale, export et effacement.
 - Interface adaptée au mobile, prise en charge PWA et mode dégradé hors ligne.
 
