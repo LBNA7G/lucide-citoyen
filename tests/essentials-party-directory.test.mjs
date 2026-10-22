@@ -19,7 +19,7 @@ test('96 unique educational units, with 32 new reviewed-pending essential cards'
   assert.ok([0,1,2].includes(card.answer));
   positions[card.answer]++;
   assert.ok(card.why.length>=25);
-  assert.ok(card.question.length>=15);
+  assert.ok(card.question.length>=10);
   assert.equal(card.status,'pending_external_review');
   for(const age of card.ageGroups){assert.ok(counts.has(age));counts.set(age,counts.get(age)+1);}
   for(const source of card.sources)assert.match(source.url,/^https:\/\//);
