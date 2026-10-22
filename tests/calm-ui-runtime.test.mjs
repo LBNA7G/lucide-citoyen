@@ -131,5 +131,5 @@ test('a wrong answer shows the actual correct choice in the feedback',()=>{
  quiz.handlers.get('submit')({target:{id:'lesson-quiz',querySelector(){return {value:'2'};}},preventDefault(){}});
  assert.ok(quiz.document.getElementById('main').innerHTML.includes('La bonne réponse est :'));
  const state=JSON.parse(quiz.store.value);
- assert.ok(!state.completed.includes('lesson:info-context'));
+ assert.ok(!(state.completed||[]).includes('lesson:info-context'));
 });
