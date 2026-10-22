@@ -9,12 +9,13 @@ JSON.parse(readFileSync('package.json','utf8'));
 const html=readFileSync('index.html','utf8');
 const app=readFileSync('app.js','utf8');
 const worker=readFileSync('sw.js','utf8');
-for (const link of ['styles.css?v=81','app.js?v=81','manifest.webmanifest','icon.svg']) {if(!html.includes(link))throw new Error(`Référence manquante dans index.html : ${link}`);}
-for (const feature of ['function journeys()', 'function reviewPage()', 'function editorialPage()', 'function queueReview(id)', 'function onboarding()', 'function interestsScreen()', 'function recommendedLesson()', 'function explore()', 'function practice()', 'function cases()', 'function dictionary()', 'function analyze(text)','function vigie()', 'case \'declic\':', 'case \'dico\':']) {if(!app.includes(feature)) throw new Error(`Fonction manquante : ${feature}`);}
-for (const resource of ['./styles.css?v=81','./app.js?v=81']) {if(!worker.includes(resource)) throw new Error(`Ressource du cache hors ligne manquante : ${resource}`);}
+for (const link of ['styles.css?v=9','app.js?v=9','manifest.webmanifest','icon.svg']) {if(!html.includes(link))throw new Error(`Référence manquante dans index.html : ${link}`);}
+for (const feature of ['function rights()', 'function renderRightsCards(items)', 'function applyTheme()', 'function updateTheme(choice)', 'function journeys()', 'function reviewPage()', 'function editorialPage()', 'function queueReview(id)', 'function onboarding()', 'function interestsScreen()', 'function recommendedLesson()', 'function explore()', 'function practice()', 'function cases()', 'function dictionary()', 'function analyze(text)','function vigie()', 'case \'declic\':', 'case \'dico\':']) {if(!app.includes(feature)) throw new Error(`Fonction manquante : ${feature}`);}
+for (const resource of ['./styles.css?v=9','./app.js?v=9']) {if(!worker.includes(resource)) throw new Error(`Ressource du cache hors ligne manquante : ${resource}`);}
 for (const domain of ['studentatwork.be','senate.be','service-public.fr']) {if(!app.includes(domain))throw new Error(`Source institutionnelle manquante : ${domain}`);}
 for(const fragment of ['interestsDone:false','name="interests"','skip-interests','edit-interests','interests-form','interests-count']) if(!app.includes(fragment)) throw new Error('Personnalisation absente : '+fragment);
 JSON.parse(readFileSync('content/editorial-registry.json','utf8'));
-console.log('SAVRÉO v0.8 · structure, contenus, design system et routes API prêts pour audit.');
+for(const entry of ['data-theme-option','data-theme','theme-quick','prefers-color-scheme']){const input=entry==='data-theme-option'?app:entry==='theme-quick'||entry==='prefers-color-scheme'?html:readFileSync('styles.css','utf8');if(!input.includes(entry))throw new Error('Thème manquant : '+entry);}
+console.log('SAVRÉO v0.9 · structure, thèmes, lisibilité et contenu contrôlés statiquement.');
 
 for(const route of ['api/coach.js','api/news.js']) if(!existsSync(route)) throw new Error('Route API manquante : '+route);
