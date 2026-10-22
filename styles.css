@@ -861,3 +861,8 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 /* Mesures d'apprentissage : expérience, transfert et rappels */
 @media(min-width:761px){.calm-progress{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.calm-progress{grid-template-columns:1fr}}
+
+/* Vigie v1.6.2 — niveau de publication et source documentaire */
+.news-origin{display:block;color:var(--calm-muted,#abb7c7);line-height:1.5;margin:9px 0 12px;font-size:12px}
+.news-filter-row[aria-label="Territoire des publications"]{margin-top:5px}
+.news-filter-row[aria-label="Territoire des publications"] .news-filter{min-height:44px}

@@ -1,4 +1,14 @@
-# SAVRÉO — version 1.6.1 bêta
+# SAVRÉO — version 1.6.2 bêta
+
+## 1.6.2 — Première vraie extension régionale de la Vigie
+- Flux institutionnel fédéral belge **et** flux du Parlement de Wallonie (« derniers décrets adoptés »), en parallèle, à partir du catalogue officiel des flux RSS du Parlement.
+- France : Service Public conserve son flux pilote distinct.
+- Pour chaque publication RSS : source attribuée, territoire, date, avertissement « statut juridique non vérifié » ; affichage des sources indisponibles même lorsque l'autre source fonctionne.
+- Filtres territoriaux BE, possibilité de lire les liens documentaires communaux en dehors du flux RSS.
+- Couverture non exhaustive ; un décret adopté ne signifie pas nécessairement qu'il est en vigueur. Les éventuels cas sans résultats ne sont pas remplis artificiellement.
+- L'URL du flux Wallonie est publiée par le Parlement (https://www.parlement-wallonie.be/flux-rss). Le flux et les liens d'articles peuvent changer ; vérifier leur bon fonctionnement en environnement réel.
+
+
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
