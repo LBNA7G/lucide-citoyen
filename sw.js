@@ -1,13 +1,13 @@
-// LUCIDE v0.4 — cache fiable : préférence au réseau, repli hors ligne.
-const CACHE = 'lucide-assets-v04-20261022';
-const ASSETS = ['./','./index.html','./styles.css?v=4','./app.js?v=4','./icon.svg','./manifest.webmanifest'];
+// SAVRÉO v0.5 — cache fiable : préférence au réseau, repli hors ligne.
+const CACHE = 'savreo-assets-v05-20261022';
+const ASSETS = ['./','./index.html','./styles.css?v=5','./app.js?v=5','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 self.addEventListener('activate', event => {
   event.waitUntil(Promise.all([
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE && key.startsWith('lucide-')).map(key => caches.delete(key)))),
+    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE && (key.startsWith('lucide-') || key.startsWith('savreo-'))).map(key => caches.delete(key)))),
     self.clients.claim()
   ]));
 });
