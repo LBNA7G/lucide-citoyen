@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "purpose": "SAVRÉO — registre de suivi éditorial, aucune nouvelle validation indépendante",
-  "generated_from": "app.js et curriculum-beta.js",
+  "purpose": "SAVRÉO — registre de revue humaine des contenus éducatifs et civiques",
+  "generated_from": "app.js, curriculum-beta.js et civic-pack-01.js",
   "review_policy": "pending_external_review jusqu'à relecture documentée et signée par un expert autorisé",
   "items": [
     {
@@ -715,6 +715,366 @@
       "reviewed_at": null,
       "next_review_at": null,
       "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "civic:promesse-loi",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Décryptage",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fait-opinion",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Décryptage",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:budget-deficit",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Budget",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.nbb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:aides",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Budget",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:programmes",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Partis",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/comprendre-elections/comment-sont-encadrees-campagnes-electorales/comment-consulter-programme-des-candidats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:sondage-resultat",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Résultats",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/resultats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:accusation-decision",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Justice",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:autorites-locales",
+      "kind": "civic_literacy",
+      "country": "ALL",
+      "topic": "Institutions",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-16-europe",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/electeurs"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-18-chambre",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/electeurs"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-participation",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/electeurs"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-bulletin",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/electeurs"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-resultats",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Résultats",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/informations-generales/resultats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-pouvoirs",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Institutions",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-depenses",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Budget",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.nbb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:be-votes-archives",
+      "kind": "civic_literacy",
+      "country": "BE",
+      "topic": "Résultats",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://elections.fgov.be/informations-generales/resultats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-voter-18",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-inscription",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.service-public.fr/particuliers/vosdroits/F1961"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-professions",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Programmes",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/comprendre-elections/comment-sont-encadrees-campagnes-electorales/comment-consulter-programme-des-candidats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-resultats",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Résultats",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/resultats"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-pouvoirs",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Institutions",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-comptes-partis",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Budget",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://cnccfp.fr/"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-depenses",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Budget",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+    },
+    {
+      "id": "civic:fr-procuration",
+      "kind": "civic_literacy",
+      "country": "FR",
+      "topic": "Voter",
+      "classification": "document pédagogique hors ligne",
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr/"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
     }
   ]
 }
