@@ -1,33 +1,195 @@
-/* LUCIDE — prototype citoyen et pédagogique.
+/* SAVRÉO — prototype citoyen et pédagogique.
    Fonctionne sans compte. Les analyses locales restent disponibles sans service tiers.
    Les fonctionnalités distantes sont clairement signalées et nécessitent une action de l’utilisateur.
 */
 (() => {
   'use strict';
   const STORAGE = 'lucide-demo-v1';
-  const DEFAULT = { country:'BE', xp:0, completed:[], history:[], lastActive:'', streak:0, viewedRights:[], savedNews:[] };
+  const DEFAULT = { country:'BE', xp:0, completed:[], history:[], lastActive:'', streak:0, viewedRights:[], savedNews:[], firstName:'', ageGroup:'', gender:'', onboardingDone:false, interests:[], interestsDone:false, reviews:{}, microReviews:{}, journeyDebates:[], transferPassed:[], theme:'auto' };
   function load(){try { const data = JSON.parse(localStorage.getItem(STORAGE) || '{}');return {...DEFAULT,...data}; }catch{return {...DEFAULT};}}
   let state = load();
+  let guestPreview=false, guestChoice=null, guestReveal=false;
+  let onboardingStage=0;
+  let profileEditing = false;
+  let interestsEditing = false;
+  // Les préférences restent locales et ne sont jamais envoyées au coach IA.
+  const AGE_GROUPS = {'12-15':'12–15 ans','16-20':'16–20 ans','21-28':'21–28 ans'};
+  const GENDERS = {feminin:'Féminin',masculin:'Masculin',autre:'Autre'};
+  const INTERESTS = [
+    {id:'argent',emoji:'◈',label:'Argent & travail',detail:'Salaires, contrats et budget',lessons:['economy','droits'],cases:{BE:['be-heures','be-contrat'],FR:['fr-salaire','fr-apprenti']}},
+    {id:'droits',emoji:'⚖',label:'Mes droits',detail:'Connaître et défendre ses droits',lessons:['droits','lois'],cases:{BE:['be-manif','be-contrat'],FR:['fr-manif','fr-salaire']}},
+    {id:'actualite',emoji:'◎',label:'Actualité & société',detail:'Comprendre ce qui change',lessons:['lois','penser'],cases:{BE:['be-9oct','be-manif'],FR:['fr-annonce','fr-manif']}},
+    {id:'expression',emoji:'◉',label:'Parler & débattre',detail:'Argumenter et prendre la parole',lessons:['argument','debate'],cases:{BE:['be-manif'],FR:['fr-manif']}},
+    {id:'reseaux',emoji:'✳',label:'Réseaux & info',detail:'Décrypter et éviter les pièges',lessons:['penser','debate'],cases:{BE:['both-video'],FR:['both-video']}},
+    {id:'culture',emoji:'✦',label:'Culture & réflexion',detail:'Développer son esprit critique',lessons:['penser','economy','lois'],cases:{BE:['both-video','be-9oct'],FR:['both-video','fr-annonce']}}
+  ];
+  const chosenInterests = () => (Array.isArray(state.interests)?state.interests:[]).filter(id=>INTERESTS.some(t=>t.id===id)).slice(0,3);
+  const safeName = name => String(name ?? '').trim().replace(/\s+/g,' ').slice(0,24);
+  let onboardingDraft={firstName:safeName(state.firstName||''),ageGroup:AGE_GROUPS[state.ageGroup]?state.ageGroup:'',gender:GENDERS[state.gender]?state.gender:''};
   state.savedNews = Array.isArray(state.savedNews) ? state.savedNews.slice(0,40) : [];
+  state.transferPassed = Array.isArray(state.transferPassed) ? [...new Set(state.transferPassed.filter(x=>typeof x==='string'))].slice(0,80) : [];
+  let transferChoice=null, transferReveal=false;
+  let oralActive=false, oralDone=false, oralTimer=null;
   let page = 'accueil';
   let activeLesson = 'penser';
   let activeDebate = 0;
   let debateFeedback = null;
   let aiFeedback = null, aiBusy = false, aiError = '';
-  let liveNews = {status:'idle',items:[],source:'',checkedAt:'',error:''};
+  // Les dernières publications déjà reçues restent lisibles en cas de panne du réseau,
+  // mais ne sont jamais présentées comme des actualités à jour.
+  const NEWS_CACHE_PREFIX='savreo-news-snapshot-v1-';
+  const NEWS_MAX_AGE=7*24*60*60*1000;
+  let lastNewsAttempt=0;
+  function readNewsSnapshot(country){
+    try{
+      if(!['BE','FR'].includes(country))return null;
+      const saved=JSON.parse(localStorage.getItem(NEWS_CACHE_PREFIX+country)||'null');
+      const age=Date.now()-Date.parse(saved?.checkedAt||'');
+      if(!saved||!Number.isFinite(age)||age<0||age>NEWS_MAX_AGE||!Array.isArray(saved.items))return null;
+      const items=saved.items.filter(n=>n&&typeof n.title==='string'&&typeof n.url==='string'&&/^https:\/\//.test(n.url)).slice(0,12);
+      return items.length?{status:'stale',items,source:String(saved.source||'Archives officielles'),sources:[],checkedAt:saved.checkedAt,error:'',staleNotice:'Copie locale de publications précédemment consultées ; aucune mise à jour réseau confirmée.'}:null;
+    }catch{return null;}
+  }
+  function writeNewsSnapshot(country,data){
+    try{
+      if(!['BE','FR'].includes(country)||!Array.isArray(data.items)||!data.items.length)return;
+      localStorage.setItem(NEWS_CACHE_PREFIX+country,JSON.stringify({checkedAt:data.checkedAt,source:data.source,items:data.items.slice(0,12)}));
+    }catch{}
+  }
+  let liveNews = readNewsSnapshot(state.country)||{status:'idle',items:[],source:'',checkedAt:'',error:''};
   let newsRequest = null;
+  let newsRequestCountry = '';
+  let newsFilter='all';
+  let newsScope='all';
+  let caseFirstReward = false;
+  let essentialFirstReward = false;
+  let civicFirstReward = false;
+  let lessonFirstReward = false;
   let quizSelection = null;
   let quizDone = false;
+  let reviewLessonId = '';
+  let reviewChoice = null;
+  let reviewResult = null;
+  let journeyContext = '';
+  let civicCurrent=null, civicChoice=null, civicReveal=false;
+  let publicScope='all', publicSourcesOpen=false;
+  let essentialCurrent=null, essentialChoice=null, essentialReveal=false;
+  let essentialAgeView=null;
   let rightFilter = '';
   const el = id => document.getElementById(id);
   const escapeHTML = str => String(str ?? '').replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const safeURL = url => /^https:\/\//.test(url)?url:'#';
   const setStore = () => {try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
+
+  const THEME_OPTIONS=['auto','light','dark'];
+  const themePreference=()=>THEME_OPTIONS.includes(state.theme)?state.theme:'auto';
+  const systemDark=window.matchMedia('(prefers-color-scheme: dark)');
+  function applyTheme(){
+    const selected=themePreference();
+    const effective=selected==='auto'?(systemDark.matches?'dark':'light'):selected;
+    document.documentElement.dataset.theme=effective;
+    document.documentElement.style.colorScheme=effective;
+    const meta=document.querySelector('meta[name="theme-color"]');
+    if(meta)meta.setAttribute('content',effective==='light'?'#f6f8f5':'#0b0e18');
+    document.querySelectorAll('[data-theme-option]').forEach(btn=>{
+      const active=btn.dataset.themeOption===selected;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-pressed',String(active));
+    });
+    const quick=el('theme-quick');
+    if(quick){quick.textContent=effective==='light'?'☾':'☀';quick.setAttribute('aria-label',effective==='light'?'Activer le mode sombre':'Activer le mode clair');quick.title=effective==='light'?'Activer le mode sombre':'Activer le mode clair';}
+    document.querySelectorAll('.theme-entry').forEach(button=>{button.textContent=effective==='light'?'☾':'☀';button.setAttribute('aria-label',effective==='light'?'Activer le mode sombre':'Activer le mode clair');});
+  }
+  function updateTheme(choice){
+    if(!THEME_OPTIONS.includes(choice))return;
+    state.theme=choice;setStore();applyTheme();
+  }
+  systemDark.addEventListener?.('change',()=>{if(themePreference()==='auto')applyTheme();});
+
   const dayKey = () => new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   function reward(tag, amount=15){if(state.completed.includes(tag))return false;state.completed.push(tag);state.xp+=amount; const today=dayKey(); if(state.lastActive!==today){const y=new Date();y.setDate(y.getDate()-1); const yesterday = new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(y);state.streak=state.lastActive===yesterday?state.streak+1:1;state.lastActive=today;}setStore();renderHeader();return true;}
+  function progressRank(){
+    const points=Math.max(0,Number(state.xp)||0);
+    const tiers=[{min:0,name:'Curieux',next:100},{min:100,name:'Éclaireur',next:250},{min:250,name:'Explorateur',next:500},{min:500,name:'Esprit critique',next:null}];
+    const tier=[...tiers].reverse().find(x=>points>=x.min)||tiers[0];
+    const progress=tier.next===null?100:Math.max(0,Math.min(100,Math.round(100*(points-tier.min)/(tier.next-tier.min))));
+    return {points,name:tier.name,next:tier.next,progress};
+  }
+  function nextUnseenCase(exclude=''){
+    const entries=byCountry().filter(x=>x.id!==exclude);
+    const unseen=entries.filter(x=>!state.completed.includes('case:'+x.id)).sort((a,b)=>contentPriority(b)-contentPriority(a));
+    return unseen[0]||entries.sort((a,b)=>contentPriority(b)-contentPriority(a))[0]||null;
+  }
   function toast(msg){let t=el('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__lucideToast);window.__lucideToast=setTimeout(()=>t.classList.remove('show'),2900)}
-  function renderHeader(){el('xp-top').textContent=state.xp;document.querySelectorAll('[data-country]').forEach(b=>b.classList.toggle('active',b.dataset.country===state.country)); document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));}
+  const topLevel = p => ['declic','apprendre','dico','vigie','lecon','explorer','sources','vie-publique','civique','dossiers','essentiels'].includes(p) ? 'explorer' : ['debattre','pratiquer','parcours','reviser'].includes(p) ? 'pratiquer' : p;
+  function renderHeader(){
+    applyTheme();
+    el('xp-top').textContent=state.xp;
+    document.querySelectorAll('[data-country]').forEach(b=>{const active=b.dataset.country===state.country;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+    document.querySelectorAll('[data-page]').forEach(b=>{
+      const isActive=b.dataset.page===topLevel(page);
+      b.classList.toggle('active',isActive);
+      if(isActive)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+    });
+  }
+  const CIVIC_PACK=window.SAVREO_CIVIC&&typeof window.SAVREO_CIVIC==='object'?window.SAVREO_CIVIC:{cards:[],resources:{}};
+  const civicAvailable=()=>Array.isArray(CIVIC_PACK.cards)?CIVIC_PACK.cards.filter(c=>c.country==='ALL'||c.country===state.country):[];
+  const PARTY_DATA=window.SAVREO_PARTIES&&typeof window.SAVREO_PARTIES==='object'?window.SAVREO_PARTIES:{parties:[],countrySources:{}};
+  const ESSENTIAL_DATA=window.SAVREO_ESSENTIALS&&typeof window.SAVREO_ESSENTIALS==='object'?window.SAVREO_ESSENTIALS:{items:[]};
+  const WORLD_DATA=window.SAVREO_WORLD&&typeof window.SAVREO_WORLD==='object'?window.SAVREO_WORLD:{items:[]};
+  const LIFE_DATA=window.SAVREO_LIFE&&typeof window.SAVREO_LIFE==='object'?window.SAVREO_LIFE:{items:[]};
+  const PUBLIC_DATA=window.SAVREO_PUBLIC&&typeof window.SAVREO_PUBLIC==='object'?window.SAVREO_PUBLIC:{items:[]};
+  const essentialAvailable=()=>[
+    ...(Array.isArray(ESSENTIAL_DATA.items)?ESSENTIAL_DATA.items:[]),
+    ...(Array.isArray(WORLD_DATA.items)?WORLD_DATA.items:[]),
+    ...(Array.isArray(LIFE_DATA.items)?LIFE_DATA.items:[]),
+    ...(Array.isArray(PUBLIC_DATA.items)?PUBLIC_DATA.items:[])
+  ];
+  const microReviewsData=()=>state.microReviews&&typeof state.microReviews==='object'&&!Array.isArray(state.microReviews)?state.microReviews:{};
+  const dueMicroReviews=()=>essentialAvailable().filter(c=>microReviewsData()[c.id]&&microReviewsData()[c.id].due<=dayKey())
+    .sort((a,b)=>microReviewsData()[a.id].due.localeCompare(microReviewsData()[b.id].due));
+  function nextMicroCard(excludeId='',age=state.ageGroup){
+    const cards=essentialAvailable().filter(c=>c.id!==excludeId),reviews=microReviewsData();
+    return cards.find(c=>c.ageGroups.includes(age)&&reviews[c.id]?.due<=dayKey())
+      || cards.find(c=>c.ageGroups.includes(age)&&!reviews[c.id])
+      || cards.find(c=>reviews[c.id]?.due<=dayKey())
+      || cards.find(c=>!reviews[c.id])
+      || cards.find(c=>c.ageGroups.includes(age)&&!state.completed.includes('essential:'+c.id))
+      || cards[0]||null;
+  }
+  function recordMicroReview(id,correct){
+    const reviews=microReviewsData(),old=reviews[id];
+    const stage=correct?(old?Math.min(old.stage+1,4):0):0;
+    reviews[id]={stage,due:reviewDate(correct?[1,3,7,14,30][stage]:1),attempts:(old?.attempts||0)+1};
+    state.microReviews=reviews;setStore();
+  }
   const source=(name,url)=>`<a class="source-link" href="${safeURL(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(name)} ↗</a>`;
+  // Expose la provenance sans présenter la présence d'un lien comme une certification.
+  const sourceIsGeneral=url=>/^https:\/\/[^/?#]+\/(?:fr\/?)?(?:\?.*)?$/.test(String(url||''))||/^https:\/\/[^/?#]+\/?$/.test(String(url||''));
+  function civicProvenance(card){
+    const edition=card.edition||CIVIC_PACK.editorial?.edition||'date non renseignée';
+    const generic=Array.isArray(card.sources)&&card.sources.some(x=>sourceIsGeneral(x.url));
+    const precision=generic?'Au moins une référence générale : document exact à identifier':'Références identifiées : pertinence à confirmer';
+    const proof=(card.sources||[]).map(x=>source(x.label,x.url)).join(' ');
+    return '<details class="calm-disclosure civic-proof"><summary>Lire les sources et leur fiabilité <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p><b>Édition pédagogique :</b> '+escapeHTML(edition)+'</p>'+
+      '<p><b>Territoire :</b> '+escapeHTML(card.country==='ALL'?'Belgique et France':card.country==='BE'?'Belgique':'France')+'</p>'+
+      '<p><b>Relecture indépendante :</b> non réalisée</p>'+
+      '<p><b>Précision de la référence :</b> '+escapeHTML(precision)+'</p>'+
+      (card.freshnessWarning?'<p class="civic-freshness">'+escapeHTML(card.freshnessWarning)+'</p>':'')+
+      '<div class="civic-proof-links">'+proof+'</div><p>Les liens externes nécessitent internet. Une source citée ne valide pas automatiquement l’explication.</p></div></details>';
+  }
+
+  function essentialEvidence(card){
+    const refs=Array.isArray(card.sources)?card.sources:[];
+    const generic=refs.some(x=>sourceIsGeneral(x.url));
+    return '<details class="calm-disclosure civic-proof"><summary>Sources et approfondissement <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p><b>Type :</b> simulation pédagogique, pas un témoignage réel</p>'+
+      '<p><b>Édition :</b> 22 octobre 2026 · <b>Relecture indépendante :</b> non réalisée</p>'+
+      '<p><b>Précision :</b> '+(generic?'source générale — document spécifique encore à identifier':'liens identifiés — exactitude à confirmer')+'</p>'+
+      '<div class="civic-proof-links">'+refs.map(x=>source(x.label,x.url)).join(' ')+'</div>'+
+      '<p>Les pages externes nécessitent internet. Leur présence ne certifie pas le contenu.</p></div></details>';
+  }
   const action=(label,target,extra='')=>`<button class="btn ${extra}" data-route="${target}">${escapeHTML(label)} →</button>`;
   const intro=(tag,title,subtitle)=>`<div class="page-intro"><div class="eyebrow">${tag}</div><h1>${title}</h1><p class="subtitle">${subtitle}</p></div>`;
   const lessons = [
@@ -45,6 +207,14 @@
     {label:'Technologie',title:'Les réseaux sociaux nous informent-ils ?',opp:'« Être sur les réseaux toute la journée suffit à comprendre l’actualité. »',help:'Compare rapidité, fiabilité, sources primaires et esprit critique.'},
     {label:'Éducation',title:'L’IA aide-t-elle vraiment à apprendre ?',opp:'« Puisque l’IA sait répondre, il est inutile de mémoriser. »',help:'Interroge la distinction entre obtenir une réponse et comprendre un raisonnement.'}
   ];
+
+  // Ateliers de prise de parole : les réponses personnelles ne sont jamais notées
+  // sur leur opinion ; seul le raisonnement et la nuance sont observés.
+  debates.push(
+    {label:'Réseaux',title:'Peut-on publier une photo sans demander ?',opp:'« Si quelqu’un apparaît dans ma vidéo, c’est mon compte, je poste ce que je veux. »',help:'Distingue création, respect de l’autre, consentement et conséquences de la diffusion.'},
+    {label:'Sécurité',title:'Faut-il faire confiance à une offre trop urgente ?',opp:'« Si je ne réponds pas immédiatement à un recruteur, je vais perdre ma chance. »',help:'Tu peux montrer ton intérêt sans fournir des codes ou des documents sensibles à un inconnu.'},
+    {label:'Logement',title:'Payer pour réserver un appartement ?',opp:'« Tout le monde verse de l’argent à l’avance, sinon le propriétaire loue à quelqu’un d’autre. »',help:'Distinguons une procédure de location encadrée d’une pression à payer sans vérification préalable.'}
+  );
   const SOURCES={
     BE:[
       {name:'Moniteur belge / Justel',topic:'Textes en vigueur',description:'Publications officielles et recherche dans les textes consolidés.',url:'https://www.justice.belgium.be/fr/moniteur_belge'},
@@ -145,6 +315,22 @@
       next:'Apprends à distinguer un document, son commentaire, une interprétation et une preuve.',
       tags:['source primaire','désinformation'],source:[['Eurobaromètre — réseaux sociaux et désinformation (2025)','https://europa.eu/eurobarometer/surveys/detail/3592']]}
   ];
+
+  /* Catalogue optionnel : les anciennes données et les contenus précédents restent lisibles. */
+  const BETA_CATALOG=window.SAVREO_BETA&&typeof window.SAVREO_BETA==='object'?window.SAVREO_BETA:{scenarios:[],lessons:[]};
+  const BETA_SCENARIOS=Array.isArray(BETA_CATALOG.scenarios)?BETA_CATALOG.scenarios.filter(c=>c&&c.kind==='Simulation fictive'&&Array.isArray(c.choices)&&Array.isArray(c.source)):[];
+  const BETA_LESSONS=Array.isArray(BETA_CATALOG.lessons)?BETA_CATALOG.lessons.filter(l=>l&&Array.isArray(l.text)&&Array.isArray(l.sources)):[];
+  const existingCaseIds=new Set(scenarios.map(c=>c.id)),existingLessonIds=new Set(lessons.map(l=>l.id));
+  scenarios.push(...BETA_SCENARIOS.filter(c=>!existingCaseIds.has(c.id)));
+  lessons.push(...BETA_LESSONS.filter(l=>!existingLessonIds.has(l.id)));
+  const ageMatch=item=>Array.isArray(item.ageGroups)&&item.ageGroups.includes(state.ageGroup);
+  const interestsMatch=item=>Array.isArray(item.interestIds)&&item.interestIds.some(id=>chosenInterests().includes(id));
+  const contentPriority=item=>(ageMatch(item)?3:0)+(interestsMatch(item)?5:0);
+  const ageSuggestion=l=>ageMatch(l)?'· Pour ton âge':'';
+  const ageHint=item=>Array.isArray(item.ageGroups)&&item.ageGroups.length?' · '+item.ageGroups.join(', ').replaceAll('12-15','12–15').replaceAll('16-20','16–20').replaceAll('21-28','21–28')+' ans':'';
+  const suggestedCases=()=>byCountry().filter(c=>ageMatch(c)).sort((a,b)=>contentPriority(b)-contentPriority(a));
+  const selectedCaseList=()=>byCountry().slice().sort((a,b)=>contentPriority(b)-contentPriority(a));
+
   const words = [
     {id:'amendement',term:'Amendement',level:'Institutions',easy:'Une modification proposée à un texte en discussion.',use:'« Un amendement a changé le projet avant le vote. »',q:'À quoi sert principalement un amendement ?',opts:['Modifier un texte en cours d’examen.','Publier une loi déjà en vigueur.','Dissoudre automatiquement un Parlement.'],answer:0},
     {id:'promulgation',term:'Promulgation',level:'Institutions',easy:'Une étape juridique par laquelle l’autorité compétente authentifie une loi après son adoption, selon les règles du pays.',use:'« La promulgation ne remplace pas la vérification de l’entrée en vigueur. »',q:'La promulgation signifie-t-elle que toutes les dispositions s’appliquent toujours immédiatement ?',opts:['Oui, sans aucune exception.','Non, il faut aussi vérifier la publication et les dates applicables.','Seulement si la loi est très populaire.'],answer:1},
@@ -172,19 +358,406 @@
   let wordReveal = false;
   let wordChoice = null;
   let wordCheck = false;
-  const byCountry = () => scenarios.filter(x=>x.country===state.country || x.country==='ALL');
-  const todayCase = () => {const list=byCountry(); const d=dayKey().replace(/\D/g,'');return list[Number(d)%list.length];};
-  const shortSource = s => s.map(([label,url])=>source(label,url)).join(' ');
-  function cases(){const entries=byCountry();const selected=entries.find(x=>x.id===activeScenario)||todayCase();
-    const options=selected.choices.map((txt,i)=>`<button class="case-option ${caseChoice===i?'selected':''}" data-case-choice="${i}" ${caseReveal?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${escapeHTML(txt)}</span></button>`).join('');
-    const result=caseReveal?`<div class="case-reveal ${caseChoice===selected.answer?'right':'wrong'}"><b>${caseChoice===selected.answer?'Bien vu. Tu as déjoué le piège.':'À revoir. Voici ce que disent les sources.'}</b><p>${escapeHTML(selected.why)}</p><div class="step-note">Ton réflexe : ${escapeHTML(selected.next)}</div><div class="source-block"><div class="topic-label">SOURCES DATÉES OU OFFICIELLES</div>${shortSource(selected.source)}</div></div>`:'';
-    return `${intro('DÉCLIC · DES SITUATIONS QUI TE CONCERNENT','Et toi, tu ferais quoi ?','Des cas courts, réels ou simulés et clairement étiquetés. Tu réponds d’abord, tu découvres les preuves ensuite.')}<div class="notice"><b>Éducation, pas propagande :</b> on distingue les faits, les opinions, les revendications et le droit applicable. Les simulations ne sont pas des actualités.</div><div class="chips scenario-picker">${entries.map(x=>`<button class="chip ${selected.id===x.id?'active':''}" data-case="${x.id}">${escapeHTML(x.category)}</button>`).join('')}</div><section class="case-story"><div class="story-meta"><span class="pill purple">${escapeHTML(selected.kind)}</span><span>${selected.mins} MIN · ${state.country==='BE'?'BELGIQUE':'FRANCE'}</span></div><div class="story-number">LUCIDE / ${String(entries.indexOf(selected)+1).padStart(2,'0')}</div><h2>${escapeHTML(selected.punch)}</h2><p class="story-copy">${escapeHTML(selected.setup)}</p><div class="story-question">${escapeHTML(selected.question)}</div><div class="case-options">${options}</div><button class="btn primary" id="case-submit" ${caseChoice===null||caseReveal?'disabled':''}>Vérifier mon réflexe →</button>${result}${caseReveal && caseChoice!==selected.answer?'<button class="btn ghost small" id="case-retry">Réessayer ce cas →</button>':''}</section><div class="section-heading"><div><h2>Les autres situations</h2><p>Une question. Une preuve. Un réflexe à retenir.</p></div></div><div class="grid two">${entries.filter(x=>x.id!==selected.id).map(x=>`<button class="case-teaser" data-case="${x.id}"><span class="topic-label">${escapeHTML(x.category)} · ${x.mins} MIN</span><strong>${escapeHTML(x.punch)}</strong><span class="card-action">Voir le cas ↗</span></button>`).join('')}</div><p class="tool-footer">Documents consultés le ${checkedDate}. Aucune actualisation automatique des affaires ou du droit.</p>`;
-  }
-  function dictionary(){const w=words.find(x=>x.id===activeWord)||words[0];return `${intro('LE DICO · SANS COMPLEXE','Parle avec précision.','Un mot compliqué, une définition claire, une phrase utile, une question pour le retenir.')}<div class="word-spot"><div><span class="eyebrow">MOT À DÉBLOQUER</span><h2>${escapeHTML(w.term)}</h2><p class="muted">${escapeHTML(w.level)}</p></div><button class="btn ${wordReveal?'ghost':'primary'}" id="word-flip">${wordReveal?'Masquer':'Voir en clair'} →</button></div>${wordReveal?`<div class="card" style="margin-top:12px"><h3>En clair</h3><p class="word-definition">${escapeHTML(w.easy)}</p><div class="quote">${escapeHTML(w.use)}</div><div class="inner-separator"></div><h3>Tu as vraiment compris ?</h3><p>${escapeHTML(w.q)}</p><div class="case-options">${w.opts.map((o,i)=>`<button class="case-option ${wordChoice===i?'selected':''}" data-word-choice="${i}" ${wordCheck?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span>${escapeHTML(o)}</button>`).join('')}</div><button class="btn primary" id="word-submit" ${wordChoice===null||wordCheck?'disabled':''}>Valider →</button>${wordCheck && wordChoice!==w.answer?'<button class="btn ghost small" id="word-retry">Réessayer →</button>':''}${wordCheck?`<div class="feedback ${wordChoice===w.answer?'good':'attn'}">${wordChoice===w.answer?'Bien joué. Tu sais employer ce terme.':'Ce n’est pas encore ça. Relis la définition et essaie un autre mot.'}</div>`:''}</div>`:''}<div class="section-heading"><div><h2>Ta boîte à mots</h2><p>${state.completed.filter(x=>x.startsWith('word:')).length}/${words.length} mots validés</p></div></div><div class="words-grid">${words.map(x=>`<button class="word-tile ${w.id===x.id?'selected':''}" data-word="${x.id}"><small>${escapeHTML(x.level)}</small><b>${escapeHTML(x.term)}</b>${state.completed.includes('word:'+x.id)?'<span class="word-check">✓ acquis</span>':'<span>Découvrir ↗</span>'}</button>`).join('')}</div>`;}
 
-  function welcome(){const focus=todayCase();const done=state.completed.filter(x=>x.startsWith('lesson:')).length;return `<section class="hero"><span class="eyebrow">APPRENDS À PENSER PAR TOI-MÊME</span><h1>Moins défiler.<br/><span class="headline-gradient">Mieux comprendre.</span></h1><p class="subtitle">10 minutes peuvent changer ta façon d’argumenter, de t’informer et de défendre tes droits. Apprends avec des exemples, des défis et des sources officielles.</p><div class="hero-actions">${action('Commencer une leçon','apprendre','primary')}${action('M’entraîner à débattre','debattre','dark')}</div><span class="hero-emblem" aria-hidden="true">✳</span></section><div class="section-heading"><div><h2>Ton déclic aujourd’hui</h2><p>2 minutes pour apprendre quelque chose qui peut vraiment te servir.</p></div><span class="pill amber">NOUVEAU</span></div><div class="daily-case" role="group" aria-label="Cas du jour"><div class="eyebrow">ET TOI, TU FERAIS QUOI ?</div><h2>${escapeHTML(focus.punch)}</h2><p>${escapeHTML(focus.setup)}</p><div class="hero-actions">${action('Tester mon réflexe','declic','primary')}${action('Débloquer des mots','dico','ghost')}</div></div><div class="section-heading"><div><h2>Ton tableau de bord</h2><p>De petites victoires qui s’accumulent.</p></div><span class="pill">Bêta v0.4</span></div><div class="grid three"><div class="kpi"><strong>${state.xp} ✦</strong><span>Points de connaissance</span></div><div class="kpi"><strong>${done}/${lessons.length}</strong><span>Leçons terminées</span></div><div class="kpi"><strong>${state.streak} j</strong><span>Suite de jours actifs</span></div></div><div class="section-heading"><div><h2>Tes 3 missions du jour</h2><p>Ton niveau : ${levelName()} · ${dailyMissions().filter(m=>state.completed.includes(m.key)).length}/3 réalisées</p></div></div><div class="mission-list">${dailyMissions().map(m=>`<button class="mission-item" data-route="${m.route}"><span class="mission-icon">${state.completed.includes(m.key)?'✓':'○'}</span><span><b>${m.name}</b><small>${m.desc}</small></span><span class="card-action">${state.completed.includes(m.key)?'Fait':'Commencer ↗'}</span></button>`).join('')}</div><div class="section-heading"><div><h2>Ta dose du jour</h2><p>Apprendre, comprendre, agir.</p></div></div><div class="grid three"><article class="card lesson-feature"><span class="pill purple">LEÇON DU JOUR</span><h3>Une annonce politique n’est pas une loi</h3><p>Comprends les étapes d’une décision et ce qui change vraiment dans ta vie.</p><button class="card-action" data-lesson="lois">Découvrir la leçon ↗</button></article><article class="card"><div class="card-icon purple">◉</div><h3>Défends ton point de vue</h3><p>Réponds à une objection, puis reçois un retour structuré sur ton texte.</p><button class="card-action" data-route="debattre">Lancer un débat ↗</button></article><article class="card"><div class="card-icon blue">⚖</div><h3>Connais tes droits</h3><p>Comprends les règles essentielles en ${state.country==='BE'?'Belgique':'France'} et accède à leurs sources officielles.</p><button class="card-action" data-route="droits">Explorer mes droits ↗</button></article></div><div class="section-heading"><div><h2>La règle LUCIDE</h2></div></div><div class="quote">« Une affirmation populaire n’est pas forcément vraie. Une loi annoncée n’est pas forcément en vigueur. Une opinion forte n’est pas forcément un argument solide. »</div>`;}
-  function learn(){return `${intro('DÉCOUVRIR · COMPRENDRE · RETENIR','Une idée à la fois.','Des micro-leçons conçues pour être comprises et réutilisées en discussion. Les exemples ne remplacent jamais les textes officiels.')}<div class="learn-quick">${action('Une situation réelle','declic','primary')} ${action('Dico des mots compliqués','dico','ghost')}</div>${`<div class="grid three">${lessons.map(l=>`<article class="card"><span class="pill grey">${l.mins} min · ${l.level}</span><div class="card-icon" style="margin-top:18px">${l.icon}</div><div class="topic-label">${l.tag}</div><h3>${l.title}</h3><p>${l.summary}</p><button class="card-action" data-lesson="${l.id}">${state.completed.includes('lesson:'+l.id)?'Revoir la leçon':'Lire et me tester'} ↗</button></article>`).join('')}</div>`}`;}
-  function lessonView(l){return `<div class="page-intro"><div class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} MIN</div><h1>${escapeHTML(l.title)}</h1><p class="subtitle">${escapeHTML(l.summary)}</p></div><div class="detail-layout"><article class="card flat lesson-body">${l.text.map(([h,t])=>`<h3>${escapeHTML(h)}</h3><p>${escapeHTML(t)}</p>`).join('')}<div class="inner-separator"></div><span class="pill">QUIZ · 1 QUESTION</span><h3 style="margin-top:15px">${escapeHTML(l.q)}</h3><form id="lesson-quiz">${l.choices.map((c,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${quizSelection===i?'checked':''}/><span>${escapeHTML(c)}</span></label>`).join('')}<button class="btn primary" type="submit" style="margin-top:12px">Valider ma réponse</button>${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}">${quizSelection===l.answer?'Bonne réponse !':'La bonne réponse est : '+escapeHTML(l.choices[l.answer])+'.'} ${escapeHTML(l.why)}</div>`:''}</form><button class="card-action" data-route="apprendre">← Toutes les leçons</button></article><aside class="card help-card"><span class="pill purple">CONSEIL</span><h3 style="margin:14px 0">Retiens l’essentiel</h3><p class="muted small">Explique cette leçon à voix haute comme si tu t’adressais à une personne de 15 ans. Si tu hésites, relis seulement le passage concerné.</p><div class="inner-separator"></div><h3>Prochaine étape</h3><p class="muted small">Passe ensuite à un débat pour appliquer cette connaissance.</p><button class="btn small ghost" data-route="debattre">S’entraîner →</button></aside></div>`;}
+  // Situations de transfert fictives. Pas de validation juridique automatique.
+  const TRANSFER_CASES={
+    'both-video':{context:'Une publication affirme que la loi sur les transports a changé hier, mais ne donne aucun document ni date.',question:'Quel réflexe vérifie le mieux cette affirmation ?',choices:['Retrouver le texte original et sa date d’application.','Comparer le nombre de partages entre plusieurs comptes.','Consulter seulement les réactions des abonnés.'],answer:0,why:'La source primaire attribuée, la date et le champ d’application permettent une vérification plus solide.'},
+    'be-heures':{context:'Un étudiant a utilisé son quota social mais son contrat continue pendant les vacances.',question:'Quelle distinction faut-il lui expliquer ?',choices:['Le quota de cotisations et la possibilité de travailler.','Le quota annuel et le nombre de cours suivis.','Le quota social et le montant du salaire minimum.'],answer:0,why:'Le quota social n’est pas une interdiction automatique de travailler ; d’autres règles peuvent dépendre de sa situation.'},
+    'be-contrat':{context:'Une étudiante possède un horaire, mais aucun contrat signé pour son premier jour.',question:'Quel réflexe réutiliser ?',choices:['Attendre sa première paie pour demander le document.','Demander son contrat étudiant écrit avant de commencer.','Accepter le planning comme seul document contractuel.'],answer:1,why:'Un planning ne remplace pas le contrat d’occupation d’étudiant écrit.'},
+    'fr-annonce':{context:'Un article présente comme automatique une nouvelle aide, seulement annoncée par un ministre.',question:'Que faut-il contrôler ?',choices:['La date des commentaires du ministre.','Le nombre de médias qui relaient l’annonce.','Le texte publié, ses conditions et sa date d’effet.'],answer:2,why:'Une annonce et une règle applicable ne sont pas la même étape.'},
+    'fr-salaire':{context:'Un salarié reçoit une partie de son salaire sans explication et veut conserver ses recours.',question:'Quelle première démarche est appropriée ?',choices:['Conserver les preuves et demander les sommes dues.','Attendre sans garder de trace des échanges.','Rendre publiques les coordonnées privées du patron.'],answer:0,why:'Conserver des justificatifs et faire une demande datée aide à examiner les recours adaptés.'}
+  };
+  const byCountry = () => scenarios.filter(x=>x.country===state.country || x.country==='ALL');
+  const todayCase = () => {
+    const all=byCountry();
+    const age=suggestedCases();
+    const personalized=age.filter(c=>interestsMatch(c));
+    const pool=personalized.length?personalized:age.length?age:all;
+    const day=Number(dayKey().replace(/\D/g,''));
+    return pool[day%pool.length];
+  };
+  const shortSource = s => s.map(([label,url])=>source(label,url)).join(' ');
+  function cases(){const entries=byCountry();const selected=entries.find(x=>x.id===activeScenario)||todayCase();const transfer=TRANSFER_CASES[selected.id];const ordered=entries.filter(x=>x.id!==selected.id).sort((a,b)=>contentPriority(b)-contentPriority(a));
+    const options=selected.choices.map((txt,i)=>`<button class="case-option ${caseChoice===i?'selected':''}" data-case-choice="${i}" ${caseReveal?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${escapeHTML(txt)}</span></button>`).join('');
+    const result=caseReveal?`<div class="case-reveal ${caseChoice===selected.answer?'right':'wrong'}" role="status"><span class="reward-symbol" aria-hidden="true">${caseChoice===selected.answer?'✦':'↺'}</span><b>${caseChoice===selected.answer?'Déclic validé !':'Pas encore — voici comment raisonner.'}</b>${caseChoice===selected.answer?`<p class="reward-subtitle">${caseFirstReward?'+30 XP · Nouveau réflexe débloqué':'Tu connais déjà ce réflexe · 0 XP supplémentaire'}</p>`:''}<p>${escapeHTML(selected.why)}</p><div class="step-note">Ton réflexe : ${escapeHTML(selected.next)}</div><div class="source-block"><div class="topic-label">SOURCES DATÉES OU OFFICIELLES</div>${shortSource(selected.source)}</div></div>`:'';
+
+    const applied=state.transferPassed.includes(selected.id);
+    const transferPanel=caseReveal&&caseChoice===selected.answer&&transfer?
+      '<section class="transfer-test" aria-label="Appliquer dans une autre situation"><span class="eyebrow">DÉFI BONUS · SANS XP</span><h3>Tu saurais le refaire dans un autre contexte ?</h3><p>Situation fictive : '+escapeHTML(transfer.context)+'</p><div class="story-question">'+escapeHTML(transfer.question)+'</div><div class="case-options">'+transfer.choices.map((txt,i)=>'<button type="button" class="case-option '+(transferChoice===i?'selected':'')+'" data-transfer-choice="'+i+'" '+(transferReveal||applied?'disabled':'')+'><span class="option-letter">'+String.fromCharCode(65+i)+'</span><span>'+escapeHTML(txt)+'</span></button>').join('')+'</div>'+(!transferReveal&&!applied?'<button type="button" class="btn primary" id="transfer-check" '+(transferChoice===null?'disabled':'')+'>Appliquer ce réflexe →</button>':'')+
+      (applied?'<div class="feedback good" role="status"><b>Réflexe appliqué dans un nouveau cas.</b><p>Le prochain enjeu sera de le retenir dans le temps.</p></div>':transferReveal?'<div class="feedback '+(transferChoice===transfer.answer?'good':'attn')+'" role="status"><b>'+(transferChoice===transfer.answer?'Réflexe appliqué.':'Regarde ce qui distingue les options.')+'</b> '+escapeHTML(transfer.why)+'</div>':'')+'</section>':'';
+    return `${intro('DÉCLIC · DES SITUATIONS QUI TE CONCERNENT','Et toi, tu ferais quoi ?','Des cas courts, réels ou simulés et clairement étiquetés. Tu réponds d’abord, tu découvres les preuves ensuite.')}<details class="calm-disclosure calm-before-question"><summary>Changer de situation <span aria-hidden="true">＋</span></summary><div class="chips scenario-picker">${entries.map(x=>`<button class="chip ${selected.id===x.id?'active':''}" data-case="${x.id}">${escapeHTML(x.punch)}</button>`).join('')}</div></details><section class="case-story"><div class="story-meta"><span class="pill purple">${escapeHTML(selected.kind)}</span><span>${selected.mins} MIN · ${state.country==='BE'?'BELGIQUE':'FRANCE'}</span></div><div class="story-number">SAVRÉO / ${String(entries.indexOf(selected)+1).padStart(2,'0')}</div><h2>${escapeHTML(selected.punch)}</h2><p class="story-copy">${escapeHTML(selected.setup)}</p><div class="story-question">${escapeHTML(selected.question)}</div><div class="case-options">${options}</div><button class="btn primary" id="case-submit" ${caseChoice===null||caseReveal?'disabled':''}>Vérifier mon réflexe →</button>${result}${caseReveal?`<div class="case-after-actions">${caseChoice!==selected.answer?'<button class="btn ghost small" id="case-retry">Réessayer cette question</button>':''}<button class="btn primary" id="case-next">${nextUnseenCase(selected.id)?'Un autre défi →':'Revenir à l’accueil →'}</button><button class="calm-footer-link" type="button" data-route="accueil">Voir mon parcours →</button><button class="btn ghost small" type="button" id="case-share">Partager ce défi sans mes données ↗</button></div>`:''}${transferPanel}</section><details class="calm-disclosure"><summary>Explorer d’autres situations <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${ordered.map(x=>`<button class="case-teaser" data-case="${x.id}"><span class="topic-label">${escapeHTML(x.category)} · ${x.mins} MIN</span><strong>${escapeHTML(x.punch)}</strong><span class="card-action">Voir le cas →</span></button>`).join('')}</div></details><details class="calm-disclosure"><summary>Précautions et vérifications <span aria-hidden="true">＋</span></summary><p class="tool-footer">Scénarios de démonstration : vérification spécialisée en attente. Sources documentées le ${checkedDate}. Les simulations ne sont pas des actualités et une annonce n’est pas une loi.</p></details>`;
+  }
+  function dictionary(){const w=words.find(x=>x.id===activeWord)||words[0];return `${intro('LE DICO · SANS COMPLEXE','Parle avec précision.','Un mot compliqué, une définition claire, une phrase utile, une question pour le retenir.')}<div class="word-spot"><div><span class="eyebrow">MOT À DÉBLOQUER</span><h2>${escapeHTML(w.term)}</h2><p class="muted">${escapeHTML(w.level)}</p></div><button class="btn ${wordReveal?'ghost':'primary'}" id="word-flip">${wordReveal?'Masquer':'Voir en clair'} →</button></div>${wordReveal?`<div class="card" style="margin-top:12px"><h3>En clair</h3><p class="word-definition">${escapeHTML(w.easy)}</p><div class="quote">${escapeHTML(w.use)}</div><div class="inner-separator"></div><h3>Tu as vraiment compris ?</h3><p>${escapeHTML(w.q)}</p><div class="case-options">${w.opts.map((o,i)=>`<button class="case-option ${wordChoice===i?'selected':''}" data-word-choice="${i}" ${wordCheck?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span>${escapeHTML(o)}</button>`).join('')}</div><button class="btn primary" id="word-submit" ${wordChoice===null||wordCheck?'disabled':''}>Valider →</button>${wordCheck && wordChoice!==w.answer?'<button class="btn ghost small" id="word-retry">Réessayer →</button>':''}${wordCheck?`<div class="feedback ${wordChoice===w.answer?'good':'attn'}">${wordChoice===w.answer?'Bien joué. Tu sais employer ce terme.':'Ce n’est pas encore ça. Relis la définition et essaie un autre mot.'}</div>`:''}</div>`:''}<details class="calm-disclosure"><summary>Tous les mots · ${state.completed.filter(x=>x.startsWith('word:')).length}/${words.length} appris <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${words.map(x=>`<button class="word-tile ${w.id===x.id?'selected':''}" data-word="${x.id}"><small>${escapeHTML(x.level)}</small><b>${escapeHTML(x.term)}</b>${state.completed.includes('word:'+x.id)?'<span class="word-check">✓ acquis</span>':'<span>Découvrir →</span>'}</button>`).join('')}</div></details>`;}
+
+
+  function guestExperience(){
+    const selected=scenarios.find(x=>x.id==='both-video')||byCountry()[0];
+    const explanation=guestReveal?'<div class="case-reveal '+(guestChoice===selected.answer?'right':'wrong')+'" role="status"><b>'+(guestChoice===selected.answer?'Premier Déclic réussi.':'Ce détail change le raisonnement.')+'</b><p>'+escapeHTML(selected.why)+'</p><p class="reward-subtitle">Essai sans compte et sans XP.</p><div class="source-block">'+shortSource(selected.source)+'</div></div>':'';
+    return '<section class="guest-experience"><span class="eyebrow">DÉCOUVRIR · SANS COMPTE</span><h1>Deux minutes pour exercer ton esprit critique.</h1><p>Cette situation est fictive et te permet de tester SAVRÉO avant de donner ton prénom.</p><section class="case-story"><span class="pill purple">SIMULATION FICTIVE · 2 MINUTES</span><h2>'+escapeHTML(selected.punch)+'</h2><p class="story-copy">'+escapeHTML(selected.setup)+'</p><div class="story-question">'+escapeHTML(selected.question)+'</div><div class="case-options">'+selected.choices.map((txt,i)=>'<button type="button" class="case-option '+(guestChoice===i?'selected':'')+'" data-guest-choice="'+i+'" '+(guestReveal?'disabled':'')+'><span class="option-letter">'+String.fromCharCode(65+i)+'</span><span>'+escapeHTML(txt)+'</span></button>').join('')+'</div><button class="btn primary" id="guest-check" '+(guestChoice===null||guestReveal?'disabled':'')+'>Comprendre ma réponse →</button>'+explanation+(guestReveal?'<div class="case-after-actions"><button class="btn primary" id="guest-join">Personnaliser mon parcours →</button><button class="btn ghost small" id="guest-retry">Recommencer</button></div>':'')+'</section><button class="calm-footer-link" id="guest-back">← Retour aux choix</button></section>';
+  }
+
+  function progressiveOnboarding(){
+    const step=Math.max(0,Math.min(2,onboardingStage));
+    const title=['Comment on t’appelle ?','Quel âge as-tu ?','Comment te définis-tu ?'][step];
+    const summary=[
+      'Ton prénom ou un pseudo, c’est tout. Rien n’est envoyé à un serveur.',
+      'On adapte les premières suggestions. Tu pourras explorer tous les sujets.',
+      'Facultatif : ce choix ne change pas les droits ni les sujets accessibles.'
+    ][step];
+    const options=(pairs,name,current)=>pairs.map(([id,label])=>'<label class="quick-option"><input type="radio" name="'+name+'" value="'+escapeHTML(id)+'" '+(current===id?'checked':'')+'><span>'+escapeHTML(label)+'</span></label>').join('');
+    const field=step===0?
+      '<div class="quick-input-wrap"><label for="quick-firstname" class="onboarding-label">Prénom ou pseudo</label><input id="quick-firstname" class="quick-input" name="firstName" autocomplete="given-name" type="text" maxlength="24" placeholder="Ex. Alex" value="'+escapeHTML(onboardingDraft.firstName)+'"><small>Tu peux également continuer sans indiquer ton prénom.</small></div>':
+      step===1?'<fieldset class="onboarding-field"><legend class="onboarding-label">Ta tranche d’âge</legend><div class="quick-choices age-options">'+options(Object.entries(AGE_GROUPS),'ageGroup',onboardingDraft.ageGroup)+'</div></fieldset>':
+      '<fieldset class="onboarding-field"><legend class="onboarding-label">Ton genre <span class="field-optional">· facultatif</span></legend><div class="quick-choices gender-options">'+options([['feminin','Féminin'],['masculin','Masculin'],['autre','Autre'],['','Ne pas préciser']],'gender',onboardingDraft.gender)+'</div></fieldset>';
+    return '<section class="onboarding-shell onboarding-quick" aria-labelledby="onboarding-title">'+
+      '<div class="onboarding-brand"><span class="onboarding-symbol" aria-hidden="true">S</span><span>SAVRÉO<span class="brand-dot">.</span></span><button type="button" id="theme-entry" class="theme-entry" aria-label="Changer de mode clair ou sombre">'+(document.documentElement.dataset.theme==='light'?'☾':'☀')+'</button></div>'+
+      '<div class="quick-progress" aria-label="Question '+(step+1)+' sur 3"><span>TON ESPACE · '+(step+1)+'/3</span><div class="quick-progress-dots" aria-hidden="true">'+[0,1,2].map(i=>'<span class="'+(i<=step?'done':'')+'"></span>').join('')+'</div></div>'+
+      '<div class="onboarding-head"><h1 id="onboarding-title">'+title+'</h1><p>'+summary+'</p></div>'+
+      '<form id="onboarding-form" class="onboarding-form quick-form">'+field+
+      '<button type="submit" class="btn primary onboarding-submit">'+(step===2?'Commencer à apprendre':'Continuer')+' <span aria-hidden="true">→</span></button>'+
+      '</form>'+
+      '<div class="quick-foot">'+(step>0?'<button type="button" id="onboarding-back" class="onboarding-cancel">← Retour</button>':'<button type="button" id="onboarding-skip-name" class="onboarding-cancel">Continuer sans prénom</button>')+
+      (step===2?'<button type="button" id="onboarding-finish" class="onboarding-cancel">Passer cette question →</button>':'')+'</div>'+
+      (step===0?'<div class="quick-guest-link"><button type="button" id="guest-start" class="calm-footer-link">Essayer un Déclic avant de commencer →</button></div>':'')+
+      '<p class="onboarding-privacy">Sans compte · Informations locales modifiables dans « Mon parcours ».</p>'+
+      '</section>';
+  }
+  function finishProgressiveOnboarding(){
+    state.firstName=safeName(onboardingDraft.firstName);
+    state.ageGroup=onboardingDraft.ageGroup;
+    state.gender=GENDERS[onboardingDraft.gender]?onboardingDraft.gender:'';
+    state.onboardingDone=true;
+    state.interestsDone=true; // Choix facultatifs disponibles plus tard dans le profil.
+    profileEditing=false;
+    setStore();
+    navigate('accueil');
+    toast('Bienvenue sur SAVRÉO. À toi de jouer !');
+  }
+  function onboarding(){
+    const editing=profileEditing;
+    if(!editing)return progressiveOnboarding();
+    const selectedAge=AGE_GROUPS[state.ageGroup]?state.ageGroup:'';
+    const checked = (actual, expected) => actual===expected ? ' checked' : '';
+    return `<section class="onboarding-shell" aria-labelledby="onboarding-title">
+      <div class="onboarding-brand"><span class="onboarding-symbol" aria-hidden="true">S</span><span>SAVRÉO<span class="brand-dot">.</span></span><button type="button" id="theme-entry" class="theme-entry" aria-label="Changer de mode clair ou sombre">${document.documentElement.dataset.theme==='light'?'☾':'☀'}</button></div>
+      <div class="onboarding-head"><span class="eyebrow">TON ESPACE, TON RYTHME</span><h1 id="onboarding-title">${editing?'Personnalise ton parcours.':'Tu sais plus que tu ne le crois.'}</h1><p>${editing?'Modifie tes préférences quand tu veux. Ta progression restera intacte.':'Un défi de deux minutes, des réponses expliquées et des connaissances utiles chaque jour. Personnalise ton parcours sans créer de compte.'}</p></div>
+      ${!editing?'<section class="onboarding-discovery"><span class="eyebrow">AVANT DE COMMENCER</span><p>Une vidéo a deux millions de vues. Est-elle forcément vraie ?</p><button class="btn primary" id="guest-start" type="button">Tester mon premier Déclic sans profil →</button><small>Gratuit · 2 minutes · aucune donnée demandée</small></section>':''}
+      <form id="onboarding-form" class="onboarding-form">
+        <div class="onboarding-field">
+          <label class="onboarding-label" for="onboarding-name">Comment on t’appelle ?</label>
+          <input id="onboarding-name" name="firstName" type="text" maxlength="24" autocomplete="given-name" placeholder="Ton prénom ou un pseudo" value="${escapeHTML(state.firstName||'')}" />
+          <small>Un prénom ou un pseudo suffit. Pas besoin de nom de famille.</small>
+        </div>
+        <fieldset class="onboarding-field"><legend class="onboarding-label">Quelle est ta tranche d’âge ?</legend>
+          <div class="age-options">
+          ${Object.entries(AGE_GROUPS).map(([value,label])=>`<label class="age-choice"><input type="radio" name="ageGroup" value="${value}" ${checked(selectedAge,value)} required><span>${label}</span></label>`).join('')}
+          </div><small>Pour te recommander les situations les plus pertinentes. Tous les thèmes restent accessibles.</small>
+        </fieldset>
+        <fieldset class="onboarding-field"><legend class="onboarding-label">Ton genre <span class="field-optional">· facultatif</span></legend>
+          <div class="gender-options">
+          ${[['feminin','Féminin'],['masculin','Masculin'],['autre','Autre'],['','Ne pas préciser']].map(([value,label])=>`<label class="gender-choice"><input type="radio" name="gender" value="${value}" ${checked(state.gender||'',value)}><span>${label}</span></label>`).join('')}
+          </div><small>Ce choix personnalise uniquement certaines formulations, jamais les sujets accessibles.</small>
+        </fieldset>
+        <button class="btn primary onboarding-submit" type="submit">${editing?'Enregistrer mes préférences':'Découvrir mon premier défi'} <span aria-hidden="true">→</span></button>
+        ${editing?'<button type="button" class="onboarding-cancel" id="cancel-onboarding">Revenir à mon parcours</button>':''}
+      </form>
+      <p class="onboarding-privacy"><span aria-hidden="true">⌁</span> Aucune création de compte. Ces informations restent dans ton navigateur et sont modifiables ou effaçables à tout moment.</p>
+    </section>`;
+  }
+  function interestsScreen(){
+    const selected=chosenInterests();
+    return `<section class="onboarding-shell interests-shell" aria-labelledby="interests-title">
+      <div class="onboarding-brand"><span class="onboarding-symbol" aria-hidden="true">S</span><span>SAVRÉO<span class="brand-dot">.</span></span><button type="button" id="theme-entry" class="theme-entry" aria-label="Changer de mode clair ou sombre">${document.documentElement.dataset.theme==='light'?'☾':'☀'}</button></div>
+      <div class="onboarding-head"><span class="eyebrow">${interestsEditing?'PERSONNALISER TON PARCOURS':'ÉTAPE 2 SUR 2 · À TON RYTHME'}</span><h1 id="interests-title">Qu’est-ce qui t’intéresse ?</h1><p>Choisis jusqu’à 3 sujets. On te proposera des situations qui te parlent, sans cacher le reste de SAVRÉO.</p></div>
+      <form id="interests-form" class="onboarding-form">
+        <fieldset class="onboarding-field"><legend class="onboarding-label">Tes centres d’intérêt <span class="field-optional">· facultatif</span></legend>
+        <div class="interest-grid">${INTERESTS.map(t=>`<label class="interest-choice"><input type="checkbox" name="interests" value="${t.id}" ${selected.includes(t.id)?'checked':''}><span class="interest-tile"><span class="interest-emoji" aria-hidden="true">${t.emoji}</span><b>${escapeHTML(t.label)}</b><small>${escapeHTML(t.detail)}</small><span class="interest-check" aria-hidden="true">✓</span></span></label>`).join('')}</div>
+        <p class="interest-counter" id="interests-count" role="status" aria-live="polite">${selected.length}/3 sujets choisis</p></fieldset>
+        <button type="submit" class="btn primary onboarding-submit">${interestsEditing?'Enregistrer mes choix':'Accéder à mon espace'} <span aria-hidden="true">→</span></button>
+        ${interestsEditing?'<button type="button" class="onboarding-cancel" id="cancel-interests">Retour à mon parcours</button>':'<button type="button" class="onboarding-cancel" id="skip-interests">Passer pour le moment</button>'}
+      </form>
+      <p class="onboarding-privacy">Tu peux changer d’avis dans « Mon parcours ». Aucun centre d’intérêt ne bloque les autres contenus. Tes choix restent sur cet appareil.</p>
+    </section>`;
+  }
+  function recommendedLesson(){
+    const byAge={'12-15':['penser','debate','argument'],'16-20':['economy','argument','droits'],'21-28':['lois','droits','economy']};
+    const fromInterests=chosenInterests().flatMap(id=>INTERESTS.find(t=>t.id===id)?.lessons||[]);
+    const beta=lessons.filter(l=>ageMatch(l)).sort((a,b)=>contentPriority(b)-contentPriority(a));
+    const preferred=[...beta,...[...new Set([...fromInterests,...(byAge[state.ageGroup]||[])])].map(id=>lessons.find(l=>l.id===id)).filter(Boolean)];
+    return preferred.find(l=>!state.completed.includes('lesson:'+l.id))
+      || lessons.find(l=>!state.completed.includes('lesson:'+l.id)) || lessons[0];
+  }
+
+  const LESSON_REFERENCES={
+    penser:[['CLEMI — esprit critique et informations','https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/ou-les-enfants-et-les-adolescents-sinforment-ils-aujourdhui']],
+    argument:[['Édubase — organiser un débat citoyen','https://edubase.eduscol.education.fr/fiche/16392']],
+    lois:[['Belgique — La Chambre','https://www.lachambre.be/kvvcr/index.cfm?language=fr'],['France — Vie publique','https://www.vie-publique.fr']],
+    droits:[['Conseil de l’Europe — droits fondamentaux','https://www.coe.int/fr/web/compass/european-convention-on-human-rights']],
+    economy:[['BCE — qu’est-ce que l’inflation ?','https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_inflation.fr.html']],
+    debate:[['Édubase — le débat citoyen','https://edubase.eduscol.education.fr/fiche/16392']]
+  };
+  const JOURNEYS=[
+    {id:'medias',icon:'◈',title:'Décrypter une info',desc:'Une vidéo virale, une méthode de vérification, un argument.',case:{BE:'both-video',FR:'both-video'},lesson:'penser',debate:3},
+    {id:'travail',icon:'▤',title:'Comprendre l’argent et le travail',desc:'Un cas concret, une notion économique, une mise en pratique.',case:{BE:'be-heures',FR:'fr-apprenti'},lesson:'economy',debate:0},
+    {id:'droits',icon:'⚖',title:'Connaître ses droits',desc:'Une situation de société, la règle, puis un débat argumenté.',case:{BE:'be-manif',FR:'fr-manif'},lesson:'lois',debate:2}
+  ];
+  JOURNEYS.push(
+    {id:'reflexe-info',icon:'◎',title:'Garder le contrôle de ce que tu partages',desc:'Apprendre à vérifier une capture avant de la relayer.',ageGroups:['12-15'],interestIds:['reseaux','culture'],case:{BE:'beta-capture',FR:'beta-capture'},lesson:'info-context',debate:5},
+    {id:'reflexe-securite',icon:'✳',title:'Déjouer une arnaque en ligne',desc:'Identifier une fausse offre et répondre avec méthode.',ageGroups:['16-20'],interestIds:['reseaux','argent'],case:{BE:'beta-recrutement',FR:'beta-recrutement'},lesson:'online-scams',debate:6},
+    {id:'reflexe-logement',icon:'⌂',title:'Éviter une fausse location',desc:'Vérifier un logement, son annonce et les bons réflexes.',ageGroups:['21-28'],interestIds:['argent','droits'],case:{BE:'beta-appart',FR:'beta-appart'},lesson:'rent-smart',debate:7}
+  );
+  const reviewsData=()=>state.reviews && typeof state.reviews==='object' && !Array.isArray(state.reviews)?state.reviews:{};
+  const reviewIntervals=[1,3,7,14,30];
+  const reviewDate=days=>{const d=new Date(dayKey()+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10);};
+  function queueReview(id){const data=reviewsData();if(!data[id]){data[id]={stage:0,due:reviewDate(1),attempts:0};state.reviews=data;setStore();}}
+  function dueReviews(){return lessons.filter(l=>reviewsData()[l.id] && reviewsData()[l.id].due<=dayKey());}
+  function recordReview(id,correct){const data=reviewsData(),old=data[id];if(!old)return;const stage=correct?Math.min(old.stage+1,4):0;data[id]={stage,due:reviewDate(reviewIntervals[stage]),attempts:(old.attempts||0)+1};state.reviews=data;setStore();}
+  function journeyChecks(j){return [state.completed.includes('case:'+j.case[state.country]),state.completed.includes('lesson:'+j.lesson),(Array.isArray(state.journeyDebates)?state.journeyDebates:[]).includes(j.id)];}
+
+
+  function journeys(){
+    const journeyCard=j=>{
+      const checks=journeyChecks(j),count=checks.filter(Boolean).length;
+      const steps=[['01','Réagir à une situation','case'],['02','Comprendre et se tester','lesson'],['03','Défendre sa conclusion','debate']];
+      const controls=steps.map(([n,label,kind],i)=>{
+        const available=i===0 || checks[i-1];
+        return '<button type="button" class="journey-step" data-journey="'+j.id+'" data-stage="'+kind+'" '+(available?'':'disabled')+' aria-label="'+escapeHTML(label)+(checks[i]?', terminé':available?', à faire':', verrouillé')+'"><span class="journey-number">'+(checks[i]?'✓':n)+'</span><span>'+escapeHTML(label)+'</span><span aria-hidden="true">'+(available?'↗':'•')+'</span></button>';
+      }).join('');
+      return '<article class="card learning-card calm-journey-card"><div class="learning-card-top"><span class="learning-icon" aria-hidden="true">'+j.icon+'</span><span class="pill grey">'+count+'/3 étapes</span></div><h3>'+escapeHTML(j.title)+'</h3><p>'+escapeHTML(j.desc)+'</p><div class="progressbar" role="progressbar" aria-label="Progression du parcours" aria-valuenow="'+count+'" aria-valuemin="0" aria-valuemax="3"><i style="width:'+(count/3*100)+'%"></i></div><div class="journey-steps">'+controls+'</div></article>';
+    };
+    const first=JOURNEYS.find(j=>journeyChecks(j).some(Boolean)&&!journeyChecks(j).every(Boolean))||JOURNEYS.slice().sort((a,b)=>contentPriority(b)-contentPriority(a))[0];
+    return intro('MES PARCOURS','Un objectif, trois étapes.','Une situation, une explication, puis un exercice pour appliquer ce que tu as appris.')+
+      '<div class="calm-feature-lesson">'+journeyCard(first)+'</div>'+
+      '<details class="calm-disclosure"><summary>Découvrir les autres parcours <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">'+JOURNEYS.filter(j=>j.id!==first.id).sort((a,b)=>contentPriority(b)-contentPriority(a)).map(journeyCard).join('')+'</div></details>'+
+      '<button class="calm-footer-link" data-route="reviser">Revoir ce que j’ai appris <span aria-hidden="true">→</span></button>'+
+      '<details class="calm-disclosure"><summary>À propos des situations proposées <span aria-hidden="true">＋</span></summary><p class="muted small">Ces exercices sont pédagogiques, pas des certifications. Les règles juridiques dépendent du pays et de la situation. Consulte toujours les sources officielles.</p></details>';
+  }
+
+  function reviewPage(){
+    const due=dueReviews();
+    const microDue=dueMicroReviews();
+    const selected=lessons.find(l=>l.id===reviewLessonId && (reviewResult!==null || due.includes(l)));
+    let testing='';
+    if(selected){
+      const opts=selected.choices.map((v,i)=>'<label class="option"><input type="radio" name="answer" value="'+i+'" '+(reviewChoice===i?'checked':'')+' '+(reviewResult!==null?'disabled':'')+'><span>'+escapeHTML(v)+'</span></label>').join('');
+      const feedback=reviewResult===null?'':'<div class="feedback '+(reviewResult?'good':'attn')+'"><b>'+(reviewResult?'Bien retenu.':'À revoir.')+'</b> '+escapeHTML(selected.why)+'<p class="small">Prochain rappel : '+escapeHTML(reviewsData()[selected.id]?.due||'à programmer')+'</p></div><button class="btn ghost" data-route="reviser">Retour aux révisions →</button>';
+      testing='<section class="card review-test"><span class="pill purple">RAPPEL DE MÉMOIRE</span><h2>'+escapeHTML(selected.q)+'</h2><form id="review-quiz">'+opts+'<button class="btn primary" type="submit" '+(reviewResult!==null?'disabled':'')+'>Vérifier mon souvenir</button></form>'+feedback+'</section>';
+    }
+    const pending=due.filter(l=>l.id!==reviewLessonId);
+    const waiting=pending.map(l=>'<button class="card review-choice" data-review="'+l.id+'"><span class="pill grey">'+escapeHTML(l.tag)+'</span><b>'+escapeHTML(l.title)+'</b><span class="card-action">Me tester →</span></button>').join('');
+    const scheduled=lessons.filter(l=>reviewsData()[l.id]);
+    const list=scheduled.map(l=>'<div><span>'+escapeHTML(l.title)+'</span><small>Prochain rappel : '+escapeHTML(reviewsData()[l.id].due)+'</small></div>').join('');
+    const microButton=c=>'<button class="card review-choice" type="button" data-micro-review="'+escapeHTML(c.id)+'"><span class="pill grey">'+escapeHTML(c.topic)+'</span><b>'+escapeHTML(c.title)+'</b><span class="card-action">Me tester →</span></button>';
+    const microWaiting=microDue.slice(0,3).map(microButton).join('');
+    const microLater=microDue.slice(3).map(microButton).join('');
+    const moreReviews=microLater?'<details class="calm-disclosure"><summary>Voir '+(microDue.length-3)+' autres révisions <span aria-hidden="true">＋</span></summary><div class="learning-grid">'+microLater+'</div></details>':'';
+    return intro('RÉVISIONS · MÉMORISATION','Retenir ce qui compte.','Réponds de mémoire le lendemain, puis après 3, 7, 14 et 30 jours si tu réussis. Un oubli n’est pas un échec.')+
+      '<div class="review-summary"><strong>'+(due.length+microDue.length)+'</strong><span>révision(s) disponible(s)</span></div>'+testing+
+      ((waiting||microWaiting)?'<div class="learning-grid">'+waiting+microWaiting+'</div>':selected?'':'<div class="blank-state">Aucune révision à faire aujourd’hui. Valide une leçon ou un savoir essentiel pour planifier ton premier rappel.</div>')+
+      moreReviews+
+      (list?'<details class="calm-disclosure"><summary>Voir le calendrier des prochains rappels <span aria-hidden="true">＋</span></summary><div class="review-schedule">'+list+'</div></details>':'');
+  }
+
+  function editorialPage(){
+    const info=[
+      ['Sources officielles','Un contenu juridique doit renvoyer vers une institution ou un texte vérifiable.'],
+      ['Fait, opinion, annonce','Un communiqué n’est pas une loi applicable ; une situation inventée doit être identifiée comme telle.'],
+      ['Vérification indépendante','Les fiches du pilote n’ont pas encore été relues par un spécialiste externe.']
+    ];
+    const cards=info.map(([title,body])=>'<div class="calm-source-point"><h3>'+title+'</h3><p>'+body+'</p></div>').join('');
+    const links=SOURCES[state.country].slice(0,5).map(x=>'<a class="hub-item" target="_blank" rel="noopener noreferrer" href="'+safeURL(x.url)+'"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(x.name)+'</b><small>'+escapeHTML(x.description)+'</small></span><span aria-hidden="true">↗</span></a>').join('');
+    return intro('NOS SOURCES','Tu peux vérifier.','La transparence est aussi importante que la réponse.')+
+      '<div class="calm-reading calm-source-content">'+cards+'</div>'+
+      '<details class="calm-disclosure"><summary>Consulter les institutions <span aria-hidden="true">＋</span></summary><div class="calm-submenu">'+links+'</div></details>';
+  }
+
+  function welcome(){
+    const focus=todayCase(),next=recommendedLesson(),due=dueReviews().length+dueMicroReviews().length,done=state.completed.filter(x=>x.startsWith('lesson:')).length;
+    const finished=state.completed.includes('mission:case:'+dayKey());
+    const rank=progressRank(),remaining=rank.next===null?'Dernier palier atteint':(rank.next-rank.points)+' XP avant le prochain palier';
+    return `<section class="calm-greeting"><span class="eyebrow">${state.firstName?`BONJOUR ${escapeHTML(state.firstName)}`:"BIENVENUE SUR SAVRÉO"}</span><h1>${finished?'Un déclic de plus !':'Prêt pour ton prochain déclic ?'}</h1><p>${finished?'Tu as avancé aujourd’hui. Reviens quand tu veux : les autres savoirs restent ouverts.':'Deux minutes pour découvrir quelque chose que tu pourras utiliser.'}</p></section>
+      <section class="learning-level" aria-label="Ta progression en points">
+        <div class="learning-level-top"><span><span aria-hidden="true">✦</span> ${escapeHTML(rank.name)}</span><b>${rank.points} XP</b></div>
+        <div class="learning-meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${rank.progress}" aria-label="Progression vers le prochain palier"><span style="width:${rank.progress}%"></span></div>
+        <small>${escapeHTML(remaining)} · Ton rythme, sans obligation quotidienne</small>
+      </section>
+      <section class="daily-feature calm-feature" aria-label="Déclic du jour">
+        <div class="calm-feature-meta"><span class="eyebrow">${finished?'✓ DÉCLIC DU JOUR TERMINÉ':'DÉCLIC DU JOUR'}</span><span class="pill grey">${focus.mins} min</span></div>
+        <h2>${finished?'Bien joué. On continue ?':escapeHTML(focus.punch)}</h2>
+        ${finished?'<p class="reward-subtitle">Une question réussie, ce n’est que le début : retrouve-la plus tard pour vérifier que tu l’as retenue.</p>':''}
+        ${finished?'<button class="btn primary" id="case-next" type="button">Essayer un autre défi →</button>':'<button class="btn primary" type="button" data-route="declic">Tester mon réflexe →</button>'}
+      </section>
+      <section class="calm-next" aria-label="Continuer mon parcours">
+        <div class="section-heading calm-section"><h2>Continuer</h2></div>
+        <button class="resume-card" data-lesson="${next.id}"><span class="resume-icon" aria-hidden="true">▤</span><span class="resume-content"><b>${escapeHTML(next.title)}</b><small>${next.mins} min · ${done}/${lessons.length} leçons terminées</small></span><span aria-hidden="true">↗</span></button>
+        ${due? `<button class="calm-inline" data-route="reviser"><span aria-hidden="true">↺</span> ${due} révision${due>1?'s':''} à faire <span aria-hidden="true">→</span></button>`:''}
+      </section>
+      <button class="calm-footer-link" data-route="explorer">Explorer tous les sujets <span aria-hidden="true">→</span></button>`;
+  }
+
+
+
+  function publicHub(){
+    const snapshot=Array.isArray(CIVIC_PACK.snapshots)?CIVIC_PACK.snapshots.find(x=>x.country===state.country):null;
+    const sources=Array.isArray(CIVIC_PACK.localSources?.[state.country])?CIVIC_PACK.localSources[state.country]:[];
+    const categories=[
+      ['all','Tous les niveaux'],['national',state.country==='BE'?'Fédéral':'National'],
+      ['regional','Région'],['local','Ville / commune']
+    ].filter(([id])=>id==='all'||sources.some(x=>x.level===id));
+    if(!categories.some(([id])=>id===publicScope))publicScope='all';
+    const chosen=sources.filter(x=>publicScope==='all'||x.level===publicScope);
+    const filters=categories.map(([id,label])=>'<button type="button" class="public-scope-choice '+(id===publicScope?'selected':'')+'" data-public-scope="'+id+'" aria-pressed="'+(id===publicScope)+'">'+escapeHTML(label)+'</button>').join('');
+    const more=chosen.map(x=>'<a class="hub-item" href="'+safeURL(x.url)+'" target="_blank" rel="noopener noreferrer"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(x.label)+'</b><small>'+escapeHTML(x.scope)+' · '+(x.isArchive?'archive du '+escapeHTML(x.documentDate):'publication institutionnelle · actualité à vérifier en ligne')+'</small></span><span aria-hidden="true">↗</span></a>').join('');
+    const spotlight=snapshot?'<section class="civic-spotlight"><span class="eyebrow">PUBLICATION À DÉCRYPTER · ARCHIVE</span><span class="civic-date">'+escapeHTML(snapshot.date)+' · '+escapeHTML(snapshot.scope)+'</span><h2>'+escapeHTML(snapshot.title)+'</h2><p>'+escapeHTML(snapshot.summary)+'</p>'+
+      '<div class="civic-stage">Nature du document : '+escapeHTML(snapshot.statusLabel||snapshot.type)+'</div>'+
+      '<p class="civic-source-note">Archive pédagogique · aucune vérification indépendante enregistrée · ne représente pas l’actualité en direct</p>'+
+      '<details class="calm-disclosure"><summary>Ce que le document établit — et ses limites <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>'+escapeHTML(snapshot.impact)+'</p><p>'+escapeHTML(snapshot.verification)+'</p>'+source(snapshot.source.label,snapshot.source.url)+'</div></details></section>':'';
+    return intro('VIE PUBLIQUE','Comprendre ce qui se décide.','Apprends à distinguer les annonces, les délibérations, les textes adoptés et les règles en vigueur.')+
+      spotlight+
+      '<div class="calm-menu civic-menu">'+
+      '<button class="hub-item" data-route="vigie"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Publications institutionnelles</b><small>Informations en ligne, avec date et source</small></span><span aria-hidden="true">↗</span></button>'+
+      '<button class="hub-item" data-route="civique"><span class="hub-mark" aria-hidden="true">◇</span><span><b>Apprendre à voter</b><small>'+civicAvailable().length+' notions disponibles hors connexion</small></span><span aria-hidden="true">↗</span></button>'+
+      '<button class="hub-item" data-route="dossiers"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Programmes, résultats et budgets</b><small>Des documents pour comparer par toi-même</small></span><span aria-hidden="true">↗</span></button>'+
+      '</div><details class="calm-disclosure" '+(publicSourcesOpen?'open':'')+'><summary>Voir les sources de mon pays et de ses villes <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p>Sélectionne un niveau de pouvoir. Les liens ouvrent les publications des institutions : cette liste n’est pas un fil municipal en direct et ne prouve pas l’adoption d’une mesure.</p>'+
+      '<div class="public-scope-picker" role="group" aria-label="Niveau de pouvoir">'+filters+'</div><div class="calm-submenu">'+more+'</div></div></details>'+
+      '<details class="calm-disclosure"><summary>Notre méthode de neutralité <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p>SAVRÉO ne recommande aucun parti et ne classe pas les candidats. Les informations politiques ne sont pas ciblées selon une orientation présumée.</p><p>Une promesse n’est pas une loi ; une plainte n’est pas une condamnation ; une prévision n’est pas un résultat définitif.</p></div></details>';
+  }
+  function civicSchool(){
+    const cards=civicAvailable();
+    if(!cards.length)return intro('APPRENDRE À VOTER','Premiers repères en préparation.','Les fiches seront accessibles même hors connexion.');
+    const chosen=cards.find(c=>c.id===civicCurrent)||cards.find(c=>!state.completed.includes('civic:'+c.id))||cards[0];
+    const known=cards.filter(c=>state.completed.includes('civic:'+c.id)).length;
+    const choices=chosen.choices.map((answer,i)=>'<button type="button" class="case-option '+(civicChoice===i?'selected':'')+'" data-civic-choice="'+i+'" '+(civicReveal?'disabled':'')+'><span class="option-letter">'+String.fromCharCode(65+i)+'</span><span>'+escapeHTML(answer)+'</span></button>').join('');
+    const feedback=civicReveal?'<div class="feedback '+(civicChoice===chosen.answer?'good':'attn')+'" role="status"><b>'+(civicChoice===chosen.answer?'Bien compris · '+(civicFirstReward?'+12 XP':'révision sans XP supplémentaire'):'À revoir · bonne réponse : '+escapeHTML(chosen.choices[chosen.answer])+'.')+'</b><p>'+escapeHTML(chosen.why)+'</p></div>':'';
+    const sources=chosen.sources.map(x=>source(x.label,x.url)).join(' ');
+    return intro('APPRENDRE À VOTER','Une notion à la fois.','Une question, une réponse expliquée et une source. À toi de te faire ton idée.')+
+      '<div class="civic-progress"><span>'+known+' / '+cards.length+' questions réussies au moins une fois</span><span>Fiches pédagogiques datées du 22/10/2026</span></div>'+
+      '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(chosen.topic)+' · '+(chosen.country==='ALL'?'Belgique et France':chosen.country==='BE'?'Belgique':'France')+'</span>'+
+      '<h2>'+escapeHTML(chosen.title)+'</h2><p>'+escapeHTML(chosen.body)+'</p>'+
+      '<p class="civic-source-note">Édition '+escapeHTML(chosen.edition||'non datée')+' · relecture spécialisée en attente</p>'+civicProvenance(chosen)+
+      '<div class="story-question">'+escapeHTML(chosen.question)+'</div>'+
+      '<div class="case-options">'+choices+'</div><button class="btn primary" type="button" id="civic-check" '+(civicChoice===null||civicReveal?'disabled':'')+'>Vérifier ma réponse →</button>'+
+      feedback+(civicReveal?'<button class="calm-card-action" type="button" id="civic-next">Notion suivante →</button>':'')+
+      '</section><details class="calm-disclosure"><summary>Parcourir les '+cards.length+' notions <span aria-hidden="true">＋</span></summary><div class="civic-topic-list">'+
+      cards.map(c=>'<button type="button" class="civic-topic" data-civic-id="'+escapeHTML(c.id)+'"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('civic:'+c.id)?'✓ Réussi une fois':escapeHTML(c.topic))+'</small></button>').join('')+'</div></details>'+
+      '<button class="calm-footer-link" data-route="vie-publique">← Retour à Vie publique</button>';
+  }
+
+  function essentialSchool(){
+    const cards=essentialAvailable();
+    if(!cards.length)return intro('SAVOIRS ESSENTIELS','Une bibliothèque en construction.','Les repères seront accessibles hors connexion.');
+    const preferred=cards.filter(x=>x.ageGroups.includes(state.ageGroup));
+    const catalogAge=essentialAgeView||state.ageGroup;
+    const shown=cards.filter(x=>x.ageGroups.includes(catalogAge));
+    const selected=cards.find(x=>x.id===essentialCurrent)||nextMicroCard('',state.ageGroup)||cards[0];
+    const count=cards.filter(x=>state.completed.includes('essential:'+x.id)).length;
+    const choices=selected.choices.map((answer,i)=>'<button type="button" data-essential-choice="'+i+'" class="case-option '+(essentialChoice===i?'selected':'')+'" '+(essentialReveal?'disabled':'')+'><span class="option-letter">'+String.fromCharCode(65+i)+'</span><span>'+escapeHTML(answer)+'</span></button>').join('');
+    const isCorrect=essentialChoice===selected.answer;
+    const feedback=essentialReveal?'<div class="feedback '+(isCorrect?'good':'attn')+'" role="status"><b>'+(isCorrect?'Bonne réponse · '+(essentialFirstReward?'+10 XP':'révision sans XP supplémentaire'):'Pas encore · observe le bon raisonnement')+'</b><p>'+escapeHTML(selected.why)+'</p></div>':'';
+    const nextReview=microReviewsData()[selected.id]?.due;
+    return intro('SAVOIRS ESSENTIELS','Une idée, une question.','Des réflexes concrets à utiliser dans la vie. Les tranches d’âge sont des suggestions, jamais des restrictions.')+
+      '<div class="civic-progress"><span>'+count+' / '+cards.length+' notions réussies une fois</span><span>Disponibles hors connexion · relecture en attente</span></div>'+
+      '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(selected.topic)+' · conseillé '+escapeHTML(selected.ageGroups.join(', '))+' ans</span>'+
+      '<h2>'+escapeHTML(selected.title)+'</h2><p>'+escapeHTML(selected.body)+'</p>'+
+      '<p class="civic-source-note">Simulation pédagogique · édition du 22/10/2026 · relecture indépendante en attente</p>'+essentialEvidence(selected)+
+      '<div class="story-question">'+escapeHTML(selected.question)+'</div><div class="case-options">'+choices+'</div>'+
+      '<button class="btn primary" type="button" id="essential-check" '+(essentialChoice===null||essentialReveal?'disabled':'')+'>Vérifier ma réponse →</button>'+feedback+
+      (essentialReveal?'<div class="micro-next-date">'+(nextReview?'Prochaine révision : '+escapeHTML(nextReview):'À revoir prochainement')+'</div><button class="calm-card-action" id="essential-next" type="button">Notion suivante →</button>':'')+
+      '</section><details class="calm-disclosure micro-catalogue"><summary>Parcourir les '+cards.length+' savoirs <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p>Les suggestions suivent ta tranche d’âge, mais tu peux consulter tous les sujets.</p>'+
+      '<div class="micro-age-picker" role="group" aria-label="Tranche d’âge pour les savoirs">'+
+      ['12-15','16-20','21-28'].map(a=>'<button type="button" class="micro-age-choice '+(catalogAge===a?'selected':'')+'" aria-pressed="'+(catalogAge===a)+'" data-essential-age="'+a+'">'+escapeHTML(a.replace('-', '–'))+' ans</button>').join('')+
+      '</div><p class="micro-catalog-count">'+shown.length+' fiches proposées pour cette tranche d’âge</p>'+
+      '<div class="civic-topic-list">'+shown.map(c=>'<button class="civic-topic" data-essential-id="'+escapeHTML(c.id)+'" type="button"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('essential:'+c.id)?(microReviewsData()[c.id]?.stage>=2?'✓ Révisé plusieurs fois':'✓ Première réussite'):escapeHTML(c.topic))+'</small></button>').join('')+'</div></div></details>'+
+      '<button class="calm-footer-link" data-route="explorer">← Retour à Découvrir</button>';
+  }
+
+
+  function politicalDossiers(){
+    const parties=(Array.isArray(PARTY_DATA.parties)?PARTY_DATA.parties:[]).filter(x=>x.country===state.country)
+      .slice().sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+    const resources=Array.isArray(PARTY_DATA.countrySources?.[state.country])?PARTY_DATA.countrySources[state.country]:[];
+    const partyRows=parties.map(p=>'<details class="party-record"><summary><span class="party-name">'+escapeHTML(p.name)+'</span><span class="party-record-label">Voir les documents <span aria-hidden="true">＋</span></span></summary>'+
+      '<div class="party-record-body"><div><span class="eyebrow">ARCHIVE DOCUMENTAIRE</span><p>'+escapeHTML(p.election)+'</p></div><p>'+escapeHTML(p.notes)+'</p>'+
+      '<p class="party-meta">Document : '+escapeHTML(p.docDate)+' · '+escapeHTML(p.docType)+'</p>'+
+      source(p.primarySource.label,p.primarySource.url)+' '+source(p.otherSource.label,p.otherSource.url)+
+      '<details class="calm-disclosure"><summary>Données non encore vérifiées <span aria-hidden="true">＋</span></summary><p class="small muted">Dirigeants actuels, mandats, résultats chiffrés, comptes et décisions judiciaires individuelles : non renseignés. SAVRÉO ne fabrique pas ces informations et ne déduit pas de condamnation d’une accusation.</p></details></div></details>').join('');
+    const resourcesHtml=resources.map(r=>'<a class="hub-item" href="'+safeURL(r.url)+'" target="_blank" rel="noopener noreferrer"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(r.label)+'</b><small>Source institutionnelle ; vérifier année et territoire</small></span><span aria-hidden="true">↗</span></a>').join('');
+    const checks=[
+      ['Programmes','Lis le document original daté : une promesse n’est pas une mesure appliquée.'],
+      ['Résultats','Vérifie le scrutin, son année et la circonscription auprès de l’autorité électorale.'],
+      ['Déficit, dette et aides','Contrôle le périmètre du budget, les montants, l’année et la date d’entrée en vigueur.'],
+      ['Responsables','Vérifie le mandat et sa date auprès de l’institution avant de publier un nom.'],
+      ['Justice','Plainte, enquête, poursuite et condamnation ne sont pas interchangeables.']
+    ];
+    return intro('PARTIS ET DOSSIERS PUBLICS','Lire les documents, se faire son avis.','Les mêmes sources pour tous. Aucun classement politique ni recommandation de vote.')+
+      '<section class="party-library"><div class="civic-progress"><span>'+parties.length+' dossiers documentaires</span><span>'+ (state.country==='BE'?'Chiffrage BFP fédéral de 2024':'Échantillon initial non exhaustif en France') +'</span></div>'+
+      '<p class="muted small">'+(state.country==='BE'?'Ces douze partis sont ceux documentés par le chiffrage officiel fédéral de 2024. Le chiffrage porte sur les mesures soumises et non sur tout leur programme.':'Les cinq dossiers français sont un point de départ, pas une liste exhaustive ni une sélection des partis à soutenir.')+'</p>'+
+      '<div class="party-records">'+partyRows+'</div></section>'+
+      '<details class="calm-disclosure"><summary>Comment comparer sans se tromper <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">'+
+      checks.map(([title,body])=>'<div class="calm-source-point"><h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(body)+'</p></div>').join('')+
+      '</div></details>'+
+      '<details class="calm-disclosure"><summary>Résultats, budgets et organismes de contrôle <span aria-hidden="true">＋</span></summary><div class="calm-submenu">'+resourcesHtml+'</div></details>'+
+      '<p class="civic-legal-note">Documents datés, non relus par un expert indépendant. Les sites des partis expriment les positions de leurs auteurs. SAVRÉO ne garantit pas que ces documents représentent leur programme actuel.</p>'+
+      '<button class="calm-footer-link" data-route="civique">Comprendre les élections →</button>';
+  }
+
+  function explore(){
+    return `${intro('DÉCOUVRIR','Qu’as-tu envie de comprendre ?','Choisis une porte d’entrée. Tu pourras explorer le reste ensuite.')}
+      <div class="calm-menu">
+        <button class="hub-item" data-route="declic"><span class="hub-mark" aria-hidden="true">⚡</span><span><b>Situations de la vie</b><small>Une question, un réflexe</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="apprendre"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Leçons essentielles</b><small>Comprendre à son rythme</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="vie-publique"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Vie publique et élections</b><small>Décisions, vote et institutions</small></span><span aria-hidden="true">↗</span></button>
+      </div>
+      <details class="calm-disclosure"><summary>Autres ressources <span aria-hidden="true">＋</span></summary><div class="calm-submenu">
+        <button class="hub-item" data-route="essentiels"><span class="hub-mark" aria-hidden="true">✦</span><span><b>Savoirs essentiels</b><small>'+essentialAvailable().length+' réflexes utiles, hors ligne</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="dico"><span class="hub-mark" aria-hidden="true">✳</span><span><b>Les mots utiles</b><small>Enrichir ton vocabulaire</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="sources"><span class="hub-mark" aria-hidden="true">✓</span><span><b>Sources et méthode</b><small>Comprendre la fiabilité</small></span><span aria-hidden="true">↗</span></button>
+      </div></details>`;
+  }
+  function practice(){
+    const achieved=dailyMissions().filter(m=>state.completed.includes(m.key)).length;
+    return `${intro('PRATIQUER','Progresser à ton rythme.','Un exercice à la fois pour mieux retenir et mieux t’exprimer.')}
+      <div class="calm-menu">
+        <button class="hub-item" data-route="parcours"><span class="hub-mark" aria-hidden="true">◇</span><span><b>Mes parcours</b><small>Trois étapes pour apprendre</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="reviser"><span class="hub-mark" aria-hidden="true">↺</span><span><b>Mes révisions</b><small>${dueReviews().length+dueMicroReviews().length} à revoir aujourd’hui</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="debattre"><span class="hub-mark" aria-hidden="true">◉</span><span><b>Exprimer mes idées</b><small>Construire un argument</small></span><span aria-hidden="true">↗</span></button>
+      </div>
+      <details class="calm-disclosure"><summary>Mes missions du jour · ${achieved}/3 <span aria-hidden="true">＋</span></summary>
+        <div class="mission-list calm-missions">${dailyMissions().map(m=>`<button class="mission-item" data-route="${m.route}"><span class="mission-icon" aria-hidden="true">${state.completed.includes(m.key)?'✓':'○'}</span><span><b>${m.name}</b><small>${m.desc}</small></span><span class="card-action">${state.completed.includes(m.key)?'Revoir':'Essayer'} →</span></button>`).join('')}</div>
+      </details>`;
+  }
+  function lessonCard(l){
+    const checked=state.completed.includes('lesson:'+l.id);
+    return `<article class="card calm-lesson-card"><span class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} min ${ageSuggestion(l)}</span><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.summary)}</p><button class="calm-card-action" data-lesson="${l.id}">${checked?'Revoir':'Découvrir'} <span aria-hidden="true">→</span></button></article>`;
+  }
+  function learn(){
+    const first=recommendedLesson(),more=lessons.filter(l=>l.id!==first.id).sort((a,b)=>contentPriority(b)-contentPriority(a));
+    return `${intro('APPRENDRE','Une notion à la fois.','Des explications courtes, puis un quiz pour vérifier ce que tu as compris.')}
+      <div class="section-heading calm-section"><h2>Pour commencer</h2></div>
+      <div class="calm-feature-lesson">${lessonCard(first)}</div>
+      <details class="calm-disclosure"><summary>Voir toutes les leçons (${lessons.length}) <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${more.map(lessonCard).join('')}</div></details>`;
+  }
+  function lessonView(l){
+    const core=l.text[0],more=l.text.slice(1);
+    const resources=(l.sources||LESSON_REFERENCES[l.id]||[]).filter(([name])=>l.id!=='lois'||(state.country==='BE'?name.startsWith('Belgique'):name.startsWith('France')));
+    return `${intro(escapeHTML(l.tag)+' · '+l.mins+' min',escapeHTML(l.title),escapeHTML(l.summary))}
+      <article class="calm-reading">
+        <div class="calm-reading-step"><span class="eyebrow">01 · COMPRENDRE</span><h2>${escapeHTML(core[0])}</h2><p>${escapeHTML(core[1])}</p></div>
+        <details class="calm-disclosure calm-inset"><summary>Exemples et détails <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">${more.map(([h,t])=>`<section><h3>${escapeHTML(h)}</h3><p>${escapeHTML(t)}</p></section>`).join('')}</div></details>
+        <div class="calm-reading-step"><span class="eyebrow">02 · VÉRIFIER</span><h2>${escapeHTML(l.q)}</h2>
+          <form id="lesson-quiz">${l.choices.map((c,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${quizSelection===i?'checked':''}/><span>${escapeHTML(c)}</span></label>`).join('')}
+          <button class="btn primary" type="submit">Valider ma réponse</button>
+          ${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}" role="status"><strong>${quizSelection===l.answer?(lessonFirstReward?'Bonne réponse · Leçon réussie · +20 XP':'Bonne réponse · déjà validée'):'La bonne réponse est : '+escapeHTML(l.choices[l.answer])+'.'}</strong> ${escapeHTML(l.why)}</div>`:''}
+          </form>
+        </div>
+        <details class="calm-disclosure calm-inset"><summary>Sources et pour aller plus loin <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>Repères pédagogiques : les fiches de cette version n’ont pas encore reçu de validation externe indépendante.</p>${resources.map(([name,url])=>source(name,url)).join('')}<p>Explique la notion à voix haute pour vérifier que tu la comprends.</p><button class="calm-card-action" data-route="debattre">M’exercer à argumenter →</button></div></details>
+        <button class="calm-footer-link" data-route="apprendre">← Toutes les leçons</button>
+      </article>`;
+  }
+
   function analyze(text){const norm=text.toLocaleLowerCase('fr');const words=(text.trim().match(/[\p{L}’'-]+/gu)||[]); const indicators={
     position:/\b(je pense|selon moi|j'estime|à mon avis|je considère|personnellement|je suis d'accord|je ne suis pas d'accord)\b/.test(norm),
     reason:/\b(parce que|car |en raison|puisque|la raison|cela s'explique|en effet)\b/.test(norm),
@@ -193,26 +766,210 @@
     conclusion:/\b(ainsi|en conclusion|finalement|en définitive|c'est pourquoi|pour conclure|donc)\b/.test(norm),
     nuance:/\b(toujours|jamais|tous|aucun|personne|nécessaire|suffisant|cela ne signifie pas|distinguer|nuancer|dépend)\b/.test(norm)
   };const criteria=[['Une position identifiable',indicators.position,'Annonce explicitement ton point de vue dès le départ.'],['Un argument expliqué',indicators.reason,'Ajoute « parce que » et explique le lien logique entre tes idées.'],['Une concession ou nuance',indicators.concession,'Reconnais ce que l’autre personne peut avoir raison de dire.'],['Un exemple précis',indicators.example,'Propose une situation concrète qui démontre réellement ton propos.'],['Une conclusion',indicators.conclusion,'Termine avec une phrase qui résume ce que tu as établi.']];const hits=criteria.filter(x=>x[1]).length;return {words:words.length,criteria,hits,feedback:words.length<28?'Ton texte est encore très court : développe un argument et un exemple.':words.length>170?'Tu développes ton idée : essaie maintenant d’en faire une version orale de 40 secondes.':'La longueur convient pour un court échange. Relis chaque phrase pour vérifier qu’elle sert ton argument.',caution:'Attention : ce retour identifie des indices de structure. Il ne vérifie pas la vérité de tes affirmations ni la solidité réelle de ton raisonnement.'};}
-  function debate(){let d=debates[activeDebate];return `${intro('LABORATOIRE D’EXPRESSION','Défends tes idées.','Un entraînement sans jugement : tu réponds à une objection et identifies les éléments d’une argumentation convaincante.')}<div class="chips">${debates.map((x,i)=>`<button class="chip ${i===activeDebate?'active':''}" data-debate="${i}">${x.label}</button>`).join('')}</div><div class="detail-layout"><div><div class="card" style="background:#1d2631;border-color:#485342"><div class="eyebrow">L’OBJECTION DU JOUR</div><h2 style="margin:12px 0">${escapeHTML(d.title)}</h2><div class="quote">${escapeHTML(d.opp)}</div><p class="muted small">Réponds avec tes mots : position → concession → argument → exemple → conclusion.</p></div><div class="section-heading"><h2>À toi de répondre</h2></div><textarea id="debate-answer" class="textarea" placeholder="Je comprends ton point de vue, toutefois..." maxlength="1800">${escapeHTML(window.__debateDraft||'')}</textarea><div class="selector-row" style="margin-top:12px"><button class="btn primary" id="analyze-debate">Analyser ma structure →</button><button class="btn secondary" id="ai-debate" ${aiBusy?'disabled':''}>${aiBusy?'Analyse IA en cours…':'✦ Coach IA détaillé'}</button><button class="btn ghost" id="voice-debate">🎙 Dicter</button><button class="btn ghost" id="reset-debate">Effacer</button></div>${debateFeedback?renderDebateFeedback(debateFeedback):''}${aiFeedback?renderAIFeedback(aiFeedback):''}${aiError?`<div class="notice" role="status">${escapeHTML(aiError)}</div>`:''}</div><aside class="card help-card"><span class="pill purple">MÉTHODE EN 5 ÉTAPES</span><ul><li>Ta position</li><li>Une concession</li><li>Une raison solide</li><li>Un exemple pertinent</li><li>Une conclusion nuancée</li></ul><div class="inner-separator"></div><h3>Indice sans réponse</h3><p class="muted small">${escapeHTML(d.help)}</p><p class="tool-footer">L’analyse de structure reste disponible sans IA. Le coach IA, si activé, transmet ton texte à un fournisseur de modèles via notre serveur : ne saisis pas d’informations personnelles sensibles. Aucun conseil juridique individualisé.</p></aside></div>`;}
+  function debate(){let d=debates[activeDebate];return `${intro('LABORATOIRE D’EXPRESSION','Défends tes idées.','Un entraînement sans jugement : tu réponds à une objection et identifies les éléments d’une argumentation convaincante.')}<details class="calm-disclosure calm-before-question"><summary>Changer de sujet <span aria-hidden="true">＋</span></summary><div class="chips">${debates.map((x,i)=>`<button class="chip ${i===activeDebate?'active':''}" data-debate="${i}">${x.label}</button>`).join('')}</div></details><div class="detail-layout"><div><div class="card calm-debate-card"><div class="eyebrow">L’OBJECTION DU JOUR</div><h2 style="margin:12px 0">${escapeHTML(d.title)}</h2><div class="quote">${escapeHTML(d.opp)}</div><p class="muted small">Réponds avec tes mots : position → concession → argument → exemple → conclusion.</p></div><div class="section-heading"><h2>À toi de répondre</h2></div><textarea id="debate-answer" class="textarea" placeholder="Je comprends ton point de vue, toutefois..." maxlength="1800">${escapeHTML(window.__debateDraft||'')}</textarea><div class="calm-primary-actions"><button class="btn primary" id="analyze-debate">Analyser ma structure →</button></div><details class="calm-disclosure"><summary>Défi oral de 40 secondes · sans enregistrement <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>En 40 secondes : position (8 s), raison (10 s), exemple (10 s), nuance (8 s), conclusion (4 s). Aucun microphone nécessaire.</p><button class="btn secondary" type="button" id="start-oral-40">${oralActive?'Recommencer le chronomètre':'Démarrer les 40 secondes'}</button><p role="status" class="oral-feedback">${oralActive?'Chrono lancé : exprime ton argument à voix haute. Rien n’est enregistré.':oralDone?'40 secondes écoulées. Avais-tu une raison, un exemple et une nuance ?':'Exercice facultatif, sans score ni enregistrement.'}</p></div></details><details class="calm-disclosure"><summary>Autres outils (facultatifs) <span aria-hidden="true">＋</span></summary><div class="calm-extra-actions"><button class="btn secondary" id="ai-debate" ${aiBusy?'disabled':''}>${aiBusy?'Analyse IA en cours…':'✦ Coach IA détaillé'}</button><button class="btn ghost" id="voice-debate">🎙 Dicter</button><button class="btn ghost" id="reset-debate">Effacer</button></div></details>${debateFeedback?renderDebateFeedback(debateFeedback):''}${aiFeedback?renderAIFeedback(aiFeedback):''}${aiError?`<div class="notice" role="status">${escapeHTML(aiError)}</div>`:''}</div><aside class="card help-card calm-help"><span class="pill purple">MÉTHODE EN 5 ÉTAPES</span><ul><li>Ta position</li><li>Une concession</li><li>Une raison solide</li><li>Un exemple pertinent</li><li>Une conclusion nuancée</li></ul><div class="inner-separator"></div><h3>Indice sans réponse</h3><p class="muted small">${escapeHTML(d.help)}</p><p class="tool-footer">L’analyse de structure reste disponible sans IA. Le coach IA, si activé, transmet ton texte à un fournisseur de modèles via notre serveur : ne saisis pas d’informations personnelles sensibles. Aucun conseil juridique individualisé.</p></aside></div>`;}
   function renderAIFeedback(a){return `<div class="card ai-card" role="status"><div class="eyebrow">✦ RETOUR DU COACH IA · ${escapeHTML(a.grade||'Analyse')}</div><h3>Ce qui fonctionne</h3><p>${escapeHTML(a.strength)}</p><h3>Ce que tu peux améliorer</h3><p>${escapeHTML(a.improvement)}</p><h3>Une formulation plus solide</h3><p class="ai-rewrite">${escapeHTML(a.rewrite)}</p><h3>Ton prochain défi</h3><p>${escapeHTML(a.challenge)}</p><small class="muted">Cette analyse pédagogique peut se tromper. Vérifie les faits juridiques et politiques dans les sources officielles.</small></div>`;}
   async function runAICoach(){const answer=(el('debate-answer')?.value||'').trim();if(answer.length<40){toast('Développe ton idée sur au moins 40 caractères.');return;}const d=debates[activeDebate];window.__debateDraft=answer;aiFeedback=null;aiError='';aiBusy=true;render();const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),23000);try{const res=await fetch('/api/coach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answer,topic:d.title,objection:d.opp,country:state.country}),signal:ctrl.signal});const data=await res.json();if(!res.ok)throw new Error(data.error||'Le coach IA ne peut pas répondre actuellement.');aiFeedback=data.feedback;if(reward('ai:'+dayKey(),20))toast('+20 XP · retour IA obtenu');}catch(e){aiError=(e.name==='AbortError'?'Le coach met trop de temps à répondre.':e.message.slice(0,180))+' Tu peux utiliser l’analyse locale gratuitement.';}finally{clearTimeout(timer);aiBusy=false;if(page==='debattre')render();}}
   function startDictation(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Dictée non disponible dans ce navigateur. Utilise le micro du clavier iPhone.');return;}const r=new SR();r.lang='fr-FR';r.continuous=false;r.interimResults=false;r.onresult=e=>{const t=Array.from(e.results).map(x=>x[0].transcript).join(' ');const area=el('debate-answer');if(area){area.value=(area.value.trim()+' '+t).trim();window.__debateDraft=area.value;}};r.onerror=()=>toast('Dictée interrompue. Tu peux utiliser le micro du clavier.');r.start();toast('Parle maintenant…');}
   function renderDebateFeedback(a){return `<div class="card flat" style="margin-top:17px"><div class="eyebrow">RETOUR PÉDAGOGIQUE</div><h3 style="margin:10px 0">${a.hits}/5 critères détectés · ${a.words} mots</h3><div class="progressbar"><i style="width:${a.hits*20}%"></i></div><div class="context-list">${a.criteria.map(([label,ok,tip])=>`<div class="context-stage"><span class="num">${ok?'✓':'→'}</span><div><b>${escapeHTML(label)}</b><p>${ok?'Indice repéré dans ton texte.':escapeHTML(tip)}</p></div></div>`).join('')}</div><div class="feedback">${escapeHTML(a.feedback)}\n\n${escapeHTML(a.caution)}</div></div>`;}
-  function rights(){const items=RIGHTS[state.country].filter(x=>`${x.title} ${x.tag} ${x.body}`.toLowerCase().includes(rightFilter.toLowerCase()));return `${intro('RÈGLES DE VIE · SOURCES OFFICIELLES','Connais tes droits.','Des repères compréhensibles pour la vie réelle. Chaque fiche renvoie vers une source officielle du pays sélectionné.')}<div class="notice"><strong>Important :</strong> ces fiches sont des points de départ pédagogiques. Les règles changent selon la date, la région et la situation. Vérifie toujours la source et, si nécessaire, demande une aide juridique qualifiée.</div><div style="margin:20px 0"><input class="search" id="rights-search" type="search" value="${escapeHTML(rightFilter)}" placeholder="Rechercher : travail, vie privée, justice..." aria-label="Rechercher un droit"/></div><div class="rights-grid">${items.map((r,i)=>`<article class="card right-card"><span class="pill grey">${escapeHTML(r.tag)}</span><div class="card-icon" style="margin-top:14px">${r.icon}</div><h3>${escapeHTML(r.title)}</h3><p>${escapeHTML(r.body)}</p><div class="feedback"><b>Dans la vraie vie</b>\n${escapeHTML(r.practical)}</div>${source('Consulter la source officielle',r.url)}</article>`).join('')||'<div class="blank-state">Aucun thème trouvé. Essaie un autre mot.</div>'}</div>`;}
-  function levelName(){return state.xp<100?'Éclaireur':state.xp<300?'Observateur':state.xp<700?'Analyste':'Esprit lucide';}
+
+  function renderRightsCards(items){
+    return items.map(r=>`<details class="right-entry">
+      <summary><span class="right-tag">${escapeHTML(r.tag)}</span><span class="right-title">${escapeHTML(r.title)}</span><span class="right-chevron" aria-hidden="true">＋</span></summary>
+      <div class="right-expanded"><p>${escapeHTML(r.body)}</p><div class="calm-example"><b>Dans la vraie vie</b><p>${escapeHTML(r.practical)}</p></div>
+      ${source('Vérifier sur le site officiel',r.url)}</div>
+    </details>`).join('');
+  }
+  function rights(){
+    const items=RIGHTS[state.country].filter(r=>(r.title+' '+r.tag+' '+r.body).toLowerCase().includes(rightFilter.toLowerCase()));
+    return `${intro('MES DROITS','Savoir où chercher.','Choisis un sujet, puis ouvre la fiche qui t’intéresse.')}
+      <div class="calm-country-context"><span>Sources : ${state.country==='BE'?'Belgique':'France'}</span><button type="button" data-route="profil">Modifier →</button></div>
+      <label class="calm-search-label" for="rights-search">Rechercher un sujet</label>
+      <input class="search calm-search" id="rights-search" type="search" value="${escapeHTML(rightFilter)}" placeholder="Ex. : travail, contrat, vie privée…" autocomplete="off"/>
+      <div class="rights-grid calm-rights">${renderRightsCards(items)||'<p class="blank-state">Aucun résultat. Essaie un mot plus simple.</p>'}</div>
+      <details class="calm-disclosure calm-safety"><summary>Fiabilité et limites des fiches <span aria-hidden="true">＋</span></summary>
+      <div class="calm-reading-extra"><p>Ces informations sont des points de départ. Leur validation juridique externe est encore en attente. Les règles dépendent du pays, de la date et de ta situation. Vérifie la source officielle.</p>
+      <button class="calm-card-action" data-route="sources">Notre méthode de vérification →</button></div></details>`;
+  }
+
+  function levelName(){return state.xp<100?'Éclaireur':state.xp<300?'Observateur':state.xp<700?'Analyste':'Esprit avisé';}
   function dailyMissions(){return [{key:'mission:case:'+dayKey(),name:'Un Déclic',desc:'Réponds à un cas concret',route:'declic'}, {key:'mission:lesson:'+dayKey(),name:'Une leçon',desc:'Apprends une notion utile',route:'apprendre'}, {key:'debate:'+dayKey(),name:'Une objection',desc:'Défends ton raisonnement',route:'debattre'}];}
-  function newsCards(){if(liveNews.status==='loading')return '<div class="notice">Chargement des publications officielles…</div>';if(liveNews.status==='error')return `<div class="notice"><strong>Flux indisponible :</strong> ${escapeHTML(liveNews.error)}. Aucun titre fictif n’est affiché. Ouvre les sources ci-dessous pour vérifier directement.</div>`;if(liveNews.status!=='success')return '<div class="notice">Appuie sur « Actualiser les titres » pour interroger la source officielle.</div>';if(!liveNews.items.length)return '<div class="notice">Aucune publication exploitable n’a été renvoyée. Consulte la source directement.</div>';return `<p class="source-age">${escapeHTML(liveNews.source)} · consultation : ${escapeHTML(new Date(liveNews.checkedAt).toLocaleString('fr-BE'))} · titres bruts, pas une vérification de l’entrée en vigueur</p><div class="grid two">${liveNews.items.map(n=>`<article class="card feed-card"><span class="pill grey">SOURCE OFFICIELLE · ${escapeHTML(n.date||'date non précisée')}</span><h3>${escapeHTML(n.title)}</h3><p>${escapeHTML(n.summary||'Ouvrir la publication pour les détails.')}</p><div class="news-actions">${source('Lire sur le site officiel',n.url)}<button class="btn ghost small" data-save-news="${escapeHTML(n.url)}">${state.savedNews.some(x=>x.url===n.url)?'✓ Sauvegardé':'☆ Sauvegarder'}</button></div></article>`).join('')}</div>`;}
-  function vigie(){const country=state.country;return `${intro('RADAR · SOURCES INSTITUTIONNELLES','Ce qui se passe. Et ce qui est vrai.','Les derniers titres publiés par des institutions, avec leurs dates et un accès à la source. Un titre n’est ni une loi, ni une analyse contradictoire.')}<div class="notice"><b>Transparence :</b> ${country==='BE'?'le flux pilote belge relaie des communiqués des institutions fédérales et du Conseil des ministres, sans couvrir toutes les décisions des Régions et Communautés.':'le flux français provient de Service-Public.fr et ne couvre pas toutes les décisions de l’État.'} Nous ne déduisons jamais automatiquement l’entrée en vigueur d’une mesure.</div><div class="section-heading"><div><h2>Publications officielles</h2><p>Récupération à la demande, pas de contenu inventé.</p></div><button id="load-news" class="btn primary small" ${liveNews.status==='loading'?'disabled':''}>${liveNews.status==='loading'?'Chargement…':'Actualiser les titres ↻'}</button></div><div id="live-news">${newsCards()}</div><div class="section-heading"><div><h2>Vérifie le statut d’une réforme</h2><p>Une décision du gouvernement n’est pas toujours une règle applicable.</p></div></div><div class="grid two">${[['01','Annoncé','Une déclaration publique ne change pas nécessairement le droit.'],['02','En examen','La proposition est débattue ou discutée ; elle peut évoluer.'],['03','Adopté et publié','Vérifie le texte définitif et le Journal officiel compétent.'],['04','En vigueur','Cherche la date d’application et les exceptions éventuelles.']].map(([n,h,p])=>`<div class="context-stage"><span class="num">${n}</span><div><b>${h}</b><p>${p}</p></div></div>`).join('')}</div><div class="section-heading"><div><h2>Vérifier toi-même</h2><p>Institutions, parlements et textes opposables.</p></div></div><div class="grid three">${SOURCES[country].map(x=>`<article class="card source-card"><span class="pill grey">${escapeHTML(x.topic)}</span><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.description)}</p>${source('Consulter',x.url)}</article>`).join('')}</div><div class="section-heading"><h2>Ton dossier sauvegardé</h2></div><div class="card flat">${state.savedNews.filter(x=>x.country===country).length?state.savedNews.filter(x=>x.country===country).map(n=>`<div class="saved-news">${source(n.title,n.url)} <button class="btn ghost small" data-unsave-news="${escapeHTML(n.url)}">Retirer</button></div>`).join(''):'<p class="muted">Enregistre une publication pour la relire plus tard sur cet appareil.</p>'}</div>`;}
-  async function fetchNews(force=false){if(newsRequest)return newsRequest;liveNews={status:'loading',items:[],source:'',checkedAt:'',error:''};if(page==='vigie')render();const chosen=state.country;newsRequest=(async()=>{const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);try{const res=await fetch('/api/news?country='+chosen,{signal:ctrl.signal,cache:'no-store'});const data=await res.json();if(!res.ok||!Array.isArray(data.items))throw new Error(data.error||'Erreur de connexion');if(state.country===chosen){liveNews={status:'success',items:data.items,source:data.source,checkedAt:data.checkedAt,error:''};}}catch(e){if(state.country===chosen)liveNews={status:'error',items:[],source:'',checkedAt:'',error:e.name==='AbortError'?'Délai de réponse dépassé':e.message.slice(0,130)};}finally{clearTimeout(timer);newsRequest=null;if(page==='vigie')render();}})();return newsRequest;}
-  function profile(){let lessonsDone=state.completed.filter(x=>x.startsWith('lesson:'));return `${intro('TON PARCOURS','Ta progression compte.','L’objectif n’est pas de tout savoir, mais d’apprendre à raisonner mieux et à vérifier ce que tu entends.')}<div class="grid three"><div class="kpi"><strong>${state.xp}</strong><span>XP accumulés</span></div><div class="kpi"><strong>${lessonsDone.length}</strong><span>Leçons complétées</span></div><div class="kpi"><strong>${state.history.length}</strong><span>Débats structurés</span></div></div><div class="section-heading"><div><h2>Tes nouveaux acquis</h2><p>De vrais réflexes, pas seulement des points.</p></div></div><div class="grid two"><div class="kpi"><strong>${state.completed.filter(x=>x.startsWith('case:')).length}</strong><span>Situations maîtrisées</span></div><div class="kpi"><strong>${state.completed.filter(x=>x.startsWith('word:')).length}</strong><span>Mots débloqués</span></div></div><div class="section-heading"><h2>Ton journal</h2></div><div class="card flat">${state.history.length?state.history.slice().reverse().map(h=>`<div class="history-item"><span class="history-ico">◉</span><div><strong>${escapeHTML(h.title)}</strong><br/><small>${escapeHTML(h.date)} · ${h.hits}/5 éléments repérés</small></div></div>`).join(''):'<div class="blank-state">Tu n’as encore enregistré aucun entraînement. Fais ton premier débat pour commencer.</div>'}</div><div class="section-heading"><h2>Respect de la vie privée</h2></div><div class="card flat"><p class="muted small">Ce prototype stocke uniquement ta progression et tes réponses d’entraînement dans le navigateur de cet appareil. Aucun compte n’est requis. Effacer les données du navigateur peut supprimer cette progression.</p><button class="btn ghost small" id="export-progress">Télécharger ma progression</button> <button class="btn ghost small" id="clear-progress">Effacer mes données</button></div>`;}
-  function render(){renderHeader();let view; const l=lessons.find(x=>x.id===activeLesson)||lessons[0];switch(page){case 'apprendre':view=learn();break;case 'lecon':view=lessonView(l);break;case 'debattre':view=debate();break;case 'droits':view=rights();break;case 'vigie':view=vigie();break;case 'declic':view=cases();break;case 'dico':view=dictionary();break;case 'profil':view=profile();break;default:view=welcome();}el('main').innerHTML=view;}
-  function navigate(next){page=next; if(next==='lecon'){quizSelection=null;quizDone=false;}window.location.hash=(next==='lecon'?'lecon/'+activeLesson:next);render();window.scrollTo({top:0,behavior:'instant'});}
-  function setCountry(c){if(!['BE','FR'].includes(c))return;state.country=c;liveNews={status:'idle',items:[],source:'',checkedAt:'',error:''};rightFilter='';activeScenario=null;caseChoice=null;caseReveal=false;setStore();render();toast(`Sources et droits : ${c==='BE'?'Belgique':'France'}`)}
-  document.addEventListener('click',ev=>{const country=ev.target.closest('[data-country]');if(country){setCountry(country.dataset.country);return;}const lesson=ev.target.closest('[data-lesson]');if(lesson){activeLesson=lesson.dataset.lesson;navigate('lecon');return;}const route=ev.target.closest('[data-route],[data-page]');if(route){navigate(route.dataset.route||route.dataset.page);return;}const debate=ev.target.closest('[data-debate]');if(debate){activeDebate=Number(debate.dataset.debate);debateFeedback=null;aiFeedback=null;aiError='';window.__debateDraft='';render();return;}const casepick=ev.target.closest('[data-case]');if(casepick){activeScenario=casepick.dataset.case;caseChoice=null;caseReveal=false;render();return;}const cp=ev.target.closest('[data-case-choice]');if(cp && !caseReveal){caseChoice=Number(cp.dataset.caseChoice);render();return;}if(ev.target.id==='case-retry'){caseChoice=null;caseReveal=false;render();return;}if(ev.target.id==='case-submit'){const s=byCountry().find(x=>x.id===(activeScenario||todayCase().id))||todayCase();if(caseChoice===null)return;caseReveal=true;if(!state.completed.includes('mission:case:'+dayKey())){state.completed.push('mission:case:'+dayKey());setStore();}if(caseChoice===s.answer){if(reward('case:'+s.id,30))toast('+30 XP · bon réflexe !');}render();return;}const wp=ev.target.closest('[data-word]');if(wp){activeWord=wp.dataset.word;wordReveal=false;wordChoice=null;wordCheck=false;render();return;}if(ev.target.id==='word-flip'){wordReveal=!wordReveal;wordChoice=null;wordCheck=false;render();return;}const wc=ev.target.closest('[data-word-choice]');if(wc && !wordCheck){wordChoice=Number(wc.dataset.wordChoice);render();return;}if(ev.target.id==='word-retry'){wordChoice=null;wordCheck=false;render();return;}if(ev.target.id==='word-submit'){const w=words.find(x=>x.id===activeWord)||words[0];if(wordChoice===null)return;wordCheck=true;if(wordChoice===w.answer){if(reward('word:'+w.id,8))toast('+8 XP · mot acquis !');}render();return;}if(ev.target.id==='ai-debate'){runAICoach();return;}if(ev.target.id==='voice-debate'){startDictation();return;}if(ev.target.id==='load-news'){fetchNews(true);return;}const saved=ev.target.closest('[data-save-news]');if(saved){const url=saved.dataset.saveNews;const n=liveNews.items.find(x=>x.url===url);if(n && !state.savedNews.some(x=>x.url===url)){state.savedNews.unshift({country:state.country,url:n.url,title:n.title});state.savedNews=state.savedNews.slice(0,40);setStore();render();toast('Publication sauvegardée');}return;}const unsaved=ev.target.closest('[data-unsave-news]');if(unsaved){state.savedNews=state.savedNews.filter(x=>x.url!==unsaved.dataset.unsaveNews);setStore();render();return;}if(ev.target.id==='analyze-debate'){let text=el('debate-answer').value.trim();if(text.length<30){toast('Écris au moins 30 caractères pour t’entraîner.');return;}window.__debateDraft=text;debateFeedback=analyze(text);const d=debates[activeDebate];state.history.push({date:new Date().toLocaleDateString('fr-BE'),title:d.title,hits:debateFeedback.hits,text});state.history=state.history.slice(-30);setStore();if(reward('debate:'+dayKey(),25)){toast('+25 XP · entraînement enregistré');}else{toast('Entraînement enregistré dans ton parcours');}render();el('debate-answer')?.scrollIntoView({block:'center'});return;}if(ev.target.id==='reset-debate'){window.__debateDraft='';debateFeedback=null;aiFeedback=null;aiError='';render();return;}if(ev.target.id==='clear-progress'){if(confirm('Effacer définitivement la progression et les réponses sauvegardées dans ce navigateur ?')){state={...DEFAULT,country:state.country};setStore();render();toast('Données locales effacées.');}return;}if(ev.target.id==='export-progress'){const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='lucide-mon-parcours.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('Progression téléchargée.');return;}});
-  document.addEventListener('submit',ev=>{if(ev.target.id!=='lesson-quiz')return;ev.preventDefault();const picked=ev.target.querySelector('input[name=answer]:checked');if(!picked){toast('Choisis une réponse.');return;}quizSelection=Number(picked.value);quizDone=true;const l=lessons.find(x=>x.id===activeLesson);if(quizSelection===l.answer){if(!state.completed.includes('mission:lesson:'+dayKey())){state.completed.push('mission:lesson:'+dayKey());setStore();}if(reward('lesson:'+l.id,20))toast('+20 XP · leçon validée !');else toast('Bonne réponse. Leçon déjà validée.');}else toast('Lis l’explication et réessaie.');render();});
-  document.addEventListener('input',ev=>{if(ev.target.id==='rights-search'){const pos=ev.target.selectionStart;rightFilter=ev.target.value;const cards=RIGHTS[state.country].filter(x=>`${x.title} ${x.tag} ${x.body}`.toLowerCase().includes(rightFilter.toLowerCase()));const grid=document.querySelector('.rights-grid');if(grid)grid.innerHTML=cards.map(r=>`<article class="card right-card"><span class="pill grey">${escapeHTML(r.tag)}</span><div class="card-icon" style="margin-top:14px">${r.icon}</div><h3>${escapeHTML(r.title)}</h3><p>${escapeHTML(r.body)}</p><div class="feedback"><b>Dans la vraie vie</b>\n${escapeHTML(r.practical)}</div>${source('Consulter la source officielle',r.url)}</article>`).join('')||'<div class="blank-state">Aucun thème trouvé.</div>';ev.target.setSelectionRange(pos,pos);}if(ev.target.id==='debate-answer')window.__debateDraft=ev.target.value;});
-  window.addEventListener('hashchange',()=>{let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(['accueil','apprendre','debattre','droits','vigie','profil','declic','dico'].includes(route))page=route;else page='accueil';render();});
+
+  function newsCards(){
+    if(liveNews.status==='loading'&&!liveNews.items.length)return '<div class="notice" role="status">Consultation du flux officiel en cours…</div>';
+    if(liveNews.status==='error')return '<div class="notice" role="status"><strong>Flux indisponible :</strong> '+escapeHTML(liveNews.error)+'. Aucun titre fictif ne remplace la source. Consulte les liens institutionnels plus bas.</div>';
+    if(!['success','stale','loading'].includes(liveNews.status))return '<div class="notice">Choisis « Consulter les publications » pour vérifier la source officielle.</div>';
+    const checked=new Date(liveNews.checkedAt);
+    const checkedLabel=Number.isNaN(checked.getTime())?'date de consultation indisponible':checked.toLocaleString('fr-BE',{dateStyle:'medium',timeStyle:'short'});
+    const items=liveNews.items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    const recentItems=items.filter(n=>n.date&&Date.now()-new Date(n.date+'T12:00:00Z').getTime()<14*86400000&&Date.now()-new Date(n.date+'T12:00:00Z').getTime()>=-86400000);
+    const periodItems=newsFilter==='recent'?recentItems:items;
+    const shown=periodItems.filter(n=>newsScope==='all'||n.scope===newsScope);
+    const sourceFailures=(liveNews.sources||[]).filter(x=>!x.available);
+    const staleNotice=liveNews.status!=='success'?'<div class="notice" role="status"><strong>Mode archive :</strong> dernières publications enregistrées sur cet appareil. Impossible de confirmer les nouvelles publications. '+escapeHTML(liveNews.error||'')+' <button type="button" class="news-inline-button" id="load-news">Réessayer la connexion</button></div>':'';
+    const territoryFilters=state.country==='BE'?'<div class="news-filter-row" role="group" aria-label="Territoire des publications">'+[['all','Tous territoires'],['federal','Fédéral'],['regional','Wallonie']].map(([id,label])=>'<button type="button" data-news-scope="'+id+'" class="news-filter '+(newsScope===id?'active':'')+'" aria-pressed="'+(newsScope===id)+'">'+label+'</button>').join('')+'</div>':'';
+    const filters='<div class="news-filter-row" role="group" aria-label="Période des publications">'+
+      [['all','Toutes ('+items.length+')'],['recent','14 derniers jours ('+recentItems.length+')']].map(([id,label])=>'<button type="button" data-news-filter="'+id+'" class="news-filter '+(newsFilter===id?'active':'')+'" aria-pressed="'+(newsFilter===id)+'">'+label+'</button>').join('')+'</div>';
+    const cards=shown.map(n=>{
+      const age=n.date&&Date.now()-new Date(n.date+'T12:00:00Z').getTime();
+      const archive=!n.date||(Number.isFinite(age)&&age>14*86400000);
+      return '<article class="card feed-card"><span class="pill grey">'+(archive?'PUBLICATION DATÉE · ':'SOURCE OFFICIELLE · ')+escapeHTML(n.date||'date non précisée')+'</span><small class="news-origin">'+escapeHTML(n.source||liveNews.source)+' · '+escapeHTML(n.publicationType||'Statut juridique non vérifié')+'</small><h3>'+escapeHTML(n.title)+'</h3><p>'+escapeHTML(n.summary||'Ouvrir la publication originale pour les détails.')+'</p><p class="news-status">Statut juridique non vérifié · publication ne signifie pas entrée en vigueur.</p><div class="news-actions">'+source('Lire la publication officielle',n.url)+'<button type="button" class="btn ghost small" data-save-news="'+escapeHTML(n.url)+'">'+(state.savedNews.some(x=>x.url===n.url)?'✓ Sauvegardé':'☆ Sauvegarder')+'</button></div></article>';
+    }).join('');
+    return '<p class="source-age">'+escapeHTML(liveNews.source)+' · consultation du flux : '+escapeHTML(checkedLabel)+' · titres publiés par leur organisme, pas de vérification des lois par SAVRÉO</p>'+staleNotice+filters+territoryFilters+(sourceFailures.length?'<p class="notice" role="status">Couverture partielle : '+sourceFailures.map(x=>escapeHTML(x.name)+' ('+escapeHTML(x.error||'indisponible')+')').join(' · ')+'</p>':'')+
+      (shown.length?'<div class="news-read-more"><span>'+shown.length+' publication'+(shown.length>1?'s':'')+' à découvrir</span><small>Ouvre le texte original pour connaître son statut.</small></div><div class="grid two">'+cards+'</div>':'<div class="notice">Aucune publication datée des 14 derniers jours parmi les titres reçus. <button type="button" class="news-inline-button" data-news-filter="all">Voir toutes les publications</button></div>');
+  }
+  function vigie(){
+    const country=state.country;
+    const sources=SOURCES[country].map(x=>`<a class="hub-item" target="_blank" rel="noopener noreferrer" href="${safeURL(x.url)}"><span class="hub-mark" aria-hidden="true">↗</span><span><b>${escapeHTML(x.name)}</b><small>${escapeHTML(x.description)}</small></span><span aria-hidden="true">↗</span></a>`).join('');
+    const stages=[['01','Annoncé','Une déclaration ne change pas immédiatement le droit.'],['02','En examen','Un texte peut encore évoluer.'],['03','Adopté et publié','Il faut vérifier la version définitive.'],['04','En vigueur','Vérifie les dates et exceptions.']].map(([n,h,p])=>`<div class="context-stage"><span class="num">${n}</span><div><b>${h}</b><p>${p}</p></div></div>`).join('');
+    const saved=state.savedNews.filter(x=>x.country===country);
+    const territorySources=(CIVIC_PACK.localSources?.[country]||[]).filter(x=>x.level==='local'||x.level==='regional');
+    const territoryLinks=territorySources.map(x=>'<a class="hub-item" target="_blank" rel="noopener noreferrer" href="'+safeURL(x.url)+'"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(x.label)+'</b><small>'+escapeHTML(x.scope||'Territoire')+' · '+(x.isArchive?'archive datée':'site institutionnel à consulter directement')+'</small></span></a>').join('');
+    return `${intro('ACTUALITÉ','Vérifier ce qui change.','Lis des publications institutionnelles, puis consulte les sources.')}
+      <section class="calm-feed-primary"><h2>Publications officielles</h2><p>Les titres sont récupérés à ta demande. Ils ne prouvent pas qu’une nouvelle loi est en vigueur.</p>
+        <button id="load-news" class="btn primary" ${liveNews.status==='loading'?'disabled':''}>${liveNews.status==='loading'?'Chargement…':liveNews.status==='success'?'Actualiser les publications ↻':'Consulter les publications →'}</button>
+      </section>
+      ${liveNews.status==='idle'?'':'<div class="calm-feed-results" id="live-news" aria-live="polite">'+newsCards()+'</div>'}
+      ${territoryLinks?'<details class="calm-disclosure"><summary>Région et commune : publications documentaires <span aria-hidden="true">＋</span></summary><p class="muted small">Liens à consulter directement : non intégrés au flux RSS, fraîcheur non vérifiée à cette ouverture.</p><div class="calm-submenu">'+territoryLinks+'</div></details>':''}
+      <details class="calm-disclosure"><summary>Comprendre les étapes d’une réforme <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">${stages}</div></details>
+      <details class="calm-disclosure"><summary>Consulter directement les institutions <span aria-hidden="true">＋</span></summary><div class="calm-submenu">${sources}</div></details>
+      <details class="calm-disclosure"><summary>Mes publications sauvegardées (${saved.length}) <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">${saved.length?saved.map(n=>`<div class="saved-news">${source(n.title,n.url)} <button class="btn ghost small" data-unsave-news="${escapeHTML(n.url)}">Retirer</button></div>`).join(''):'<p>Tu n’as encore enregistré aucune publication.</p>'}</div></details>
+      <details class="calm-disclosure"><summary>Limites du radar <span aria-hidden="true">＋</span></summary><p class="muted small">${country==='BE'?'Le flux pilote contient certaines publications fédérales, sans couverture exhaustive des Régions et Communautés.':'Le flux Service-Public ne couvre pas toutes les décisions de l’État.'} Aucune analyse automatique ne peut déterminer seule la date d’application d’une mesure.</p></details>`;
+  }
+
+  function refreshNewsIfNeeded(){
+    if(page!=='vigie'||typeof fetch!=='function'||typeof AbortController!=='function')return;
+    const checked=Date.parse(liveNews.checkedAt||'');
+    const expired=liveNews.status==='success'&&(!Number.isFinite(checked)||Date.now()-checked>=10*60*1000);
+    if((liveNews.status==='idle'||liveNews.status==='stale'||expired)&&Date.now()-lastNewsAttempt>=60000)fetchNews();
+  }
+  async function fetchNews(force=false){
+    const chosen=state.country;
+    if(newsRequest&&newsRequestCountry===chosen)return newsRequest;
+    lastNewsAttempt=Date.now();
+    const previous=liveNews.items.length?liveNews:readNewsSnapshot(chosen);
+    liveNews=previous?{...previous,status:'loading',error:''}:{status:'loading',items:[],source:'',checkedAt:'',error:''};
+    if(page==='vigie')render();
+    const pending=Promise.resolve().then(async()=>{
+      const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
+      try{
+        const res=await fetch('/api/news?country='+chosen,{signal:ctrl.signal,cache:'no-store'});
+        const data=await res.json();
+        if(!res.ok||!Array.isArray(data.items))throw new Error(data.error||'Flux indisponible.');
+        if(state.country===chosen){
+          liveNews={status:'success',items:data.items,source:data.source,sources:Array.isArray(data.sources)?data.sources:[],checkedAt:data.checkedAt,error:''};
+          writeNewsSnapshot(chosen,data);
+          newsFilter='all';newsScope='all';
+        }
+      }catch(e){
+        if(state.country===chosen){
+          const message=e.name==='AbortError'?'Délai de réponse dépassé':String(e.message||'Connexion indisponible').slice(0,130);
+          liveNews=previous?.items?.length?{...previous,status:'stale',error:message}: {status:'error',items:[],source:'',checkedAt:'',error:message};
+        }
+      }finally{
+        clearTimeout(timer);
+        if(newsRequest===pending){newsRequest=null;newsRequestCountry='';}
+        if(page==='vigie'&&state.country===chosen)render();
+      }
+    });
+    newsRequest=pending;
+    newsRequestCountry=chosen;
+    return pending;
+  }
+
+  function profile(){
+    const lessonDone=state.completed.filter(x=>x.startsWith('lesson:')).length;
+    const completedCases=state.completed.filter(x=>x.startsWith('case:')).length;
+    const interests=chosenInterests().map(id=>INTERESTS.find(t=>t.id===id)?.label).filter(Boolean).map(escapeHTML).join(' · ');
+    return `${intro('MON ESPACE','Ton parcours, tes choix.','Retrouve tes progrès et adapte SAVRÉO à tes préférences.')}
+      <section class="calm-profile-head"><div><span class="eyebrow">TON PROFIL</span><h2>${escapeHTML(state.firstName||'Profil sans prénom')}</h2><p>${escapeHTML(AGE_GROUPS[state.ageGroup]||'Âge non précisé')} · ${escapeHTML(GENDERS[state.gender]||'Genre non précisé')}</p></div><button class="btn ghost small" id="edit-profile">Modifier</button></section>
+      <section class="calm-settings"><h2>Pays des informations</h2><p>Pour afficher les droits et les sources de ton pays.</p><div class="calm-country-picker" role="group" aria-label="Pays pour les contenus juridiques"><button type="button" class="country" data-country="BE" aria-pressed="${state.country==='BE'}">Belgique</button><button type="button" class="country" data-country="FR" aria-pressed="${state.country==='FR'}">France</button></div></section>
+      <section class="calm-settings"><h2>Apparence</h2><p>Choisis un affichage confortable pour toi.</p>
+      <div class="theme-selector" role="group" aria-label="Apparence de l’application">
+        ${[['auto','Automatique'],['light','Clair'],['dark','Sombre']].map(([id,title])=>`<button type="button" class="theme-option ${themePreference()===id?'active':''}" data-theme-option="${id}" aria-pressed="${themePreference()===id}">${title}</button>`).join('')}
+      </div></section>
+      <section class="calm-settings"><div class="calm-section-head"><div><h2>Centres d’intérêt</h2><p>${interests||'Choisis les sujets que tu veux découvrir.'}</p></div><button class="btn ghost small" id="edit-interests">Modifier</button></div></section>
+      <section class="calm-settings"><h2>Ta progression</h2>
+        <div class="calm-progress"><div><b>${lessonDone}<span> / ${lessons.length}</span></b><small>Leçons réussies une fois</small></div><div><b>${completedCases}</b><small>Situations réussies une fois</small></div><div><b>${state.transferPassed.length}</b><small>Réflexes appliqués dans un nouveau contexte</small></div></div>
+        <button class="calm-card-action" data-route="reviser">Voir mes révisions →</button>
+      </section>
+      <details class="calm-disclosure"><summary>Historique et points <span aria-hidden="true">＋</span></summary>
+        <div class="calm-reading-extra"><p>${state.xp} XP · ${state.history.length} entraînement(s) enregistrés.</p>
+        ${state.history.length?state.history.slice(-8).reverse().map(h=>`<div class="history-item"><div><b>${escapeHTML(h.title)}</b><small>${escapeHTML(h.date)} · ${h.hits}/5 critères</small></div></div>`).join(''):'<p>Ton historique apparaîtra après un exercice d’argumentation.</p>'}</div>
+      </details>
+      <details class="calm-disclosure"><summary>Confidentialité et données <span aria-hidden="true">＋</span></summary>
+        <div class="calm-reading-extra"><p>Ton prénom, tes préférences et ta progression sont enregistrés dans ce navigateur. Pas de compte requis. Certaines fonctions optionnelles peuvent utiliser un serveur lorsque tu les actives.</p>
+        <div class="calm-privacy-actions"><button class="btn ghost small" id="export-progress">Exporter mes données</button><button class="btn ghost small" id="clear-progress">Effacer mes données</button></div></div>
+      </details>`;
+  }
+
+  function render(){renderHeader();if(guestPreview&&!state.onboardingDone&&!profileEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=guestExperience();applyTheme();return;}if(!state.onboardingDone || profileEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=onboarding();applyTheme();return;}if(!state.interestsDone || interestsEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=interestsScreen();applyTheme();return;}document.body.classList.remove('onboarding-active');let view; const l=lessons.find(x=>x.id===activeLesson)||lessons[0];switch(page){case 'vie-publique':view=publicHub();break;case 'civique':view=civicSchool();break;case 'dossiers':view=politicalDossiers();break;case 'essentiels':view=essentialSchool();break;case 'parcours':view=journeys();break;case 'reviser':view=reviewPage();break;case 'sources':view=editorialPage();break;case 'explorer':view=explore();break;case 'pratiquer':view=practice();break;case 'apprendre':view=learn();break;case 'lecon':view=lessonView(l);break;case 'debattre':view=debate();break;case 'droits':view=rights();break;case 'vigie':view=vigie();break;case 'declic':view=cases();break;case 'dico':view=dictionary();break;case 'profil':view=profile();break;default:view=welcome();}el('main').innerHTML=view;applyTheme();}
+  function navigate(next){page=next; if(next==='declic'){transferChoice=null;transferReveal=false;}if(next==='lecon'){quizSelection=null;quizDone=false;lessonFirstReward=false;}if(next==='reviser'){reviewLessonId='';reviewChoice=null;reviewResult=null;}window.location.hash=(next==='lecon'?'lecon/'+activeLesson:next);render();window.scrollTo({top:0,behavior:'instant'});refreshNewsIfNeeded();}
+  function setCountry(c){if(!['BE','FR'].includes(c))return;state.country=c;liveNews=readNewsSnapshot(c)||{status:'idle',items:[],source:'',checkedAt:'',error:''};lastNewsAttempt=0;rightFilter='';newsFilter='all';newsScope='all';publicScope='all';publicSourcesOpen=false;activeScenario=null;caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;civicCurrent=null;civicChoice=null;civicReveal=false;civicFirstReward=false;essentialCurrent=null;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;essentialAgeView=null;setStore();render();toast(`Sources et droits : ${c==='BE'?'Belgique':'France'}`)}
+  document.addEventListener('click',ev=>{
+    if(ev.target.id==='onboarding-back'&&!profileEditing){onboardingStage=Math.max(0,onboardingStage-1);render();return;}
+    if(ev.target.id==='onboarding-skip-name'&&!profileEditing){onboardingDraft.firstName='';onboardingStage=1;render();return;}
+    if(ev.target.id==='onboarding-finish'&&!profileEditing&&onboardingStage===2){finishProgressiveOnboarding();return;}
+    if(ev.target.id==='guest-start'){guestPreview=true;guestChoice=null;guestReveal=false;render();return;}
+    if(ev.target.id==='guest-back'||ev.target.id==='guest-join'){guestPreview=false;render();return;}
+    if(ev.target.id==='guest-retry'){guestChoice=null;guestReveal=false;render();return;}
+    const guestOption=ev.target.closest('[data-guest-choice]');
+    if(guestOption&&!guestReveal){guestChoice=Number(guestOption.dataset.guestChoice);render();return;}
+    if(ev.target.id==='guest-check'&&guestChoice!==null&&!guestReveal){guestReveal=true;render();return;}
+    const transferOption=ev.target.closest('[data-transfer-choice]');
+    if(transferOption&&!transferReveal){transferChoice=Number(transferOption.dataset.transferChoice);render();return;}
+    if(ev.target.id==='transfer-check'&&!transferReveal&&transferChoice!==null){
+      const selected=byCountry().find(x=>x.id===(activeScenario||todayCase().id));
+      const test=selected&&TRANSFER_CASES[selected.id];
+      if(selected&&test&&caseReveal&&caseChoice===selected.answer){
+        transferReveal=true;
+        if(transferChoice===test.answer&&!state.transferPassed.includes(selected.id)){state.transferPassed.push(selected.id);setStore();}
+        render();
+      }return;
+    }
+    if(ev.target.id==='case-share'){
+      const selected=byCountry().find(x=>x.id===(activeScenario||todayCase().id))||todayCase();
+      const base=typeof location.href==='string'?location.href.split('#')[0]:'';
+      if(!base){toast('Impossible de récupérer le lien sur cet appareil.');return;}
+      const url=base+'#declic/'+selected.id;
+      if(typeof navigator.share==='function'){navigator.share({title:'Un défi SAVRÉO',text:'Tu aurais eu le bon réflexe ?',url}).catch(()=>{});}
+      else if(navigator.clipboard?.writeText){navigator.clipboard.writeText(url).then(()=>toast('Lien du défi copié, sans ton résultat')).catch(()=>toast('Copie le lien depuis ton navigateur.'));}
+      else toast('Copie le lien depuis ton navigateur.');
+      return;
+    }
+    if(ev.target.id==='start-oral-40'){
+      if(oralTimer)clearTimeout(oralTimer);
+      oralActive=true;oralDone=false;render();
+      oralTimer=setTimeout(()=>{oralActive=false;oralDone=true;if(page==='debattre')render();},40000);
+      return;
+    }
+    if(ev.target.closest('#theme-entry')){updateTheme(document.documentElement.dataset.theme==='light'?'dark':'light');render();return;}const themeChoice=ev.target.closest('[data-theme-option]');if(themeChoice){updateTheme(themeChoice.dataset.themeOption);return;}if(ev.target.closest('#theme-quick, #theme-entry')){updateTheme(document.documentElement.dataset.theme==='light'?'dark':'light');return;}const ageButton=ev.target.closest('[data-essential-age]');if(ageButton){const val=ageButton.dataset.essentialAge;if(['12-15','16-20','21-28'].includes(val)){essentialAgeView=val;render();document.querySelector('details.micro-catalogue')?.setAttribute('open','');}return;}const micro=ev.target.closest('[data-micro-review]');if(micro){essentialCurrent=micro.dataset.microReview;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;navigate('essentiels');return;}const eTopic=ev.target.closest('[data-essential-id]');if(eTopic){essentialCurrent=eTopic.dataset.essentialId;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;render();return;}const eOption=ev.target.closest('[data-essential-choice]');if(eOption&&!essentialReveal){essentialChoice=Number(eOption.dataset.essentialChoice);render();return;}if(ev.target.id==='essential-check'){const current=essentialAvailable().find(x=>x.id===essentialCurrent)||essentialAvailable().find(x=>x.ageGroups.includes(state.ageGroup)&&!state.completed.includes('essential:'+x.id))||essentialAvailable()[0];if(!current||essentialChoice===null)return;essentialCurrent=current.id;essentialReveal=true;essentialFirstReward=false;recordMicroReview(current.id,essentialChoice===current.answer);if(essentialChoice===current.answer)essentialFirstReward=reward('essential:'+current.id,10);render();return;}if(ev.target.id==='essential-next'){essentialCurrent=nextMicroCard(essentialCurrent,essentialAgeView||state.ageGroup)?.id||null;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;render();return;}const scopeBtn=ev.target.closest('[data-public-scope]');if(scopeBtn){const next=scopeBtn.dataset.publicScope;if(['all','national','regional','local'].includes(next)){publicScope=next;publicSourcesOpen=true;render();}return;}const cTopic=ev.target.closest('[data-civic-id]');if(cTopic){civicCurrent=cTopic.dataset.civicId;civicChoice=null;civicReveal=false;civicFirstReward=false;render();return;}const cOption=ev.target.closest('[data-civic-choice]');if(cOption&&!civicReveal){civicChoice=Number(cOption.dataset.civicChoice);render();return;}if(ev.target.id==='civic-check'){const current=civicAvailable().find(x=>x.id===civicCurrent)||civicAvailable().find(x=>!state.completed.includes('civic:'+x.id))||civicAvailable()[0];if(!current||civicChoice===null)return;civicCurrent=current.id;civicReveal=true;civicFirstReward=false;if(civicChoice===current.answer)civicFirstReward=reward('civic:'+current.id,12);render();return;}if(ev.target.id==='civic-next'){const cards=civicAvailable(),i=cards.findIndex(x=>x.id===civicCurrent);civicCurrent=cards[(i+1+cards.length)%cards.length]?.id||null;civicChoice=null;civicReveal=false;civicFirstReward=false;render();return;}const country=ev.target.closest('[data-country]');if(country){setCountry(country.dataset.country);return;}const lesson=ev.target.closest('[data-lesson]');if(lesson){activeLesson=lesson.dataset.lesson;navigate('lecon');return;}if(ev.target.id==='edit-interests'){interestsEditing=true;render();window.scrollTo({top:0,behavior:'instant'});return;}if(ev.target.id==='cancel-interests'){interestsEditing=false;render();return;}if(ev.target.id==='skip-interests'){state.interests=[];state.interestsDone=true;interestsEditing=false;setStore();navigate('accueil');toast('Tu pourras choisir tes sujets plus tard.');return;}if(ev.target.id==='edit-profile'){profileEditing=true;render();window.scrollTo({top:0,behavior:'instant'});return;}if(ev.target.id==='cancel-onboarding'){profileEditing=false;render();return;}const journeyStep=ev.target.closest('[data-journey][data-stage]');if(journeyStep){const j=JOURNEYS.find(x=>x.id===journeyStep.dataset.journey);if(!j)return;const kind=journeyStep.dataset.stage;journeyContext=j.id;if(kind==='case'){activeScenario=j.case[state.country];caseChoice=null;caseReveal=false;navigate('declic');}else if(kind==='lesson'){activeLesson=j.lesson;navigate('lecon');}else if(kind==='debate'){activeDebate=j.debate;debateFeedback=null;aiFeedback=null;window.__debateDraft='';navigate('debattre');}return;}const reviewButton=ev.target.closest('[data-review]');if(reviewButton){reviewLessonId=reviewButton.dataset.review;reviewChoice=null;reviewResult=null;render();return;}const route=ev.target.closest('[data-route],[data-page]');if(route){journeyContext='';navigate(route.dataset.route||route.dataset.page);return;}const debate=ev.target.closest('[data-debate]');if(debate){activeDebate=Number(debate.dataset.debate);debateFeedback=null;aiFeedback=null;aiError='';window.__debateDraft='';render();return;}const casepick=ev.target.closest('[data-case]');if(casepick){activeScenario=casepick.dataset.case;caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;render();return;}const cp=ev.target.closest('[data-case-choice]');if(cp && !caseReveal){caseChoice=Number(cp.dataset.caseChoice);render();return;}if(ev.target.id==='case-retry'){caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;render();return;}if(ev.target.id==='case-next'){const next=nextUnseenCase(activeScenario||todayCase().id);if(next){activeScenario=next.id;caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;navigate('declic');}else navigate('accueil');return;}if(ev.target.id==='case-submit'){const s=byCountry().find(x=>x.id===(activeScenario||todayCase().id))||todayCase();if(caseChoice===null||caseReveal)return;caseReveal=true;caseFirstReward=false;if(caseChoice===s.answer){if(!state.completed.includes('mission:case:'+dayKey())){state.completed.push('mission:case:'+dayKey());setStore();}caseFirstReward=reward('case:'+s.id,30);}render();return;}const wp=ev.target.closest('[data-word]');if(wp){activeWord=wp.dataset.word;wordReveal=false;wordChoice=null;wordCheck=false;render();return;}if(ev.target.id==='word-flip'){wordReveal=!wordReveal;wordChoice=null;wordCheck=false;render();return;}const wc=ev.target.closest('[data-word-choice]');if(wc && !wordCheck){wordChoice=Number(wc.dataset.wordChoice);render();return;}if(ev.target.id==='word-retry'){wordChoice=null;wordCheck=false;render();return;}if(ev.target.id==='word-submit'){const w=words.find(x=>x.id===activeWord)||words[0];if(wordChoice===null)return;wordCheck=true;if(wordChoice===w.answer){if(reward('word:'+w.id,8))toast('+8 XP · mot acquis !');}render();return;}if(ev.target.id==='ai-debate'){runAICoach();return;}if(ev.target.id==='voice-debate'){startDictation();return;}const newsScopeButton=ev.target.closest('[data-news-scope]');
+    if(newsScopeButton){const scope=newsScopeButton.dataset.newsScope;if(['all','federal','regional'].includes(scope)){newsScope=scope;render();}return;}
+    const newsFilterButton=ev.target.closest('[data-news-filter]');if(newsFilterButton){const filter=newsFilterButton.dataset.newsFilter;if(['all','recent'].includes(filter)){newsFilter=filter;render();}return;}if(ev.target.id==='load-news'){fetchNews(true);return;}const saved=ev.target.closest('[data-save-news]');if(saved){const url=saved.dataset.saveNews;const n=liveNews.items.find(x=>x.url===url);if(n && !state.savedNews.some(x=>x.url===url)){state.savedNews.unshift({country:state.country,url:n.url,title:n.title});state.savedNews=state.savedNews.slice(0,40);setStore();render();toast('Publication sauvegardée');}return;}const unsaved=ev.target.closest('[data-unsave-news]');if(unsaved){state.savedNews=state.savedNews.filter(x=>x.url!==unsaved.dataset.unsaveNews);setStore();render();return;}if(ev.target.id==='analyze-debate'){let text=el('debate-answer').value.trim();if(text.length<30){toast('Écris au moins 30 caractères pour t’entraîner.');return;}window.__debateDraft=text;debateFeedback=analyze(text);const d=debates[activeDebate];state.history.push({date:new Date().toLocaleDateString('fr-BE'),title:d.title,hits:debateFeedback.hits,text});state.history=state.history.slice(-30);setStore();if(journeyContext&&JOURNEYS.some(j=>j.id===journeyContext)){state.journeyDebates=Array.isArray(state.journeyDebates)?state.journeyDebates:[];if(!state.journeyDebates.includes(journeyContext))state.journeyDebates.push(journeyContext);setStore();journeyContext='';}if(reward('debate:'+dayKey(),25)){toast('+25 XP · entraînement enregistré');}else{toast('Entraînement enregistré dans ton parcours');}render();el('debate-answer')?.scrollIntoView({block:'center'});return;}if(ev.target.id==='reset-debate'){window.__debateDraft='';debateFeedback=null;aiFeedback=null;aiError='';render();return;}if(ev.target.id==='clear-progress'){if(confirm('Effacer définitivement la progression et les réponses sauvegardées dans ce navigateur ?')){state={...DEFAULT,country:state.country,theme:themePreference()};setStore();render();toast('Données locales effacées.');}return;}if(ev.target.id==='export-progress'){const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='savreo-mon-parcours.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('Progression téléchargée.');return;}});
+  document.addEventListener('submit',ev=>{if(ev.target.id==='review-quiz'){ev.preventDefault();const lesson=lessons.find(l=>l.id===reviewLessonId),answer=ev.target.querySelector('input[name="answer"]:checked');if(!lesson||!answer||reviewResult!==null)return;reviewChoice=Number(answer.value);reviewResult=reviewChoice===lesson.answer;recordReview(lesson.id,reviewResult);render();return;}if(ev.target.id==='interests-form'){ev.preventDefault();const ids=[...ev.target.querySelectorAll('input[name="interests"]:checked')].map(x=>x.value).filter(id=>INTERESTS.some(t=>t.id===id)).slice(0,3);const wasEditing=interestsEditing;state.interests=ids;state.interestsDone=true;interestsEditing=false;setStore();navigate(wasEditing?'profil':'accueil');toast(wasEditing?'Sujets mis à jour.':'Bienvenue sur SAVRÉO !');return;}if(ev.target.id==='onboarding-form'){ev.preventDefault();const form=ev.target;
+    if(!profileEditing){
+      if(onboardingStage===0){onboardingDraft.firstName=safeName(form.elements.firstName?.value||'');onboardingStage=1;render();return;}
+      if(onboardingStage===1){const chosen=form.elements.ageGroup?.value||'';if(!Object.hasOwn(AGE_GROUPS,chosen)){toast('Choisis ta tranche d’âge.');return;}onboardingDraft.ageGroup=chosen;onboardingStage=2;render();return;}
+      if(onboardingStage===2){onboardingDraft.gender=form.elements.gender?.value||'';finishProgressiveOnboarding();return;}
+    }
+    const name=safeName(form.elements.firstName.value);const age=form.elements.ageGroup.value;const gender=form.elements.gender.value;if(name.length>24){toast('Prénom ou pseudo trop long.');return;}if(!Object.hasOwn(AGE_GROUPS,age)){toast('Choisis ta tranche d’âge.');return;}if(gender && !Object.hasOwn(GENDERS,gender)){toast('Choix non reconnu.');return;}const wasEditing=profileEditing;state.firstName=name;state.ageGroup=age;state.gender=gender;state.onboardingDone=true;profileEditing=false;setStore();if(wasEditing){navigate('profil');toast('Préférences enregistrées.');}else{render();window.scrollTo({top:0,behavior:'instant'});}return;}if(ev.target.id!=='lesson-quiz')return;ev.preventDefault();const picked=ev.target.querySelector('input[name=answer]:checked');if(!picked){toast('Choisis une réponse.');return;}quizSelection=Number(picked.value);quizDone=true;lessonFirstReward=false;const l=lessons.find(x=>x.id===activeLesson);if(quizSelection===l.answer){if(!state.completed.includes('mission:lesson:'+dayKey())){state.completed.push('mission:lesson:'+dayKey());setStore();}queueReview(l.id);lessonFirstReward=reward('lesson:'+l.id,20);}else toast('Lis l’explication et réessaie.');render();});
+    document.addEventListener('change',ev=>{
+    if(ev.target.matches?.('#onboarding-form input[name="ageGroup"]')&&!profileEditing){onboardingDraft.ageGroup=ev.target.value;return;}
+    if(ev.target.matches?.('#onboarding-form input[name="gender"]')&&!profileEditing){onboardingDraft.gender=ev.target.value;return;}
+    if(!ev.target.matches('#interests-form input[name="interests"]'))return;
+    const checked=[...document.querySelectorAll('#interests-form input[name="interests"]:checked')];
+    if(checked.length>3){
+      ev.target.checked=false;
+      toast('Choisis jusqu’à 3 sujets.');
+    }
+    const total=document.querySelectorAll('#interests-form input[name="interests"]:checked').length;
+    const counter=el('interests-count');
+    if(counter)counter.textContent=total+'/3 sujets choisis';
+  });
+document.addEventListener('input',ev=>{if(ev.target.id==='quick-firstname'&&!profileEditing)onboardingDraft.firstName=safeName(ev.target.value);if(ev.target.id==='rights-search'){const pos=ev.target.selectionStart;rightFilter=ev.target.value;const cards=RIGHTS[state.country].filter(x=>(x.title+' '+x.tag+' '+x.body).toLowerCase().includes(rightFilter.toLowerCase()));const grid=document.querySelector('.rights-grid');if(grid)grid.innerHTML=renderRightsCards(cards)||'<p class="blank-state">Aucun résultat. Essaie un autre mot.</p>';ev.target.setSelectionRange(pos,pos);}if(ev.target.id==='debate-answer')window.__debateDraft=ev.target.value;});
+  window.addEventListener('hashchange',()=>{let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(route.startsWith('declic/')){const chosen=scenarios.find(x=>x.id===route.slice(7));if(chosen){activeScenario=chosen.id;if(chosen.country!=='ALL'&&chosen.country!==state.country){state.country=chosen.country;setStore();}}page='declic';}else if(['accueil','explorer','pratiquer','apprendre','debattre','droits','vigie','profil','declic','dico','parcours','reviser','sources','vie-publique','civique','dossiers','essentiels'].includes(route))page=route;else page='accueil';render();refreshNewsIfNeeded();});
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
-  let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(['accueil','apprendre','debattre','droits','vigie','profil','declic','dico'].includes(route))page=route;
+  let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(route.startsWith('declic/')){const chosen=scenarios.find(x=>x.id===route.slice(7));if(chosen){activeScenario=chosen.id;if(chosen.country!=='ALL'&&chosen.country!==state.country){state.country=chosen.country;setStore();}}page='declic';}else if(['accueil','explorer','pratiquer','apprendre','debattre','droits','vigie','profil','declic','dico','parcours','reviser','sources','vie-publique','civique','dossiers','essentiels'].includes(route))page=route;
+  state.completed.filter(x=>x.startsWith('lesson:')).forEach(x=>queueReview(x.slice(7)));
   render();
+  refreshNewsIfNeeded();
 })();

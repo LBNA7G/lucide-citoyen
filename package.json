@@ -1,8 +1,12 @@
 {
-  "name":"lucide-citoyen",
-  "private":true,
-  "version":"0.4.0",
-  "type":"module",
-  "scripts":{"test":"node scripts/check.mjs && node --test tests/*.test.js tests/*.test.mjs"},
-  "engines":{"node":">=22"}
+  "name": "savreo-learning",
+  "private": true,
+  "version": "1.6.4-beta.1",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/check.mjs && node --test tests/*.test.js tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }
