@@ -1,4 +1,4 @@
-# SAVRÉO — version 0.8
+# SAVRÉO — version 0.8.1
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
@@ -25,7 +25,7 @@ Pour vérifier la migration : utiliser une session vierge, une session v0.6 exis
 - **3 parcours** : vérifier une information, argent/travail, connaître ses droits. Chaque parcours relie un cas, une leçon avec quiz et un débat.
 - **Mémorisation** : une réussite planifie la première révision à J+1, puis J+3 / J+7 / J+14 / J+30, avec remise à J+1 après une erreur. La progression antérieure est conservée.
 - **Design system documenté** : `docs/DESIGN_SYSTEM.md`; tokens, états, composants, usages responsive.
-- **Qualité éditoriale** : 25 fiches inventoriées dans `content/editorial-registry.json`, toutes en attente de validation indépendante, avec contrôles automatiques dans `tests/editorial-registry.test.mjs`.
+- **Qualité éditoriale** : 25 fiches inventoriées, avec des références pour les 6 leçons fondamentales dans `content/editorial-registry.json`, toutes en attente de validation indépendante, avec contrôles automatiques dans `tests/editorial-registry.test.mjs`.
 - **Étude utilisateur** : protocole pour 24 jeunes dans `docs/USER_STUDY_24.md` et tableau anonymisé vierge `docs/USER_STUDY_TRACKER.md`. **Aucun recrutement ni test réel à ce stade.**
 - **Partenariats pressentis** : `docs/PARTNERSHIP_PIPELINE.md`; aucune prise de contact ni approbation réalisée.
 - **Charte éditoriale** : `docs/EDITORIAL_POLICY.md`. Ne pas commercialiser une fiche juridique comme « certifiée » sans contrôle externe documenté.
