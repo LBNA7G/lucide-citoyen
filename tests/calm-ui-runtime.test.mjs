@@ -273,3 +273,14 @@ test('territorial source filters reveal only the selected level and preserve exp
  assert.ok(french.includes('Ville de Paris'));
  assert.ok(!french.includes('Commune de Brugelette'));
 });
+
+test('essential learning reveals provenance before submitting any choice',()=>{
+ const screen=mount('essentiels','light',true,'16-20');
+ const html=screen.html;
+ assert.ok(html.includes('Sources et approfondissement'));
+ assert.ok(html.includes('simulation pédagogique'));
+ assert.ok(html.includes('Relecture indépendante'));
+ assert.ok(html.includes('non réalisée'));
+ assert.ok(html.includes('civic-proof'));
+ assert.ok(html.includes('Vérifier ma réponse'));
+});
