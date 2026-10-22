@@ -195,5 +195,5 @@ test('party catalogue attributes documents, with no election ranking',()=>{
  const select={dataset:{country:'FR'},closest(q){return q==='[data-country]'?this:null}};
  be.handlers.get('click')({target:select});
  assert.ok(be.document.getElementById('main').innerHTML.includes('5 dossiers documentaires'));
- assert.ok(be.document.getElementById('main').innerHTML.includes('non exhaustive'));
+ assert.match(be.document.getElementById('main').innerHTML,/(non exhaustif|pas une liste exhaustive)/);
 });
