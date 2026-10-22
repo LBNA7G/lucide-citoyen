@@ -1,4 +1,4 @@
-# SAVRÉO — version 0.5
+# SAVRÉO — version 0.6
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
@@ -9,6 +9,10 @@ SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour appren
 - **Identité SAVRÉO** : typographie sobre, fond bleu nuit, vert citron réservé aux accents importants, nouveau pictogramme S.
 - **Progression conservée** : la clé de stockage locale de LUCIDE v0.4 est maintenue pour éviter toute perte de données lors de la migration.
 - **Version de prévisualisation** : à vérifier sur plusieurs tailles d’écran avant publication dans la branche main.
+
+## Démarrage personnalisé (v0.6)
+
+Au premier lancement, SAVRÉO demande un prénom ou pseudo, l'une des tranches d'âge 12–15 / 16–20 / 21–28 ans et propose un choix de genre **facultatif**. Les données sont conservées localement sans compte ; aucune de ces préférences n'est envoyée au coach IA ou au flux d'actualité. Le prénom s'affiche sur l'accueil, l'âge aide à sélectionner les situations et leçons proposées, et le genre ne change que certaines formules de bienvenue. Aucun sujet n'est bloqué. Les préférences se modifient depuis « Mon parcours » et peuvent être effacées avec les données locales. La clé locale historique reste utilisée pour conserver la progression existante.
 
 ## Ce qui fonctionne
 
