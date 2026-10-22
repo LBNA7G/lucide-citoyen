@@ -22,9 +22,9 @@
       "setup": "SIMULATION : quelqu’un publie une photo de toi prise pendant une sortie. Tu n’as jamais dit oui et plusieurs personnes la repartagent.",
       "question": "Quel premier réflexe est le plus utile ?",
       "choices": [
-        "Laisser faire parce que la photo est déjà en ligne.",
-        "Demander le retrait et solliciter de l’aide si la diffusion continue.",
-        "Publier des informations privées sur la personne en retour."
+        "Attendre qu’elle disparaisse après quelques jours.",
+        "Demander le retrait et de l’aide si nécessaire.",
+        "Répondre avec une photo privée de la personne."
       ],
       "answer": 1,
       "why": "Une publication peut exposer la vie privée. Demander son retrait et solliciter un adulte ou un interlocuteur de confiance si nécessaire est un meilleur réflexe que la vengeance.",
@@ -59,9 +59,9 @@
       "setup": "SIMULATION : une publication montre trois lignes d’un long document. Le titre affirme qu’une règle vient de changer, mais tu ne vois ni le début ni la date.",
       "question": "Quelle vérification est la plus solide ?",
       "choices": [
-        "Retrouver le document complet, son auteur et sa date.",
-        "Partager parce que tout le monde en parle.",
-        "Décider que toutes les captures d’écran sont fausses."
+        "Retrouver l’intégralité du document et sa date.",
+        "Comparer les réactions sous les reprises de la capture.",
+        "Vérifier uniquement l’identité du compte qui partage."
       ],
       "answer": 0,
       "why": "Un extrait peut perdre son contexte. Il faut retrouver la source complète, sa date et vérifier que la conclusion correspond réellement au document.",
@@ -94,9 +94,9 @@
       "setup": "SIMULATION : tu reçois un message inattendu avec un lien et une demande de confirmer des informations personnelles pour recevoir un cadeau.",
       "question": "Que fais-tu ?",
       "choices": [
-        "J'envoie mes identifiants pour ne pas rater le cadeau.",
-        "Je ne clique pas et je vérifie par un canal indépendant.",
-        "Je transfère le message à tous mes amis."
+        "Saisir mon code si le message mentionne un délai.",
+        "Vérifier l’offre ailleurs sans ouvrir ce lien.",
+        "Faire suivre le message aux proches pour confirmation."
       ],
       "answer": 1,
       "why": "L’urgence et les cadeaux inattendus peuvent servir à l’hameçonnage. Évite les liens suspects et vérifie l’identité de l’expéditeur par un autre moyen.",
@@ -132,9 +132,9 @@
       "setup": "SIMULATION : tu viens d’être payé. Le mois prochain, tu dois encore régler le transport, un abonnement et des repas. Une paire de chaussures te tente.",
       "question": "Quelle approche te permet de choisir sans mauvaise surprise ?",
       "choices": [
-        "Comparer le salaire aux dépenses à venir avant d'acheter.",
-        "Dépenser puis compter sur le salaire suivant.",
-        "Ignorer les petites dépenses, elles ne comptent pas."
+        "Comparer les rentrées et les frais prévisibles.",
+        "Prévoir que les autres dépenses pourront attendre.",
+        "Considérer que les petites dépenses sont négligeables."
       ],
       "answer": 0,
       "why": "Un budget distingue revenus, dépenses régulières et dépenses ponctuelles. Tu peux décider librement, mais il est plus prudent de connaître d’abord ce qui restera disponible.",
@@ -167,9 +167,9 @@
       "setup": "SIMULATION : une personne prétend représenter une entreprise et annonce que tu es retenu, mais exige le mot de passe de ton compte pour « valider ton dossier ».",
       "question": "Quelle est la meilleure réponse ?",
       "choices": [
-        "Envoyer le mot de passe, car le poste est urgent.",
-        "Vérifier l’entreprise par ses canaux officiels sans communiquer de code.",
-        "Fournir le même mot de passe que sur d’autres sites."
+        "Transmettre le code après un appel du recruteur.",
+        "Vérifier l’entreprise sans communiquer de secret.",
+        "Créer un nouveau code pour l’envoyer à l’employeur."
       ],
       "answer": 1,
       "why": "Aucun recrutement crédible ne justifie la communication d’un mot de passe personnel à un inconnu. Les faux messages peuvent usurper l’identité d’entreprises.",
@@ -206,9 +206,9 @@
       "setup": "SIMULATION : un outil social demande l’accès permanent à ta position alors que tu souhaites simplement partager un lieu une seule fois.",
       "question": "Quelle option protège mieux ta vie privée ?",
       "choices": [
-        "Autoriser toujours, c'est obligatoire pour toutes les applications.",
-        "Vérifier les réglages et limiter le partage au besoin réel.",
-        "Publier l’endroit où tu dors pour rassurer les autres."
+        "Autoriser en permanence si le service est populaire.",
+        "N’accorder que l’accès nécessaire et revoir les réglages.",
+        "Partager aussi ses trajets pour aider les autres membres."
       ],
       "answer": 1,
       "why": "Le partage de localisation peut être temporaire et volontaire. Il est utile de revoir qui peut voir tes déplacements et de retirer les autorisations inutiles.",
@@ -241,9 +241,9 @@
       "setup": "SIMULATION : quelqu’un propose un loyer très avantageux et dit vivre loin. Pour « réserver » la visite, il te demande un virement immédiat sur un compte inconnu.",
       "question": "Quel réflexe limite le risque d'escroquerie ?",
       "choices": [
-        "Payer avant toute vérification pour ne pas perdre la chance.",
-        "Vérifier l’annonce et l’interlocuteur, sans envoyer d’argent sous pression.",
-        "Transmettre une copie complète de ses documents via n’importe quelle messagerie."
+        "Payer une partie du dépôt puis vérifier le contrat.",
+        "Contrôler l’annonce et le contact avant tout paiement.",
+        "Transmettre des justificatifs complets avant la visite."
       ],
       "answer": 1,
       "why": "Les fausses annonces de location servent parfois à obtenir de l’argent ou des documents personnels. Il faut distinguer les démarches de location normales d’une pression à payer sans vérification.",
@@ -280,9 +280,9 @@
       "setup": "SIMULATION : une application propose un essai bon marché. L’écran d’inscription indique un renouvellement payant après l’essai, mais tu n’as pas lu les conditions.",
       "question": "Que regarder avant de confirmer ?",
       "choices": [
-        "La durée, le coût total et la manière d'arrêter l'abonnement.",
-        "Uniquement le prix du premier jour.",
-        "Le nombre de personnes qui ont aimé la publicité."
+        "La durée, le coût ultérieur et la résiliation.",
+        "La note moyenne et le nombre d’utilisateurs actifs.",
+        "Le rabais annoncé sur la première mensualité."
       ],
       "answer": 0,
       "why": "Un engagement récurrent peut coûter davantage que le prix d’appel. Lis les modalités de reconduction, la durée, les coûts et les possibilités de résiliation avant d’accepter.",
@@ -314,9 +314,9 @@
       "setup": "SIMULATION : ton relevé montre un solde positif. Mais tu n’as pas encore compté l’assurance annuelle, l’entretien et les dépenses imprévues.",
       "question": "Quelle conclusion est la plus raisonnable ?",
       "choices": [
-        "Tout solde positif est une somme immédiatement disponible.",
-        "Intégrer les dépenses irrégulières pour mieux connaître sa marge.",
-        "Ne noter que les gros achats, jamais les abonnements."
+        "Traiter le solde comme intégralement disponible.",
+        "Prévoir les frais occasionnels dans ses calculs.",
+        "Ignorer les abonnements inférieurs à un certain prix."
       ],
       "answer": 1,
       "why": "Une vision mensuelle peut oublier les charges annuelles et les dépenses exceptionnelles. Pour estimer ton reste disponible, il faut tenir compte de ces postes.",
@@ -366,9 +366,9 @@
       ],
       "q": "Quel élément te manque le plus devant une capture recadrée ?",
       "choices": [
-        "Le document complet et sa date.",
-        "Le nombre d’émojis.",
-        "La couleur du cadre."
+        "La capture complète, sa source et sa date.",
+        "Le titre du compte à l’origine du partage.",
+        "Le nombre de reproductions de cette image."
       ],
       "answer": 0,
       "why": "La fiabilité dépend de la source et du contexte, pas de la popularité du visuel.",
@@ -410,9 +410,9 @@
       ],
       "q": "Avant de publier une vidéo où un ami est clairement reconnaissable, tu peux :",
       "choices": [
-        "Demander son accord et respecter sa réponse.",
-        "Publier d'abord, prévenir plus tard.",
-        "Effacer seulement son prénom."
+        "Demander son accord avant de diffuser la vidéo.",
+        "Publier si l’ami ne s’est pas opposé par écrit.",
+        "Masquer son prénom mais conserver son visage."
       ],
       "answer": 0,
       "why": "Le respect d’autrui commence par le dialogue et le consentement, même lorsque la publication semble anodine.",
@@ -454,9 +454,9 @@
       ],
       "q": "Un message inattendu te demande ton code de connexion. Tu dois :",
       "choices": [
-        "Le transmettre si le logo semble officiel.",
-        "Vérifier directement l’organisme sans utiliser le lien reçu.",
-        "L’envoyer à tous tes contacts."
+        "Le communiquer si le numéro de téléphone paraît officiel.",
+        "Contacter l’organisme sans passer par ce message.",
+        "Le transférer à un ami pour vérifier son authenticité."
       ],
       "answer": 1,
       "why": "Un logo ou une urgence ne prouvent pas l’identité de l’expéditeur.",
@@ -501,9 +501,9 @@
       ],
       "q": "Quelle liste est utile pour décider d’un achat ?",
       "choices": [
-        "Salaire et abonnements uniquement.",
-        "Revenus, charges à venir et dépenses occasionnelles.",
-        "Nombre de publicités vues."
+        "Le salaire et les dépenses les plus visibles.",
+        "Revenus, dépenses fixes et frais occasionnels.",
+        "Les offres promotionnelles du mois à venir."
       ],
       "answer": 1,
       "why": "La vue d’ensemble permet de comparer une envie immédiate avec ses autres obligations.",
@@ -545,9 +545,9 @@
       ],
       "q": "On te demande un virement urgent avant toute vérification. Quel réflexe ?",
       "choices": [
-        "Payer vite pour être prioritaire.",
-        "Vérifier l’annonce et les règles applicables avant toute transaction.",
-        "Envoyer tous tes documents à l’adresse inconnue."
+        "Payer une petite somme pour réserver le logement.",
+        "Vérifier l’offre et les règles avant de transférer l’argent.",
+        "Fournir les documents demandés puis confirmer la visite."
       ],
       "answer": 1,
       "why": "Les escroqueries à la location utilisent souvent l’urgence, une offre séduisante et de faux justificatifs.",
@@ -593,9 +593,9 @@
       ],
       "q": "Quelle information est indispensable avant un essai payant ?",
       "choices": [
-        "La durée, le prix après l’essai et les modalités de résiliation.",
-        "Le nombre de vues de la publicité.",
-        "La couleur du logo."
+        "La durée, le prix futur et la résiliation.",
+        "La durée de la période gratuite uniquement.",
+        "Les avis des utilisateurs et la popularité de l’offre."
       ],
       "answer": 0,
       "why": "Une bonne décision repose sur le coût total et les conditions, pas seulement sur une promotion.",

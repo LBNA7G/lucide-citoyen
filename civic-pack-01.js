@@ -320,9 +320,9 @@
       "body": "Deux graphiques électoraux portent sur la Belgique. L'un montre des résultats de 2024 pour la Chambre en Hainaut, l'autre un scrutin d'une autre année et d'un autre territoire.",
       "question": "Quelle comparaison est méthodologiquement la plus rigoureuse ?",
       "choices": [
-        "Comparer le même scrutin, les années et le territoire indiqués.",
-        "Comparer les pourcentages sans examiner la zone de vote.",
-        "Comparer directement les sièges d'assemblées de tailles différentes."
+        "Comparer le scrutin, le territoire et les années.",
+        "Comparer les parts de voix sans préciser le territoire.",
+        "Comparer les sièges sans préciser la taille de l’assemblée."
       ],
       "answer": 0,
       "why": "Pour comprendre une évolution, précise le scrutin, le périmètre territorial, la période et le dénominateur. Des pourcentages calculés sur des électorats différents ne sont pas directement interchangeables.",
@@ -345,9 +345,9 @@
       "body": "Les décisions belges sont réparties entre différents niveaux institutionnels. Une annonce faite au niveau fédéral ne dit pas à elle seule ce que décide une Région.",
       "question": "Que faut-il identifier en premier ?",
       "choices": [
-        "Le pouvoir compétent pour le sujet.",
-        "Le nombre de likes.",
-        "La couleur du gouvernement."
+        "Identifier l’autorité compétente sur cette matière.",
+        "Consulter seulement le nom de l’élu qui l’annonce.",
+        "Se fier au niveau de pouvoir indiqué dans le titre."
       ],
       "answer": 0,
       "why": "Connaître l'autorité compétente aide à vérifier qui décide vraiment.",
@@ -370,9 +370,9 @@
       "body": "Un montant de dette ou de déficit doit être accompagné de l'année, de l'indicateur, du périmètre et de sa source. Une prévision n'est pas un résultat définitif.",
       "question": "Un chiffre 2028 « prévu » est-il une observation finale ?",
       "choices": [
-        "Non, c'est une projection à vérifier.",
-        "Oui, automatiquement.",
-        "Oui, si le chiffre est précis."
+        "Non : c’est une prévision, pas un bilan définitif.",
+        "Oui : toute prévision chiffrée constitue un bilan.",
+        "Oui : une estimation précise est toujours exacte."
       ],
       "answer": 0,
       "why": "Les projections de la BNB reposent sur des hypothèses et sont régulièrement révisées.",
@@ -395,9 +395,9 @@
       "body": "Des élections précédentes disposent de tableaux publics. Regarde l'année et le type de scrutin avant de comparer.",
       "question": "Quel est le réflexe le plus fiable ?",
       "choices": [
-        "Retrouver l'archive officielle datée.",
-        "Comparer deux affiches sans date.",
-        "Confondre sondage et résultat."
+        "Consulter les archives électorales officielles datées.",
+        "Comparer les graphiques diffusés pendant la campagne.",
+        "Lire les bilans publiés par plusieurs listes candidates."
       ],
       "answer": 0,
       "why": "L'archive officielle documente les scrutins passés et évite les comparaisons trompeuses.",
@@ -420,9 +420,9 @@
       "body": "En France, une personne de 20 ans souhaite voter aux élections législatives. Elle réside en France mais n'a pas précisé sa nationalité ni son inscription électorale.",
       "question": "Quelle condition générale vaut pour ce scrutin ?",
       "choices": [
-        "Toute personne majeure résidant en France peut voter aux législatives.",
-        "Il faut être Français, inscrit et disposer de ses droits électoraux.",
-        "Tout ressortissant européen résidant en France peut voter à ce scrutin."
+        "Être majeur, domicilié en France et imposable.",
+        "Être Français, inscrit et doté du droit de vote.",
+        "Être citoyen de l’UE résidant sur le territoire."
       ],
       "answer": 1,
       "why": "Pour les législatives françaises, il faut notamment être citoyen français, remplir la condition d'âge, être inscrit et jouir de ses droits électoraux. Les citoyens européens non français disposent d'autres droits pour certains scrutins.",
@@ -445,9 +445,9 @@
       "body": "L'inscription électorale peut être automatique à 18 ans sous certaines conditions, mais chacun doit pouvoir vérifier sa situation sur le service public.",
       "question": "Que faire en cas de doute ?",
       "choices": [
-        "Vérifier via le service officiel.",
-        "Se fier à une publication virale.",
-        "Attendre les résultats du vote."
+        "Contrôler sa situation via le service officiel.",
+        "Vérifier les résultats de son ancien bureau de vote.",
+        "Consulter le programme électoral de sa commune."
       ],
       "answer": 0,
       "why": "Les conditions et délais varient. Le service officiel aide à vérifier son inscription.",
@@ -470,9 +470,9 @@
       "body": "Les professions de foi sont des documents présentés par les candidats. Lorsqu'elles sont disponibles, le ministère de l'Intérieur indique comment les consulter.",
       "question": "Le programme d'un candidat est…",
       "choices": [
-        "Le texte de ses propositions, pas une loi adoptée.",
-        "La liste des lois déjà entrées en vigueur.",
-        "Un résultat de vote."
+        "Un ensemble de propositions attribuées au candidat.",
+        "Un recueil de lois adoptées pendant la campagne.",
+        "Une synthèse officielle des votes déjà dépouillés."
       ],
       "answer": 0,
       "why": "Les programmes sont des engagements à examiner à leur date et dans leur contexte.",
@@ -495,9 +495,9 @@
       "body": "Le site officiel des élections publie des résultats par scrutin, avec des archives et des niveaux territoriaux.",
       "question": "Quelle donnée utiliser pour un scrutin terminé ?",
       "choices": [
-        "Les résultats officiels datés.",
-        "Un sondage ancien.",
-        "Un commentaire anonyme."
+        "Les procès-verbaux et résultats officiels datés.",
+        "Les estimations diffusées juste après le scrutin.",
+        "Les chiffres annoncés par les équipes candidates."
       ],
       "answer": 0,
       "why": "Ne mélange pas une estimation et un résultat proclamé.",
@@ -520,9 +520,9 @@
       "body": "En France, une commune possède des compétences locales ; d'autres décisions relèvent du département, de la région ou de l'État.",
       "question": "Comment savoir qui répond d'un sujet ?",
       "choices": [
-        "Consulter les compétences officielles du niveau concerné.",
-        "Lire uniquement le programme d'un seul élu.",
-        "Connaître le nombre d'abonnés."
+        "Identifier la compétence officielle de l’autorité.",
+        "Consulter uniquement les annonces du maire.",
+        "Se fier au nom du ministre qui présente le dossier."
       ],
       "answer": 0,
       "why": "Un service public local n'a pas automatiquement la main sur une règle nationale.",
@@ -545,9 +545,9 @@
       "body": "Une vidéo affirme qu'un parti français respecte toutes les règles parce qu'il dispose de nombreux élus. Tu veux contrôler sa transparence financière pour une année précise.",
       "question": "Quel document permet une vérification documentée ?",
       "choices": [
-        "Les prises de parole du parti pendant la campagne électorale.",
-        "Le nombre d'élus du parti à la date du dernier scrutin.",
-        "Les comptes et l'avis de la CNCCFP pour cet exercice."
+        "Les déclarations du parti et ses communiqués.",
+        "Les résultats électoraux publiés par l’administration.",
+        "Les comptes et décisions de contrôle de la CNCCFP."
       ],
       "answer": 2,
       "why": "Les effectifs élus et les déclarations de campagne ne sont pas des pièces comptables. La CNCCFP publie des informations, observations et décisions sur des exercices précis : leur portée doit être lue sans conclure à une infraction non établie.",
@@ -570,9 +570,9 @@
       "body": "Le déficit est mesuré sur une période ; pour comparer, précise l'année et le périmètre (État ou ensemble des administrations).",
       "question": "Comparer deux déficits sans année et périmètre est…",
       "choices": [
-        "Risque de confusion.",
-        "Toujours exact.",
-        "Une preuve de fraude."
+        "Une comparaison qui risque de tromper le lecteur.",
+        "Une comparaison suffisante si les sommes sont proches.",
+        "Une comparaison valide si les pays sont voisins."
       ],
       "answer": 0,
       "why": "Les conventions de calcul et la période conditionnent l'interprétation.",
@@ -595,9 +595,9 @@
       "body": "Si un électeur français ne peut pas se déplacer, il peut se renseigner sur les démarches de procuration et leurs conditions officielles.",
       "question": "Le bon réflexe est de…",
       "choices": [
-        "Vérifier les modalités actualisées auprès des services officiels.",
-        "Partager ses mots de passe électoraux.",
-        "Confier son identité à un inconnu."
+        "Consulter la procédure officielle à jour.",
+        "Suivre les instructions d’un ancien tract électoral.",
+        "Recopier la démarche d’un scrutin d’une autre année."
       ],
       "answer": 0,
       "why": "Les délais et modalités pratiques doivent être confirmés auprès du service électoral.",
