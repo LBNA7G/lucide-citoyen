@@ -703,28 +703,42 @@
         "label": "Communiqués et Conseil des ministres",
         "url": "https://news.belgium.be/fr",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "national"
       },
       {
         "scope": "Région wallonne",
         "label": "Communiqués du Gouvernement wallon",
         "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "regional"
       },
       {
         "scope": "Ville de Mons",
         "label": "Plateforme des décisions du conseil communal de Mons",
         "url": "https://www.mons.be/fr/ma-commune/vie-politique/conseil-communal/ordres-du-jour-et-proces-verbaux/plateforme-deliberations",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "local"
       },
       {
         "scope": "Ville de Mons",
         "label": "Participation citoyenne à Mons",
         "url": "https://participation.mons.be",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "local"
+      },
+      {
+        "scope": "Commune de Brugelette",
+        "label": "Procès-verbaux du conseil communal de Brugelette",
+        "url": "https://www.brugelette.be/ma-commune/vie-politique/conseil-communal/voir-ou-revoir-les-conseils-communaux/proces-verbal-17-04-2025-bon.pdf",
+        "level": "local",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false,
+        "documentDate": "2025-04-17",
+        "isArchive": true
       }
     ],
     "FR": [
@@ -733,21 +747,24 @@
         "label": "Vie publique — vie institutionnelle",
         "url": "https://www.vie-publique.fr",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "national"
       },
       {
         "scope": "National",
         "label": "Ministère de l'Intérieur — résultats électoraux",
         "url": "https://www.elections.interieur.gouv.fr/resultats",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "national"
       },
       {
         "scope": "Ville de Paris",
         "label": "Délibérations et comptes rendus du Conseil de Paris",
         "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224",
         "lastVerifiedAt": null,
-        "isLiveFeed": false
+        "isLiveFeed": false,
+        "level": "local"
       }
     ]
   },
