@@ -788,3 +788,9 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 .micro-next-date{font-size:13px;line-height:1.6;color:var(--calm-muted);margin:12px 0 0}
 @media(max-width:560px){.micro-age-picker{gap:7px}.micro-age-choice{font-size:12px;flex:1;min-width:88px;padding:11px 7px;text-align:center}}
 @media(prefers-reduced-motion:reduce){.micro-age-choice,.party-record>summary{transition:none}}
+
+/* SAVRÉO v1.4 — sujets conservés dans un panneau fermé ; focus renforcé */
+.civic-question .case-options .case-option{line-height:1.5}
+.civic-question .case-option:focus-visible{outline:3px solid var(--calm-accent);outline-offset:3px}
+.civic-question .feedback{max-width:66ch}
+@media(max-width:760px){.civic-question .feedback{padding:18px 16px}.micro-catalog-count{margin-bottom:10px}}
