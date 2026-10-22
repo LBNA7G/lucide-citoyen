@@ -284,3 +284,45 @@ test('essential learning reveals provenance before submitting any choice',()=>{
  assert.ok(html.includes('civic-proof'));
  assert.ok(html.includes('Vérifier ma réponse'));
 });
+
+test('home rewards progress without imposing a daily login and adapts after a completed Declic',()=>{
+ const baseline=mount('accueil','light',true,'16-20',[],{xp:125});
+ assert.ok(baseline.html.includes('Éclaireur'));
+ assert.ok(baseline.html.includes('125 XP'));
+ assert.ok(baseline.html.includes('learning-meter'));
+ assert.ok(baseline.html.includes('Tester mon réflexe'));
+ const screen=mount('declic','light',true,'12-15');
+ const click=screen.handlers.get('click');
+ const pick={dataset:{case:'beta-photo'},closest(q){return q==='[data-case]'?this:null}};
+ click({target:pick});
+ const wrong={dataset:{caseChoice:'0'},closest(q){return q==='[data-case-choice]'?this:null}};
+ click({target:wrong});
+ click({target:{id:'case-submit',closest(){return null}}});
+ let saved=JSON.parse(screen.store.value);
+ assert.ok(!saved.completed.some(x=>x.startsWith('mission:case:')),'wrong answer cannot complete daily mission');
+ assert.equal(saved.xp||0,0,'wrong answer cannot receive XP');
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Pas encore'));
+ click({target:{id:'case-retry',closest(){return null}}});
+ const correct={dataset:{caseChoice:'1'},closest(q){return q==='[data-case-choice]'?this:null}};
+ click({target:correct});
+ click({target:{id:'case-submit',closest(){return null}}});
+ saved=JSON.parse(screen.store.value);
+ assert.equal(saved.xp,30);
+ assert.ok(saved.completed.some(x=>x.startsWith('mission:case:')));
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Déclic validé !'));
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('+30 XP'));
+ click({target:{id:'case-next',closest(){return null}}});
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Vérifier mon réflexe'));
+});
+
+test('news screen shows dates, official source and actionable refresh/filter controls',()=>{
+ const screen=mount('vigie');
+ assert.ok(screen.html.includes('Publications officielles'));
+ assert.ok(screen.html.includes('Consulter les publications'));
+ assert.ok(screen.html.includes('Limites du radar'));
+ const s=readFileSync('app.js','utf8');
+ assert.ok(s.includes('data-news-filter'));
+ assert.ok(s.includes('14 derniers jours'));
+ assert.ok(s.includes('Actualiser les publications'));
+ assert.ok(s.includes("checkedAt"));
+});
