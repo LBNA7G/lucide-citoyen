@@ -1,6 +1,16 @@
-# SAVRÉO — version 1.6 bêta
+# SAVRÉO — version 1.6.1 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Bêta 1.6.1 — Des défis plus utiles et une bêta mieux encadrée
+
+- Démonstration d'un Déclic fictif avant inscription, sans prénom ni points.
+- Sur cinq cas, exercice de transfert dans une situation nouvelle. La progression distingue maintenant « réussi une fois » et « appliqué à un autre cas », sans faire croire à une maîtrise durable.
+- Partage facultatif d'un **lien vers un exercice**, pas vers des résultats personnels ; accès direct par `#declic/identifiant`.
+- Défi oral facultatif de 40 secondes, sans microphone ni enregistrement ; le coach IA reste désactivé par défaut.
+- Vigie : liens directs régionaux/communaux séparés du RSS fédéral/national ; chaque titre porte l'avertissement « statut juridique non vérifié ».
+- Premier lot de 24 QCM re-rédigés pour réduire les mauvaises réponses caricaturales ; **relecture éditoriale indépendante toujours nécessaire**.
+- Ce lot **ne constitue pas** une couverture exhaustive des territoires, une validation humaine ou un essai utilisateur.
 
 ## Bêta 1.6 — Une progression qui donne envie de revenir
 

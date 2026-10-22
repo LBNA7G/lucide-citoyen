@@ -841,3 +841,19 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
  .news-filter{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.learning-meter span,.reward-symbol{transition:none;animation:none}}
+
+/* Bêta 1.6.1 — accès sans compte, apprentissage transférable, information locale et oral libre */
+.onboarding-discovery,.transfer-test{border:1px solid var(--calm-stroke,#4a5360);background:var(--calm-surface,#1b2233);border-radius:18px;padding:22px;margin:18px 0}
+.onboarding-discovery p{color:var(--calm-ink,#eef2f6);line-height:1.6;margin:12px 0}
+.onboarding-discovery small{display:block;color:var(--calm-muted,#abb7c7);margin-top:10px;line-height:1.5}
+.guest-experience{max-width:760px;margin:0 auto 34px}
+.guest-experience>p{color:var(--calm-muted,#abb7c7);line-height:1.7}
+.guest-experience>.case-story{margin:20px 0}
+.transfer-test h3{font-size:20px;margin:10px 0}
+.transfer-test p{line-height:1.65;color:var(--calm-muted,#abb7c7)}
+.transfer-test .story-question{font-size:16px}
+.news-status{color:var(--calm-muted,#abb7c7);font-size:12px;line-height:1.5;margin-top:9px}
+.oral-feedback{margin-top:12px;color:var(--calm-muted,#abb7c7);font-size:13px}
+.guest-experience button,.transfer-test button,.onboarding-discovery button{min-height:44px}
+@media(max-width:760px){.onboarding-discovery,.transfer-test{padding:17px}.onboarding-discovery>.btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.guest-experience,.transfer-test{animation:none!important;transition:none!important}}
