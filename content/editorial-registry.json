@@ -873,7 +873,7 @@
       "topic": "Voter",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://elections.fgov.be/electeurs"
+        "https://elections.fgov.be/node/111505"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
@@ -963,7 +963,7 @@
       "topic": "Voter",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://www.elections.interieur.gouv.fr/"
+        "https://www.service-public.fr/particuliers/vosdroits/F1367"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
@@ -1068,7 +1068,7 @@
       "topic": "Voter",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://www.elections.interieur.gouv.fr/"
+        "https://www.service-public.fr/particuliers/vosdroits/F1604"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
