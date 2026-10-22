@@ -23,7 +23,10 @@ function parseFeed(xml,origin){const items=(xml.match(/<item\b[^>]*>[\s\S]*?<\/i
     if(!title)return null;
     const description=clean(clean(tag(item,'description'))).slice(0,260);
     return {title,summary:description,url:url.toString(),date:date(clean(tag(item,'pubDate')||tag(item,'date')))};
-  }).filter(Boolean).slice(0,MAX_ITEMS);
+  }).filter(Boolean)
+    .filter((entry,index,all)=>all.findIndex(other=>other.url===entry.url)===index)
+    .sort((a,b)=>(b.date||'').localeCompare(a.date||''))
+    .slice(0,MAX_ITEMS);
 }
 export default async function handler(req,res){res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
   if(req.method!=='GET')return res.status(405).json({error:'Méthode non autorisée.'});
@@ -31,7 +34,7 @@ export default async function handler(req,res){res.setHeader('Cache-Control','no
   if(typeof country!=='string'||!FEEDS[country])return res.status(400).json({error:'Choisis BE ou FR.'});
   const feed=FEEDS[country];const fresh=cache.get(country);if(fresh&&Date.now()-fresh.time<10*60*1000)return res.status(200).json(fresh.data);const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
   try{
-    const response=await fetch(feed.url,{signal:controller.signal,headers:{'Accept':'application/rss+xml,application/xml,text/xml','User-Agent':'LUCIDE-Citoyen/0.4 (educational-app)'}});
+    const response=await fetch(feed.url,{signal:controller.signal,headers:{'Accept':'application/rss+xml,application/xml,text/xml','User-Agent':'SAVREO/1.6 (educational-app; source-attributed)'}});
     if(!response.ok)return res.status(503).json({error:'Source institutionnelle momentanément indisponible.',source:feed.name});
     const contentType=response.headers.get('content-type')||'';
     if(!/xml|rss|text\/plain/.test(contentType))return res.status(503).json({error:'La source ne renvoie pas de flux RSS lisible.'});
