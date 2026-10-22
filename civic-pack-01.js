@@ -31,7 +31,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fait-opinion",
@@ -54,7 +56,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "budget-deficit",
@@ -77,7 +81,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "aides",
@@ -100,7 +106,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "programmes",
@@ -123,7 +131,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "sondage-resultat",
@@ -146,7 +156,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "accusation-decision",
@@ -169,7 +181,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "autorites-locales",
@@ -192,7 +206,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-16-europe",
@@ -215,7 +231,10 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22",
+      "freshnessWarning": "Droit électoral susceptible d'évoluer ; les explications officielles de 2024 doivent être confrontées aux règles du prochain scrutin."
     },
     {
       "id": "be-18-chambre",
@@ -238,7 +257,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-participation",
@@ -261,7 +282,10 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22",
+      "freshnessWarning": "Droit électoral susceptible d'évoluer ; les explications officielles de 2024 doivent être confrontées aux règles du prochain scrutin."
     },
     {
       "id": "be-bulletin",
@@ -284,7 +308,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-resultats",
@@ -307,7 +333,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-pouvoirs",
@@ -330,7 +358,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-depenses",
@@ -353,7 +383,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "be-votes-archives",
@@ -376,7 +408,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-voter-18",
@@ -399,7 +433,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-inscription",
@@ -422,7 +458,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-professions",
@@ -445,7 +483,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-resultats",
@@ -468,7 +508,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-pouvoirs",
@@ -491,7 +533,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-comptes-partis",
@@ -514,7 +558,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-depenses",
@@ -537,7 +583,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     },
     {
       "id": "fr-procuration",
@@ -560,7 +608,9 @@
         }
       ],
       "status": "pending_external_review",
-      "offline": true
+      "offline": true,
+      "editorialStatus": "pending_external_review",
+      "edition": "2026-10-22"
     }
   ],
   "resources": {
@@ -618,7 +668,12 @@
       "source": {
         "label": "Wallonie — trajectoire budgétaire publiée le 12 octobre 2026",
         "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse/2026-10-12"
-      }
+      },
+      "editorialStatus": "pending_external_review",
+      "checkedAt": null,
+      "isLive": false,
+      "statusCategory": "annonce",
+      "statusLabel": "Annonce / orientation présentée"
     },
     {
       "id": "conseil-paris-2026-10",
@@ -633,7 +688,12 @@
       "source": {
         "label": "Ville de Paris — archives du Conseil",
         "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
-      }
+      },
+      "editorialStatus": "pending_external_review",
+      "checkedAt": null,
+      "isLive": false,
+      "statusCategory": "archive_documentaire",
+      "statusLabel": "Délibérations à consulter ; adoption non présumée"
     }
   ],
   "localSources": {
@@ -641,41 +701,61 @@
       {
         "scope": "Fédéral",
         "label": "Communiqués et Conseil des ministres",
-        "url": "https://news.belgium.be/fr"
+        "url": "https://news.belgium.be/fr",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       },
       {
         "scope": "Région wallonne",
         "label": "Communiqués du Gouvernement wallon",
-        "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse"
+        "url": "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       },
       {
         "scope": "Ville de Mons",
         "label": "Plateforme des décisions du conseil communal de Mons",
-        "url": "https://www.mons.be/fr/ma-commune/vie-politique/conseil-communal/ordres-du-jour-et-proces-verbaux/plateforme-deliberations"
+        "url": "https://www.mons.be/fr/ma-commune/vie-politique/conseil-communal/ordres-du-jour-et-proces-verbaux/plateforme-deliberations",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       },
       {
         "scope": "Ville de Mons",
         "label": "Participation citoyenne à Mons",
-        "url": "https://participation.mons.be"
+        "url": "https://participation.mons.be",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       }
     ],
     "FR": [
       {
         "scope": "National",
         "label": "Vie publique — vie institutionnelle",
-        "url": "https://www.vie-publique.fr"
+        "url": "https://www.vie-publique.fr",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       },
       {
         "scope": "National",
         "label": "Ministère de l'Intérieur — résultats électoraux",
-        "url": "https://www.elections.interieur.gouv.fr/resultats"
+        "url": "https://www.elections.interieur.gouv.fr/resultats",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       },
       {
         "scope": "Ville de Paris",
         "label": "Délibérations et comptes rendus du Conseil de Paris",
-        "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
+        "url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224",
+        "lastVerifiedAt": null,
+        "isLiveFeed": false
       }
     ]
+  },
+  "editorial": {
+    "edition": "2026-10-22",
+    "independentReviewCompleted": false,
+    "note": "Édition pédagogique sans validation juridique ou experte indépendante. Les règles et chiffres peuvent évoluer.",
+    "liveCoverage": false
   }
 };
 })();
