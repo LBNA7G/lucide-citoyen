@@ -299,7 +299,7 @@ test('home rewards progress without imposing a daily login and adapts after a co
  click({target:wrong});
  click({target:{id:'case-submit',closest(){return null}}});
  let saved=JSON.parse(screen.store.value);
- assert.ok(!saved.completed.some(x=>x.startsWith('mission:case:')),'wrong answer cannot complete daily mission');
+ assert.ok(!(saved.completed||[]).some(x=>x.startsWith('mission:case:')),'wrong answer cannot complete daily mission');
  assert.equal(saved.xp||0,0,'wrong answer cannot receive XP');
  assert.ok(screen.document.getElementById('main').innerHTML.includes('Pas encore'));
  click({target:{id:'case-retry',closest(){return null}}});
