@@ -1,6 +1,6 @@
 // Actualités institutionnelles : RSS prédéfinis uniquement. Aucun classement idéologique.
 const FEEDS = {
-  BE: {url:'https://emploi.belgique.be/fr/rss.xml',domain:'emploi.belgique.be',name:'SPF Emploi, Travail et Concertation sociale (Belgique)'},
+  BE: {url:'https://news.belgium.be/fr/feeds/all',domain:'news.belgium.be',name:'News.belgium — institutions fédérales et Conseil des ministres'},
   FR: {url:'https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss',domain:'www.service-public.gouv.fr',name:'Service-Public.fr — actualités particuliers (France)'}
 };
 const MAX_ITEMS=8;
@@ -21,7 +21,7 @@ function parseFeed(xml,origin){const items=(xml.match(/<item\b[^>]*>[\s\S]*?<\/i
     try{url=new URL(raw);if(url.protocol!=='https:'||!(url.hostname===origin.domain||url.hostname.endsWith('.'+origin.domain)))return null;}catch{return null;}
     const title=clean(tag(item,'title')).slice(0,240);
     if(!title)return null;
-    const description=clean(tag(item,'description')).slice(0,260);
+    const description=clean(clean(tag(item,'description'))).slice(0,260);
     return {title,summary:description,url:url.toString(),date:date(clean(tag(item,'pubDate')||tag(item,'date')))};
   }).filter(Boolean).slice(0,MAX_ITEMS);
 }
