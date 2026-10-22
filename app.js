@@ -482,21 +482,34 @@
       '<button class="calm-footer-link" data-route="explorer">← Retour à Découvrir</button>';
   }
 
+
   function politicalDossiers(){
-    const resources=Array.isArray(CIVIC_PACK.resources?.[state.country])?CIVIC_PACK.resources[state.country]:[];
-    const sources=resources.map(r=>'<a class="hub-item" href="'+safeURL(r.url)+'" rel="noopener noreferrer" target="_blank"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(r.label)+'</b><small>'+escapeHTML(r.topic)+'</small></span><span aria-hidden="true">↗</span></a>').join('');
+    const parties=(Array.isArray(PARTY_DATA.parties)?PARTY_DATA.parties:[]).filter(x=>x.country===state.country)
+      .slice().sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+    const resources=Array.isArray(PARTY_DATA.countrySources?.[state.country])?PARTY_DATA.countrySources[state.country]:[];
+    const partyRows=parties.map(p=>'<details class="party-record"><summary><span class="party-name">'+escapeHTML(p.name)+'</span><span class="party-record-label">Voir les documents <span aria-hidden="true">＋</span></span></summary>'+
+      '<div class="party-record-body"><div><span class="eyebrow">ARCHIVE DOCUMENTAIRE</span><p>'+escapeHTML(p.election)+'</p></div><p>'+escapeHTML(p.notes)+'</p>'+
+      '<p class="party-meta">Document : '+escapeHTML(p.docDate)+' · '+escapeHTML(p.docType)+'</p>'+
+      source(p.primarySource.label,p.primarySource.url)+' '+source(p.otherSource.label,p.otherSource.url)+
+      '<details class="calm-disclosure"><summary>Données non encore vérifiées <span aria-hidden="true">＋</span></summary><p class="small muted">Dirigeants actuels, mandats, résultats chiffrés, comptes et décisions judiciaires individuelles : non renseignés. SAVRÉO ne fabrique pas ces informations et ne déduit pas de condamnation d’une accusation.</p></details></div></details>').join('');
+    const resourcesHtml=resources.map(r=>'<a class="hub-item" href="'+safeURL(r.url)+'" target="_blank" rel="noopener noreferrer"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(r.label)+'</b><small>Source institutionnelle ; vérifier année et territoire</small></span><span aria-hidden="true">↗</span></a>').join('');
     const checks=[
-      ['Programmes','Comparer des propositions sur le même sujet, depuis le programme daté de chaque liste.'],
-      ['Résultats','Préciser le scrutin, l’année, la circonscription et la source électorale officielle.'],
-      ['Budgets, aides, déficits','Séparer projets, décisions, dates d’application, chiffres définitifs et prévisions.'],
-      ['Responsables politiques','Vérifier leur identité, leur mandat, la période et l’institution qui le confirme.'],
-      ['Décisions de justice','Distinguer plaintes, accusations et condamnations, et vérifier les décisions et recours.']
+      ['Programmes','Lis le document original daté : une promesse n’est pas une mesure appliquée.'],
+      ['Résultats','Vérifie le scrutin, son année et la circonscription auprès de l’autorité électorale.'],
+      ['Déficit, dette et aides','Contrôle le périmètre du budget, les montants, l’année et la date d’entrée en vigueur.'],
+      ['Responsables','Vérifie le mandat et sa date auprès de l’institution avant de publier un nom.'],
+      ['Justice','Plainte, enquête, poursuite et condamnation ne sont pas interchangeables.']
     ];
-    return intro('DOSSIERS PUBLICS','Des documents, pas des verdicts.','Voici comment comparer sans donner une note à un parti ou un candidat.')+
-      '<div class="civic-method">'+checks.map(([title,body])=>'<div class="calm-source-point"><h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(body)+'</p></div>').join('')+'</div>'+
-      '<details class="calm-disclosure"><summary>Consulter les documents institutionnels <span aria-hidden="true">＋</span></summary><div class="calm-submenu">'+sources+'</div></details>'+
-      '<div class="notice civic-warning">Les fiches nominatives de partis et de responsables sont en préparation. Elles devront présenter des données datées, les documents des partis et des sources indépendantes, sans classement, pronostic électoral ni jugement global.</div>'+
-      '<button class="calm-footer-link" data-route="civique">Comprendre le vote →</button>';
+    return intro('PARTIS ET DOSSIERS PUBLICS','Lire les documents, se faire son avis.','Les mêmes sources pour tous. Aucun classement politique ni recommandation de vote.')+
+      '<section class="party-library"><div class="civic-progress"><span>'+parties.length+' dossiers documentaires</span><span>'+ (state.country==='BE'?'Chiffrage BFP fédéral de 2024':'Échantillon initial non exhaustif en France') +'</span></div>'+
+      '<p class="muted small">'+(state.country==='BE'?'Ces douze partis sont ceux documentés par le chiffrage officiel fédéral de 2024. Le chiffrage porte sur les mesures soumises et non sur tout leur programme.':'Les cinq dossiers français sont un point de départ, pas une liste exhaustive ni une sélection des partis à soutenir.')+'</p>'+
+      '<div class="party-records">'+partyRows+'</div></section>'+
+      '<details class="calm-disclosure"><summary>Comment comparer sans se tromper <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">'+
+      checks.map(([title,body])=>'<div class="calm-source-point"><h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(body)+'</p></div>').join('')+
+      '</div></details>'+
+      '<details class="calm-disclosure"><summary>Résultats, budgets et organismes de contrôle <span aria-hidden="true">＋</span></summary><div class="calm-submenu">'+resourcesHtml+'</div></details>'+
+      '<p class="civic-legal-note">Documents datés, non relus par un expert indépendant. Les sites des partis expriment les positions de leurs auteurs. SAVRÉO ne garantit pas que ces documents représentent leur programme actuel.</p>'+
+      '<button class="calm-footer-link" data-route="civique">Comprendre les élections →</button>';
   }
 
   function explore(){
