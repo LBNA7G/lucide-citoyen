@@ -27,10 +27,10 @@ test('light and dark primary text tokens meet WCAG AA reference contrast',()=>{
 test('all three theme choices and quick switch implemented',()=>{
   for(const value of ['auto','light','dark'])assert.ok(app.includes("'"+value+"'"),value);
   for(const frag of ['function applyTheme()','function updateTheme(choice)','data-theme-option','theme-quick','prefers-color-scheme'])assert.ok((app+html).includes(frag),frag);
-  assert.ok(html.includes('styles.css?v=9'));
-  assert.ok(html.includes('app.js?v=9'));
-  assert.ok(sw.includes('./styles.css?v=9'));
-  assert.ok(sw.includes('./app.js?v=9'));
+  assert.ok(html.includes('styles.css?v=10'));
+  assert.ok(html.includes('app.js?v=10'));
+  assert.ok(sw.includes('./styles.css?v=10'));
+  assert.ok(sw.includes('./app.js?v=10'));
   assert.ok(css.includes('html[data-theme="light"]'));
 });
 test('progressive disclosure and clarity in primary screens',()=>{
