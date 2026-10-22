@@ -689,7 +689,7 @@
       ],
       "title": "Un SMS demande un code bancaire",
       "body": "Un message pressant prétend venir de ta banque et demande un code pour stopper une opération.",
-      "question": "Que faire ?",
+      "question": "Quel est le bon réflexe face à ce SMS ?",
       "choices": [
         "Répondre avec le code.",
         "Cliquer sur le lien sans contrôle.",
