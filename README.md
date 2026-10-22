@@ -1,6 +1,14 @@
-# LUCIDE — version 0.4
+# SAVRÉO — version 0.5
 
-Une application web mobile d'éducation civique et d'expression critique, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Expérience v0.5
+
+- **Accueil allégé** : un Déclic du jour, une leçon à reprendre et deux accès rapides.
+- **4 rubriques mobiles** : Accueil, Découvrir, Pratiquer, Mes droits ; le profil reste accessible en haut.
+- **Identité SAVRÉO** : typographie sobre, fond bleu nuit, vert citron réservé aux accents importants, nouveau pictogramme S.
+- **Progression conservée** : la clé de stockage locale de LUCIDE v0.4 est maintenue pour éviter toute perte de données lors de la migration.
+- **Version de prévisualisation** : à vérifier sur plusieurs tailles d’écran avant publication dans la branche main.
 
 ## Ce qui fonctionne
 
@@ -35,3 +43,6 @@ Les publications RSS sont des **titres officiels bruts**, pas des textes de loi 
 ## Confidentialité
 
 Par défaut, réponses, progression et favoris sont conservés dans le navigateur (localStorage), sans compte ; le contenu soumis volontairement au coach IA serait transmis au fournisseur IA via un serveur. Ne pas copier de données sensibles dans les réponses.
+## Note sur la marque
+
+SAVRÉO est un nom de travail retenu, non un constat de disponibilité juridique. Avant publication commerciale : vérifier les marques similaires (BOIP, EUIPO/TMview), les domaines, les réseaux et les classes pertinentes, puis envisager une recherche professionnelle d'antériorité.
