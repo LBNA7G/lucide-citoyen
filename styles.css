@@ -113,3 +113,58 @@ main{padding-top:34px}
   .daily-feature{padding:20px}
   .daily-feature .daily-meta .eyebrow{letter-spacing:1px}
 }
+
+
+/* SAVRÉO v0.6 — onboarding léger, accessible, mobile-first */
+.onboarding-active .sidebar,.onboarding-active .topbar,.onboarding-active .bottom-nav,.onboarding-active .footer-note{display:none!important}
+.onboarding-active .app-shell{min-height:100svh;display:block}
+.onboarding-active .content-shell{max-width:none;padding:0 20px;margin:0 auto}
+.onboarding-active main{padding:0;min-height:100svh}
+.onboarding-shell{width:min(100%,575px);margin:0 auto;padding:clamp(26px,5vh,60px) 0 45px}
+.onboarding-brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:850;letter-spacing:-.9px}
+.onboarding-symbol{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--lime);color:#121b22;font-size:24px;font-weight:950;letter-spacing:-2px}
+.onboarding-head{padding:clamp(34px,6vh,55px) 0 28px}
+.onboarding-head h1{font-size:clamp(34px,6vw,49px);max-width:520px;line-height:1.1;margin:15px 0 15px;letter-spacing:-1.5px}
+.onboarding-head p{color:#bdc6d4;font-size:16px;line-height:1.65;max-width:490px;margin:0}
+.onboarding-form{display:grid;gap:29px}
+.onboarding-field{border:0;margin:0;padding:0;min-width:0}
+.onboarding-label{font-size:17px;line-height:1.4;font-weight:780;color:#f4f5f8;display:block;margin:0 0 13px;padding:0}
+.onboarding-field>small{display:block;font-size:12px;color:#aeb8c9;line-height:1.6;margin-top:11px}
+.field-optional{font-weight:450;color:#b2bed0;font-size:13px}
+#onboarding-name{width:100%;min-height:54px;border-radius:15px;border:1px solid #465167;padding:14px 17px;background:#1a2432;color:#f6f7fb;font-size:16px}
+#onboarding-name::placeholder{color:#8997ab}
+#onboarding-name:focus{border-color:var(--lime)}
+.age-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.gender-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.age-choice,.gender-choice{position:relative;display:block;cursor:pointer}
+.age-choice input,.gender-choice input{position:absolute;opacity:0;width:100%;height:100%;margin:0;inset:0;cursor:pointer;z-index:1}
+.age-choice span,.gender-choice span{display:grid;place-items:center;min-height:65px;padding:12px 7px;border:1px solid #3b485b;background:#17202e;border-radius:14px;color:#d9e1ec;font-weight:730;text-align:center;font-size:14px;line-height:1.4;transition:background .18s,border-color .18s}
+.gender-choice span{min-height:51px;font-size:13px;font-weight:600}
+.age-choice input:hover+span,.gender-choice input:hover+span{border-color:#8b9baa}
+.age-choice input:focus-visible+span,.gender-choice input:focus-visible+span{outline:3px solid var(--lime);outline-offset:3px}
+.age-choice input:checked+span,.gender-choice input:checked+span{background:#29372c;border-color:var(--lime);color:var(--lime)}
+.onboarding-submit{min-height:56px;width:100%;font-size:15px;border-radius:14px;display:flex;justify-content:center;gap:10px}
+.onboarding-cancel{padding:13px;border:0;background:transparent;color:#b8c4d4;font-weight:700}
+.onboarding-privacy{border-top:1px solid #2c3847;padding-top:18px;margin:26px 0 0;color:#9ca9bc;font-size:12px;line-height:1.7}
+.profile-preferences{margin-bottom:22px}
+.profile-pref-head{display:flex;justify-content:space-between;gap:15px;align-items:start}
+.profile-pref-head h2{margin:8px 0 5px}
+.profile-preferences>p{margin-top:16px}
+@media(max-width:760px){
+  .onboarding-active .content-shell{padding:0 21px}
+  .onboarding-shell{padding:25px 0 calc(35px + env(safe-area-inset-bottom))}
+  .onboarding-head{padding:37px 0 26px}
+  .onboarding-head h1{font-size:clamp(32px,8vw,41px)}
+  .onboarding-head p{font-size:15px}
+  .onboarding-form{gap:25px}
+  .onboarding-label{font-size:16px}
+  .age-choice span{min-height:61px;font-size:13px}
+  .gender-choice span{min-height:52px;font-size:13px}
+  #onboarding-name{min-height:54px}
+}
+@media(max-width:370px){
+  .onboarding-active .content-shell{padding:0 14px}
+  .age-options{gap:7px}
+  .age-choice span{font-size:12px;padding:10px 3px}
+}
+@media(prefers-reduced-motion:reduce){.age-choice span,.gender-choice span{transition:none!important}}
