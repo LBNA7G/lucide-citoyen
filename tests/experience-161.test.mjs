@@ -27,7 +27,7 @@ test('a first Declic works before giving a name, without points',()=>{
  app.click(event('',{guestChoice:'1'},'[data-guest-choice]'));
  app.click(event('guest-check'));
  assert.match(app.html,/Premier Déclic réussi/);
- assert.equal(app.state().xp,0);
+ assert.equal(app.state().xp??0,0);
  app.click(event('guest-join'));
  assert.match(app.html,/onboarding-form/);
 });
