@@ -47,6 +47,12 @@ self.addEventListener('fetch',event=>{
         const cache=await caches.open(CACHE);
         await cache.put(req,response.clone()).catch(()=>{});
       }
+      // Si l'hébergeur renvoie une erreur temporaire, essayer une copie
+      // précédemment validée plutôt que montrer une page blanche.
+      if(response.status>=500){
+        const archived=await fallback(req);
+        if(archived.type!=='error')return archived;
+      }
       return response;
     }catch{
       return fallback(req);

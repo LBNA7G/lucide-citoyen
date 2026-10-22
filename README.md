@@ -4,6 +4,8 @@
 - L'installateur vérifie les actifs critiques avant activation et conserve deux générations antérieures de ressources offline, quand elles existent.
 - Le flux de la Vigie conserve localement la dernière consultation officielle en l'identifiant explicitement comme archive si le réseau est indisponible (7 jours maximum).
 - Les actions du serveur et les actualités ne sont jamais servies depuis un cache trompeur. La maintenance préserve `main` et les adresses déjà publiées.
+- La route `GET /api/health` offre un contrôle technique sans données privées ; elle ne garantit pas la disponibilité des flux externes.
+- En cas d'erreur 5xx sur un actif statique, l'application utilise si possible une version antérieure effectivement mise en cache.
 - La disponibilité absolue ne peut pas être garantie face aux pannes réseau ou d'hébergement.
 
 
