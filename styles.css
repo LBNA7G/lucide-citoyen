@@ -794,3 +794,19 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 .civic-question .case-option:focus-visible{outline:3px solid var(--calm-accent);outline-offset:3px}
 .civic-question .feedback{max-width:66ch}
 @media(max-width:760px){.civic-question .feedback{padding:18px 16px}.micro-catalog-count{margin-bottom:10px}}
+
+/* SAVRÉO 1.5 — provenance lisible, navigation territoriale non partisane */
+.civic-source-note{color:var(--calm-muted);font-size:12px;line-height:1.6;margin:10px 0 14px;max-width:65ch}
+.civic-proof{margin:8px 0 23px;max-width:690px}
+.civic-proof .calm-reading-extra>p{font-size:13px;line-height:1.7;margin:8px 0;color:var(--calm-muted)}
+.civic-proof .calm-reading-extra>p b{font-weight:700;color:var(--calm-ink)}
+.civic-proof-links{display:flex;flex-direction:column;align-items:start;gap:12px;margin:16px 0}
+.civic-proof-links .source-link{overflow-wrap:anywhere;line-height:1.5}
+.civic-proof .civic-freshness{padding:12px 15px;border-left:3px solid var(--calm-accent);background:var(--calm-surface);color:var(--calm-ink)}
+.public-scope-picker{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 22px}
+.public-scope-choice{border:1px solid var(--calm-stroke);background:transparent;color:var(--calm-ink);padding:10px 14px;min-height:44px;border-radius:999px;font-size:13px;font-weight:650;cursor:pointer}
+.public-scope-choice.selected{border-color:var(--calm-accent);color:var(--calm-accent);background:var(--calm-surface)}
+.public-scope-choice:focus-visible{outline:3px solid var(--calm-accent);outline-offset:3px}
+.public-scope-picker+.calm-submenu{display:grid;gap:4px}
+@media(max-width:760px){.civic-source-note{margin:8px 0 13px}.public-scope-picker{gap:7px}.public-scope-choice{padding:10px 13px}.civic-proof-links{gap:14px}}
+@media(prefers-reduced-motion:reduce){.public-scope-choice{transition:none}}
