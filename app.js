@@ -752,7 +752,7 @@
     if(newsRequest&&newsRequestCountry===chosen)return newsRequest;
     liveNews={status:'loading',items:[],source:'',checkedAt:'',error:''};
     if(page==='vigie')render();
-    const pending=(async()=>{
+    const pending=Promise.resolve().then(async()=>{
       const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
       try{
         const res=await fetch('/api/news?country='+chosen,{signal:ctrl.signal,cache:'no-store'});
@@ -769,7 +769,7 @@
         if(newsRequest===pending){newsRequest=null;newsRequestCountry='';}
         if(page==='vigie'&&state.country===chosen)render();
       }
-    })();
+    });
     newsRequest=pending;
     newsRequestCountry=chosen;
     return pending;
