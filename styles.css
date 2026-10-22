@@ -679,3 +679,38 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 /* Thème accessible dès le premier lancement, sans surcharge du formulaire */
 .theme-entry{margin-left:auto;display:grid;place-items:center;width:43px;height:43px;border-radius:50%;border:1px solid var(--calm-stroke);background:var(--calm-surface);color:var(--calm-ink);font-size:19px}
 .theme-entry:hover{border-color:var(--calm-accent)}
+
+/* Calm UI final layout: priorité à la lecture, pas aux compteurs */
+.calm-journey-card{max-width:690px;min-height:0;padding:clamp(27px,4vw,38px);gap:18px}
+.calm-journey-card h3{font-size:24px;line-height:1.3;margin:0}
+.calm-journey-card p{max-width:55ch;color:var(--calm-muted);font-size:15px;line-height:1.7;margin:0}
+.calm-journey-card .progressbar{margin-top:2px}
+.calm-journey-card .journey-steps{margin-top:12px;gap:12px}
+.calm-journey-card .journey-step{padding:14px 16px;min-height:58px}
+.calm-journey-card .journey-step span:nth-child(2){font-size:14px}
+.calm-source-content{display:grid;gap:0;max-width:690px}
+.calm-source-point{padding:22px 0;border-bottom:1px solid var(--calm-stroke)}
+.calm-source-point:first-child{padding-top:0}
+.calm-source-point h3{font-size:18px;margin-bottom:8px;color:var(--calm-ink)}
+.calm-source-point p{font-size:15px;line-height:1.75;margin:0;color:var(--calm-muted)}
+.calm-country-picker{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.calm-country-picker .country{min-height:48px;min-width:100px;border:1px solid var(--calm-stroke);border-radius:13px;padding:11px 18px;font-size:14px;background:var(--calm-surface);color:var(--calm-ink);font-weight:700}
+.calm-country-picker .country.active{background:var(--calm-tint);border-color:var(--calm-accent);color:var(--calm-ink);box-shadow:inset 0 0 0 1px var(--calm-accent)}
+.calm-country-context{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 24px;padding:12px 0;border-bottom:1px solid var(--calm-stroke);color:var(--calm-muted);font-size:13px}
+.calm-country-context button{background:none;border:0;color:var(--calm-accent);font-size:13px;font-weight:760;padding:12px;min-height:44px}
+@media(max-width:760px){
+ .topbar .country-switch,.topbar .xp-pill{display:none}
+ .topbar{justify-content:space-between}
+ .brand-mobile{margin-right:auto}
+ .profile-shortcut{width:40px;height:40px;font-size:20px}
+ .theme-quick{height:40px;width:40px;min-height:40px;min-width:40px;font-size:19px}
+ .calm-journey-card{padding:24px 20px}
+ .calm-journey-card h3{font-size:21px}
+ .calm-journey-card .journey-step{padding:13px;min-height:55px}
+ .calm-country-picker .country{flex:1;min-width:0}
+}
+@media(max-width:365px){
+ .topbar-right{gap:7px}
+ .profile-shortcut{width:38px;height:38px}
+ .theme-quick{width:38px;height:38px;min-width:38px;min-height:38px}
+}
