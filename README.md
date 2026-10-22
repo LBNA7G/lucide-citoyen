@@ -1,4 +1,4 @@
-# SAVRÉO — version 0.8.1
+# SAVRÉO — version 0.9
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
@@ -29,6 +29,18 @@ Pour vérifier la migration : utiliser une session vierge, une session v0.6 exis
 - **Étude utilisateur** : protocole pour 24 jeunes dans `docs/USER_STUDY_24.md` et tableau anonymisé vierge `docs/USER_STUDY_TRACKER.md`. **Aucun recrutement ni test réel à ce stade.**
 - **Partenariats pressentis** : `docs/PARTNERSHIP_PIPELINE.md`; aucune prise de contact ni approbation réalisée.
 - **Charte éditoriale** : `docs/EDITORIAL_POLICY.md`. Ne pas commercialiser une fiche juridique comme « certifiée » sans contrôle externe documenté.
+
+## Calm UI (v0.9)
+
+- **Apparence** : clair, sombre et automatique (préférence du téléphone), avec option mémorisée dans le stockage local et bascule rapide dans l'en-tête ; démarrage sans flash par script d'amorçage.
+- **Accueil minimal** : salutation, Déclic prioritaire, reprise d'une seule leçon et rappel conditionnel. Les sections secondaires ne se battent plus sur l'écran.
+- **Découvrir / Pratiquer** : trois destinations principales, puis autres ressources et missions sous détails expansibles.
+- **Leçons** : le premier concept et son quiz visibles, détails, exemples et sources sous accordéons explicitement nommés.
+- **Droits** : une recherche puis les titres de fiches, détails ouverts à la demande et limites juridiques accessibles.
+- **Profil** : réglage des modes, informations personnelles, progression simplifiée ; journal et actions de confidentialité repliés.
+- **Cas, dico, débat et actualité** : contenus secondaires repliés, priorité à l'activité.
+- **Tokens contrastes vérifiés** et contrôles automatiques : `tests/calm-ui.test.mjs`. **Audit visuel mobile, lecteur d'écran et pilote 24 jeunes toujours non réalisés.**
+- Voir `docs/CALM_UI.md` pour critères et sources W3C. Aucun mode clair/sombre n'est présenté comme médicalement préférable à tous les utilisateurs.
 
 ## Ce qui fonctionne
 
