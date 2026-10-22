@@ -714,3 +714,41 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
  .profile-shortcut{width:38px;height:38px}
  .theme-quick{width:38px;height:38px;min-width:38px;min-height:38px}
 }
+
+/* SAVRÉO 1.1 — Vie publique : sobriété, lisibilité, information datée */
+.civic-menu{margin-top:26px}
+.civic-spotlight{max-width:690px;background:var(--calm-surface);border:1px solid var(--calm-stroke);border-radius:22px;box-shadow:var(--calm-shadow);padding:clamp(24px,4vw,34px);margin:0 0 39px}
+.civic-spotlight .eyebrow{color:var(--calm-accent);font-size:11px}
+.civic-date{display:block;font-size:12px;color:var(--calm-muted);margin:10px 0 20px}
+.civic-spotlight h2{font-size:clamp(21px,3.5vw,28px);line-height:1.33;max-width:26ch;color:var(--calm-ink);margin:0 0 14px}
+.civic-spotlight>p{font-size:15px;max-width:57ch;color:var(--calm-muted);line-height:1.75}
+.civic-stage{font-size:12px;color:var(--calm-accent);font-weight:750;margin:20px 0 8px}
+.civic-spotlight .calm-disclosure{margin-top:12px}
+.civic-progress{max-width:720px;display:flex;align-items:center;justify-content:space-between;gap:15px;color:var(--calm-muted);font-size:12px;margin:0 0 25px}
+.civic-progress span:first-child{color:var(--calm-accent);font-weight:750}
+.civic-question{display:flex;flex-direction:column;align-items:stretch;gap:12px;max-width:720px}
+.civic-question .eyebrow{color:var(--calm-accent)}
+.civic-question h2{font-size:clamp(21px,3.3vw,27px);max-width:29ch;margin:4px 0}
+.civic-question>p{line-height:1.75;font-size:15px;color:var(--calm-muted)}
+.civic-question .story-question{font-size:16px;font-weight:730;margin:15px 0 4px;color:var(--calm-ink)}
+.civic-question .case-options{display:grid;gap:11px;margin:0 0 12px}
+.civic-question .case-option{text-align:left;min-height:54px}
+.civic-question .btn.primary{align-self:start;min-height:50px;margin:7px 0}
+.civic-question .feedback{margin-top:10px;padding:17px 20px}
+.civic-question .feedback p{margin:6px 0 0;line-height:1.7}
+.civic-topic-list{display:grid;gap:0;margin:0 0 8px}
+.civic-topic{border:0;border-bottom:1px solid var(--calm-stroke);padding:18px 4px;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;background:transparent;color:var(--calm-ink);font-size:14px;min-height:58px}
+.civic-topic:hover{color:var(--calm-accent)}
+.civic-topic span{font-weight:670}
+.civic-topic small{font-size:12px;color:var(--calm-muted);min-width:max-content}
+.civic-method{max-width:690px}
+.civic-method .calm-source-point{padding:20px 0}
+.civic-warning{max-width:690px;margin-top:30px;font-size:13px;line-height:1.75}
+@media(max-width:760px){
+ .civic-spotlight{padding:24px 21px;margin-bottom:32px}
+ .civic-question{padding:24px 20px}
+ .civic-question .btn.primary{width:100%}
+ .civic-progress{flex-direction:column;align-items:flex-start;gap:5px}
+ .civic-topic{align-items:start;flex-direction:column;gap:4px}
+ .civic-topic small{min-width:0}
+}
