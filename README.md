@@ -1,6 +1,19 @@
-# SAVRÉO — version 1.5 bêta
+# SAVRÉO — version 1.6 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Bêta 1.6 — Une progression qui donne envie de revenir
+
+- **Accueil** : premier écran plus direct, niveau XP (Curieux / Éclaireur / Explorateur / Esprit critique), barre de progression vers le prochain palier, sans obligation de connexion quotidienne.
+- **Déclic du jour** : une mission est validée **uniquement après une bonne réponse**, avec un message de réussite, +30 XP pour un cas réussi pour la première fois, une explication et un autre défi inédit proposé. Une mauvaise réponse ouvre un nouvel essai sans distribuer de points ; rejouer un cas validé ne crée pas des points infinis.
+- **Leçons et micro-fiches** : retours d'XP mesurés et différenciation entre première réussite et révision. Les 240 unités restent consultables ; la logique de révision espacée est conservée.
+- **Actualités** : chargement à l'ouverture de la Vigie, rechargement à la demande et automatiquement lors d'un retour après dix minutes, avec bouton d'actualisation ; tri du plus récent au plus ancien, dédoublonnage des URL de publications RSS, filtre sur les 14 derniers jours et date exacte de consultation du flux.
+- **Neutralité** : deux flux pilotes seulement (institutions fédérales belges et Service Public français), donc couverture **non exhaustive** ; aucune publication n'est assimilée à une loi applicable ni évaluée selon un point de vue politique. Aucune actualité fictive en cas d'échec réseau.
+- **Vie privée** : progression stockée localement, pas de profil d'opinion politique ni de notification compulsive.
+- **Accessibilité** : cibles de 44 px pour les nouveaux filtres d'actualité, messages de résultat accessibles, animations de progression désactivées si l’utilisateur préfère une réduction du mouvement.
+- **Tests** : scénarios de mission échouée puis réussie, XP attribué une seule fois, niveau et accueil, tri RSS et sécurité de domaine ; voir `tests/calm-ui-runtime.test.mjs` et `tests/news-refresh.test.mjs`.
+
+Cette bêta traite un premier lot de micro-améliorations et **n'est pas une preuve d'engagement utilisateur ou de rétention**. Les sessions réelles de test avec 24 jeunes et la relecture indépendante des 240 fiches restent nécessaires.
 
 ## Bêta 1.5 — « Qui affirme quoi, quand et où ? »
 
