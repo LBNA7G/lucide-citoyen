@@ -480,14 +480,14 @@
     const feedback=civicReveal?'<div class="feedback '+(civicChoice===chosen.answer?'good':'attn')+'" role="status"><b>'+(civicChoice===chosen.answer?'Bien compris.':'Bonne réponse : '+escapeHTML(chosen.choices[chosen.answer])+'.')+'</b><p>'+escapeHTML(chosen.why)+'</p></div>':'';
     const sources=chosen.sources.map(x=>source(x.label,x.url)).join(' ');
     return intro('APPRENDRE À VOTER','Une notion à la fois.','Une question, une réponse expliquée et une source. À toi de te faire ton idée.')+
-      '<div class="civic-progress"><span>'+known+' / '+cards.length+' acquis</span><span>Fiches pédagogiques datées du 22/10/2026</span></div>'+
+      '<div class="civic-progress"><span>'+known+' / '+cards.length+' réponses justes au premier essai</span><span>Fiches pédagogiques datées du 22/10/2026</span></div>'+
       '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(chosen.topic)+' · '+(chosen.country==='ALL'?'Belgique et France':chosen.country==='BE'?'Belgique':'France')+'</span>'+
       '<h2>'+escapeHTML(chosen.title)+'</h2><p>'+escapeHTML(chosen.body)+'</p><div class="story-question">'+escapeHTML(chosen.question)+'</div>'+
       '<div class="case-options">'+choices+'</div><button class="btn primary" type="button" id="civic-check" '+(civicChoice===null||civicReveal?'disabled':'')+'>Vérifier ma réponse →</button>'+
       feedback+(civicReveal?'<button class="calm-card-action" type="button" id="civic-next">Notion suivante →</button>'+
       '<details class="calm-disclosure"><summary>Lire les sources <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>Ces fiches sont disponibles hors connexion, mais leurs liens externes nécessitent internet. Relecture éditoriale indépendante en attente.</p>'+sources+'</div></details>':'')+
       '</section><details class="calm-disclosure"><summary>Parcourir les '+cards.length+' notions <span aria-hidden="true">＋</span></summary><div class="civic-topic-list">'+
-      cards.map(c=>'<button type="button" class="civic-topic" data-civic-id="'+escapeHTML(c.id)+'"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('civic:'+c.id)?'✓ Acquis':escapeHTML(c.topic))+'</small></button>').join('')+'</div></details>'+
+      cards.map(c=>'<button type="button" class="civic-topic" data-civic-id="'+escapeHTML(c.id)+'"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('civic:'+c.id)?'✓ Réussi une fois':escapeHTML(c.topic))+'</small></button>').join('')+'</div></details>'+
       '<button class="calm-footer-link" data-route="vie-publique">← Retour à Vie publique</button>';
   }
 
@@ -504,7 +504,7 @@
     const feedback=essentialReveal?'<div class="feedback '+(isCorrect?'good':'attn')+'" role="status"><b>'+(isCorrect?'Bien compris.':'La bonne réponse : '+escapeHTML(selected.choices[selected.answer])+'.')+'</b><p>'+escapeHTML(selected.why)+'</p></div>':'';
     const nextReview=microReviewsData()[selected.id]?.due;
     return intro('SAVOIRS ESSENTIELS','Une idée, une question.','Des réflexes concrets à utiliser dans la vie. Les tranches d’âge sont des suggestions, jamais des restrictions.')+
-      '<div class="civic-progress"><span>'+count+' / '+cards.length+' notions acquises</span><span>Disponibles hors connexion · relecture en attente</span></div>'+
+      '<div class="civic-progress"><span>'+count+' / '+cards.length+' notions réussies une fois</span><span>Disponibles hors connexion · relecture en attente</span></div>'+
       '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(selected.topic)+' · conseillé '+escapeHTML(selected.ageGroups.join(', '))+' ans</span>'+
       '<h2>'+escapeHTML(selected.title)+'</h2><p>'+escapeHTML(selected.body)+'</p>'+
       '<div class="story-question">'+escapeHTML(selected.question)+'</div><div class="case-options">'+choices+'</div>'+
@@ -517,7 +517,7 @@
       '<div class="micro-age-picker" role="group" aria-label="Tranche d’âge pour les savoirs">'+
       ['12-15','16-20','21-28'].map(a=>'<button type="button" class="micro-age-choice '+(catalogAge===a?'selected':'')+'" aria-pressed="'+(catalogAge===a)+'" data-essential-age="'+a+'">'+escapeHTML(a.replace('-', '–'))+' ans</button>').join('')+
       '</div><p class="micro-catalog-count">'+shown.length+' fiches proposées pour cette tranche d’âge</p>'+
-      '<div class="civic-topic-list">'+shown.map(c=>'<button class="civic-topic" data-essential-id="'+escapeHTML(c.id)+'" type="button"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('essential:'+c.id)?'✓ Acquis':escapeHTML(c.topic))+'</small></button>').join('')+'</div></div></details>'+
+      '<div class="civic-topic-list">'+shown.map(c=>'<button class="civic-topic" data-essential-id="'+escapeHTML(c.id)+'" type="button"><span>'+escapeHTML(c.title)+'</span><small>'+(state.completed.includes('essential:'+c.id)?(microReviewsData()[c.id]?.stage>=2?'✓ Révisé plusieurs fois':'✓ Première réussite'):escapeHTML(c.topic))+'</small></button>').join('')+'</div></div></details>'+
       '<button class="calm-footer-link" data-route="explorer">← Retour à Découvrir</button>';
   }
 
