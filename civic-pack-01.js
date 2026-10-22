@@ -73,7 +73,7 @@
       "sources": [
         {
           "label": "Banque nationale de Belgique — projections",
-          "url": "https://www.nbb.be/fr/publications-et-recherche/publications-economiques-et-financieres/projections-economiques-pour-la"
+          "url": "https://www.nbb.be/fr"
         }
       ],
       "status": "pending_external_review",
@@ -349,7 +349,7 @@
       "sources": [
         {
           "label": "BNB — projections économiques",
-          "url": "https://www.nbb.be/fr/publications-et-recherche/publications-economiques-et-financieres/projections-economiques-pour-la"
+          "url": "https://www.nbb.be/fr"
         }
       ],
       "status": "pending_external_review",
@@ -578,7 +578,7 @@
       {
         "topic": "Finances et prévisions",
         "label": "Banque nationale de Belgique",
-        "url": "https://www.nbb.be/fr/publications-et-recherche/publications-economiques-et-financieres/projections-economiques-pour-la"
+        "url": "https://www.nbb.be/fr"
       }
     ],
     "FR": [
