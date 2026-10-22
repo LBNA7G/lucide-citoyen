@@ -6,6 +6,8 @@ import vm from 'node:vm';
 const code=readFileSync('app.js','utf8');
 const curriculumCode=readFileSync('curriculum-beta.js','utf8');
 const civicCode=readFileSync('civic-pack-01.js','utf8');
+const essentialCode=readFileSync('essentials-pack-02.js','utf8');
+const partyCode=readFileSync('party-directory-01.js','utf8');
 
 function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-20',interests=[]){
   const nodes=new Map(), handlers=new Map();
@@ -34,6 +36,8 @@ function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-2
   const context={window,document,navigator:{},location,localStorage,console,setTimeout,clearTimeout,URL,Blob,confirm(){return false}};
   vm.runInNewContext(curriculumCode,context,{timeout:1500,filename:'curriculum-beta.js'});
   vm.runInNewContext(civicCode,context,{timeout:1500,filename:'civic-pack-01.js'});
+  vm.runInNewContext(essentialCode,context,{timeout:1500,filename:'essentials-pack-02.js'});
+  vm.runInNewContext(partyCode,context,{timeout:1500,filename:'party-directory-01.js'});
   vm.runInNewContext(code,context,{timeout:1500,filename:'app.js'});
   return {html:node('main').innerHTML,root:document.documentElement,handlers,store:stored,window,document};
 }
@@ -53,7 +57,8 @@ test('Calm UI renders each main page in a fake browser DOM without throwing',()=
    vigie:['calm-feed-primary','Limites du radar'],
    'vie-publique':['civic-spotlight','Apprendre à voter','Notre méthode de neutralité'],
    civique:['civic-question','Vérifier ma réponse','Parcourir les 16 notions'],
-   dossiers:['civic-method','Consulter les documents institutionnels']
+   dossiers:['party-library','Résultats, budgets et organismes de contrôle'],
+   essentiels:['civic-question','Voir les 32 savoirs']
  };
  for(const [route,markers] of Object.entries(expected)){
    const {html,root}=mount(route);
@@ -161,4 +166,34 @@ test('Belgian and French civic libraries have the same baseline topic count',()=
   s.handlers.get('click')({target:button});
   assert.ok(s.document.getElementById('main').innerHTML.includes('Parcourir les 16 notions'));
  }
+});
+
+test('32 new essential lessons unlock locally, retain explanations and support all ages',()=>{
+ for(const age of ['12-15','16-20','21-28']){
+   const sample=mount('essentiels','light',true,age);
+   assert.ok(sample.html.includes('Voir les 32 savoirs'));
+   assert.ok(sample.html.includes('Vérifier ma réponse'));
+ }
+ const screen=mount('essentiels');
+ const click=screen.handlers.get('click');
+ const choose={dataset:{essentialId:'ess-01'},closest(q){return q==='[data-essential-id]'?this:null}};
+ click({target:choose});
+ const option={dataset:{essentialChoice:'0'},closest(q){return q==='[data-essential-choice]'?this:null}};
+ click({target:option});
+ click({target:{id:'essential-check',closest(){return null}}});
+ const data=JSON.parse(screen.store.value);
+ assert.ok((data.completed||[]).includes('essential:ess-01'));
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Sources et approfondissement'));
+});
+
+test('party catalogue attributes documents, with no election ranking',()=>{
+ const be=mount('dossiers');
+ assert.ok(be.html.includes('12 dossiers documentaires'));
+ assert.ok(be.html.includes('Bureau fédéral du Plan'));
+ assert.ok(be.html.includes('party-record'));
+ assert.ok(!be.html.includes('meilleur parti'));
+ const select={dataset:{country:'FR'},closest(q){return q==='[data-country]'?this:null}};
+ be.handlers.get('click')({target:select});
+ assert.ok(be.document.getElementById('main').innerHTML.includes('5 dossiers documentaires'));
+ assert.ok(be.document.getElementById('main').innerHTML.includes('non exhaustive'));
 });
