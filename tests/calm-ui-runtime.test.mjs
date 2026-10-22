@@ -36,6 +36,7 @@ function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-2
     scrollTo(){}
   };
   const location={hash:'#'+route,protocol:'https:'};
+  window.location=location;
   const context={window,document,navigator:{},location,localStorage,console,setTimeout,clearTimeout,URL,Blob,confirm(){return false}};
   vm.runInNewContext(curriculumCode,context,{timeout:1500,filename:'curriculum-beta.js'});
   vm.runInNewContext(civicCode,context,{timeout:1500,filename:'civic-pack-01.js'});
