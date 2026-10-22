@@ -134,6 +134,16 @@
       '<div class="civic-proof-links">'+proof+'</div><p>Les liens externes nécessitent internet. Une source citée ne valide pas automatiquement l’explication.</p></div></details>';
   }
 
+  function essentialEvidence(card){
+    const refs=Array.isArray(card.sources)?card.sources:[];
+    const generic=refs.some(x=>sourceIsGeneral(x.url));
+    return '<details class="calm-disclosure civic-proof"><summary>Sources et approfondissement <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p><b>Type :</b> simulation pédagogique, pas un témoignage réel</p>'+
+      '<p><b>Édition :</b> 22 octobre 2026 · <b>Relecture indépendante :</b> non réalisée</p>'+
+      '<p><b>Précision :</b> '+(generic?'source générale — document spécifique encore à identifier':'liens identifiés — exactitude à confirmer')+'</p>'+
+      '<div class="civic-proof-links">'+refs.map(x=>source(x.label,x.url)).join(' ')+'</div>'+
+      '<p>Les pages externes nécessitent internet. Leur présence ne certifie pas le contenu.</p></div></details>';
+  }
   const action=(label,target,extra='')=>`<button class="btn ${extra}" data-route="${target}">${escapeHTML(label)} →</button>`;
   const intro=(tag,title,subtitle)=>`<div class="page-intro"><div class="eyebrow">${tag}</div><h1>${title}</h1><p class="subtitle">${subtitle}</p></div>`;
   const lessons = [
@@ -537,11 +547,10 @@
       '<div class="civic-progress"><span>'+count+' / '+cards.length+' notions réussies une fois</span><span>Disponibles hors connexion · relecture en attente</span></div>'+
       '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(selected.topic)+' · conseillé '+escapeHTML(selected.ageGroups.join(', '))+' ans</span>'+
       '<h2>'+escapeHTML(selected.title)+'</h2><p>'+escapeHTML(selected.body)+'</p>'+
+      '<p class="civic-source-note">Simulation pédagogique · édition du 22/10/2026 · relecture indépendante en attente</p>'+essentialEvidence(selected)+
       '<div class="story-question">'+escapeHTML(selected.question)+'</div><div class="case-options">'+choices+'</div>'+
       '<button class="btn primary" type="button" id="essential-check" '+(essentialChoice===null||essentialReveal?'disabled':'')+'>Vérifier ma réponse →</button>'+feedback+
-      (essentialReveal?'<div class="micro-next-date">'+(nextReview?'Prochaine révision : '+escapeHTML(nextReview):'À revoir prochainement')+'</div><button class="calm-card-action" id="essential-next" type="button">Notion suivante →</button>'+
-        '<details class="calm-disclosure"><summary>Sources et approfondissement <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>Sources institutionnelles en ligne, fiche consultable hors connexion. Les références ne remplacent pas une relecture indépendante.</p>'+
-        selected.sources.map(x=>source(x.label,x.url)).join(' ')+'</div></details>':'')+
+      (essentialReveal?'<div class="micro-next-date">'+(nextReview?'Prochaine révision : '+escapeHTML(nextReview):'À revoir prochainement')+'</div><button class="calm-card-action" id="essential-next" type="button">Notion suivante →</button>':'')+
       '</section><details class="calm-disclosure micro-catalogue"><summary>Parcourir les '+cards.length+' savoirs <span aria-hidden="true">＋</span></summary>'+
       '<div class="calm-reading-extra"><p>Les suggestions suivent ta tranche d’âge, mais tu peux consulter tous les sujets.</p>'+
       '<div class="micro-age-picker" role="group" aria-label="Tranche d’âge pour les savoirs">'+
