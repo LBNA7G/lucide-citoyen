@@ -615,9 +615,9 @@
       "body": "Un paiement mensuel réduit peut masquer une longue durée et des frais qui augmentent le coût total d’un crédit.",
       "question": "Que vérifier avant de signer ?",
       "choices": [
-        "Coût total, durée, taux et conditions.",
-        "Seulement la mensualité.",
-        "L'opinion du vendeur."
+        "Évaluer taux, durée, frais et coût global.",
+        "Retenir surtout les mensualités les plus basses.",
+        "Choisir selon le taux annoncé sans autre examen."
       ],
       "answer": 0,
       "why": "Une mensualité ne suffit pas pour comparer deux crédits : la durée et les frais modifient fortement le coût.",
@@ -640,9 +640,9 @@
       "body": "Une dépense imprévue peut forcer à s'endetter si aucun argent mobilisable n'est disponible à court terme.",
       "question": "Quel objectif est raisonnable ?",
       "choices": [
-        "Ne rien anticiper.",
-        "Prévoir une réserve adaptée à ses dépenses et revenus.",
-        "Investir toutes ses liquidités."
+        "Garder un accès à son argent pour tout loisir.",
+        "Constituer une réserve adaptée aux imprévus.",
+        "Placer toutes ses liquidités pour mieux les utiliser."
       ],
       "answer": 1,
       "why": "Une réserve de précaution peut réduire la dépendance aux crédits de court terme ; son montant dépend de la situation personnelle.",
@@ -665,9 +665,9 @@
       "body": "Une entreprise ou un bailleur présente des conditions orales différentes de celles écrites dans le document.",
       "question": "Quelle démarche est utile ?",
       "choices": [
-        "Signer sans regarder.",
-        "Ne jamais poser de questions.",
-        "Lire et conserver les clauses écrites avant accord."
+        "Signer d’abord puis lire les détails chez soi.",
+        "Se fier à un résumé oral du professionnel.",
+        "Lire les clauses et conserver un exemplaire."
       ],
       "answer": 2,
       "why": "Les engagements écrits peuvent avoir des conséquences durables. Les clauses ambiguës méritent d'être clarifiées avant signature.",
@@ -690,9 +690,9 @@
       "body": "Un gouvernement présente un projet de budget. Les chiffres peuvent évoluer durant la procédure ou être modifiés après un vote.",
       "question": "Quel mot choisir pour le décrire ?",
       "choices": [
-        "Projet ou prévision avant adoption.",
-        "Dépense déjà payée et vérifiée.",
-        "Résultat officiel définitif."
+        "C’est un projet susceptible d’être modifié.",
+        "C’est déjà une dépense payée par l’État.",
+        "C’est une mesure définitive pour chaque habitant."
       ],
       "answer": 0,
       "why": "Projet, budget voté et exécution budgétaire correspondent à des stades distincts d'une politique publique.",
@@ -715,9 +715,9 @@
       "body": "Un média compare deux montants en euros sans rapporter les chiffres à la taille des économies, aux dates ou au périmètre.",
       "question": "Quelle comparaison est plus pertinente ?",
       "choices": [
-        "L'image la plus alarmante.",
-        "Indicateur comparable, même période et périmètre.",
-        "Deux nombres isolés."
+        "Comparer le déficit avec les seules populations.",
+        "Utiliser même période, définition et unité.",
+        "Reprendre les montants convertis en euros."
       ],
       "answer": 1,
       "why": "Une comparaison de déficits doit préciser le périmètre des administrations, le calendrier et souvent la proportion du PIB.",
@@ -740,9 +740,9 @@
       "body": "L’inflation ralentit, passant d’un taux élevé à un taux plus bas mais toujours positif. Cela ne signifie pas automatiquement une baisse des prix.",
       "question": "Que comprendre ?",
       "choices": [
-        "Tous les prix ont diminué.",
-        "Les salaires augmentent automatiquement.",
-        "Les prix augmentent encore mais à un rythme plus faible."
+        "Chaque prix commence immédiatement à baisser.",
+        "Les salaires suivent toujours la même évolution.",
+        "Les prix montent encore, mais moins rapidement."
       ],
       "answer": 2,
       "why": "Une inflation positive plus faible indique un ralentissement de la hausse du niveau général des prix.",
@@ -765,9 +765,9 @@
       "body": "Une personnalité politique promet une mesure qui dépend peut-être d’un autre niveau de pouvoir ou d’un vote parlementaire.",
       "question": "Que vérifier ?",
       "choices": [
-        "La compétence de l'institution et la procédure.",
-        "Seulement la popularité de l'élu.",
-        "La forme de son discours."
+        "Vérifier les compétences et procédures applicables.",
+        "Retenir la proposition qui reçoit le plus de soutien.",
+        "Attendre que l’élu explique sa mesure publiquement."
       ],
       "answer": 0,
       "why": "Une proposition dépend des compétences, des règles de vote et de la mise en œuvre ; un élu ne peut pas toujours agir seul.",
@@ -790,9 +790,9 @@
       "body": "Un graphique commence l’axe vertical près de la valeur la plus basse. Une petite variation peut visuellement paraître spectaculaire.",
       "question": "Quel contrôle faire ?",
       "choices": [
-        "Ignorer la source.",
-        "Lire l'échelle, les unités et les chiffres.",
-        "Ne regarder que les barres."
+        "Observer les barres sans regarder les nombres.",
+        "Contrôler l’axe, les unités et les valeurs.",
+        "Comparer seulement les titres des graphiques."
       ],
       "answer": 1,
       "why": "La mise à l'échelle peut exagérer l'impression d'une différence sans changer les données brutes.",

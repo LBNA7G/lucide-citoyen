@@ -639,9 +639,9 @@
       "body": "Une expérience spectaculaire n'a été menée qu'une fois et aucune méthode complète n'est publiée.",
       "question": "Quelle limite existe ?",
       "choices": [
-        "D'autres équipes ne peuvent pas encore vérifier facilement le résultat.",
-        "Un essai suffit à prouver l'universel.",
-        "Une vidéo rend la répétition inutile."
+        "Il faut confirmer les résultats avec d’autres essais.",
+        "Une publication reconnue suffit à établir la règle.",
+        "La répétition n’est utile qu’en cas de désaccord."
       ],
       "answer": 0,
       "why": "La reproductibilité et la transparence méthodologique permettent de distinguer un résultat robuste d'un effet accidentel.",
@@ -665,9 +665,9 @@
       "body": "Une vidéo affirme qu'une seule institution européenne décide toujours de toutes les règles.",
       "question": "Que vérifier ?",
       "choices": [
-        "Que le Parlement vote seul toute règle.",
-        "Le rôle de la Commission, du Parlement et du Conseil selon la procédure.",
-        "Que chaque maire européen décide pour l'UE."
+        "Le Parlement prend seul toute décision de l’Union.",
+        "Les rôles varient selon la procédure européenne.",
+        "Le Conseil ne participe jamais au vote des textes."
       ],
       "answer": 1,
       "why": "Les actes de l'UE suivent des procédures différentes : les rôles des institutions varient selon le domaine.",
@@ -691,9 +691,9 @@
       "body": "Une annonce évoque un risque qui double, sans dire s'il passe d'un cas sur 10 000 à deux ou d'un sur dix à deux.",
       "question": "Quelle donnée demander ?",
       "choices": [
-        "Seulement le mot double.",
-        "Le slogan de la campagne.",
-        "Le risque de départ et la population concernée."
+        "L’expression « doublé » suffit pour mesurer le risque.",
+        "La différence relative remplace tout chiffre de base.",
+        "Il faut connaître le risque initial et la population."
       ],
       "answer": 2,
       "why": "Le risque relatif peut impressionner ; le risque absolu fournit l'échelle réelle.",
@@ -717,9 +717,9 @@
       "body": "Une personnalité scientifique connue affirme quelque chose dans un domaine sans rapport avec sa spécialité.",
       "question": "Quelle vérification est adaptée ?",
       "choices": [
-        "Examiner ses compétences sur le sujet et les preuves présentées.",
-        "Suivre tout ce qu'elle affirme.",
-        "Croire uniquement sa notoriété."
+        "Vérifier son expertise sur ce sujet et les preuves.",
+        "Croire un spécialiste dès qu’il a publié un livre.",
+        "Privilégier la notoriété sur les études disponibles."
       ],
       "answer": 0,
       "why": "La crédibilité dépend aussi de l'expertise pertinente et de la qualité des preuves.",
@@ -743,9 +743,9 @@
       "body": "Deux personnes analysent différemment une peinture, chacune cite des éléments visibles de l'œuvre.",
       "question": "Quelle attitude est juste ?",
       "choices": [
-        "Dire que toute lecture vaut sans argument.",
-        "Comparer leurs arguments et les détails de l'œuvre.",
-        "N'accepter qu'une réaction instinctive."
+        "Retenir uniquement le sens donné par l’artiste.",
+        "Comparer les interprétations aux détails de l’œuvre.",
+        "Considérer une interprétation populaire comme prouvée."
       ],
       "answer": 1,
       "why": "L'interprétation culturelle se discute en s'appuyant sur des indices et un contexte.",
@@ -769,9 +769,9 @@
       "body": "Un pays signe un traité international. Une vidéo prétend que cela suffit toujours à changer immédiatement toutes ses lois.",
       "question": "Quelle prudence s’impose ?",
       "choices": [
-        "Confondre signature et application automatique.",
-        "Ne jamais consulter le texte.",
-        "Vérifier ratification, mise en œuvre et règles juridiques applicables."
+        "La signature rend toujours la mesure applicable.",
+        "Chaque État applique un traité de la même manière.",
+        "Vérifier ratification, effet juridique et mise en œuvre."
       ],
       "answer": 2,
       "why": "Le processus par lequel un traité produit des effets dépend du droit applicable et d'étapes institutionnelles.",
@@ -795,9 +795,9 @@
       "body": "Deux villes enregistrent 100 incidents chacune, mais leurs populations sont très différentes.",
       "question": "Quelle comparaison est la plus informative ?",
       "choices": [
-        "Utiliser un taux comparable rapporté à la population, en précisant la période.",
-        "Dire qu'elles ont exactement le même risque.",
-        "Oublier le nombre d'habitants."
+        "Comparer des taux sur la même période et population.",
+        "Utiliser le nombre total sans population de référence.",
+        "Compter uniquement les cas observés dans une ville."
       ],
       "answer": 0,
       "why": "Un effectif brut et un taux ne disent pas la même chose ; il faut définir ce qui est compté.",
@@ -821,9 +821,9 @@
       "body": "Tu présentes un argument, mais une objection soulève une limite réelle de ton exemple.",
       "question": "Que faire ?",
       "choices": [
-        "Faire semblant de ne pas entendre.",
-        "Reconnaître la limite et préciser ton argument.",
-        "Changer toutes les données."
+        "Accepter le point opposé sans développer son raisonnement.",
+        "Reconnaître une limite puis défendre la thèse nuancée.",
+        "Changer de thème pour réduire la force de l’objection."
       ],
       "answer": 1,
       "why": "Une concession argumentée peut renforcer la clarté et la crédibilité plutôt que signaler une défaite.",
@@ -847,9 +847,9 @@
       "body": "Un classement affirme qu'un pays a le PIB par habitant plus élevé, donc tous ses habitants sont nécessairement plus riches.",
       "question": "Quelle réserve faut-il formuler ?",
       "choices": [
-        "Chaque habitant gagne exactement le PIB moyen.",
-        "Le classement mesure automatiquement le bonheur.",
-        "La moyenne ne décrit ni les inégalités ni tous les aspects du niveau de vie."
+        "Chaque habitant reçoit la moyenne du PIB du pays.",
+        "Un PIB élevé prouve un niveau de bonheur identique.",
+        "La moyenne ne décrit ni inégalités ni niveau de vie."
       ],
       "answer": 2,
       "why": "Le PIB par habitant mesure une production moyenne, pas la distribution des revenus ni la qualité de vie.",
@@ -873,9 +873,9 @@
       "body": "Une étude observe que ceux qui consomment plus d’un produit ont aussi un autre comportement, sans contrôler les conditions sociales.",
       "question": "Quelle question méthodologique poser ?",
       "choices": [
-        "D'autres variables expliquent-elles les deux phénomènes ?",
-        "Le lien observé est-il une preuve de cause ?",
-        "Les graphiques sont-ils joliment colorés ?"
+        "Chercher une variable commune pouvant agir sur les deux.",
+        "Conclure à une cause si les courbes montent ensemble.",
+        "Supprimer les observations qui éloignent les tendances."
       ],
       "answer": 0,
       "why": "La corrélation peut être influencée par des facteurs confondants ; établir une causalité demande une méthode adaptée.",
@@ -899,9 +899,9 @@
       "body": "Une entreprise annonce « zéro émission » sans dire si elle parle seulement de ses bureaux ou aussi des produits qu'elle vend.",
       "question": "Quel élément manque ?",
       "choices": [
-        "Uniquement la couleur de son logo.",
-        "Le périmètre, les émissions comptées et la méthode.",
-        "La date du premier commentaire."
+        "Comparer uniquement les déclarations des entreprises.",
+        "Définir le périmètre, les émissions et la méthode.",
+        "Vérifier l’année de création de la marque concernée."
       ],
       "answer": 1,
       "why": "Une promesse climatique doit préciser les émissions directes et indirectes, les réductions et la méthode de comptabilité.",
@@ -925,9 +925,9 @@
       "body": "Une carte agrandit visuellement certains territoires parce qu'elle utilise une projection qui déforme les surfaces.",
       "question": "Quel réflexe adopter ?",
       "choices": [
-        "Mesurer au doigt sur l'écran.",
-        "Prendre toute carte pour une photographie.",
-        "Vérifier la projection et les unités avant de comparer les tailles."
+        "Lire la couleur et la légende en premier.",
+        "Comparer les superficies au seul aspect visuel.",
+        "Examiner la projection et les unités de mesure."
       ],
       "answer": 2,
       "why": "Représenter une surface courbe sur un plan impose des déformations ; elles varient selon la projection.",
@@ -951,9 +951,9 @@
       "body": "Une banque centrale modifie ses taux. Un ami prétend que tous les prêts existants changent immédiatement de mensualité.",
       "question": "Que faut-il distinguer ?",
       "choices": [
-        "Les conditions des contrats fixes et variables et les délais de transmission.",
-        "Un seul taux universel.",
-        "La couleur des cartes bancaires."
+        "Distinguer crédits, contrats et délais d’évolution.",
+        "Supposer que tous les prêts varient immédiatement.",
+        "Conclure que les emprunteurs ont le même taux."
       ],
       "answer": 0,
       "why": "La transmission monétaire dépend notamment des clauses du crédit et du marché bancaire.",
@@ -977,9 +977,9 @@
       "body": "Une coalition négocie une réforme. Son communiqué ne détaille pas encore le texte législatif.",
       "question": "Quel document attendre pour connaître la règle ?",
       "choices": [
-        "Le slogan de la coalition.",
-        "Le texte adopté et publié par l'autorité compétente.",
-        "Les photos de la négociation."
+        "Un accord de coalition équivaut à une loi en vigueur.",
+        "Vérifier l’adoption, la publication et l’application.",
+        "Prendre l’annonce ministérielle comme règle finale."
       ],
       "answer": 1,
       "why": "Un accord politique ne remplace pas le processus d'adoption et de publication des normes.",
@@ -1003,9 +1003,9 @@
       "body": "Un monument endommagé doit être restauré. Les experts discutent du choix des matériaux et des traces à préserver.",
       "question": "Pourquoi documenter l’intervention ?",
       "choices": [
-        "Pour effacer son histoire.",
-        "Pour que toute restauration soit invisible.",
-        "Pour distinguer parties anciennes et travaux nouveaux et expliquer les choix."
+        "Éviter de présenter les ajouts comme des parties anciennes.",
+        "Rendre toutes les restaurations impossibles à distinguer.",
+        "Distinguer ancien et nouveau et expliquer les choix."
       ],
       "answer": 2,
       "why": "La conservation du patrimoine implique des choix justifiés et une documentation accessible.",
@@ -1029,9 +1029,9 @@
       "body": "Un chroniqueur résume une étude scientifique avec une conclusion qui n’apparaît pas dans le résumé officiel.",
       "question": "Quel document comparer ?",
       "choices": [
-        "L'étude originale, sa méthode et ses limites.",
-        "Les réactions sous la chronique.",
-        "Le titre le plus partagé."
+        "Étudier l’article original, sa méthode et ses limites.",
+        "Privilégier un résumé qui cite plusieurs réactions.",
+        "Lire uniquement le commentaire le plus récent."
       ],
       "answer": 0,
       "why": "Une source primaire permet de vérifier ce qui a réellement été établi avant d'évaluer un commentaire.",
@@ -1055,9 +1055,9 @@
       "body": "Deux personnes acceptent les mêmes données mais privilégient l'une la rapidité, l'autre la réduction des coûts.",
       "question": "Pourquoi peuvent-elles ne pas être d’accord ?",
       "choices": [
-        "L’une ignore nécessairement tous les chiffres.",
-        "Elles hiérarchisent différemment des valeurs et objectifs.",
-        "Les faits n’existent plus."
+        "Un désaccord signifie que les données n’existent pas.",
+        "Les priorités et les valeurs peuvent être différentes.",
+        "L’un des groupes doit ignorer les informations."
       ],
       "answer": 1,
       "why": "Partager un constat factuel n'impose pas le même choix politique ou moral : les arbitrages doivent être explicités.",
@@ -1081,9 +1081,9 @@
       "body": "Une newsletter dit que le nombre de cas a augmenté de 100 % ; la base était de 1 cas.",
       "question": "Quelle écriture apporte du contexte ?",
       "choices": [
-        "Oublier la base.",
-        "Afficher seulement « explosion » en majuscules.",
-        "Passer de 1 à 2 cas, avec la période et le périmètre."
+        "Un pourcentage suffit pour mesurer l’importance.",
+        "Une hausse de 100 % représente toujours beaucoup.",
+        "De 1 à 2 cas : préciser période et effectif."
       ],
       "answer": 2,
       "why": "Une variation relative doit être accompagnée des effectifs et de la durée pour être interprétée.",
@@ -1107,9 +1107,9 @@
       "body": "Un débat attribue à « Bruxelles » une décision qui peut relever du gouvernement national.",
       "question": "Comment vérifier le bon responsable ?",
       "choices": [
-        "Identifier la base juridique et le niveau de compétence.",
-        "Supposer que toute règle vient de l'UE.",
-        "Ignorer les textes."
+        "Identifier la compétence et la base juridique.",
+        "Présumer qu’une règle européenne couvre tous les sujets.",
+        "Déduire le pouvoir compétent du titre du communiqué."
       ],
       "answer": 0,
       "why": "Les compétences sont réparties entre les institutions européennes et nationales suivant les traités et la matière.",
@@ -1133,9 +1133,9 @@
       "body": "Une étude sur vingt étudiants est présentée comme une vérité applicable à toute la population.",
       "question": "Quelle question est essentielle ?",
       "choices": [
-        "La police utilisée dans le rapport.",
-        "Qui a été étudié et peut-on généraliser les résultats ?",
-        "Le nombre de vues de la vidéo."
+        "Compter les pages et auteurs du rapport.",
+        "Identifier les personnes étudiées et les limites.",
+        "Lire le communiqué résumant les conclusions."
       ],
       "answer": 1,
       "why": "La validité externe dépend des participants, du protocole et du contexte.",
@@ -1159,9 +1159,9 @@
       "body": "Une collectivité a un déficit durant une année et une dette issue de plusieurs années de financement.",
       "question": "Quelle formule résume la différence ?",
       "choices": [
-        "Dette et déficit sont toujours identiques.",
-        "Le déficit représente uniquement les exportations.",
-        "Le déficit est un flux annuel ; la dette est un stock à une date."
+        "Le déficit annuel est identique au total de la dette.",
+        "Le stock de dette est toujours nul si le déficit baisse.",
+        "Un déficit est un flux ; la dette est un stock."
       ],
       "answer": 2,
       "why": "Le déficit correspond à un solde sur une période ; la dette résulte d'obligations accumulées.",
@@ -1185,9 +1185,9 @@
       "body": "Une application présente un bouton « tout accepter » et rend les autres choix difficiles à trouver.",
       "question": "Quelle interrogation juridique et éthique ?",
       "choices": [
-        "Le choix est-il libre, spécifique et réellement compréhensible ?",
-        "Un clic vaut toujours un accord éclairé.",
-        "Les données n'ont pas de valeur."
+        "L’accord est-il libre, précis et compréhensible ?",
+        "La simple utilisation du service suffit-elle ?",
+        "Le consentement reste-t-il obligatoire pour tout ?"
       ],
       "answer": 0,
       "why": "Un consentement valable doit satisfaire des exigences, dont une information claire et un choix réel.",
@@ -1211,9 +1211,9 @@
       "body": "Une politique annonce un objectif de réduction des accidents. Un bilan ultérieur donne seulement le nombre total de contrôles.",
       "question": "Que manque-t-il pour juger du résultat ?",
       "choices": [
-        "Le nombre de conférences de presse.",
-        "Les indicateurs d'accidents, leur évolution et les autres facteurs pertinents.",
-        "Une promesse répétée."
+        "Comparer les résultats, le contexte et les autres causes.",
+        "Comparer uniquement les annonces avant et après la mesure.",
+        "Prendre la satisfaction des élus comme indicateur d’effet."
       ],
       "answer": 1,
       "why": "Il faut distinguer effort administratif, résultat observé et lien causal attribuable à la mesure.",
@@ -1237,9 +1237,9 @@
       "body": "De nouvelles données vérifiables contredisent une position que tu défendais.",
       "question": "Quel réflexe est intellectuellement cohérent ?",
       "choices": [
-        "Ignorer les données pour rester constant.",
-        "Attaquer la personne qui les présente.",
-        "Mettre à jour son jugement en expliquant ce qui a changé."
+        "Ignorer les résultats pour rester cohérent.",
+        "Réviser sa position en précisant les preuves nouvelles.",
+        "Supposer que toute nouvelle information confirme l’idée."
       ],
       "answer": 2,
       "why": "Modifier une conclusion à la lumière d'éléments nouveaux est une force du raisonnement critique.",
