@@ -480,7 +480,7 @@
     const feedback=civicReveal?'<div class="feedback '+(civicChoice===chosen.answer?'good':'attn')+'" role="status"><b>'+(civicChoice===chosen.answer?'Bien compris.':'Bonne réponse : '+escapeHTML(chosen.choices[chosen.answer])+'.')+'</b><p>'+escapeHTML(chosen.why)+'</p></div>':'';
     const sources=chosen.sources.map(x=>source(x.label,x.url)).join(' ');
     return intro('APPRENDRE À VOTER','Une notion à la fois.','Une question, une réponse expliquée et une source. À toi de te faire ton idée.')+
-      '<div class="civic-progress"><span>'+known+' / '+cards.length+' réponses justes au premier essai</span><span>Fiches pédagogiques datées du 22/10/2026</span></div>'+
+      '<div class="civic-progress"><span>'+known+' / '+cards.length+' questions réussies au moins une fois</span><span>Fiches pédagogiques datées du 22/10/2026</span></div>'+
       '<section class="calm-reading-step civic-question"><span class="eyebrow">'+escapeHTML(chosen.topic)+' · '+(chosen.country==='ALL'?'Belgique et France':chosen.country==='BE'?'Belgique':'France')+'</span>'+
       '<h2>'+escapeHTML(chosen.title)+'</h2><p>'+escapeHTML(chosen.body)+'</p><div class="story-question">'+escapeHTML(chosen.question)+'</div>'+
       '<div class="case-options">'+choices+'</div><button class="btn primary" type="button" id="civic-check" '+(civicChoice===null||civicReveal?'disabled':'')+'>Vérifier ma réponse →</button>'+
