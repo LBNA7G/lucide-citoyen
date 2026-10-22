@@ -163,7 +163,7 @@ test('civic lesson remains neutral and stores a correct answer locally',()=>{
  assert.ok(displayed.includes('Lire les sources'));
  const next={id:'civic-next',closest(){return null}};
  click({target:next});
- assert.ok(!screen.document.getElementById('main').innerHTML.includes('Lire les sources'));
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Lire les sources et leur fiabilité'), 'provenance must remain accessible before answering the next question');
 });
 test('Belgian and French civic libraries have the same baseline topic count',()=>{
  for(const country of ['BE','FR']){
