@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "purpose": "SAVRÉO - registre de contrôle éditorial; aucune validation indépendante réalisée",
-  "generated_from": "app.js",
+  "purpose": "SAVRÉO — registre de suivi éditorial, aucune nouvelle validation indépendante",
+  "generated_from": "app.js et curriculum-beta.js",
   "review_policy": "pending_external_review jusqu'à relecture documentée et signée par un expert autorisé",
   "items": [
     {
@@ -381,6 +381,340 @@
       "reviewed_at": null,
       "next_review_at": null,
       "notes": "Valider référence, version applicable, exceptions et recours selon public."
+    },
+    {
+      "id": "case:beta-photo",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Vie privée",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "12-15"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "droits"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr/partage-de-photos-et-videos-de-votre-enfant-sur-les-reseaux-sociaux-quels-sont-les-risques"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-capture",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Esprit critique",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "12-15"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "culture",
+        "actualite"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/comment-sinformer-lere-des-intelligences-artificielles-generatives"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-cadeau",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Arnaques",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "12-15"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "argent"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr",
+        "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/hameconnage-phishing"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-budget",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "16-20"
+      ],
+      "interest_ids": [
+        "argent"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr/budget-payer-emprunter-et-assurer/budget-et-gestion-de-budget/comment-etablir-un-budget"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-recrutement",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Travail",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "16-20"
+      ],
+      "interest_ids": [
+        "argent",
+        "reseaux"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/actualites/dossier-phishing",
+        "https://safeonweb.be/fr/contact"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-localisation",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Vie privée",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "16-20"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "droits"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr/partage-geolocalisation-conseils-de-la-cnil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-appart",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Logement",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "21-28"
+      ],
+      "interest_ids": [
+        "argent",
+        "droits"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/arnaques-location-immobiliere",
+        "https://logement.wallonie.be/fr/bail/garantie-locative"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-abonnement",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "21-28"
+      ],
+      "interest_ids": [
+        "argent",
+        "droits"
+      ],
+      "source_urls": [
+        "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/les-informations-precontractuelles"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "case:beta-depenses",
+      "kind": "scenario",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "Simulation fictive",
+      "age_groups": [
+        "21-28"
+      ],
+      "interest_ids": [
+        "argent"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr/budget-payer-emprunter-et-assurer/budget-et-gestion-de-budget/comment-etablir-un-budget"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "relecteur thématique, juriste si nécessaire",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:info-context",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Esprit critique",
+      "classification": "pédagogie",
+      "age_groups": [
+        "12-15"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "culture",
+        "actualite"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/comment-sinformer-lere-des-intelligences-artificielles-generatives"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:privacy-consent",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Vie privée",
+      "classification": "pédagogie",
+      "age_groups": [
+        "12-15"
+      ],
+      "interest_ids": [
+        "droits",
+        "reseaux"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr/partage-de-photos-et-videos-de-votre-enfant-sur-les-reseaux-sociaux-quels-sont-les-risques"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:online-scams",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Sécurité numérique",
+      "classification": "pédagogie",
+      "age_groups": [
+        "16-20"
+      ],
+      "interest_ids": [
+        "reseaux",
+        "argent"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr/actualite/attention-aux-liens-recus-par-mail-sms-ou-autres",
+        "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/hameconnage-phishing"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:budget-basics",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Argent",
+      "classification": "pédagogie",
+      "age_groups": [
+        "16-20"
+      ],
+      "interest_ids": [
+        "argent"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr/budget-payer-emprunter-et-assurer/budget-et-gestion-de-budget/comment-etablir-un-budget"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:rent-smart",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Logement",
+      "classification": "pédagogie",
+      "age_groups": [
+        "21-28"
+      ],
+      "interest_ids": [
+        "droits",
+        "argent"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/arnaques-location-immobiliere",
+        "https://logement.wallonie.be/fr/bail/garantie-locative"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
+    },
+    {
+      "id": "lesson:subscriptions",
+      "kind": "lesson",
+      "country": "ALL",
+      "topic": "Consommation",
+      "classification": "pédagogie",
+      "age_groups": [
+        "21-28"
+      ],
+      "interest_ids": [
+        "argent",
+        "droits"
+      ],
+      "source_urls": [
+        "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/les-informations-precontractuelles"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "enseignant et expert thématique",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Bêta 1.0 : vérifier exactitude, exemples fictifs, sources, exceptions, pertinence pédagogique par âge."
     }
   ]
 }
