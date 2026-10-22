@@ -53,7 +53,7 @@ test('Calm UI renders each main page in a fake browser DOM without throwing',()=
    vigie:['calm-feed-primary','Limites du radar'],
    'vie-publique':['civic-spotlight','Apprendre à voter','Notre méthode de neutralité'],
    civique:['civic-question','Vérifier ma réponse','Parcourir les 16 notions'],
-   dossiers:['civic-method','Les documents institutionnels']
+   dossiers:['civic-method','Consulter les documents institutionnels']
  };
  for(const [route,markers] of Object.entries(expected)){
    const {html,root}=mount(route);
