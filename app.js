@@ -90,7 +90,14 @@
   const PARTY_DATA=window.SAVREO_PARTIES&&typeof window.SAVREO_PARTIES==='object'?window.SAVREO_PARTIES:{parties:[],countrySources:{}};
   const ESSENTIAL_DATA=window.SAVREO_ESSENTIALS&&typeof window.SAVREO_ESSENTIALS==='object'?window.SAVREO_ESSENTIALS:{items:[]};
   const WORLD_DATA=window.SAVREO_WORLD&&typeof window.SAVREO_WORLD==='object'?window.SAVREO_WORLD:{items:[]};
-  const essentialAvailable=()=>[...(Array.isArray(ESSENTIAL_DATA.items)?ESSENTIAL_DATA.items:[]),...(Array.isArray(WORLD_DATA.items)?WORLD_DATA.items:[])];
+  const LIFE_DATA=window.SAVREO_LIFE&&typeof window.SAVREO_LIFE==='object'?window.SAVREO_LIFE:{items:[]};
+  const PUBLIC_DATA=window.SAVREO_PUBLIC&&typeof window.SAVREO_PUBLIC==='object'?window.SAVREO_PUBLIC:{items:[]};
+  const essentialAvailable=()=>[
+    ...(Array.isArray(ESSENTIAL_DATA.items)?ESSENTIAL_DATA.items:[]),
+    ...(Array.isArray(WORLD_DATA.items)?WORLD_DATA.items:[]),
+    ...(Array.isArray(LIFE_DATA.items)?LIFE_DATA.items:[]),
+    ...(Array.isArray(PUBLIC_DATA.items)?PUBLIC_DATA.items:[])
+  ];
   const microReviewsData=()=>state.microReviews&&typeof state.microReviews==='object'&&!Array.isArray(state.microReviews)?state.microReviews:{};
   const dueMicroReviews=()=>essentialAvailable().filter(c=>microReviewsData()[c.id]&&microReviewsData()[c.id].due<=dayKey());
   function recordMicroReview(id,correct){
