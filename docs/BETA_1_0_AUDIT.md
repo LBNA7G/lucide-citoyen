@@ -10,7 +10,7 @@
 | Onboarding | Prénom/pseudo, tranches d'âge, genre facultatif, intérêts | Contrôle RGPD mineurs à confirmer avant collecte pilote |
 | Thèmes | Clair, sombre, auto, préférences sauvegardées | Audit complet WCAG/lecteur d'écran non réalisé |
 | Leçons | 12 leçons courtes : 6 historiques + 6 nouveaux modules | Six nouvelles leçons sans visa d'expert externe |
-| Situations | 19 situations : 10 historiques + 9 simulations fictives | Couverture équilibrée en âge dans les nouveaux contenus |
+| Situations | 18 situations : 9 historiques + 9 simulations fictives | Couverture équilibrée en âge dans les nouveaux contenus |
 | Parcours | 6 parcours : 3 initiaux et 3 nouveaux parcours ciblés par âge | Les sujets non conseillés restent accessibles à tous |
 | Révisions | Quiz, première révision au lendemain, répétition espacée | Pas d'étude d'efficacité mémorielle réalisée |
 | Progression | Ancienne clé localStorage conservée, formats de progrès non remplacés | À vérifier après mise à jour depuis l'ancienne version sur vrai appareil |
