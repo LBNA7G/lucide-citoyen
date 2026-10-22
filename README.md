@@ -2,6 +2,15 @@
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
+## Travail qualité — audit du 22 octobre 2026
+
+- 240 unités intégrées, **0 validation indépendante enregistrée** ; volume et fiabilité sont deux étapes distinctes.
+- 248 références enregistrées, dont 135 URL générales à remplacer progressivement par des documents précis. [Rapport de spécificité des sources](docs/EDITORIAL_AUDIT_2026-10-22.md).
+- Sur 215 QCM modulaires, 206 ont une bonne réponse qui est la plus longue ou ex aequo : risque de réussite sans compréhension. [Plan d'amélioration pédagogique](docs/QUIZ_QUALITY_2026-10-22.md).
+- Cinq fiches électorales BE/FR ont reçu des liens institutionnels plus ciblés. Le registre éditorial est synchronisé avec les modules.
+- Les nouvelles micro-fiches suggèrent d'abord une révision due ou un contenu inédit ; seulement trois révisions urgentes sont présentées avant le panneau dépliable.
+- Tests d'intégrité éditoriale, biais des quiz, navigation et progression ajoutés au pipeline GitHub. Aucun déploiement manuel Vercel demandé.
+
 ## Version 1.4 bêta — 240 unités hors ligne en cours de validation
 
 - **240 unités pédagogiques uniques écrites** : 18 situations, 12 leçons, 10 fiches de droits, 24 civiques et 176 micro-exercices.
