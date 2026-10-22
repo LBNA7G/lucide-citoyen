@@ -278,12 +278,12 @@
       "id": "fr-01",
       "country": "FR",
       "name": "La France insoumise",
-      "election": "L'Avenir en commun — édition 2025",
+      "election": "L’Avenir en commun (édition consultable en ligne ; ne pas présumer du scrutin visé)",
       "docType": "Document publié par l'organisation politique",
-      "docDate": "2025",
+      "docDate": "Date exacte du document à vérifier",
       "primarySource": {
-        "label": "L'Avenir en commun — édition 2025 — site du parti/mouvement",
-        "url": "https://melenchon2027.fr/"
+        "label": "L’Avenir en commun — programme publié par le mouvement (édition à dater)",
+        "url": "https://programme.lafranceinsoumise.fr/category/programme/laec/"
       },
       "otherSource": {
         "label": "Informations officielles sur la consultation des programmes",
