@@ -14,4 +14,4 @@ jobs:
         with:
           persist-credentials: false
       - name: Vérifier les fichiers et scripts
-        run: node scripts/check.mjs
+        run: npm test
