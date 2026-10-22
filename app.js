@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const STORAGE = 'lucide-demo-v1';
-  const DEFAULT = { country:'BE', xp:0, completed:[], history:[], lastActive:'', streak:0, viewedRights:[], savedNews:[], firstName:'', ageGroup:'', gender:'', onboardingDone:false, interests:[], interestsDone:false, reviews:{}, journeyDebates:[] };
+  const DEFAULT = { country:'BE', xp:0, completed:[], history:[], lastActive:'', streak:0, viewedRights:[], savedNews:[], firstName:'', ageGroup:'', gender:'', onboardingDone:false, interests:[], interestsDone:false, reviews:{}, journeyDebates:[], theme:'auto' };
   function load(){try { const data = JSON.parse(localStorage.getItem(STORAGE) || '{}');return {...DEFAULT,...data}; }catch{return {...DEFAULT};}}
   let state = load();
   let profileEditing = false;
@@ -42,11 +42,37 @@
   const escapeHTML = str => String(str ?? '').replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const safeURL = url => /^https:\/\//.test(url)?url:'#';
   const setStore = () => {try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
+
+  const THEME_OPTIONS=['auto','light','dark'];
+  const themePreference=()=>THEME_OPTIONS.includes(state.theme)?state.theme:'auto';
+  const systemDark=window.matchMedia('(prefers-color-scheme: dark)');
+  function applyTheme(){
+    const selected=themePreference();
+    const effective=selected==='auto'?(systemDark.matches?'dark':'light'):selected;
+    document.documentElement.dataset.theme=effective;
+    document.documentElement.style.colorScheme=effective;
+    const meta=document.querySelector('meta[name="theme-color"]');
+    if(meta)meta.setAttribute('content',effective==='light'?'#f6f8f5':'#0b0e18');
+    document.querySelectorAll('[data-theme-option]').forEach(btn=>{
+      const active=btn.dataset.themeOption===selected;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-pressed',String(active));
+    });
+    const quick=el('theme-quick');
+    if(quick){quick.textContent=effective==='light'?'☾':'☀';quick.setAttribute('aria-label',effective==='light'?'Activer le mode sombre':'Activer le mode clair');quick.title=effective==='light'?'Activer le mode sombre':'Activer le mode clair';}
+  }
+  function updateTheme(choice){
+    if(!THEME_OPTIONS.includes(choice))return;
+    state.theme=choice;setStore();applyTheme();
+  }
+  systemDark.addEventListener?.('change',()=>{if(themePreference()==='auto')applyTheme();});
+
   const dayKey = () => new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   function reward(tag, amount=15){if(state.completed.includes(tag))return false;state.completed.push(tag);state.xp+=amount; const today=dayKey(); if(state.lastActive!==today){const y=new Date();y.setDate(y.getDate()-1); const yesterday = new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(y);state.streak=state.lastActive===yesterday?state.streak+1:1;state.lastActive=today;}setStore();renderHeader();return true;}
   function toast(msg){let t=el('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__lucideToast);window.__lucideToast=setTimeout(()=>t.classList.remove('show'),2900)}
   const topLevel = p => ['declic','apprendre','dico','vigie','lecon','explorer','sources'].includes(p) ? 'explorer' : ['debattre','pratiquer','parcours','reviser'].includes(p) ? 'pratiquer' : p;
   function renderHeader(){
+    applyTheme();
     el('xp-top').textContent=state.xp;
     document.querySelectorAll('[data-country]').forEach(b=>b.classList.toggle('active',b.dataset.country===state.country));
     document.querySelectorAll('[data-page]').forEach(b=>{
@@ -345,11 +371,75 @@
     return intro('TRANSPARENCE · SOURCES','Des informations vérifiables.','Comprendre les preuves et les limites des contenus fait partie de l’apprentissage.')+
       '<div class="learning-grid">'+cards+'</div><div class="section-heading"><h2>Vérifie directement</h2></div><div class="hub-list">'+links+'</div>';
   }
-  function explore(){return `${intro('DÉCOUVRIR · À TON RYTHME','Choisis ce qui t’intéresse.','Des situations concrètes, de courtes leçons et des sources pour comprendre sans te perdre.')}<div class="hub-list"><button class="hub-item" data-route="declic"><span class="hub-mark">⚡</span><span><b>Déclic</b><small>Des situations de la vraie vie · 2 min</small></span><span aria-hidden="true">↗</span></button><button class="hub-item" data-route="apprendre"><span class="hub-mark">▤</span><span><b>Les essentiels</b><small>Des leçons accessibles, utiles et courtes</small></span><span aria-hidden="true">↗</span></button><button class="hub-item" data-route="dico"><span class="hub-mark">✳</span><span><b>Le dico</b><small>Les bons mots pour te faire comprendre</small></span><span aria-hidden="true">↗</span></button><button class="hub-item" data-route="vigie"><span class="hub-mark">◎</span><span><b>Vigie citoyenne</b><small>Consulter des publications officielles</small></span><span aria-hidden="true">↗</span></button><button class="hub-item" data-route="sources"><span class="hub-mark">✓</span><span><b>Sources & méthodes</b><small>Traçabilité et transparence</small></span><span aria-hidden="true">↗</span></button></div>`;}
-  function practice(){const missions=dailyMissions();const achieved=missions.filter(m=>state.completed.includes(m.key)).length;return `${intro('PRATIQUER · GAGNE EN CONFIANCE','À toi de jouer.','Pas besoin de tout savoir : progresse en t’entraînant à répondre, réfléchir et argumenter.')}<div class="practice-summary"><div><span class="eyebrow">TES MISSIONS DU JOUR</span><h2>${achieved}/3 réalisées</h2><p>Avance à ton rythme. Chaque essai compte.</p></div><span class="practice-count" aria-label="${achieved} missions réalisées sur 3">${achieved}/3</span></div><div class="mission-list">${missions.map(m=>`<button class="mission-item" data-route="${m.route}"><span class="mission-icon">${state.completed.includes(m.key)?'✓':'○'}</span><span><b>${m.name}</b><small>${m.desc}</small></span><span class="card-action">${state.completed.includes(m.key)?'Revoir':'Essayer ↗'}</span></button>`).join('')}</div><div class="section-heading"><h2>Va plus loin</h2></div><button class="hub-item practice-extra" data-route="parcours"><span class="hub-mark">◇</span><span><b>Parcours progressifs</b><small>Situation → leçon → entraînement</small></span><span aria-hidden="true">↗</span></button><button class="hub-item practice-extra" data-route="reviser"><span class="hub-mark">↺</span><span><b>Révisions espacées</b><small>${dueReviews().length} notions à revoir</small></span><span aria-hidden="true">↗</span></button><button class="hub-item practice-extra" data-route="debattre"><span class="hub-mark">◉</span><span><b>Défendre mes idées</b><small>Réponds à une objection et améliore ton argumentation</small></span><span aria-hidden="true">↗</span></button>`;}
-  function welcome(){const focus=todayCase();const next=recommendedLesson();const greeting=state.gender==='feminin'?'Prête à découvrir ?':state.gender==='masculin'?'Prêt à découvrir ?':'Découvre à ton rythme.';const done=state.completed.filter(x=>x.startsWith('lesson:')).length;return `<section class="welcome-intro"><span class="eyebrow">SALUT ${escapeHTML(state.firstName)} !</span><h1>Apprends <span class="headline-gradient">ce qui compte.</span></h1><p class="subtitle">Des connaissances utiles pour la vraie vie. Deux minutes suffisent pour commencer. ${escapeHTML(greeting)}</p></section><section class="daily-case daily-feature" aria-label="Le déclic du jour"><div class="daily-meta"><span class="eyebrow">⚡ TON DÉCLIC DU JOUR</span><span class="pill grey">${focus.mins} MIN</span></div><h2>${escapeHTML(focus.punch)}</h2><p>${escapeHTML(focus.setup)}</p><div class="hero-actions">${action('Tester mon réflexe','declic','primary')}</div></section><div class="section-heading"><div><h2>Ton prochain pas</h2><p>Une notion à la fois, sans pression.</p></div></div><button class="resume-card" data-lesson="${next.id}"><span class="resume-icon" aria-hidden="true">▤</span><span class="resume-content"><b>${escapeHTML(next.title)}</b><small>${next.mins} min · ${done}/${lessons.length} leçons validées</small><span class="resume-progress"><i style="width:${Math.round(done/lessons.length*100)}%"></i></span></span><span class="resume-arrow" aria-hidden="true">↗</span></button>${dueReviews().length?`<button class="review-banner" data-route="reviser"><span>↺</span><b>${dueReviews().length} révision(s) disponible(s)</b><small>Vérifier mes acquis</small><span>↗</span></button>`:''}<div class="welcome-secondary"><button data-route="explorer" class="light-action"><span>◈</span><b>Découvrir</b><small>Explorer les sujets</small></button><button data-route="pratiquer" class="light-action"><span>✧</span><b>Pratiquer</b><small>Développer tes réflexes</small></button></div>`;}
-  function learn(){return `${intro('DÉCOUVRIR · COMPRENDRE · RETENIR','Une idée à la fois.','Des micro-leçons conçues pour être comprises et réutilisées en discussion. Les exemples ne remplacent jamais les textes officiels.')}<div class="learn-quick">${action('Une situation réelle','declic','primary')} ${action('Dico des mots compliqués','dico','ghost')}</div>${`<div class="grid three">${lessons.map(l=>`<article class="card"><span class="pill grey">${l.mins} min · ${l.level}</span><div class="card-icon" style="margin-top:18px">${l.icon}</div><div class="topic-label">${l.tag}</div><h3>${l.title}</h3><p>${l.summary}</p><button class="card-action" data-lesson="${l.id}">${state.completed.includes('lesson:'+l.id)?'Revoir la leçon':'Lire et me tester'} ↗</button></article>`).join('')}</div>`}`;}
-  function lessonView(l){return `<div class="page-intro"><div class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} MIN</div><h1>${escapeHTML(l.title)}</h1><p class="subtitle">${escapeHTML(l.summary)}</p></div><div class="detail-layout"><article class="card flat lesson-body">${l.text.map(([h,t])=>`<h3>${escapeHTML(h)}</h3><p>${escapeHTML(t)}</p>`).join('')}<div class="inner-separator"></div><span class="pill">QUIZ · 1 QUESTION</span><h3 style="margin-top:15px">${escapeHTML(l.q)}</h3><form id="lesson-quiz">${l.choices.map((c,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${quizSelection===i?'checked':''}/><span>${escapeHTML(c)}</span></label>`).join('')}<button class="btn primary" type="submit" style="margin-top:12px">Valider ma réponse</button>${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}">${quizSelection===l.answer?'Bonne réponse !':'La bonne réponse est : '+escapeHTML(l.choices[l.answer])+'.'} ${escapeHTML(l.why)}</div>`:''}</form><div class="lesson-reference"><span class="topic-label">POUR VÉRIFIER ET ALLER PLUS LOIN</span><p class="small muted">Ces liens fournissent des repères pédagogiques et institutionnels ; ils ne certifient pas encore cette leçon.</p>${(LESSON_REFERENCES[l.id]||[]).filter(([name])=>l.id!=='lois'||(state.country==='BE'?name.startsWith('Belgique'):name.startsWith('France'))).map(([name,url])=>source(name,url)).join(' ')}</div><button class="card-action" data-route="apprendre">← Toutes les leçons</button></article><aside class="card help-card"><span class="pill purple">CONSEIL</span><h3 style="margin:14px 0">Retiens l’essentiel</h3><p class="muted small">Explique cette leçon à voix haute comme si tu t’adressais à une personne de 15 ans. Si tu hésites, relis seulement le passage concerné.</p><div class="inner-separator"></div><h3>Prochaine étape</h3><p class="muted small">Passe ensuite à un débat pour appliquer cette connaissance.</p><button class="btn small ghost" data-route="debattre">S’entraîner →</button></aside></div>`;}
+
+  function welcome(){
+    const focus=todayCase(),next=recommendedLesson(),due=dueReviews().length,done=state.completed.filter(x=>x.startsWith('lesson:')).length;
+    return `<section class="calm-greeting"><span class="eyebrow">BONJOUR ${escapeHTML(state.firstName)}</span><h1>Une chose à la fois.</h1><p>Un petit déclic, de grandes idées.</p></section>
+      <section class="daily-feature calm-feature" aria-label="Déclic du jour">
+        <div class="calm-feature-meta"><span class="eyebrow">DÉCLIC DU JOUR</span><span class="pill grey">${focus.mins} min</span></div>
+        <h2>${escapeHTML(focus.punch)}</h2>
+        <button class="btn primary" type="button" data-route="declic">Découvrir la réponse →</button>
+      </section>
+      <section class="calm-next" aria-label="Continuer mon parcours">
+        <div class="section-heading calm-section"><h2>Continuer</h2></div>
+        <button class="resume-card" data-lesson="${next.id}"><span class="resume-icon" aria-hidden="true">▤</span><span class="resume-content"><b>${escapeHTML(next.title)}</b><small>${next.mins} min · ${done}/${lessons.length} leçons terminées</small></span><span aria-hidden="true">↗</span></button>
+        ${due? `<button class="calm-inline" data-route="reviser"><span aria-hidden="true">↺</span> ${due} révision${due>1?'s':''} à faire <span aria-hidden="true">→</span></button>`:''}
+      </section>
+      <button class="calm-footer-link" data-route="explorer">Explorer tous les sujets <span aria-hidden="true">→</span></button>`;
+  }
+  function explore(){
+    return `${intro('DÉCOUVRIR','Qu’as-tu envie de comprendre ?','Choisis une porte d’entrée. Tu pourras explorer le reste ensuite.')}
+      <div class="calm-menu">
+        <button class="hub-item" data-route="declic"><span class="hub-mark" aria-hidden="true">⚡</span><span><b>Situations de la vie</b><small>Une question, un réflexe</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="apprendre"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Leçons essentielles</b><small>Comprendre à son rythme</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="dico"><span class="hub-mark" aria-hidden="true">✳</span><span><b>Les mots utiles</b><small>Enrichir son vocabulaire</small></span><span aria-hidden="true">↗</span></button>
+      </div>
+      <details class="calm-disclosure"><summary>Autres ressources <span aria-hidden="true">＋</span></summary><div class="calm-submenu">
+        <button class="hub-item" data-route="vigie"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Actualité des institutions</b><small>Publications officielles</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="sources"><span class="hub-mark" aria-hidden="true">✓</span><span><b>Sources et méthode</b><small>Comprendre la fiabilité</small></span><span aria-hidden="true">↗</span></button>
+      </div></details>`;
+  }
+  function practice(){
+    const achieved=dailyMissions().filter(m=>state.completed.includes(m.key)).length;
+    return `${intro('PRATIQUER','Progresser à ton rythme.','Un exercice à la fois pour mieux retenir et mieux t’exprimer.')}
+      <div class="calm-menu">
+        <button class="hub-item" data-route="parcours"><span class="hub-mark" aria-hidden="true">◇</span><span><b>Mes parcours</b><small>Trois étapes pour apprendre</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="reviser"><span class="hub-mark" aria-hidden="true">↺</span><span><b>Mes révisions</b><small>${dueReviews().length} à revoir aujourd’hui</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="debattre"><span class="hub-mark" aria-hidden="true">◉</span><span><b>Exprimer mes idées</b><small>Construire un argument</small></span><span aria-hidden="true">↗</span></button>
+      </div>
+      <details class="calm-disclosure"><summary>Mes missions du jour · ${achieved}/3 <span aria-hidden="true">＋</span></summary>
+        <div class="mission-list calm-missions">${dailyMissions().map(m=>`<button class="mission-item" data-route="${m.route}"><span class="mission-icon" aria-hidden="true">${state.completed.includes(m.key)?'✓':'○'}</span><span><b>${m.name}</b><small>${m.desc}</small></span><span class="card-action">${state.completed.includes(m.key)?'Revoir':'Essayer'} →</span></button>`).join('')}</div>
+      </details>`;
+  }
+  function lessonCard(l){
+    const checked=state.completed.includes('lesson:'+l.id);
+    return `<article class="card calm-lesson-card"><span class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} min</span><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.summary)}</p><button class="calm-card-action" data-lesson="${l.id}">${checked?'Revoir':'Découvrir'} <span aria-hidden="true">→</span></button></article>`;
+  }
+  function learn(){
+    const first=recommendedLesson(),more=lessons.filter(l=>l.id!==first.id);
+    return `${intro('APPRENDRE','Une notion à la fois.','Des explications courtes, puis un quiz pour vérifier ce que tu as compris.')}
+      <div class="section-heading calm-section"><h2>Pour commencer</h2></div>
+      <div class="calm-feature-lesson">${lessonCard(first)}</div>
+      <details class="calm-disclosure"><summary>Voir toutes les leçons (${lessons.length}) <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${more.map(lessonCard).join('')}</div></details>`;
+  }
+  function lessonView(l){
+    const core=l.text[0],more=l.text.slice(1);
+    const resources=(LESSON_REFERENCES[l.id]||[]).filter(([name])=>l.id!=='lois'||(state.country==='BE'?name.startsWith('Belgique'):name.startsWith('France')));
+    return `${intro(escapeHTML(l.tag)+' · '+l.mins+' min',escapeHTML(l.title),escapeHTML(l.summary))}
+      <article class="calm-reading">
+        <div class="calm-reading-step"><span class="eyebrow">01 · COMPRENDRE</span><h2>${escapeHTML(core[0])}</h2><p>${escapeHTML(core[1])}</p></div>
+        <details class="calm-disclosure calm-inset"><summary>Exemples et détails <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra">${more.map(([h,t])=>`<section><h3>${escapeHTML(h)}</h3><p>${escapeHTML(t)}</p></section>`).join('')}</div></details>
+        <div class="calm-reading-step"><span class="eyebrow">02 · VÉRIFIER</span><h2>${escapeHTML(l.q)}</h2>
+          <form id="lesson-quiz">${l.choices.map((c,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${quizSelection===i?'checked':''}/><span>${escapeHTML(c)}</span></label>`).join('')}
+          <button class="btn primary" type="submit">Valider ma réponse</button>
+          ${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}"><strong>${quizSelection===l.answer?'Bonne réponse.':'Regarde l’explication.'}</strong> ${escapeHTML(l.why)}</div>`:''}
+          </form>
+        </div>
+        <details class="calm-disclosure calm-inset"><summary>Sources et pour aller plus loin <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>Repères pédagogiques : les fiches de cette version n’ont pas encore reçu de validation externe indépendante.</p>${resources.map(([name,url])=>source(name,url)).join('')}<p>Explique la notion à voix haute pour vérifier que tu la comprends.</p><button class="calm-card-action" data-route="debattre">M’exercer à argumenter →</button></div></details>
+        <button class="calm-footer-link" data-route="apprendre">← Toutes les leçons</button>
+      </article>`;
+  }
+
   function analyze(text){const norm=text.toLocaleLowerCase('fr');const words=(text.trim().match(/[\p{L}’'-]+/gu)||[]); const indicators={
     position:/\b(je pense|selon moi|j'estime|à mon avis|je considère|personnellement|je suis d'accord|je ne suis pas d'accord)\b/.test(norm),
     reason:/\b(parce que|car |en raison|puisque|la raison|cela s'explique|en effet)\b/.test(norm),
