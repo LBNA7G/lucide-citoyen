@@ -1,6 +1,6 @@
 // LUCIDE v0.3 — cache fiable : préférence au réseau, repli hors ligne.
 const CACHE = 'lucide-assets-v03-20261022';
-const ASSETS = ['./','./index.html','./styles.css','./app.js','./icon.svg','./manifest.webmanifest'];
+const ASSETS = ['./','./index.html','./styles.css?v=3','./app.js?v=3','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
   self.skipWaiting();
