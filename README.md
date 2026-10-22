@@ -1,27 +1,37 @@
-# LUCIDE · v0.3 — Apprendre. Comprendre. Agir.
+# LUCIDE — version 0.4
 
-Prototype statique de formation à l’argumentation, aux droits et à l'esprit critique destiné aux jeunes francophones (Belgique/France).
+Une application web mobile d'éducation civique et d'expression critique, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
-## Démarrer
+## Ce qui fonctionne
 
-Ouvrir `index.html` dans un navigateur, ou déployer le dossier sur Vercel (aucun build ni clé API requis). Pour le service worker/PWA, servir les fichiers sur HTTPS ou localhost.
+- **Déclic** : cas pratiques BE/FR, réponses interactives et sources.
+- **Dico** : définitions claires, exercices et validation des mots.
+- **Argumenter** : entraînement à la position, concession, argument, exemple, conclusion et analyse locale de structure.
+- **Coach IA (optionnel)** : analyse sémantique par le serveur Vercel, réécriture fidèle, objections. **Désactivé par défaut.**
+- **Radar** : flux officiels, affichage de la source et date de consultation ; flux BE limité à l'emploi, flux FR Service-Public. Ne constitue pas un suivi exhaustif des décisions politiques.
+- **Missions quotidiennes** et points XP ; progression locale, export et effacement.
+- Interface adaptée au mobile, prise en charge PWA et mode dégradé hors ligne.
 
-## Fonctionnalités
+## Déploiement
 
-- « Déclic » : six mises en situation et un dossier belge daté avec questions à choix, preuves et sources.
-- « Dico » : 12 mots expliqués avec exemples et quiz.
-- Micro-leçons, quiz, entraînement à la structure argumentative, droits BE/FR et répertoire de sources officielles.
-- XP, progression locale, export/effacement des données, support mobile.
-- Distingue toujours simulation, fait documenté, texte officiel, source et opinions.
+Connecter ce dépôt à un projet Vercel (framework: Other, dossier racine: `./`). Publier la branche `main` après avoir vérifié le résultat du déploiement Preview. Les routes `api/*.js` sont des fonctions Vercel : elles ne fonctionnent pas avec un simple `python -m http.server`.
 
-## Limites importantes
+Pour les contrôles : `node scripts/check.mjs` et `node --test tests/*.test.mjs`. Les tests automatiques GitHub les exécutent à chaque push.
 
-- Pas d'IA générative ni de correction sémantique véritable : l’analyse du débat détecte seulement des indices de structure.
-- Pas de flux d'actualité direct. Documents du module Déclic consultés le 22 octobre 2026.
-- Les exemples sont pédagogiques, non des conseils juridiques individuels. Les normes changent; vérifier les sources, la région et les dates.
-- Les réponses et la progression restent sur l'appareil (localStorage), sans compte ni serveur de données.
-- Le mode « hors ligne » peut présenter une version ancienne des fiches : ne pas s'en servir comme source juridique à jour.
+## Activation **volontaire** du coach IA
 
-## Protection de l'indépendance éditoriale
+1. Avant toute activation publique : configurer un budget plafonné et des alertes AI Gateway dans l'équipe Vercel.
+2. Mettre en place une limitation anti-abus distribuée et un contrôle d'utilisation : la limitation mémoire actuelle de la fonction est seulement indicative et **insuffisante pour une exposition publique**.
+3. Vérifier les conditions de traitement des textes utilisateurs et afficher une information de confidentialité claire. Éviter la saisie de données personnelles sensibles.
+4. Activer `AI_GATEWAY_ENABLED=true` dans Vercel uniquement après ces vérifications ; AI Gateway utilise l'authentification OIDC Vercel ou une clé stockée côté serveur (`AI_GATEWAY_API_KEY`), jamais exposée au navigateur.
+5. Modèle testé dans le catalogue Vercel : `google/gemini-3.1-flash-lite` (vérifier sa disponibilité et son coût avant de l'activer).
 
-Aucune consigne de vote et aucun parti soutenu. Les lois sont distinguées des annonces, les revendications des faits prouvés. Montrer les sources de points de vue opposés, les limites et le degré de certitude.
+En l'absence de configuration, le coach affiche un message explicite et l'analyse locale reste entièrement disponible.
+
+## Rigueur citoyenne et juridique
+
+Les publications RSS sont des **titres officiels bruts**, pas des textes de loi analysés. Ne jamais affirmer qu'une annonce est en vigueur sans vérifier le texte, son statut, sa date et la juridiction. Aucun contenu politique n'est promu. Le droit dépend notamment de l'âge, du pays et de la situation.
+
+## Confidentialité
+
+Par défaut, réponses, progression et favoris sont conservés dans le navigateur (localStorage), sans compte ; le contenu soumis volontairement au coach IA serait transmis au fournisseur IA via un serveur. Ne pas copier de données sensibles dans les réponses.
