@@ -501,7 +501,7 @@
       <section class="calm-profile-head"><div><span class="eyebrow">TON PROFIL</span><h2>${escapeHTML(state.firstName)}</h2><p>${escapeHTML(AGE_GROUPS[state.ageGroup]||'Âge non précisé')} · ${escapeHTML(GENDERS[state.gender]||'Genre non précisé')}</p></div><button class="btn ghost small" id="edit-profile">Modifier</button></section>
       <section class="calm-settings"><h2>Apparence</h2><p>Choisis un affichage confortable pour toi.</p>
       <div class="theme-selector" role="group" aria-label="Apparence de l’application">
-        ${[['auto','Automatique'],['light','Clair'],['dark','Sombre']].map(([id,title])=>`<button type="button" class="theme-option" data-theme-option="${id}" aria-pressed="${themePreference()===id}">${title}</button>`).join('')}
+        ${[['auto','Automatique'],['light','Clair'],['dark','Sombre']].map(([id,title])=>`<button type="button" class="theme-option ${themePreference()===id?'active':''}" data-theme-option="${id}" aria-pressed="${themePreference()===id}">${title}</button>`).join('')}
       </div></section>
       <section class="calm-settings"><div class="calm-section-head"><div><h2>Centres d’intérêt</h2><p>${interests||'Choisis les sujets que tu veux découvrir.'}</p></div><button class="btn ghost small" id="edit-interests">Modifier</button></div></section>
       <section class="calm-settings"><h2>Ta progression</h2>
