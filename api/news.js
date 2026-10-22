@@ -1,7 +1,12 @@
 // Actualités institutionnelles : RSS prédéfinis uniquement. Aucun classement idéologique.
 const FEEDS = {
-  BE: {url:'https://news.belgium.be/fr/feeds/all',domain:'news.belgium.be',name:'News.belgium — institutions fédérales et Conseil des ministres'},
-  FR: {url:'https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss',domain:'www.service-public.gouv.fr',name:'Service-Public.fr — actualités particuliers (France)'}
+  BE: [
+    {url:'https://news.belgium.be/fr/feeds/all',domain:'news.belgium.be',name:'News.belgium — publications fédérales',scope:'federal'},
+    {url:'https://www.parlement-wallonie.be/actu/rss_doc_generator.php?type=parch',domain:'parlement-wallonie.be',name:'Parlement de Wallonie — décrets adoptés',scope:'regional'}
+  ],
+  FR: [
+    {url:'https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss',domain:'www.service-public.gouv.fr',name:'Service-Public.fr — actualités particuliers',scope:'national'}
+  ]
 };
 const MAX_ITEMS=8;
 const cache=new Map();
@@ -28,21 +33,53 @@ function parseFeed(xml,origin){const items=(xml.match(/<item\b[^>]*>[\s\S]*?<\/i
     .sort((a,b)=>(b.date||'').localeCompare(a.date||''))
     .slice(0,MAX_ITEMS);
 }
-export default async function handler(req,res){res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
+export default async function handler(req,res){
+  res.setHeader('Cache-Control','no-store');
+  res.setHeader('X-Content-Type-Options','nosniff');
   if(req.method!=='GET')return res.status(405).json({error:'Méthode non autorisée.'});
   const country=req.query?.country;
-  if(typeof country!=='string'||!FEEDS[country])return res.status(400).json({error:'Choisis BE ou FR.'});
-  const feed=FEEDS[country];const fresh=cache.get(country);if(fresh&&Date.now()-fresh.time<10*60*1000)return res.status(200).json(fresh.data);const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
-  try{
-    const response=await fetch(feed.url,{signal:controller.signal,headers:{'Accept':'application/rss+xml,application/xml,text/xml','User-Agent':'SAVREO/1.6 (educational-app; source-attributed)'}});
-    if(!response.ok)return res.status(503).json({error:'Source institutionnelle momentanément indisponible.',source:feed.name});
-    const contentType=response.headers.get('content-type')||'';
-    if(!/xml|rss|text\/plain/.test(contentType))return res.status(503).json({error:'La source ne renvoie pas de flux RSS lisible.'});
-    const content=(await response.text()).slice(0,350000);
-    const items=parseFeed(content,feed);
-    if(!items.length)return res.status(503).json({error:'Aucun titre valide trouvé dans le flux officiel.',source:feed.name});
-    const data={country,source:feed.name,sourceUrl:feed.url,checkedAt:new Date().toISOString(),notice:'Titres et résumés issus de la source, sans vérification de statut juridique.',items};cache.set(country,{time:Date.now(),data});return res.status(200).json(data);
-  }catch(e){return res.status(503).json({error:e.name==='AbortError'?'La source n’a pas répondu dans le délai.':'Connexion au flux officiel indisponible.'});}
-  finally{clearTimeout(timeout)}
+  if(typeof country!=='string'||!Object.hasOwn(FEEDS,country))return res.status(400).json({error:'Choisis BE ou FR.'});
+  const fresh=cache.get(country);
+  if(fresh&&Date.now()-fresh.time<10*60*1000)return res.status(200).json(fresh.data);
+  // Les sources sont définies dans le serveur : le navigateur ne peut pas imposer un domaine RSS.
+  const sources=await Promise.all(FEEDS[country].map(async feed=>{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),8000);
+    try{
+      const response=await fetch(feed.url,{signal:controller.signal,headers:{'Accept':'application/rss+xml,application/xml,text/xml','User-Agent':'SAVREO/1.6 (educational-app; source-attributed)'}});
+      if(!response.ok)return {feed,items:[],error:'Source momentanément indisponible.'};
+      const kind=response.headers.get('content-type')||'';
+      if(!/xml|rss|text\/plain/i.test(kind))return {feed,items:[],error:'Format RSS non lisible.'};
+      const xml=(await response.text()).slice(0,350000);
+      const items=parseFeed(xml,feed);
+      if(!items.length)return {feed,items:[],error:'Aucun lien RSS conforme au domaine officiel.'};
+      return {feed,items,error:''};
+    }catch(error){
+      return {feed,items:[],error:error?.name==='AbortError'?'Source trop lente.':'Connexion au flux indisponible.'};
+    }finally{clearTimeout(timeout);}
+  }));
+  const items=sources.flatMap(entry=>entry.items.map(item=>({
+    ...item,source:entry.feed.name,scope:entry.feed.scope,
+    publicationType:entry.feed.scope==='regional'?'Décret adopté au Parlement — entrée en vigueur non vérifiée':'Publication officielle — statut juridique non vérifié'
+  }))).filter((item,index,all)=>all.findIndex(other=>other.url===item.url)===index)
+    .sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,12);
+  const sourceStatus=sources.map(entry=>({
+    name:entry.feed.name,scope:entry.feed.scope,available:entry.items.length>0,
+    error:entry.error||'',url:entry.feed.url
+  }));
+  if(!items.length)return res.status(503).json({
+    error:'Aucun titre exploitable depuis les sources officielles à cette consultation.',
+    sources:sourceStatus
+  });
+  const data={
+    country,
+    source:sources.filter(s=>s.items.length).map(s=>s.feed.name).join(' · '),
+    sources:sourceStatus,
+    checkedAt:new Date().toISOString(),
+    notice:'Liste pilote partielle. Les communiqués et décrets adoptés ne démontrent pas une entrée en vigueur. Vérifier le Moniteur belge et les dates.',
+    items
+  };
+  cache.set(country,{time:Date.now(),data});
+  return res.status(200).json(data);
 }
-export {parseFeed,clean};
+export {parseFeed,clean,FEEDS};
