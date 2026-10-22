@@ -1,6 +1,16 @@
-# SAVRÉO — version 1.4 bêta
+# SAVRÉO — version 1.5 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Bêta 1.5 — « Qui affirme quoi, quand et où ? »
+
+- **Avant le quiz**, chaque fiche de « Comprendre le vote » et « Savoirs essentiels » dispose d'un panneau de provenance : source, territoire ou type d'exercice, date de l'édition pédagogique, état de relecture indépendante et avertissement lorsque la référence est trop générale.
+- **Vie publique** : les archives institutionnelles sont décrites comme des publications documentaires, sans supposer qu'une annonce ou un ordre du jour est une mesure en vigueur. La date et la portée sont visibles.
+- **Choix du territoire** : navigation entre sources nationales/fédérales, régionales et communales lorsque disponibles, sans classement politique ; les liens locaux de Mons, Brugelette et Paris restent distingués des flux d'actualité récents.
+- **Source communale supplémentaire** : un procès-verbal daté du conseil communal de Brugelette (17 avril 2025), explicitement présenté comme archive.
+- **Protection éditoriale** : le lien vers un site institutionnel ne constitue pas un label de vérification indépendante ; aucune des 240 fiches n'est prétendue validée par un expert.
+- **Tests ajoutés** : chargement simulé des écrans, visibilité des sources avant réponse, changement de filtre territorial et réinitialisation au changement de pays, contrôles des métadonnées documentaires et scripts compatibles avec le cache v1.5.
+- Le site public ne change pas. Aucun déploiement Vercel manuel n'a été demandé. Le détail des limites et du fonctionnement est dans [la charte de provenance v1.5](docs/PUBLIC_EVIDENCE_DESIGN_V15.md).
 
 ## Travail qualité — audit du 22 octobre 2026
 
