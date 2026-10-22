@@ -171,9 +171,9 @@
       "body": "Ton ami explique une idée en cinq phrases. Tu veux vérifier que tu as compris avant de répondre.",
       "question": "Quelle phrase aide le plus ?",
       "choices": [
-        "Si je te comprends bien, tu dis que…",
-        "De toute façon tu as tort.",
-        "Je ne t’écoute pas."
+        "Reformuler son idée en lui demandant confirmation.",
+        "Répondre en expliquant tout de suite mon désaccord.",
+        "Résumer sa position selon ce que les autres disent."
       ],
       "answer": 0,
       "why": "Reformuler en gardant le sens permet de corriger un malentendu avant un désaccord.",
@@ -197,9 +197,9 @@
       "body": "Cinq élèves ont des temps de trajet très différents. Leur moyenne ne décrit pas forcément le trajet de chacun.",
       "question": "Que signifie une moyenne ?",
       "choices": [
-        "Le trajet exact de chaque élève.",
-        "Un résumé chiffré d'un ensemble de valeurs.",
-        "Toujours la valeur la plus élevée."
+        "Le trajet typique que suit chaque élève.",
+        "Une valeur de synthèse calculée sur le groupe.",
+        "Une valeur qui décrit obligatoirement la majorité."
       ],
       "answer": 1,
       "why": "Une moyenne renseigne sur le groupe ; sa dispersion et la médiane peuvent compléter sa lecture.",
@@ -223,9 +223,9 @@
       "body": "Tu lis une nouvelle qui cite l’Organisation des Nations unies.",
       "question": "Quelle mission générale est correcte ?",
       "choices": [
-        "Remplacer tous les gouvernements nationaux.",
-        "Organiser les élections municipales de chaque pays.",
-        "Créer un cadre de coopération entre États, notamment pour la paix."
+        "Voter directement toutes les lois nationales.",
+        "Administrer les villes de chaque pays membre.",
+        "Faciliter la coopération internationale des États."
       ],
       "answer": 2,
       "why": "L'ONU est une organisation internationale de coopération. Ses pouvoirs sont définis par ses organes et textes.",
@@ -249,9 +249,9 @@
       "body": "Il fait très froid une journée. Quelqu'un affirme que cela suffit à réfuter le réchauffement mondial.",
       "question": "Quelle distinction est utile ?",
       "choices": [
-        "La météo décrit des conditions à court terme, le climat des tendances longues.",
-        "La météo et le climat sont exactement identiques.",
-        "Une journée mesure toute la planète."
+        "La météo décrit le court terme, le climat les tendances.",
+        "Une série de jours froids remplace plusieurs décennies de données.",
+        "Une période de gel locale suffit à caractériser le climat mondial."
       ],
       "answer": 0,
       "why": "Une journée locale ne permet pas de conclure sur les tendances climatiques de plusieurs décennies.",
@@ -275,9 +275,9 @@
       "body": "Un jeu de puzzle demande l'accès permanent au microphone sans expliquer pourquoi.",
       "question": "Quel choix est prudent ?",
       "choices": [
-        "Tout accepter automatiquement.",
-        "Vérifier si la permission est nécessaire et la refuser sinon.",
-        "Donner aussi les contacts de tes amis."
+        "L’accepter seulement si l’application paraît connue.",
+        "Refuser si le jeu ne justifie pas cette permission.",
+        "L’accepter pour essayer, puis la retirer à la fin."
       ],
       "answer": 1,
       "why": "L'accès aux capteurs doit être proportionné à l'usage. Les réglages peuvent être revus.",
@@ -301,9 +301,9 @@
       "body": "Dans un groupe, quelqu’un souhaite donner son opinion tout en empêchant les autres de s’exprimer.",
       "question": "Quel principe favorise le dialogue ?",
       "choices": [
-        "Le plus fort décide de tout.",
-        "Un désaccord interdit le débat.",
-        "Pouvoir parler et laisser aussi parler les autres."
+        "La majorité décide qui est autorisé à parler.",
+        "Un groupe peut refuser la parole à ceux qui doutent.",
+        "Exprimer son avis tout en laissant les autres répondre."
       ],
       "answer": 2,
       "why": "L'écoute et le respect mutuel rendent l'exercice de la liberté d'expression plus concret.",

@@ -165,9 +165,9 @@
       "body": "Une personne répond « tout le monde le sait » à une demande de preuve. Pourtant, la popularité d’une idée ne démontre pas son exactitude.",
       "question": "Que répondre ?",
       "choices": [
-        "Peux-tu montrer une preuve vérifiable ?",
-        "Alors c’est forcément vrai.",
-        "Je change immédiatement de sujet."
+        "Peux-tu présenter une source vérifiable ?",
+        "Faut-il demander à la majorité de voter ?",
+        "Peut-on compter combien de personnes le disent ?"
       ],
       "answer": 0,
       "why": "Une affirmation appuyée par des sources est plus solide qu'une affirmation présentée comme évidente.",
@@ -190,9 +190,9 @@
       "body": "Deux amis ne sont pas d’accord. En posant une question ouverte, chacun peut expliquer son raisonnement sans devoir gagner une dispute.",
       "question": "Quelle formulation aide ?",
       "choices": [
-        "Tu as tort et c'est tout.",
-        "Qu'est-ce qui t'a amené à cette conclusion ?",
-        "Pourquoi es-tu stupide ?"
+        "Qui parmi nous a le plus de soutien ?",
+        "Qu’est-ce qui t’a conduit à ce point de vue ?",
+        "Es-tu prêt à défendre ton idée coûte que coûte ?"
       ],
       "answer": 1,
       "why": "Une question sur les raisons d’une opinion favorise la compréhension et la construction d’arguments.",
@@ -215,9 +215,9 @@
       "body": "Même si tu effaces un message, une capture ou une copie peut avoir été conservée par quelqu’un d'autre.",
       "question": "Quel réflexe adopter avant de publier ?",
       "choices": [
-        "Tout poster puis tout effacer.",
-        "Partager les mots de passe de ses amis.",
-        "Réfléchir à ce qu'on accepte de voir circuler."
+        "Effacer le post après que tous l’ont lu.",
+        "Supposer que les messages privés ne sont pas copiés.",
+        "Se demander qui pourrait conserver une copie."
       ],
       "answer": 2,
       "why": "Une fois qu'un contenu circule, son retrait complet peut être difficile. La prudence avant publication reste utile.",
@@ -240,9 +240,9 @@
       "body": "Un groupe de vingt personnes peut donner une idée des préférences de ce groupe, sans représenter automatiquement des millions d’habitants.",
       "question": "Quelle limite faut-il dire ?",
       "choices": [
-        "L'échantillon n'est pas nécessairement représentatif.",
-        "Les vingt réponses prouvent tout.",
-        "Un sondage est une loi."
+        "Vérifier comment les répondants ont été choisis.",
+        "Multiplier les chiffres par la taille du pays.",
+        "Conclure pour les gens du même âge que ces amis."
       ],
       "answer": 0,
       "why": "La taille et la sélection des répondants déterminent ce qu’on peut raisonnablement conclure d’un sondage.",
@@ -265,9 +265,9 @@
       "body": "Sur un réseau social, un compte imite le logo d’une administration. Un symbole ressemble à l’original mais le lien n'est pas celui de l'institution.",
       "question": "Quel réflexe adopter ?",
       "choices": [
-        "Partager le faux formulaire.",
-        "Vérifier le site officiel et son adresse.",
-        "Confier ses données au compte."
+        "Suivre le lien transmis par le compte ressemblant.",
+        "Retrouver l’adresse du site de l’institution.",
+        "Comparer les logos avec d’autres publications."
       ],
       "answer": 1,
       "why": "L’identité d’une institution se vérifie à partir de ses canaux reconnus, pas seulement d’un logo facile à copier.",
@@ -290,9 +290,9 @@
       "body": "Une fiche de paie présente des informations sur la rémunération et les retenues. Elle peut servir à vérifier son paiement ou préparer une démarche.",
       "question": "Que faire après réception ?",
       "choices": [
-        "La supprimer sans la lire.",
-        "Publier tous ses détails sur un réseau.",
-        "Comparer les informations au travail réellement effectué."
+        "La publier pour obtenir l’avis de ses collègues.",
+        "La conserver sans regarder les montants.",
+        "Comparer la fiche aux heures et au salaire reçu."
       ],
       "answer": 2,
       "why": "Les documents de rémunération permettent de garder une trace utile. Les règles exactes diffèrent selon le pays.",

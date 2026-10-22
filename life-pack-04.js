@@ -171,9 +171,9 @@
       "body": "Un groupe insiste pour que tu participes à une activité qui te met mal à l’aise.",
       "question": "Quelle phrase pose une limite claire ?",
       "choices": [
-        "Je ne souhaite pas participer, merci de respecter mon choix.",
-        "Vous êtes tous idiots.",
-        "Je dis oui puis je me force."
+        "Je préfère ne pas participer, respecte mon choix.",
+        "Je vous en reparlerai si vous insistez encore demain.",
+        "Je vais accepter pour éviter de créer un conflit."
       ],
       "answer": 0,
       "why": "Exprimer un refus clair permet de respecter ses limites sans humilier.",
@@ -197,9 +197,9 @@
       "body": "Une application de coloriage demande tous les numéros de téléphone de ton appareil.",
       "question": "Quelle question se poser ?",
       "choices": [
-        "Cette demande est-elle jolie ?",
-        "Cette permission est-elle nécessaire pour colorier ?",
-        "Tout le monde l'accepte-t-il ?"
+        "L’application est-elle populaire chez mes amis ?",
+        "Les contacts sont-ils indispensables au coloriage ?",
+        "Puis-je retirer la permission après l’installation ?"
       ],
       "answer": 1,
       "why": "Limiter les autorisations aux fonctions nécessaires protège aussi les données des proches.",
@@ -223,9 +223,9 @@
       "body": "Une vidéo explique l'histoire d'une ville mais ne donne aucun document consultable.",
       "question": "Comment approfondir ?",
       "choices": [
-        "Apprendre uniquement le titre.",
-        "Ignorer la date et l’auteur.",
-        "Chercher une archive ou un ouvrage identifié sur le sujet."
+        "Consulter des vidéos semblables sans vérifier leurs sources.",
+        "Lire les réactions des habitants sous la vidéo.",
+        "Chercher un document daté ou un livre référencé."
       ],
       "answer": 2,
       "why": "Retrouver des sources aide à vérifier les détails et à découvrir les points de vue.",
@@ -249,9 +249,9 @@
       "body": "Une offre affiche un objet numérique à prix très bas et multiplie les invitations à acheter.",
       "question": "Quel choix aide ton budget ?",
       "choices": [
-        "Calculer combien coûteraient plusieurs achats successifs.",
-        "Acheter chaque offre pour ne rien manquer.",
-        "Prendre une carte bancaire sans autorisation."
+        "Additionner les coûts si je répète ces achats.",
+        "Acheter pendant la réduction pour économiser sur chaque article.",
+        "Considérer uniquement le prix affiché maintenant."
       ],
       "answer": 0,
       "why": "Les microtransactions s'accumulent ; un budget fixé à l'avance limite les surprises.",
@@ -275,9 +275,9 @@
       "body": "Une personne rencontrée en ligne demande de la retrouver seule sans prévenir tes proches.",
       "question": "Quelle réponse protège le mieux ?",
       "choices": [
-        "Accepter sans informer personne.",
-        "Ne pas accepter ce rendez-vous et parler à un adulte de confiance.",
-        "Envoyer sa localisation en public."
+        "Accepter dans un lieu public, sans prévenir personne.",
+        "Refuser et en parler à une personne adulte de confiance.",
+        "Demander un appel vidéo puis partir seul au rendez-vous."
       ],
       "answer": 1,
       "why": "Les échanges en ligne ne garantissent pas l'identité ni les intentions d'une personne.",
@@ -301,9 +301,9 @@
       "body": "Quelqu’un dit que tous les commerces sont fermés le dimanche et un ami cite une boutique réellement ouverte.",
       "question": "Que prouve le contre-exemple vérifié ?",
       "choices": [
-        "Que tous les commerces sont ouverts.",
-        "Qu’aucune règle n’existe.",
-        "Que l’affirmation « tous » est trop générale."
+        "C’est une preuve que la majorité ouvre aussi le dimanche.",
+        "Il faut conclure que tous les commerces sont ouverts.",
+        "Un seul cas réel contredit le mot « tous »."
       ],
       "answer": 2,
       "why": "Un seul contre-exemple valable suffit à contredire une affirmation universelle.",

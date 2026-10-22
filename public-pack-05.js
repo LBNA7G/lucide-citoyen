@@ -171,9 +171,9 @@
       "body": "Deux camarades préfèrent des solutions différentes au même problème de quartier.",
       "question": "Quelle attitude favorise une décision ?",
       "choices": [
-        "Écouter les raisons et comparer les conséquences.",
-        "Refuser toute parole à l'autre.",
-        "Inventer son opinion personnelle."
+        "Écouter les arguments et comparer leurs effets.",
+        "Choisir la proposition la plus souvent répétée.",
+        "Reprendre l’avis de la personne la plus ancienne du groupe."
       ],
       "answer": 0,
       "why": "Débattre consiste aussi à éclairer les compromis entre objectifs divergents.",
@@ -197,9 +197,9 @@
       "body": "Deux scrutins utilisent des règles différentes pour attribuer les sièges à partir des votes.",
       "question": "Pourquoi les résultats peuvent-ils différer ?",
       "choices": [
-        "Tous les votes donnent automatiquement un siège.",
-        "Le mode de scrutin influence la répartition des sièges.",
-        "Seuls les slogans décident."
+        "Les partis gagnants reçoivent le même nombre de sièges.",
+        "Les règles de scrutin changent l’attribution des sièges.",
+        "La publicité d’un parti modifie les bulletins déposés."
       ],
       "answer": 1,
       "why": "Les règles électorales déterminent comment les suffrages se transforment en mandats.",
@@ -223,9 +223,9 @@
       "body": "Tu voudrais comprendre pourquoi des travaux sont prévus près de ton école.",
       "question": "Où rechercher une information datée ?",
       "choices": [
-        "Uniquement une rumeur dans un groupe.",
-        "Un ancien plan sans date.",
-        "Les décisions ou projets publiés par l’autorité locale compétente."
+        "Lire les plans disponibles sans contrôler leur date.",
+        "Attendre le début des travaux pour interroger la commune.",
+        "Chercher les documents de l’autorité locale compétente."
       ],
       "answer": 2,
       "why": "Les collectivités publient selon les règles locales des documents et informations utiles sur leurs projets.",
@@ -249,9 +249,9 @@
       "body": "Une publication affirme qu'une ville dépense trois fois plus qu'une autre mais ne nomme pas les collectivités.",
       "question": "Que vérifier en premier ?",
       "choices": [
-        "Les villes, l'année, l'unité et la source.",
-        "La taille des émojis.",
-        "Le nombre d'abonnés de l'auteur."
+        "Identifier villes, date, unité, source et périmètre.",
+        "Comparer seulement les sommes affichées sur le graphique.",
+        "Vérifier les journalistes qui ont partagé ce chiffre."
       ],
       "answer": 0,
       "why": "Un chiffre sans périmètre n'est pas une comparaison interprétable.",
@@ -275,9 +275,9 @@
       "body": "Une vidéo décrit l'ONU comme si elle dirigeait toutes les villes du monde.",
       "question": "Quelle distinction faire ?",
       "choices": [
-        "Toutes les communes sont des organes de l'ONU.",
-        "Les États gardent leurs institutions et coopèrent au sein de l'ONU.",
-        "L'ONU élit chaque bourgmestre."
+        "L’ONU désigne les autorités de chaque État membre.",
+        "Les États gardent leurs institutions et coopèrent à l’ONU.",
+        "Toutes les décisions de l’ONU sont des lois municipales."
       ],
       "answer": 1,
       "why": "La coopération internationale ne supprime pas les institutions nationales et locales.",
@@ -301,9 +301,9 @@
       "body": "Tu entends qu'une aide pour les jeunes vient de commencer sans texte ni date.",
       "question": "Que demander pour savoir si tu peux en bénéficier ?",
       "choices": [
-        "Le nombre de vues de l'annonce.",
-        "Le nom du créateur de la musique.",
-        "Le dispositif, ses conditions et son territoire."
+        "Chercher les retours d’expérience des jeunes aidés.",
+        "Rechercher uniquement la date de l’annonce officielle.",
+        "Vérifier le dispositif, le territoire et les critères."
       ],
       "answer": 2,
       "why": "L'éligibilité à une aide dépend de règles spécifiques et d'une situation individuelle.",
