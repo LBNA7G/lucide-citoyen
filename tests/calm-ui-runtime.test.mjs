@@ -9,6 +9,8 @@ const civicCode=readFileSync('civic-pack-01.js','utf8');
 const essentialCode=readFileSync('essentials-pack-02.js','utf8');
 const partyCode=readFileSync('party-directory-01.js','utf8');
 const worldCode=readFileSync('world-pack-03.js','utf8');
+const lifeCode=readFileSync('life-pack-04.js','utf8');
+const publicCode=readFileSync('public-pack-05.js','utf8');
 
 function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-20',interests=[]){
   const nodes=new Map(), handlers=new Map();
@@ -40,6 +42,8 @@ function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-2
   vm.runInNewContext(essentialCode,context,{timeout:1500,filename:'essentials-pack-02.js'});
   vm.runInNewContext(partyCode,context,{timeout:1500,filename:'party-directory-01.js'});
   vm.runInNewContext(worldCode,context,{timeout:1500,filename:'world-pack-03.js'});
+  vm.runInNewContext(lifeCode,context,{timeout:1500,filename:'life-pack-04.js'});
+  vm.runInNewContext(publicCode,context,{timeout:1500,filename:'public-pack-05.js'});
   vm.runInNewContext(code,context,{timeout:1500,filename:'app.js'});
   return {html:node('main').innerHTML,root:document.documentElement,handlers,store:stored,window,document};
 }
@@ -60,7 +64,7 @@ test('Calm UI renders each main page in a fake browser DOM without throwing',()=
    'vie-publique':['civic-spotlight','Apprendre à voter','Notre méthode de neutralité'],
    civique:['civic-question','Vérifier ma réponse','Parcourir les 16 notions'],
    dossiers:['party-library','Résultats, budgets et organismes de contrôle'],
-   essentiels:['civic-question','Parcourir les 80 savoirs']
+   essentiels:['civic-question','Parcourir les 176 savoirs']
  };
  for(const [route,markers] of Object.entries(expected)){
    const {html,root}=mount(route);
@@ -173,7 +177,7 @@ test('Belgian and French civic libraries have the same baseline topic count',()=
 test('32 new essential lessons unlock locally, retain explanations and support all ages',()=>{
  for(const age of ['12-15','16-20','21-28']){
    const sample=mount('essentiels','light',true,age);
-   assert.ok(sample.html.includes('Parcourir les 80 savoirs'));
+   assert.ok(sample.html.includes('Parcourir les 176 savoirs'));
    assert.ok(sample.html.includes('Vérifier ma réponse'));
  }
  const screen=mount('essentiels');
@@ -201,13 +205,13 @@ test('party catalogue attributes documents, with no election ranking',()=>{
  assert.match(be.document.getElementById('main').innerHTML,/(non exhaustif|pas une liste exhaustive)/);
 });
 
-test('80 micro-lessons stay accessible and age catalogues are not electoral profiling',()=>{
+test('176 micro-lessons stay accessible and age catalogues are not electoral profiling',()=>{
  const screen=mount('essentiels','light',true,'12-15');
- assert.ok(screen.html.includes('Parcourir les 80 savoirs'));
- assert.ok(screen.html.includes('27 fiches proposées'));
+ assert.ok(screen.html.includes('Parcourir les 176 savoirs'));
+ assert.ok(screen.html.includes('59 fiches proposées'));
  const age={dataset:{essentialAge:'21-28'},closest(q){return q==='[data-essential-age]'?this:null}};
  screen.handlers.get('click')({target:age});
- assert.ok(screen.document.getElementById('main').innerHTML.includes('26 fiches proposées'));
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('58 fiches proposées'));
  const choose={dataset:{essentialId:'world-48'},closest(q){return q==='[data-essential-id]'?this:null}};
  screen.handlers.get('click')({target:choose});
  assert.ok(screen.document.getElementById('main').innerHTML.includes('Faire évoluer son avis'));
