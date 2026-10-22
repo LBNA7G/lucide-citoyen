@@ -61,3 +61,18 @@ test('deep-link targets an existing non-partisan Declic only',()=>{
  assert.match(app.html,/2 millions de vues/);
  assert.match(app.html,/Partager ce défi sans mes données|Vérifier mon réflexe/);
 });
+
+test('first-run microsteps separate name, age and optional gender',()=>{
+ const app=boot(false);
+ assert.match(app.html,/Question 1 sur 3/);
+ assert.match(app.html,/quick-firstname/);
+ assert.doesNotMatch(app.html,/name="ageGroup"/);
+ assert.doesNotMatch(app.html,/name="gender"/);
+ assert.match(app.html,/guest-start/);
+ app.click(event('onboarding-skip-name'));
+ assert.match(app.html,/Question 2 sur 3/);
+ assert.match(app.html,/name="ageGroup"/);
+ assert.doesNotMatch(app.html,/name="gender"/);
+ app.click(event('onboarding-back'));
+ assert.match(app.html,/Question 1 sur 3/);
+});

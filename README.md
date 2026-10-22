@@ -1,4 +1,13 @@
-# SAVRÉO — version 1.6.2 bêta
+# SAVRÉO — version 1.6.3 bêta
+
+## 1.6.3 — Accueil sans formulaire écrasant
+- Première utilisation : **une question visible à la fois** dans un conteneur unique, sans carrousel ni animations superflues : prénom ou pseudo (passable), tranche d'âge (requise pour les suggestions), genre (facultatif, choix « ne pas préciser »).
+- Le bouton retour conserve les réponses déjà données ; l'essai d'un Déclic reste disponible sans profil.
+- Les centres d'intérêt sont désormais **facultatifs après inscription**, accessibles ensuite depuis le profil, et ne verrouillent jamais de sujets.
+- L'enregistrement local reste sur la même clé pour conserver l'historique et les XP. Le profil d'utilisateurs existants ne repasse pas dans l'intro.
+- Ajustements pour mobile, focus clavier, actions tactiles ≥44 px et mouvement réduit.
+
+
 
 ## 1.6.2 — Première vraie extension régionale de la Vigie
 - Flux institutionnel fédéral belge **et** flux du Parlement de Wallonie (« derniers décrets adoptés »), en parallèle, à partir du catalogue officiel des flux RSS du Parlement.
