@@ -8,6 +8,10 @@ test('RSS: accepte un titre de source officielle et nettoie les balises',()=>{
  const xml=`<rss><channel><item><title><![CDATA[Une &amp; bonne nouvelle]]></title><link>https://www.service-public.gouv.fr/particuliers/actualites/A123</link><description><![CDATA[<b>Annonce</b> datée]]></description><pubDate>Thu, 22 Oct 2026 09:00:00 GMT</pubDate></item></channel></rss>`;
  const items=parseFeed(xml,feed);assert.equal(items.length,1);assert.equal(items[0].title,'Une & bonne nouvelle');assert.equal(items[0].summary,'Annonce datée');assert.equal(items[0].date,'2026-10-22');
 });
+test('RSS belge : titre source fédérale accepté',()=>{
+ const xml='<rss><channel><item><title>Conseil des ministres</title><link>https://news.belgium.be/fr/conseil</link><description>Communiqué</description></item></channel></rss>';
+ assert.equal(parseFeed(xml,{domain:'news.belgium.be'}).length,1);
+});
 test('RSS: rejette les redirections vers des domaines usurpés',()=>{
  const fake=`<rss><item><title>Faux</title><link>https://www.service-public.gouv.fr.evil.test/bad</link><description>Test</description></item></rss>`;
  assert.equal(parseFeed(fake,{domain:'www.service-public.gouv.fr'}).length,0);
