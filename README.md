@@ -5,7 +5,7 @@ SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour appren
 ## Travail qualité — audit du 22 octobre 2026
 
 - 240 unités intégrées, **0 validation indépendante enregistrée** ; volume et fiabilité sont deux étapes distinctes.
-- 248 références enregistrées, dont 135 URL générales à remplacer progressivement par des documents précis. [Rapport de spécificité des sources](docs/EDITORIAL_AUDIT_2026-10-22.md).
+- 248 références enregistrées, dont 133 URL générales à remplacer progressivement par des documents précis. [Rapport de spécificité des sources](docs/EDITORIAL_AUDIT_2026-10-22.md).
 - Sur 215 QCM modulaires, 206 ont une bonne réponse qui est la plus longue ou ex aequo : risque de réussite sans compréhension. [Plan d'amélioration pédagogique](docs/QUIZ_QUALITY_2026-10-22.md).
 - Cinq fiches électorales BE/FR ont reçu des liens institutionnels plus ciblés. Le registre éditorial est synchronisé avec les modules.
 - Les nouvelles micro-fiches suggèrent d'abord une révision due ou un contenu inédit ; seulement trois révisions urgentes sont présentées avant le panneau dépliable.
