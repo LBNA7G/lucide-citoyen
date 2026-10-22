@@ -15,9 +15,9 @@
       "body": "Ce soir, la Lune ressemble à un croissant. La semaine prochaine, elle sera presque ronde.",
       "question": "Quelle explication est la plus juste ?",
       "choices": [
-        "La portion éclairée que nous voyons change au cours de son orbite.",
-        "La Lune perd chaque semaine un morceau.",
-        "La Terre la peint différemment."
+        "La portion éclairée visible change au fil de l'orbite.",
+        "La Terre cache la Lune à chaque phase lunaire.",
+        "La distance à la Terre change sa forme apparente."
       ],
       "answer": 0,
       "why": "Les phases dépendent de la géométrie Soleil–Terre–Lune, pas d'une transformation de la Lune.",
@@ -41,9 +41,9 @@
       "body": "Tu vois sur une vidéo une éclipse de Soleil. Cet événement ne se produit pas tous les jours à ton endroit.",
       "question": "Quel alignement provoque une éclipse solaire ?",
       "choices": [
-        "Mars passe toujours entre nous et le Soleil.",
-        "La Lune passe entre la Terre et le Soleil.",
-        "La Terre éteint le Soleil."
+        "La Terre s'interpose entre le Soleil et la Lune.",
+        "La Lune s'interpose entre le Soleil et la Terre.",
+        "Le Soleil s'interpose entre la Lune et la Terre."
       ],
       "answer": 1,
       "why": "Une éclipse solaire se produit lorsque la Lune masque tout ou partie du Soleil pour un observateur sur Terre.",
@@ -67,8 +67,8 @@
       "body": "Une carte représente la Belgique en un seul bloc, sans indiquer les communautés linguistiques.",
       "question": "Qu'est-ce qui mérite d'être ajouté ?",
       "choices": [
-        "Une langue supposée unique pour tout le pays.",
-        "Le score sportif du moment.",
+        "L'emplacement des principales agglomérations.",
+        "Les limites des provinces et des départements.",
         "Les langues et la répartition des compétences."
       ],
       "answer": 2,
@@ -93,9 +93,9 @@
       "body": "Un journal rédigé il y a cent ans raconte une manifestation, avec les mots de son auteur.",
       "question": "Comment lire ce document ?",
       "choices": [
-        "En situant son auteur, sa date et son contexte.",
-        "Comme une caméra parfaitement neutre.",
-        "En ignorant l’époque."
+        "Situer l'auteur, la date et le contexte du texte.",
+        "Le traiter comme un résumé de tous les avis de l'époque.",
+        "L'interpréter comme un récit vérifié dans chaque détail."
       ],
       "answer": 0,
       "why": "Une archive est une source située : elle donne une trace précieuse mais un point de vue et un contexte.",
@@ -119,9 +119,9 @@
       "body": "Un article écrit « Les écrans rendent tout le monde malade », tandis que son texte évoque seulement une étude limitée.",
       "question": "Quel est le bon réflexe ?",
       "choices": [
-        "Partager le titre seul.",
-        "Lire la méthode et les nuances de l'étude.",
-        "Prendre le titre pour une loi."
+        "Se fier au titre si le média est reconnu.",
+        "Examiner la méthode et les limites de l'étude.",
+        "Lire les témoignages des personnes concernées."
       ],
       "answer": 1,
       "why": "Un titre simplifié peut exagérer une étude ; il faut regarder ce qui a été réellement mesuré.",
@@ -145,9 +145,9 @@
       "body": "Deux plantes reçoivent des quantités d'eau différentes, mais elles sont aussi exposées à des éclairages différents.",
       "question": "Quel est le problème ?",
       "choices": [
-        "Il n'y a aucune variable.",
-        "La lumière n’a jamais d'effet.",
-        "On ne peut pas attribuer facilement la différence à l'eau."
+        "Chaque plante doit recevoir autant d'eau que l'autre.",
+        "La différence observée vient uniquement de la lumière.",
+        "La lumière empêche d'isoler l'effet propre de l'eau."
       ],
       "answer": 2,
       "why": "Pour comprendre l'effet de l'eau, les autres conditions doivent rester aussi comparables que possible.",

@@ -15,9 +15,9 @@
       "body": "Un camarade demande le code de validation envoyé sur ton téléphone pour « t'aider ».",
       "question": "Que faut-il faire ?",
       "choices": [
-        "Garder le code pour soi et vérifier directement son compte.",
-        "Donner le code au camarade.",
-        "Poster le code en story."
+        "Garder le code privé et consulter soi-même son compte.",
+        "Le communiquer si l'ami connaît le mot de passe.",
+        "L'envoyer après avoir confirmé l'identité par appel."
       ],
       "answer": 0,
       "why": "Un code à usage unique peut permettre une connexion à ta place.",
@@ -41,9 +41,9 @@
       "body": "Un ami veut poster une photo où plusieurs personnes sont reconnaissables.",
       "question": "Quelle attention avoir ?",
       "choices": [
-        "Publier immédiatement pour éviter l’attente.",
-        "Demander l’accord des personnes concernées.",
-        "Taguer chacun sans prévenir."
+        "Partager la photo puis accepter les demandes de retrait.",
+        "Demander l'accord avant de diffuser la photo.",
+        "Publier si le compte ne possède que des amis proches."
       ],
       "answer": 1,
       "why": "Demander avant publication respecte la vie privée et limite les conflits.",
@@ -67,9 +67,9 @@
       "body": "Deux boîtes de céréales ont des tailles différentes et une promotion visible sur l'une.",
       "question": "Quelle donnée aide à comparer ?",
       "choices": [
-        "La plus grande police publicitaire.",
-        "Le nombre de couleurs de l’emballage.",
-        "Le prix pour une même quantité."
+        "Le montant en euros de la réduction annoncée.",
+        "Le prix total du paquet après sa réduction.",
+        "Le prix rapporté à une même quantité de produit."
       ],
       "answer": 2,
       "why": "Le prix au kilo ou à l’unité rend la comparaison plus juste.",
@@ -93,9 +93,9 @@
       "body": "Une page prétend offrir un smartphone et demande tes informations personnelles.",
       "question": "Quel réflexe adopter ?",
       "choices": [
-        "Chercher une confirmation officielle et ne rien transmettre sous pression.",
-        "Entrer toutes les informations.",
-        "Envoyer le concours à tous ses amis."
+        "Contrôler le site officiel avant de fournir des données.",
+        "N'envoyer que l'adresse et pas le numéro de téléphone.",
+        "Remplir le formulaire puis demander sa suppression."
       ],
       "answer": 0,
       "why": "Une promesse attirante et urgente peut cacher une tentative de collecte de données.",
@@ -119,9 +119,9 @@
       "body": "Un inconnu affirme qu'une prise convient à tous les adolescents.",
       "question": "Quelle réaction est prudente ?",
       "choices": [
-        "Suivre immédiatement le commentaire.",
-        "Demander conseil à un professionnel de santé ou à un adulte responsable.",
-        "Doubler la quantité annoncée."
+        "Comparer les expériences des autres internautes.",
+        "Consulter un professionnel avant toute prise.",
+        "Suivre l'avis s'il concerne des personnes du même âge."
       ],
       "answer": 1,
       "why": "Les traitements dépendent du produit, de la personne et des contre-indications.",
@@ -145,9 +145,9 @@
       "body": "Deux comptes portent le même nom et la même photo mais n’ont pas la même provenance.",
       "question": "Comment départager ?",
       "choices": [
-        "Croire celui qui écrit en majuscules.",
-        "Croire celui qui publie en premier.",
-        "Vérifier les liens officiels et l'historique du compte."
+        "Privilégier celui dont les posts sont les plus anciens.",
+        "Choisir celui qui publie le plus d'informations.",
+        "Recouper les liens officiels et l'historique du compte."
       ],
       "answer": 2,
       "why": "Une identité numérique se vérifie par recoupement, pas par ressemblance visuelle.",

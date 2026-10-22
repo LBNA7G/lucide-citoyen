@@ -15,9 +15,9 @@
       "body": "Une vidéo affirme que le conseil d'une ville peut modifier toute loi nationale.",
       "question": "Quelle question clarifie la situation ?",
       "choices": [
-        "Qui a réellement compétence pour adopter la règle ?",
-        "Combien de personnes ont aimé la vidéo ?",
-        "De quelle couleur est le bâtiment communal ?"
+        "Identifier quelle autorité est compétente pour la règle.",
+        "Chercher la date du dernier conseil de la commune.",
+        "Lire les arguments de l'élu qui défend la mesure."
       ],
       "answer": 0,
       "why": "Les compétences locales, régionales et nationales ne sont pas interchangeables.",
@@ -41,9 +41,9 @@
       "body": "Un groupe doit choisir des représentants pour porter ses décisions et être contrôlés.",
       "question": "Quel principe décrit le mécanisme électoral ?",
       "choices": [
-        "Une personne choisit seule tous les autres.",
-        "Des citoyens désignent des représentants suivant des règles connues.",
-        "Les programmes deviennent automatiquement des lois."
+        "Les citoyens votent directement chacune des lois.",
+        "Des citoyens désignent leurs représentants selon les règles du scrutin.",
+        "Les programmes des candidats prennent effet au lendemain du vote."
       ],
       "answer": 1,
       "why": "Une élection sert à attribuer des mandats dans le cadre des institutions.",
@@ -67,8 +67,8 @@
       "body": "Une affiche politique promet « beaucoup d’emplois » sans période ni méthode.",
       "question": "Quel élément manque pour évaluer ?",
       "choices": [
-        "La couleur du slogan.",
-        "L'heure de publication du poster.",
+        "Le nom de l'institution qui reprend l'annonce.",
+        "La date des prochaines négociations politiques.",
         "Un objectif mesurable, une période et une source."
       ],
       "answer": 2,
@@ -93,9 +93,9 @@
       "body": "Quelqu’un t’affirme qu'il faut publier une photo de son bulletin pour prouver son choix.",
       "question": "Quel principe faut-il retenir ?",
       "choices": [
-        "Le choix électoral relève du secret du vote, selon les règles du scrutin.",
-        "Tout électeur doit montrer son bulletin.",
-        "Le vote se fait à main levée partout."
+        "Le choix électoral reste protégé par le secret du vote.",
+        "Chaque vote doit être photographié pour être validé.",
+        "Les scrutins imposent de montrer son choix aux agents."
       ],
       "answer": 0,
       "why": "Le secret protège la liberté de choix et limite certaines pressions.",
@@ -119,9 +119,9 @@
       "body": "Un ministre évoque une nouvelle règle dans un entretien, sans texte officiel adopté.",
       "question": "Quel statut donner à cette idée ?",
       "choices": [
-        "Une loi immédiatement applicable.",
-        "Une proposition ou intention à vérifier.",
-        "Un jugement de tribunal définitif."
+        "Une règle approuvée dont la date reste inconnue.",
+        "Une intention politique, pas une règle déjà applicable.",
+        "Une décision judiciaire susceptible d'être contestée."
       ],
       "answer": 1,
       "why": "Une déclaration politique n'est pas à elle seule une norme juridique en vigueur.",
@@ -145,9 +145,9 @@
       "body": "Une commune prévoit ses dépenses pour les écoles, les voiries et ses services.",
       "question": "Quel est le rôle général du budget ?",
       "choices": [
-        "Garantir que chaque projet sera fini.",
-        "Remplacer les lois nationales.",
-        "Prévoir les ressources et les dépenses d'une période."
+        "Fixer le calendrier obligatoire de tous les travaux.",
+        "Répartir les dépenses de toutes les autorités du pays.",
+        "Prévoir les recettes et les dépenses d'une période."
       ],
       "answer": 2,
       "why": "Un budget planifie recettes et dépenses, sous les procédures de décision et de contrôle applicables.",

@@ -15,9 +15,9 @@
       "body": "Une vidéo circule avec une affirmation importante. Ni l’auteur ni la date n’apparaissent. Il manque des éléments pour juger son exactitude.",
       "question": "Que chercher d’abord ?",
       "choices": [
-        "La source originale et la date.",
-        "Le nombre de vues.",
-        "Le compte qui crie le plus fort."
+        "Retrouver la publication d'origine et sa date.",
+        "Lire la version relayée par un média connu.",
+        "Comparer les réactions des personnes interrogées."
       ],
       "answer": 0,
       "why": "Retrouver la publication initiale permet de comprendre à quel moment et dans quel contexte la vidéo est apparue.",
@@ -40,9 +40,9 @@
       "body": "Une personne recommande une boisson en vidéo. Elle possède un code promotionnel : sa recommandation peut aussi avoir un objectif commercial.",
       "question": "Quelle question poser ?",
       "choices": [
-        "Son contenu a-t-il beaucoup de commentaires ?",
-        "La personne tire-t-elle un avantage de cette recommandation ?",
-        "Quelle est sa couleur préférée ?"
+        "Vérifier les avis publiés par des acheteurs.",
+        "Chercher si le créateur bénéficie du produit.",
+        "Comparer la boisson avec des produits similaires."
       ],
       "answer": 1,
       "why": "Identifier une relation commerciale aide à distinguer expérience personnelle, information et message promotionnel.",
@@ -65,9 +65,9 @@
       "body": "Réutiliser le même mot de passe pour plusieurs services augmente les conséquences d'une fuite de données sur l'un d'eux.",
       "question": "Quel réflexe protège le mieux ?",
       "choices": [
-        "Le même mot de passe facile.",
-        "Un mot de passe écrit sous une publication.",
-        "Des mots de passe uniques et robustes pour chaque compte."
+        "Employer la même phrase avec de petites variantes.",
+        "Modifier ses mots de passe régulièrement.",
+        "Créer un secret robuste différent par compte."
       ],
       "answer": 2,
       "why": "Des mots de passe distincts réduisent les effets d'une compromission. Un gestionnaire de mots de passe peut aider.",
@@ -90,9 +90,9 @@
       "body": "Les réglages d’un réseau social déterminent souvent qui peut consulter tes publications ou t'écrire. Ils peuvent changer avec le temps.",
       "question": "Que vérifier ?",
       "choices": [
-        "La confidentialité et les autorisations du compte.",
-        "La couleur du thème.",
-        "Le nombre d'amis d'un inconnu."
+        "Contrôler qui peut voir ou partager les contenus.",
+        "Regarder qui a commenté les dernières photos.",
+        "Supprimer les anciennes publications du profil."
       ],
       "answer": 0,
       "why": "Revoir les réglages et les personnes autorisées à voir les contenus permet de limiter la diffusion involontaire.",
@@ -115,9 +115,9 @@
       "body": "Une image peut être retouchée, recadrée ou fabriquée avec un outil génératif. Son apparence réaliste ne garantit pas son origine.",
       "question": "Quelle méthode est raisonnable ?",
       "choices": [
-        "Conclure que toutes les images sont fausses.",
-        "Chercher l'origine et des sources indépendantes.",
-        "Croire la première légende."
+        "Supposer que chaque image est fabriquée.",
+        "Retrouver son origine et recouper le contexte.",
+        "Lire les réactions sous la publication initiale."
       ],
       "answer": 1,
       "why": "L'analyse de la provenance et du contexte est plus fiable qu'une impression visuelle, surtout face aux images générées.",
@@ -140,9 +140,9 @@
       "body": "La liberté d’expression protège la discussion d’idées, mais n’oblige personne à accepter des menaces ou du harcèlement.",
       "question": "Quelle affirmation est juste ?",
       "choices": [
-        "Une opinion autorise toute menace.",
-        "L'accord de tous est obligatoire.",
-        "On peut débattre sans menacer ni humilier."
+        "Une discussion tendue autorise la menace.",
+        "Tout désaccord doit rester entièrement privé.",
+        "On peut contester une idée sans menacer autrui."
       ],
       "answer": 2,
       "why": "La discussion démocratique gagne à séparer les désaccords d'idées des attaques envers les personnes.",
