@@ -857,3 +857,7 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 .guest-experience button,.transfer-test button,.onboarding-discovery button{min-height:44px}
 @media(max-width:760px){.onboarding-discovery,.transfer-test{padding:17px}.onboarding-discovery>.btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.guest-experience,.transfer-test{animation:none!important;transition:none!important}}
+
+/* Mesures d'apprentissage : expérience, transfert et rappels */
+@media(min-width:761px){.calm-progress{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.calm-progress{grid-template-columns:1fr}}

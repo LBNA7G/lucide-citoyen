@@ -44,3 +44,12 @@ test('every quiz has a valid answer and an explanation',()=>{
    assert.ok(q.why?.length>=24,q.key+' short explanation');
  }
 });
+
+test('48 reworked pilot items have fewer length clues, without claiming learning validity',()=>{
+ const pilot=new Set(['ess','world','life','civic-life'].flatMap(prefix=>
+   Array.from({length:12},(_,i)=>'essential:'+prefix+'-'+String(i+1).padStart(2,'0'))
+ ));
+ const items=questions.filter(q=>pilot.has(q.key));
+ assert.equal(items.length,48,'pilot questions missing');
+ assert.ok(items.filter(longest).length<=24,'pilot still contains too many longer correct options');
+});

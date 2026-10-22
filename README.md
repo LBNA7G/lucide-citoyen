@@ -9,8 +9,10 @@ SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour appren
 - Partage facultatif d'un **lien vers un exercice**, pas vers des résultats personnels ; accès direct par `#declic/identifiant`.
 - Défi oral facultatif de 40 secondes, sans microphone ni enregistrement ; le coach IA reste désactivé par défaut.
 - Vigie : liens directs régionaux/communaux séparés du RSS fédéral/national ; chaque titre porte l'avertissement « statut juridique non vérifié ».
-- Premier lot de 24 QCM re-rédigés pour réduire les mauvaises réponses caricaturales ; **relecture éditoriale indépendante toujours nécessaire**.
+- Deux lots de 48 QCM re-rédigés pour réduire les mauvaises réponses caricaturales ; **relecture éditoriale indépendante toujours nécessaire**.
 - Ce lot **ne constitue pas** une couverture exhaustive des territoires, une validation humaine ou un essai utilisateur.
+
+**Audit de forme actualisé : 176/215 QCM modulaires présentent encore une bonne réponse la plus longue ou ex æquo (contre 197/215 au départ).** Les 48 questions retravaillées comptent 23 réponses de ce type, contre 44 avant correction ; une relecture humaine est nécessaire pour évaluer l'exactitude des options, et ce comptage n'est pas une preuve de réussite d'apprentissage.
 
 ## Bêta 1.6 — Une progression qui donne envie de revenir
 
