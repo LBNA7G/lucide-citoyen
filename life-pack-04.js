@@ -639,9 +639,9 @@
       "body": "Un produit acheté à distance arrive endommagé et tu veux expliquer le problème au vendeur.",
       "question": "Quel réflexe utile ?",
       "choices": [
-        "Conserver photos, preuves d’achat et échanges écrits.",
-        "Jeter immédiatement le produit et les preuves.",
-        "Ne rien signaler."
+        "Garder photos, facture et échanges datés.",
+        "Contacter le vendeur sans conserver les pièces.",
+        "Jeter l’article avant de décrire le problème."
       ],
       "answer": 0,
       "why": "Les traces de la transaction permettent d'instruire une réclamation selon les garanties applicables.",
@@ -665,9 +665,9 @@
       "body": "Une publication affirme qu'une école aurait fermé définitivement, mais le site de l'établissement ne confirme rien.",
       "question": "Comment éviter une rumeur ?",
       "choices": [
-        "Publier une nouvelle accusation.",
-        "Chercher la communication officielle et les confirmations indépendantes.",
-        "Interpréter les commentaires comme un arrêté."
+        "Reprendre les commentaires d’anciens élèves.",
+        "Lire la réponse officielle et recouper les faits.",
+        "Partager l’accusation pour avoir plus de réactions."
       ],
       "answer": 1,
       "why": "Une décision publique doit pouvoir être documentée par l'autorité compétente.",
@@ -691,9 +691,9 @@
       "body": "Un message pressant prétend venir de ta banque et demande un code pour stopper une opération.",
       "question": "Quel est le bon réflexe face à ce SMS ?",
       "choices": [
-        "Répondre avec le code.",
-        "Cliquer sur le lien sans contrôle.",
-        "Ouvrir ton application bancaire officielle et contacter l'établissement par son canal habituel."
+        "Répondre directement avec le code demandé.",
+        "Ouvrir le lien si le message contient son prénom.",
+        "Passer par l’appli officielle ou le canal habituel."
       ],
       "answer": 2,
       "why": "Une banque ne doit pas être authentifiée par le lien fourni dans un message suspect.",
@@ -717,9 +717,9 @@
       "body": "Une vidéo promet un résultat spectaculaire et rapide sans mentionner les risques.",
       "question": "Quelle prudence adopter ?",
       "choices": [
-        "Vérifier les preuves et discuter avec un professionnel qualifié si nécessaire.",
-        "Copier toutes les restrictions.",
-        "Recommander à tous les mineurs."
+        "Recouper les preuves et consulter un professionnel.",
+        "Vérifier la popularité des témoignages avant d’essayer.",
+        "Modifier directement ses repas sur la base du post."
       ],
       "answer": 0,
       "why": "Les conseils alimentaires extrêmes peuvent présenter des risques et ne conviennent pas à chacun.",
@@ -743,9 +743,9 @@
       "body": "Un magasin affiche une réduction importante mais tu ignores le prix habituel du produit.",
       "question": "Quel moyen simple pour juger ?",
       "choices": [
-        "Croire le pourcentage seul.",
-        "Comparer l'évolution et le prix total auprès de vendeurs fiables.",
-        "Acheter vite avant de réfléchir."
+        "Le pourcentage de baisse reflète le prix réel payé.",
+        "Comparer le prix final et son évolution ailleurs.",
+        "La réduction annoncée suffit pour décider d’acheter."
       ],
       "answer": 1,
       "why": "Un pourcentage promotionnel est utile seulement si le prix de référence est pertinent.",
@@ -769,9 +769,9 @@
       "body": "Tu dois expliquer à ton responsable que certaines heures sont incompatibles avec tes études.",
       "question": "Quelle formulation fonctionne ?",
       "choices": [
-        "Ne jamais répondre aux messages.",
-        "Accuser sans exposer les contraintes.",
-        "Décrire tes disponibilités et proposer un planning réaliste."
+        "Accepter sans réserve puis signaler les difficultés.",
+        "Demander aux collègues de choisir les horaires.",
+        "Présenter ses contraintes et proposer un planning."
       ],
       "answer": 2,
       "why": "Une demande précise et respectueuse permet d'ouvrir une négociation documentée.",
@@ -795,9 +795,9 @@
       "body": "Tu veux demander de l'aide avec un document contenant numéro national, adresse ou IBAN.",
       "question": "Quel réflexe protège tes informations ?",
       "choices": [
-        "Masquer les données personnelles non nécessaires avant partage.",
-        "Publier la version intégrale.",
-        "Envoyer toutes les données à un compte anonyme."
+        "Masquer les données personnelles inutiles au partage.",
+        "Publier le document si l’institution l’a émis.",
+        "Partager seulement avec les comptes qui le demandent."
       ],
       "answer": 0,
       "why": "Seules les informations indispensables doivent être partagées à des destinataires de confiance.",
@@ -821,9 +821,9 @@
       "body": "Une carte mensuelle semble moins chère qu'acheter des trajets, mais tu voyages seulement une fois par semaine.",
       "question": "Quelle méthode choisir ?",
       "choices": [
-        "Acheter la carte la plus chère automatiquement.",
-        "Calculer selon le nombre de trajets réellement prévus.",
-        "Comparer seulement la publicité."
+        "Comparer le prix d’abonnement le plus élevé.",
+        "Calculer les trajets prévus et les tarifs associés.",
+        "Choisir selon les trajets théoriques de l’opérateur."
       ],
       "answer": 1,
       "why": "Le coût total dépend de la fréquence d'utilisation, des zones et des conditions.",
@@ -847,9 +847,9 @@
       "body": "Tu entres dans un appartement et constates des traces d'humidité absentes du document proposé.",
       "question": "Que faire avant de signer l'état des lieux ?",
       "choices": [
-        "Signer sans vérifier.",
-        "Ne rien noter puis oublier.",
-        "Demander que les éléments observés soient consignés et conserver des preuves datées."
+        "Accepter la description initiale si elle paraît détaillée.",
+        "Photographier seulement les défauts remarqués après coup.",
+        "Faire noter les défauts et conserver des preuves."
       ],
       "answer": 2,
       "why": "Un état des lieux précis permet de comparer les situations à l'entrée et à la sortie.",
@@ -873,9 +873,9 @@
       "body": "Une assurance de 480 euros est due en décembre alors que ton budget mensuel n'anticipe rien.",
       "question": "Quelle réserve mensuelle correspond au coût annuel ?",
       "choices": [
-        "40 euros par mois.",
-        "4 euros par mois.",
-        "480 euros chaque mois."
+        "Environ 40 € mis de côté chaque mois.",
+        "Environ 48 € mis de côté chaque mois.",
+        "Environ 36 € mis de côté chaque mois."
       ],
       "answer": 0,
       "why": "Répartir 480 euros sur douze mois revient à prévoir 40 euros mensuels.",
@@ -899,9 +899,9 @@
       "body": "Le premier prêt affiche 150 euros par mois sur six ans, le second 180 euros sur quatre ans, sans autre information.",
       "question": "Quel élément doit être examiné ?",
       "choices": [
-        "Uniquement la mensualité la plus basse.",
-        "Le coût total et les taux, frais et assurances du contrat.",
-        "Uniquement la publicité la plus colorée."
+        "Comparer seulement le montant payé chaque mois.",
+        "Examiner taux, frais, assurance et coût total.",
+        "Choisir le prêt dont la publicité annonce une remise."
       ],
       "answer": 1,
       "why": "La durée et les frais influencent fortement le coût total d'un emprunt.",
@@ -925,9 +925,9 @@
       "body": "Une clause concerne la fin du contrat, mais sa rédaction ne permet pas de comprendre ses conséquences.",
       "question": "Quel réflexe adopter ?",
       "choices": [
-        "Signaler son accord sans lire.",
-        "Supposer que la clause est sans effet.",
-        "Demander une clarification écrite à une personne compétente avant de signer."
+        "Signer puis demander à annuler la clause si nécessaire.",
+        "Supposer que les clauses peu claires sont sans effet.",
+        "Obtenir une clarification écrite avant signature."
       ],
       "answer": 2,
       "why": "Les conséquences contractuelles dépendent des termes, du droit applicable et de la situation.",
@@ -951,9 +951,9 @@
       "body": "Une offre d'énergie affiche un prix par unité très bas mais des frais fixes plus élevés.",
       "question": "Quel comparatif est pertinent ?",
       "choices": [
-        "Le montant total selon ta consommation probable et tous les frais.",
-        "Uniquement le prix variable.",
-        "Uniquement le nom du fournisseur."
+        "Comparer le coût global à consommation comparable.",
+        "Comparer les fournisseurs sur la seule part variable.",
+        "Comparer les tarifs de voisins aux usages différents."
       ],
       "answer": 0,
       "why": "Les frais fixes et les tarifs variables participent tous au coût final.",
@@ -977,9 +977,9 @@
       "body": "Un calculateur estime un remboursement fiscal mais tes données pourraient changer avant la déclaration définitive.",
       "question": "Comment considérer la somme ?",
       "choices": [
-        "Comme une somme déjà garantie.",
-        "Comme une estimation à confirmer par les documents officiels.",
-        "Comme de l'argent en espèces aujourd'hui."
+        "Un montant garanti même avant le calcul définitif.",
+        "Une estimation à confirmer par la source officielle.",
+        "Une somme déjà reçue et librement disponible."
       ],
       "answer": 1,
       "why": "Une simulation n'est pas une décision fiscale définitive.",
@@ -1003,9 +1003,9 @@
       "body": "Un téléphone acheté récemment cesse de fonctionner et le vendeur refuse toute discussion.",
       "question": "Que rassembler avant la réclamation ?",
       "choices": [
-        "Une estimation inventée.",
-        "Les identifiants du compte bancaire.",
-        "La preuve d’achat, les échanges et le descriptif du problème."
+        "Rassembler achat, échanges et description de la panne.",
+        "Évaluer seul la réparation avant de contacter le vendeur.",
+        "Remplacer le produit et jeter les justificatifs."
       ],
       "answer": 2,
       "why": "Un dossier clair aide à faire valoir les droits applicables, notamment selon la nature de l'achat.",
@@ -1029,9 +1029,9 @@
       "body": "Ton contrat d'assurance prévoit une franchise que tu n'avais pas prise en compte.",
       "question": "Quel document relire ?",
       "choices": [
-        "Les garanties, exclusions, franchises et plafonds.",
-        "La publicité du concurrent.",
-        "Le seul logo de l'assureur."
+        "Contrôler garanties, exclusions et franchise.",
+        "Lire les garanties sans les exclusions.",
+        "Comparer la cotisation sans les plafonds."
       ],
       "answer": 0,
       "why": "Le coût restant à charge dépend des modalités exactes de la garantie.",
@@ -1055,9 +1055,9 @@
       "body": "Une entreprise te demande la copie complète d'un document alors qu'elle a seulement besoin de confirmer une information.",
       "question": "Que peut-on demander ?",
       "choices": [
-        "Que toutes les copies soient publiées.",
-        "Pourquoi chaque donnée est nécessaire et comment elle sera protégée.",
-        "Que toute collecte est forcément illégale."
+        "Échanger toutes les données si le service est populaire.",
+        "Identifier leur nécessité et leur protection.",
+        "Supposer qu’un accord verbal autorise toute copie."
       ],
       "answer": 1,
       "why": "Le principe de minimisation conduit à limiter les données aux besoins réels du traitement.",
@@ -1081,9 +1081,9 @@
       "body": "Un responsable annonce une évolution de poste et de rémunération, mais rien n'est précisé sur la date et les conditions.",
       "question": "Quelle mesure aide à clarifier ?",
       "choices": [
-        "Arrêter tout suivi.",
-        "Considérer la promotion déjà acquise.",
-        "Demander les modalités, critères et délais par écrit."
+        "Attendre l’annonce publique sans demander de détail.",
+        "Considérer une promesse orale comme définitive.",
+        "Demander critères, calendrier et conditions par écrit."
       ],
       "answer": 2,
       "why": "Une trace écrite facilite une compréhension commune sans garantir à elle seule un résultat.",
@@ -1107,9 +1107,9 @@
       "body": "Deux annonces affichent 700 euros de loyer ; l'une prévoit des charges mensuelles plus élevées.",
       "question": "Quel budget retenir ?",
       "choices": [
-        "Loyer, charges prévisibles, assurance et autres frais pertinents.",
-        "Le loyer nu seulement.",
-        "Le montant payé par un voisin."
+        "Additionner loyer, charges et frais prévisibles.",
+        "Considérer que le premier paiement couvre tous les frais.",
+        "Comparer uniquement les loyers affichés dans les annonces."
       ],
       "answer": 0,
       "why": "Le coût d'un logement dépasse souvent le montant principal indiqué dans l'annonce.",
@@ -1133,9 +1133,9 @@
       "body": "Un résident reproche à sa ville une taxe qui relève peut-être d'une autre autorité.",
       "question": "Comment identifier le responsable ?",
       "choices": [
-        "Accuser le premier élu visible.",
-        "Vérifier le niveau de pouvoir compétent et le texte applicable.",
-        "Déduire la compétence d'un slogan."
+        "Choisir l’autorité qui communique le plus sur le thème.",
+        "Vérifier la compétence juridique et le territoire.",
+        "Se fier à la personne élue la plus proche du dossier."
       ],
       "answer": 1,
       "why": "Les compétences se répartissent entre niveaux institutionnels et peuvent varier selon le territoire.",
@@ -1159,9 +1159,9 @@
       "body": "Ton budget mensuel fonctionne, mais les réparations imprévues créent un découvert régulier.",
       "question": "Quelle méthode permet d'améliorer la prévision ?",
       "choices": [
-        "Tout traiter comme une surprise.",
-        "Ne plus noter ses dépenses.",
-        "Séparer charges régulières, dépenses annuelles et réserve d'urgence."
+        "Traiter les dépenses annuelles comme des achats spontanés.",
+        "Inscrire uniquement les dépenses récurrentes du mois.",
+        "Séparer frais réguliers, annuels et réserve de secours."
       ],
       "answer": 2,
       "why": "Une vision annuelle complète aide à préparer les dépenses rares mais plausibles.",
@@ -1185,9 +1185,9 @@
       "body": "Un fournisseur connu t'envoie un nouvel IBAN par courriel en te demandant de payer immédiatement.",
       "question": "Quelle précaution est essentielle ?",
       "choices": [
-        "Confirmer le changement auprès du fournisseur par un canal habituel indépendant.",
-        "Payer pour respecter l'urgence.",
-        "Transmettre l'IBAN à toute l'équipe."
+        "Confirmer le changement via un contact indépendant.",
+        "Payer le nouvel IBAN lorsque l’email semble officiel.",
+        "Faire suivre la demande pour que chacun vérifie."
       ],
       "answer": 0,
       "why": "La fraude au changement de coordonnées bancaires peut utiliser une identité d'entreprise crédible.",
@@ -1211,9 +1211,9 @@
       "body": "Un contrat de voiture de location inclut des frais pour restitution tardive et un kilométrage plafonné.",
       "question": "Que comparer avant de signer ?",
       "choices": [
-        "Seulement la photo de la voiture.",
-        "Durée, kilomètres, assurance, franchise et pénalités.",
-        "Le nombre de voitures disponibles."
+        "Vérifier la catégorie et les photos du véhicule.",
+        "Lire durée, kilométrage, assurance et pénalités.",
+        "Choisir selon la garantie annoncée dans la publicité."
       ],
       "answer": 1,
       "why": "Les coûts d'usage et les pénalités font partie du coût réel de la location.",
@@ -1237,9 +1237,9 @@
       "body": "Un ami te promet un placement performant, mais tu aurais besoin de cet argent pour payer ton loyer le mois prochain.",
       "question": "Quelle règle de prudence appliquer ?",
       "choices": [
-        "Immobiliser tout son argent.",
-        "Emprunter pour suivre une promesse.",
-        "Garder disponibles les fonds nécessaires aux dépenses proches."
+        "Investir aussi l’argent destiné aux dépenses imminentes.",
+        "Emprunter pour acheter avant d’avoir une réserve.",
+        "Conserver disponible l’argent des dépenses proches."
       ],
       "answer": 2,
       "why": "Le risque, la liquidité et l'horizon temporel doivent être compatibles avec les besoins.",

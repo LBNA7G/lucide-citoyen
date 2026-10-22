@@ -639,9 +639,9 @@
       "body": "Un débat simplifie les procédures de l’Union européenne à un seul organe.",
       "question": "Quel outil consulter ?",
       "choices": [
-        "La procédure et les rôles respectifs des institutions compétentes.",
-        "Le profil social d'un député.",
-        "Un commentaire anonyme."
+        "Identifier la procédure et le rôle des institutions.",
+        "Attribuer tout vote européen à la seule Commission.",
+        "Supposer que le Parlement initie toujours la loi seul."
       ],
       "answer": 0,
       "why": "L'initiative, les amendements et l'adoption suivent des procédures spécifiques selon les actes.",
@@ -665,9 +665,9 @@
       "body": "Deux formations proposent un changement fiscal, mais les groupes visés et les dates ne sont pas les mêmes.",
       "question": "Comment les comparer correctement ?",
       "choices": [
-        "Sur le nombre de pages des brochures.",
-        "Sur un même périmètre, avec conditions, calendrier et financement.",
-        "Sur leur couleur dominante."
+        "Comparer uniquement les objectifs les plus visibles.",
+        "Comparer périmètre, financement et calendrier.",
+        "Comparer les longueurs des documents publiés."
       ],
       "answer": 1,
       "why": "Deux mesures qui portent le même nom peuvent différer fortement dans leur application.",
@@ -691,9 +691,9 @@
       "body": "Un candidat promet un changement relevant peut-être d'une autre institution.",
       "question": "Quelle question démocratique lui poser ?",
       "choices": [
-        "Quelle photo préférez-vous ?",
-        "Combien de followers aurez-vous ?",
-        "Comment et avec quelle compétence mettriez-vous cette mesure en œuvre ?"
+        "Comment cette mesure répond-elle aux sondages ?",
+        "Comment comptez-vous communiquer cette idée ?",
+        "Qui a la compétence et comment l’appliqueriez-vous ?"
       ],
       "answer": 2,
       "why": "La faisabilité dépend des compétences, des majorités et du cadre juridique.",
@@ -717,9 +717,9 @@
       "body": "Un média corrige une erreur publiée dans un article politique.",
       "question": "Quel contrôle constitue un bon réflexe ?",
       "choices": [
-        "Lire le rectificatif, sa date et les preuves apportées.",
-        "Conserver uniquement l'ancienne version.",
-        "Prétendre que toute correction est impossible."
+        "Lire la correction, sa date et les preuves.",
+        "Supprimer seulement les commentaires les plus anciens.",
+        "Garder l’ancienne version pour éviter de se contredire."
       ],
       "answer": 0,
       "why": "Une information corrigée doit être évaluée avec ses mises à jour et ses sources.",
@@ -743,9 +743,9 @@
       "body": "Un jeune souhaite signaler un problème d'éclairage public sans publier son adresse personnelle en ligne.",
       "question": "Quelle voie envisager ?",
       "choices": [
-        "Publier toutes les données de son foyer.",
-        "Chercher les canaux officiels de signalement ou de participation.",
-        "Menacer le personnel communal."
+        "Passer par un élu sur son réseau personnel.",
+        "Consulter les canaux officiels de la commune.",
+        "Contacter des particuliers sans vérifier leur rôle."
       ],
       "answer": 1,
       "why": "Les collectivités proposent selon leurs règles des canaux adaptés aux demandes des habitants.",
@@ -769,9 +769,9 @@
       "body": "Une rumeur prétend connaître les comptes de campagne d'une liste sans aucune référence.",
       "question": "Quel document rechercher ?",
       "choices": [
-        "Une photo de meeting.",
-        "Une affirmation sans pièces.",
-        "Les déclarations et décisions de l'autorité de contrôle compétente."
+        "Les communiqués des candidats les plus connus.",
+        "Le nombre de réunions organisées pendant la campagne.",
+        "Les comptes examinés par l’autorité compétente."
       ],
       "answer": 2,
       "why": "Le financement politique obéit à des règles et contrôles à consulter par scrutin et pays.",
@@ -795,9 +795,9 @@
       "body": "Un communiqué affirme réaliser des économies sans dire si elles sont ponctuelles ou récurrentes.",
       "question": "Quelle distinction compte ?",
       "choices": [
-        "Montant annuel, période, périmètre et méthode de calcul.",
-        "La mise en page.",
-        "Le nom du porte-parole."
+        "Vérifier somme, période et méthode annoncées.",
+        "Comparer l’économie avec la durée de la conférence.",
+        "Déduire les économies du nombre de réactions."
       ],
       "answer": 0,
       "why": "Une économie one-shot ne se compare pas directement à une baisse récurrente.",
@@ -821,9 +821,9 @@
       "body": "Le conseil d’une ville discute un projet d'équipement collectif.",
       "question": "Quel document peut éclairer le débat ?",
       "choices": [
-        "Uniquement un titre humoristique.",
-        "L'ordre du jour, la délibération et les décisions publiées.",
-        "Une projection sans source."
+        "Se fier au résumé d’un participant connu.",
+        "Lire ordre du jour, procès-verbal et décisions.",
+        "Consulter une publication ancienne sans date."
       ],
       "answer": 1,
       "why": "Les documents institutionnels aident à distinguer la discussion d'une décision formalisée.",
@@ -847,9 +847,9 @@
       "body": "Un communiqué ministériel présente une réforme des aides sociales.",
       "question": "Quel élément vérifier avant d'en tenir compte ?",
       "choices": [
-        "La publicité du ministère.",
-        "La popularité du communiqué.",
-        "Le texte applicable et sa date d'entrée en vigueur."
+        "L’annonce publique et la volonté du gouvernement.",
+        "Le soutien de la majorité à une réforme future.",
+        "Le texte officiel, ses conditions et sa date d’effet."
       ],
       "answer": 2,
       "why": "Annoncer une réforme ne prouve pas que les règles administratives ont déjà changé.",
@@ -873,9 +873,9 @@
       "body": "Deux pays ont des dettes nominales différentes et des économies de tailles très différentes.",
       "question": "Quel indicateur complète la comparaison ?",
       "choices": [
-        "Le ratio de dette au PIB, avec sa définition et ses limites.",
-        "Le nombre de photos des ministres.",
-        "La somme des budgets des communes."
+        "Comparer la dette au PIB, avec ses limites.",
+        "Comparer seulement les euros de deux pays très différents.",
+        "Comparer le nombre de personnes employées dans l’État."
       ],
       "answer": 0,
       "why": "Les montants absolus et ratios rapportés à l'économie répondent à des questions distinctes.",
@@ -899,9 +899,9 @@
       "body": "Une collectivité annonce 500 places supplémentaires sans préciser la demande ni les critères d'accès.",
       "question": "Quels éléments sont nécessaires ?",
       "choices": [
-        "Le visuel de campagne.",
-        "Le nombre de bénéficiaires, l'éligibilité, la demande et la période.",
-        "Une prévision sans date."
+        "Compter les campagnes publiques mentionnant le projet.",
+        "Mesurer l’accès réel, les bénéficiaires et la période.",
+        "Comparer les budgets sans la population concernée."
       ],
       "answer": 1,
       "why": "Pour évaluer la portée d'un dispositif, il faut rapporter ses résultats à un besoin mesuré.",
@@ -925,9 +925,9 @@
       "body": "Le conseil communal a publié un projet et reçoit des observations avant sa décision finale.",
       "question": "Que distinguer ?",
       "choices": [
-        "Toute consultation est une décision finale.",
-        "Toute affiche garantit des travaux.",
-        "Consultation, projet amendé, délibération et exécution des travaux."
+        "Toute consultation donne une décision définitive.",
+        "Une délibération suffit à prouver que les travaux sont finis.",
+        "Distinguer consultation, décision et réalisation."
       ],
       "answer": 2,
       "why": "La participation peut intervenir avant la décision et ne remplace pas les procédures de validation.",
@@ -951,9 +951,9 @@
       "body": "Un rapport présente un crédit budgétaire de 10 millions et une dépense exécutée inférieure.",
       "question": "Quelle formulation est rigoureuse ?",
       "choices": [
-        "Le montant autorisé et le montant effectivement dépensé diffèrent.",
-        "Les 10 millions sont toujours partis.",
-        "Aucune dépense n'a été faite."
+        "Les sommes votées peuvent différer des sommes payées.",
+        "Un crédit inscrit au budget doit toujours être dépensé.",
+        "Une baisse de dépense annule automatiquement le budget."
       ],
       "answer": 0,
       "why": "Un budget autorise ou prévoit des dépenses ; l'exécution indique les opérations effectives selon les méthodes retenues.",
@@ -977,9 +977,9 @@
       "body": "Des partis publient un accord annonçant des politiques communes pour la législature.",
       "question": "Comment le classer ?",
       "choices": [
-        "Une décision judiciaire.",
-        "Un engagement politique, distinct des lois ultérieurement adoptées.",
-        "Le compte public vérifié."
+        "Une règle automatiquement imposée aux citoyens.",
+        "Un accord politique distinct des lois adoptées.",
+        "Une approbation juridique définitive de toutes ses mesures."
       ],
       "answer": 1,
       "why": "Les accords de coalition fixent des orientations, qui doivent encore passer les étapes juridiques nécessaires.",
@@ -1003,9 +1003,9 @@
       "body": "Un média présente le pourcentage national d'un parti pour expliquer une élection municipale.",
       "question": "Quelle réserve faire ?",
       "choices": [
-        "Une moyenne nationale décrit exactement chaque commune.",
-        "Toutes les élections sont identiques.",
-        "Les circonscriptions et les types de scrutin peuvent produire des résultats différents."
+        "Chaque commune suit automatiquement le résultat national.",
+        "Un résultat national détermine chaque mandat local.",
+        "Les circonscriptions et scrutins peuvent différer."
       ],
       "answer": 2,
       "why": "La structure du scrutin et l'échelle de mesure sont essentielles pour interpréter des résultats.",
@@ -1029,9 +1029,9 @@
       "body": "Tu veux savoir ce qu'un Parlement a réellement adopté, pas seulement ce qu'un élu affirme.",
       "question": "Quelle démarche a du sens ?",
       "choices": [
-        "Chercher les comptes rendus et votes publiés par l'institution concernée.",
-        "Inférer un vote à partir d'un slogan.",
-        "Écouter seulement un adversaire."
+        "Consulter les relevés officiels du Parlement.",
+        "Déduire les votes du programme de chaque élu.",
+        "Demander aux réseaux d’estimer les suffrages."
       ],
       "answer": 0,
       "why": "Les textes officiels et les comptes rendus fournissent une trace attribuable des procédures.",
@@ -1055,9 +1055,9 @@
       "body": "Un indicateur d'un pays tient compte d'une catégorie absente chez son voisin.",
       "question": "Quelle méthode adopter ?",
       "choices": [
-        "Additionner les chiffres hétérogènes.",
-        "Chercher des séries harmonisées et signaler les limites.",
-        "Conclure à partir de la taille des barres."
+        "Additionner toutes les valeurs même si elles diffèrent.",
+        "Utiliser des indicateurs harmonisés et signaler les limites.",
+        "Comparer uniquement les titres des rapports nationaux."
       ],
       "answer": 1,
       "why": "Une comparaison internationale nécessite des définitions et périodes compatibles.",
@@ -1081,9 +1081,9 @@
       "body": "Un rapport recense des ressources financières d'organisations politiques.",
       "question": "Quel contrôle est approprié ?",
       "choices": [
-        "Déduire automatiquement une infraction.",
-        "Confondre don légal et condamnation.",
-        "Lire le document de l'autorité compétente et préciser son périmètre."
+        "Supposer qu’un compte publié prouve une infraction.",
+        "Comparer les seules sommes relayées par un parti.",
+        "Lire les rapports de contrôle et leur périmètre."
       ],
       "answer": 2,
       "why": "La légalité et la transparence des financements dépendent des règles, documents et décisions publiques.",
@@ -1107,9 +1107,9 @@
       "body": "Un article annonce une décision de justice, mais mentionne qu'un recours reste possible.",
       "question": "Quel mot est à employer avec prudence ?",
       "choices": [
-        "Définitive, sans vérifier le stade et les voies de recours.",
-        "Publié.",
-        "Daté."
+        "Le mot « définitive » avant d’examiner les recours.",
+        "Le mot « publique » si l’audience était ouverte.",
+        "Le mot « datée » si un document porte sa date."
       ],
       "answer": 0,
       "why": "Une décision peut être susceptible de recours ; son caractère définitif se vérifie dans les sources judiciaires.",
@@ -1133,9 +1133,9 @@
       "body": "Une ville investit dans des bus moins polluants et présente le budget, sans évaluer les émissions évitées.",
       "question": "Que faut-il pour mesurer l'effet ?",
       "choices": [
-        "Le coût seul comme preuve de résultat.",
-        "Des indicateurs avant/après, le contexte et une méthode de calcul.",
-        "La photo des bus uniquement."
+        "Comparer les coûts sans vérifier les résultats.",
+        "Mesurer effets, contexte et indicateurs avant/après.",
+        "Se fier au nombre de présentations officielles."
       ],
       "answer": 1,
       "why": "La dépense réalisée ne démontre pas à elle seule l'impact environnemental obtenu.",
@@ -1159,9 +1159,9 @@
       "body": "Un programme public annonce aider les locataires en difficulté mais publie uniquement le budget total.",
       "question": "Quelle information supplémentaire est utile ?",
       "choices": [
-        "Les noms privés des ménages.",
-        "Le nombre d'affiches de l'aide.",
-        "Le profil des bénéficiaires au niveau agrégé et les effets mesurés."
+        "Publier les noms des personnes aidées pour les compter.",
+        "Comparer uniquement les montants inscrits au budget.",
+        "Mesurer le public touché et les effets constatés."
       ],
       "answer": 2,
       "why": "L'évaluation doit mesurer la population atteinte sans exposer les données personnelles.",
@@ -1185,9 +1185,9 @@
       "body": "Une mesure wallonne est commentée comme si elle concernait sans exception toute la Belgique.",
       "question": "Quelle vérification doit précéder le partage ?",
       "choices": [
-        "La compétence et le territoire de l'institution émettrice.",
-        "La langue du commentaire.",
-        "Le nombre de partages."
+        "Déterminer quelle institution est compétente ici.",
+        "Interpréter une loi selon la popularité de son auteur.",
+        "Confondre la région et la commune qui la relaient."
       ],
       "answer": 0,
       "why": "La Belgique répartit certaines compétences entre plusieurs niveaux de pouvoir.",
@@ -1211,9 +1211,9 @@
       "body": "Une mobilisation en ligne recueille des milliers de signatures.",
       "question": "Que faut-il éviter de conclure ?",
       "choices": [
-        "Qu'elle manifeste une opinion.",
-        "Qu'elle devient automatiquement une loi en vigueur.",
-        "Qu'elle peut nourrir un débat."
+        "Qu’elle peut exprimer une demande collective.",
+        "Qu’elle crée automatiquement une loi applicable.",
+        "Qu’elle peut conduire à un examen politique."
       ],
       "answer": 1,
       "why": "Une pétition ne se confond pas avec une procédure de vote législatif ; les effets varient selon le droit.",
@@ -1237,9 +1237,9 @@
       "body": "Un responsable annonce avoir « tout amélioré » en citant un seul chiffre positif.",
       "question": "Quelle méthode est préférable ?",
       "choices": [
-        "Garder un seul chiffre avantageux.",
-        "Choisir un slogan opposé.",
-        "Examiner plusieurs indicateurs pertinents, leurs limites et les tendances antérieures."
+        "Choisir les valeurs montrant le meilleur résultat.",
+        "Comparer indicateurs, limites et tendance passée.",
+        "Évaluer seulement le nombre de réunions publiques."
       ],
       "answer": 2,
       "why": "Évaluer une politique exige un cadre défini au-delà d'un indicateur choisi arbitrairement.",
