@@ -11,6 +11,18 @@
 
 Les tests automatisés vérifient le biais avec `tests/quiz-quality.test.mjs`. Les changements exigent une relecture humaine : ne pas corriger une question politique ou juridique en déplaçant simplement une mauvaise réponse au hasard.
 
+## Premier lot effectivement réécrit (22 octobre 2026)
+
+Douze fiches civiques ont maintenant été réécrites dans `civic-pack-01.js` : `promesse-loi`, `budget-deficit`, `aides`, `programmes`, `sondage-resultat`, `accusation-decision`, `autorites-locales`, `be-16-europe`, `be-participation`, `be-resultats`, `fr-voter-18` et `fr-comptes-partis`.
+
+- **Avant, sur ce lot : 8/12 bonnes réponses étaient les plus longues ou ex aequo.**
+- **Après : 3/12**, avec quatre bonnes réponses en A, quatre en B et quatre en C. C'est un contrôle de forme, pas une démonstration que la connaissance a progressé.
+- Sur les 215 QCM modulaires : **197/215** présentent encore cet indice de longueur, contre 206/215 auparavant.
+- Les fiches modifiées disposent de nouveaux contextes et d'une explication distinguant les étapes institutionnelles. Plusieurs références ont été affinées et le registre des sources synchronisé.
+- **Aucune relecture humaine externe n'a encore été enregistrée.** Les 12 fiches restent `pending_external_review` et doivent être testées avec des jeunes avant toute revendication d'efficacité.
+- Nouveau garde-fou dans `tests/civic-pilot-quality.test.mjs` : distribution A/B/C, plausibilité minimale des options, explication, contexte, proportion de réponses les plus longues et correspondance des URL.
+- Dans l'application, une première réponse juste n'est plus présentée comme une maîtrise durable.
+
 ## Règles de conception de la prochaine révision
 
 1. **Une compétence identifiable** : la question demande d'appliquer une notion dans un cas précis (ex. distinguer projet, adoption et entrée en vigueur), non de reconnaître une formule de bon sens.
