@@ -72,8 +72,8 @@
       ],
       "source": [
         [
-          "CNIL — vérifier les informations avant de partager",
-          "https://www.cnil.fr/fr/5-conseils-pour-proteger-ma-vie-privee-sur-les-reseaux-sociaux"
+          "CLEMI — recouper les sources",
+          "https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/comment-sinformer-lere-des-intelligences-artificielles-generatives"
         ]
       ]
     },
@@ -108,7 +108,7 @@
       "source": [
         [
           "Safeonweb — attention aux liens suspects",
-          "https://safeonweb.be/fr/actualite/attention-aux-liens-recus-par-mail-sms-ou-autres"
+          "https://safeonweb.be/fr"
         ],
         [
           "Cybermalveillance — hameçonnage",
@@ -374,8 +374,8 @@
       "why": "La fiabilité dépend de la source et du contexte, pas de la popularité du visuel.",
       "sources": [
         [
-          "CNIL — vérifier avant de partager",
-          "https://www.cnil.fr/fr/5-conseils-pour-proteger-ma-vie-privee-sur-les-reseaux-sociaux"
+          "CLEMI — recouper les sources",
+          "https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/comment-sinformer-lere-des-intelligences-artificielles-generatives"
         ]
       ]
     },
