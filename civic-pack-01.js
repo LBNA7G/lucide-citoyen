@@ -15,19 +15,19 @@
       "country": "ALL",
       "topic": "Décryptage",
       "title": "Une promesse n'est pas une loi",
-      "body": "Une promesse électorale décrit une intention. Pour voir si elle est devenue une règle, il faut retrouver le texte adopté, publié et sa date d'application.",
-      "question": "Un programme annonce une aide. L'aide existe déjà ?",
+      "body": "Une liste électorale promet une nouvelle aide. Quelques semaines plus tard, un ministre annonce vouloir la mettre en place, mais personne ne montre de texte applicable.",
+      "question": "Que faut-il vérifier avant de dire que cette aide existe ?",
       "choices": [
-        "Oui, le programme suffit.",
-        "Il faut vérifier le texte et son entrée en vigueur.",
-        "Oui, si la vidéo est virale."
+        "Le texte publié, ses conditions et sa date d'application.",
+        "L'annonce publique confirmant l'intention du gouvernement.",
+        "L'accord politique prévoyant son financement futur."
       ],
-      "answer": 1,
-      "why": "Une proposition peut être modifiée, reportée ou abandonnée. Elle ne prouve pas qu'un droit est en vigueur.",
+      "answer": 0,
+      "why": "Un programme, un accord et une annonce décrivent des intentions ou étapes politiques. Seuls les textes applicables et les conditions du dispositif permettent de vérifier le droit effectivement ouvert.",
       "sources": [
         {
-          "label": "Vie publique — institutions et lois",
-          "url": "https://www.vie-publique.fr"
+          "label": "Vie publique — adoption et entrée en vigueur des lois",
+          "url": "https://www.vie-publique.fr/fiches/19534-comment-les-lois-sont-elles-executees"
         }
       ],
       "status": "pending_external_review",
@@ -61,15 +61,15 @@
       "country": "ALL",
       "topic": "Budget",
       "title": "Déficit et dette, quelle différence ?",
-      "body": "Le déficit compare des recettes et des dépenses sur une période. La dette représente des engagements accumulés à une date. Ils sont liés, mais ce n'est pas le même indicateur.",
-      "question": "La dette correspond surtout à…",
+      "body": "Un reportage dit qu'un État a enregistré un déficit cette année et affiche aussi le montant de sa dette publique. Les deux chiffres ne portent pas sur la même période de mesure.",
+      "question": "Lequel décrit le mieux la dette publique ?",
       "choices": [
-        "Un montant accumulé à une date.",
-        "Une dépense d'un seul jour.",
-        "Le nombre d'élus."
+        "La somme des dépenses prévues dans le prochain budget.",
+        "Les obligations financières encore dues à une date donnée.",
+        "L'écart entre recettes et dépenses au cours d'une année."
       ],
-      "answer": 0,
-      "why": "La dette est un stock et le déficit un flux. Compare toujours la période, la définition et la source.",
+      "answer": 1,
+      "why": "La dette est un stock à une date précise. Le déficit représente un solde de recettes et dépenses sur une période. Le budget prévu ne correspond ni à l'un ni à l'autre.",
       "sources": [
         {
           "label": "Banque nationale de Belgique — projections",
@@ -84,15 +84,15 @@
       "country": "ALL",
       "topic": "Budget",
       "title": "Une aide annoncée n'est pas toujours accessible",
-      "body": "Un projet d'aide peut être annoncé mais dépendre d'un vote, d'une date de mise en œuvre, de ressources et de conditions d'éligibilité.",
-      "question": "Avant de compter sur une aide, tu dois vérifier…",
+      "body": "Une Région annonce une nouvelle allocation dans une conférence de presse. Un jeune veut déjà intégrer ce montant à son budget personnel.",
+      "question": "Quelle vérification doit-il faire avant de compter sur cette aide ?",
       "choices": [
-        "Seulement sa publicité.",
-        "Les critères, la date et le service officiel.",
-        "Le nombre de partages."
+        "Lire l'annonce et vérifier que le ministre l'a signée.",
+        "Attendre le débat et noter le montant promis à l'oral.",
+        "Consulter les critères et la date d'effet officiels."
       ],
-      "answer": 1,
-      "why": "Une aide dépend de conditions concrètes, pas uniquement de sa communication politique.",
+      "answer": 2,
+      "why": "Une annonce signée et un débat ne prouvent pas l'éligibilité individuelle. Il faut consulter les règles applicables, la date d'entrée en vigueur et les critères auprès du service compétent.",
       "sources": [
         {
           "label": "Vie publique — décisions et dispositifs",
@@ -107,15 +107,15 @@
       "country": "ALL",
       "topic": "Partis",
       "title": "Comparer des programmes sans choisir à ta place",
-      "body": "Compare les propositions sur des thèmes identiques. Cite les programmes originaux et leurs dates. Pose des questions sur le financement, le calendrier et la compétence de l'élu.",
-      "question": "Quelle comparaison est la plus utile ?",
+      "body": "Deux partis proposent des mesures sur le logement. Le premier évoque des subventions, le second une modification des règles de location. Leurs promesses ne sont pas des résultats déjà obtenus.",
+      "question": "Comment comparer leurs propositions sans favoriser l'un ?",
       "choices": [
-        "Deux mesures sur le même thème, avec leurs sources.",
-        "La popularité des slogans.",
-        "Le nombre d'abonnés."
+        "Comparer bénéficiaires, calendrier et coût annoncés.",
+        "Comparer leurs anciens résultats sans lire les propositions.",
+        "Noter la longueur des programmes et la quantité de détails."
       ],
       "answer": 0,
-      "why": "Une comparaison transparente expose les textes et les divergences sans distribuer de notes aux partis.",
+      "why": "La comparaison doit porter sur des critères identiques et documentés, en signalant les lacunes. Les bilans passés peuvent aussi être étudiés, mais ne remplacent pas l'analyse des propositions présentes.",
       "sources": [
         {
           "label": "Ministère français de l'Intérieur — programmes candidats",
@@ -130,15 +130,15 @@
       "country": "ALL",
       "topic": "Résultats",
       "title": "Un sondage n'est pas un résultat",
-      "body": "Un sondage décrit des réponses à une date pour un échantillon. Un résultat électoral officiel compte les suffrages d'un scrutin.",
-      "question": "Pour connaître le résultat d'un scrutin passé, consulte…",
+      "body": "Une élection est terminée. Une publication mélange une estimation réalisée avant le scrutin, une projection de sièges et le décompte publié par l'administration électorale.",
+      "question": "Quelle source utiliser pour les voix réellement comptées ?",
       "choices": [
-        "Un sondage d'avant le vote.",
-        "Les chiffres publiés par l'autorité électorale.",
-        "Une prédiction populaire."
+        "L'intention de vote mesurée juste avant le début des élections.",
+        "Le décompte officiel du scrutin et du territoire concernés.",
+        "La projection de sièges publiée pendant la soirée."
       ],
       "answer": 1,
-      "why": "Le résultat officiel d'une élection et une estimation d'intentions sont des données différentes.",
+      "why": "Le sondage estime des intentions et la projection extrapole des résultats. Le décompte officiel concerne les suffrages enregistrés dans le scrutin et le territoire indiqués.",
       "sources": [
         {
           "label": "Ministère de l'Intérieur — résultats",
@@ -153,15 +153,15 @@
       "country": "ALL",
       "topic": "Justice",
       "title": "Accusation et condamnation ne veulent pas dire la même chose",
-      "body": "Une plainte, une enquête, une mise en examen ou une poursuite ne sont pas une condamnation. Toute information de justice exige une source et le stade exact de la procédure.",
-      "question": "Que vérifier avant d'afficher « condamné » ?",
+      "body": "Un média parle d'une plainte contre un responsable public. Un autre titre annonce qu'il a été « condamné », sans citer de jugement.",
+      "question": "Quel élément manque pour employer ce dernier mot correctement ?",
       "choices": [
-        "Le titre d'un message anonyme.",
-        "La décision de justice fiable et son caractère définitif, s'il est connu.",
-        "Le nombre de commentaires."
+        "Une plainte confirmée par la personne qui l'a déposée.",
+        "Une réaction de l'avocat répondant aux accusations.",
+        "Une décision de justice identifiable et son état de recours."
       ],
-      "answer": 1,
-      "why": "Une accusation ne prouve pas la culpabilité. SAVRÉO ne publiera pas de fiches nominatives sans décision documentée, contexte et vérification juridique.",
+      "answer": 2,
+      "why": "Une plainte et une réponse d'avocat n'établissent pas une condamnation. Il faut une décision de justice vérifiable et préciser le stade de la procédure, notamment si des recours restent possibles.",
       "sources": [
         {
           "label": "Vie publique — justice et institutions",
@@ -176,15 +176,15 @@
       "country": "ALL",
       "topic": "Institutions",
       "title": "Qui prend les décisions près de chez toi ?",
-      "body": "Selon le sujet, une décision peut dépendre d'une commune, d'une région ou de l'État. La même promesse n'a pas forcément le même décideur.",
-      "question": "Pour comprendre une décision locale, cherche…",
+      "body": "Une commune annonce qu'elle veut modifier un service public. Un débat éclate sur la personne politique qui aurait le pouvoir de prendre la décision.",
+      "question": "Comment identifier l'autorité qui peut agir ?",
       "choices": [
-        "L'organe compétent, le texte et la date.",
-        "Un seul influenceur.",
-        "Uniquement le nom du parti."
+        "Vérifier l'organisme compétent et le texte.",
+        "Suivre le dernier ministre national ayant parlé du sujet.",
+        "Consulter uniquement le programme de la majorité communale."
       ],
       "answer": 0,
-      "why": "Identifier la compétence évite d'attribuer une décision au mauvais niveau de pouvoir.",
+      "why": "La compétence juridique et les procédures déterminent l'autorité qui peut décider. Une déclaration ministérielle ou un programme local ne démontrent pas cette compétence.",
       "sources": [
         {
           "label": "Vie publique — organisation des pouvoirs",
@@ -199,18 +199,18 @@
       "country": "BE",
       "topic": "Voter",
       "title": "À 16 ans : les élections européennes en Belgique",
-      "body": "En Belgique, les électeurs remplissant les conditions peuvent participer au scrutin européen dès 16 ans. Cette règle ne s'applique pas à toutes les élections.",
-      "question": "À 16 ans, le vote pour la Chambre est-il aussi ouvert ?",
+      "body": "En Belgique, une jeune Belge de 16 ans a entendu parler du vote au Parlement européen et affirme pouvoir aussi voter pour la Chambre des représentants.",
+      "question": "Quelle distinction électorale doit-elle comprendre ?",
       "choices": [
-        "Oui, chaque scrutin a le même âge.",
-        "Non : le scrutin fédéral belge relève en principe de 18 ans.",
-        "Uniquement avec une autorisation des parents."
+        "L'inscription aux européennes donne aussi accès à la Chambre.",
+        "Le scrutin européen est accessible dès 16 ans sous conditions, la Chambre dès 18.",
+        "Le droit pour la Chambre dépend uniquement de la commune de résidence."
       ],
       "answer": 1,
-      "why": "Le droit de vote à partir de 16 ans concerne ici les élections européennes sous conditions. Il faut vérifier séparément l'obligation de participation et les règles propres à chaque élection et année.",
+      "why": "Pour les électeurs remplissant les conditions, le scrutin européen est accessible dès 16 ans, mais la Chambre requiert en principe 18 ans. Les obligations de participation et les conditions doivent être vérifiées selon le scrutin et l'année.",
       "sources": [
         {
-          "label": "SPF Intérieur — conditions d'électorat pour le Parlement européen",
+          "label": "SPF Intérieur — âge et conditions d'électorat selon le scrutin",
           "url": "https://elections.fgov.be/electeurs"
         }
       ],
@@ -245,19 +245,19 @@
       "country": "BE",
       "topic": "Voter",
       "title": "Participation obligatoire et choix secret",
-      "body": "Pour les scrutins concernés en Belgique, la participation est obligatoire selon les conditions légales, tandis que le choix effectué dans l'isoloir est secret.",
-      "question": "Être tenu de participer signifie-t-il choisir un parti ?",
+      "body": "En Belgique, pour un scrutin où la participation est obligatoire, une personne ne souhaite soutenir aucune des listes présentées.",
+      "question": "Quelle affirmation distingue participation et choix électoral ?",
       "choices": [
-        "Non, il faut distinguer participation et choix de vote.",
-        "Oui, un parti doit être choisi.",
-        "Oui, sa famille décide."
+        "Un bulletin blanc est toujours attribué à la plus grande liste.",
+        "Participer impose de sélectionner un candidat ou une liste.",
+        "Un vote blanc permet de participer sans choisir de liste."
       ],
-      "answer": 0,
-      "why": "Le bulletin blanc ou le choix personnel sont distincts de l'obligation de participation ; certaines règles peuvent varier suivant l'élection.",
+      "answer": 2,
+      "why": "Se présenter dans les conditions prévues et sélectionner une liste sont deux choses distinctes. Le vote blanc n'est pas un vote pour le parti arrivé premier. Les règles de participation diffèrent selon les élections et les régions.",
       "sources": [
         {
-          "label": "SPF Intérieur — participation, secret du choix et vote blanc",
-          "url": "https://elections.fgov.be/node/111505"
+          "label": "SPF Intérieur — vote obligatoire et vote blanc",
+          "url": "https://elections.fgov.be/node/111505?language=fr"
         }
       ],
       "status": "pending_external_review",
@@ -291,19 +291,19 @@
       "country": "BE",
       "topic": "Résultats",
       "title": "Lire les résultats des élections en Belgique",
-      "body": "Les résultats peuvent être consultés par niveau de pouvoir, circonscription et, selon les jeux disponibles, par commune ou canton.",
-      "question": "Comparer deux résultats exige surtout…",
+      "body": "Deux graphiques électoraux portent sur la Belgique. L'un montre des résultats de 2024 pour la Chambre en Hainaut, l'autre un scrutin d'une autre année et d'un autre territoire.",
+      "question": "Quelle comparaison est méthodologiquement la plus rigoureuse ?",
       "choices": [
-        "Le même type de scrutin et des dates identifiées.",
-        "Deux captures sans dates.",
-        "Uniquement les logos."
+        "Comparer le même scrutin, les années et le territoire indiqués.",
+        "Comparer les pourcentages sans examiner la zone de vote.",
+        "Comparer directement les sièges d'assemblées de tailles différentes."
       ],
       "answer": 0,
-      "why": "Un pourcentage communal et un chiffre fédéral ne portent pas nécessairement sur le même électorat.",
+      "why": "Pour comprendre une évolution, précise le scrutin, le périmètre territorial, la période et le dénominateur. Des pourcentages calculés sur des électorats différents ne sont pas directement interchangeables.",
       "sources": [
         {
-          "label": "SPF Intérieur — résultats électoraux",
-          "url": "https://elections.fgov.be/informations-generales/resultats"
+          "label": "SPF Intérieur — tableaux des résultats du 9 juin 2024",
+          "url": "https://elections.fgov.be/elections-du-9-juin-2024-tableaux-des-resultats?language=fr"
         }
       ],
       "status": "pending_external_review",
@@ -383,18 +383,18 @@
       "country": "FR",
       "topic": "Voter",
       "title": "Qui peut voter aux élections nationales françaises ?",
-      "body": "Sous les conditions applicables, le droit de vote des citoyens français s'exerce en principe à partir de 18 ans.",
-      "question": "Un Français de 15 ans peut-il voter aux législatives ?",
+      "body": "En France, une personne de 20 ans souhaite voter aux élections législatives. Elle réside en France mais n'a pas précisé sa nationalité ni son inscription électorale.",
+      "question": "Quelle condition générale vaut pour ce scrutin ?",
       "choices": [
-        "Oui, systématiquement.",
-        "Non, pas avant l'âge légal.",
-        "Oui, s'il suit l'actualité."
+        "Toute personne majeure résidant en France peut voter aux législatives.",
+        "Il faut être Français, inscrit et disposer de ses droits électoraux.",
+        "Tout ressortissant européen résidant en France peut voter à ce scrutin."
       ],
       "answer": 1,
-      "why": "L'âge et la qualité d'électeur se vérifient via les sources officielles.",
+      "why": "Pour les législatives françaises, il faut notamment être citoyen français, remplir la condition d'âge, être inscrit et jouir de ses droits électoraux. Les citoyens européens non français disposent d'autres droits pour certains scrutins.",
       "sources": [
         {
-          "label": "Service Public — conditions pour s'inscrire et voter",
+          "label": "Service Public — qui peut être électeur et inscription",
           "url": "https://www.service-public.fr/particuliers/vosdroits/F1367"
         }
       ],
@@ -498,19 +498,19 @@
       "country": "FR",
       "topic": "Budget",
       "title": "Les comptes des partis peuvent-ils être contrôlés ?",
-      "body": "En France, la CNCCFP publie des informations relatives aux comptes des partis et aux financements des campagnes. Le statut d'un compte n'est pas un jugement de valeur global sur un parti.",
-      "question": "Que regarder pour comprendre un financement ?",
+      "body": "Une vidéo affirme qu'un parti français respecte toutes les règles parce qu'il dispose de nombreux élus. Tu veux contrôler sa transparence financière pour une année précise.",
+      "question": "Quel document permet une vérification documentée ?",
       "choices": [
-        "Les documents, l'exercice et la décision de l'organisme compétent.",
-        "Un classement de popularité.",
-        "Une rumeur."
+        "Les prises de parole du parti pendant la campagne électorale.",
+        "Le nombre d'élus du parti à la date du dernier scrutin.",
+        "Les comptes et l'avis de la CNCCFP pour cet exercice."
       ],
-      "answer": 0,
-      "why": "Un bilan et un contrôle comptable sont des pièces précises qui doivent être datées.",
+      "answer": 2,
+      "why": "Les effectifs élus et les déclarations de campagne ne sont pas des pièces comptables. La CNCCFP publie des informations, observations et décisions sur des exercices précis : leur portée doit être lue sans conclure à une infraction non établie.",
       "sources": [
         {
-          "label": "CNCCFP — comptes et financements politiques",
-          "url": "https://cnccfp.fr/"
+          "label": "CNCCFP — avis et comptes des partis, exercice 2024",
+          "url": "https://cnccfp.fr/publication-de-lavis-de-la-cnccfp-sur-les-comptes-des-partis-politiques-exercice-2024/"
         }
       ],
       "status": "pending_external_review",
