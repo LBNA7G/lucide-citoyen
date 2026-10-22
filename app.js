@@ -417,20 +417,22 @@
       <button class="calm-footer-link" data-route="explorer">Explorer tous les sujets <span aria-hidden="true">→</span></button>`;
   }
 
+
   function publicHub(){
-    const resources=state.country==='BE'?
-      [{label:'Décisions fédérales belges',url:'https://news.belgium.be/fr'},{label:'Gouvernement de Wallonie',url:'https://wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse'}]:
-      [{label:'Actualité administrative officielle',url:'https://www.service-public.fr'},{label:'Délibérations du Conseil de Paris',url:'https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224'}];
-    const links=resources.map(x=>'<a class="hub-item" href="'+safeURL(x.url)+'" rel="noopener noreferrer" target="_blank"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(x.label)+'</b><small>Consulter à jour sur le site officiel</small></span><span aria-hidden="true">↗</span></a>').join('');
-    return intro('VIE PUBLIQUE','Comprendre ce qui se décide.','Découvre les règles du vote, les décisions et les sources — sans recommandation partisane.')+
+    const snapshot=Array.isArray(CIVIC_PACK.snapshots)?CIVIC_PACK.snapshots.find(x=>x.country===state.country):null;
+    const scopes=Array.isArray(CIVIC_PACK.localSources?.[state.country])?CIVIC_PACK.localSources[state.country]:[];
+    const more=scopes.map(x=>'<a class="hub-item" href="'+safeURL(x.url)+'" target="_blank" rel="noopener noreferrer"><span class="hub-mark" aria-hidden="true">↗</span><span><b>'+escapeHTML(x.label)+'</b><small>'+escapeHTML(x.scope)+' · publication officielle</small></span><span aria-hidden="true">↗</span></a>').join('');
+    const spotlight=snapshot?'<section class="civic-spotlight"><span class="eyebrow">UNE DÉCISION À DÉCRYPTER · ARCHIVE</span><span class="civic-date">'+escapeHTML(snapshot.date)+' · '+escapeHTML(snapshot.scope)+'</span><h2>'+escapeHTML(snapshot.title)+'</h2><p>'+escapeHTML(snapshot.summary)+'</p><div class="civic-stage">Statut de la source : '+escapeHTML(snapshot.type)+'</div><details class="calm-disclosure"><summary>Qu’est-ce que cela change ? <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>'+escapeHTML(snapshot.impact)+'</p><p>'+escapeHTML(snapshot.verification)+'</p>'+source(snapshot.source.label,snapshot.source.url)+'</div></details></section>':'';
+    return intro('VIE PUBLIQUE','Comprendre ce qui se décide.','Le pouvoir change des règles. Ici, tu apprends à vérifier lesquelles et comment elles s’appliquent.')+
+      spotlight+
       '<div class="calm-menu civic-menu">'+
-      '<button class="hub-item" data-route="vigie"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Actualité institutionnelle</b><small>Publications à consulter en ligne, à leur date</small></span><span aria-hidden="true">↗</span></button>'+
-      '<button class="hub-item" data-route="civique"><span class="hub-mark" aria-hidden="true">◇</span><span><b>Apprendre à voter</b><small>'+civicAvailable().length+' repères hors connexion</small></span><span aria-hidden="true">↗</span></button>'+
-      '<button class="hub-item" data-route="dossiers"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Programmes, résultats, budgets</b><small>Les bons documents pour comparer par toi-même</small></span><span aria-hidden="true">↗</span></button>'+
-      '</div><details class="calm-disclosure"><summary>Sources locales et régionales <span aria-hidden="true">＋</span></summary>'+
-      '<div class="calm-reading-extra"><p>Les décisions locales ne sont pas encore agrégées automatiquement. Les liens suivants ouvrent des publications officielles datées.</p><div class="calm-submenu">'+links+'</div></div></details>'+
-      '<details class="calm-disclosure"><summary>Notre règle de neutralité <span aria-hidden="true">＋</span></summary>'+
-      '<div class="calm-reading-extra"><p>Pas de classement des partis, pas de recommandation de vote, pas de profil politique. Les mêmes repères sont accessibles quel que soit ton âge ou tes centres d’intérêt.</p><p>Une annonce n’est pas une loi, une plainte n’est pas une condamnation et une prévision n’est pas une donnée définitive.</p></div></details>';
+      '<button class="hub-item" data-route="vigie"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Publications récentes</b><small>Actualités institutionnelles en ligne, avec dates et sources</small></span><span aria-hidden="true">↗</span></button>'+
+      '<button class="hub-item" data-route="civique"><span class="hub-mark" aria-hidden="true">◇</span><span><b>Apprendre à voter</b><small>'+civicAvailable().length+' notions disponibles hors connexion</small></span><span aria-hidden="true">↗</span></button>'+
+      '<button class="hub-item" data-route="dossiers"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Programmes, résultats et budgets</b><small>Les bons documents pour comparer par toi-même</small></span><span aria-hidden="true">↗</span></button>'+
+      '</div><details class="calm-disclosure"><summary>Suivre les décisions de ma région ou d’une ville <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p>Pour les collectivités, nous renvoyons aux documents officiels. Ce n’est pas encore un fil municipal automatisé.</p><div class="calm-submenu">'+more+'</div></div></details>'+
+      '<details class="calm-disclosure"><summary>Notre méthode de neutralité <span aria-hidden="true">＋</span></summary>'+
+      '<div class="calm-reading-extra"><p>SAVRÉO ne recommande aucun parti et ne classe pas les candidats. Les mêmes notions sont accessibles à tous, sans cibler des préférences politiques.</p><p>Une promesse n’est pas une loi, une plainte n’est pas une condamnation, une projection n’est pas une donnée définitive.</p></div></details>';
   }
   function civicSchool(){
     const cards=civicAvailable();
@@ -473,10 +475,10 @@
       <div class="calm-menu">
         <button class="hub-item" data-route="declic"><span class="hub-mark" aria-hidden="true">⚡</span><span><b>Situations de la vie</b><small>Une question, un réflexe</small></span><span aria-hidden="true">↗</span></button>
         <button class="hub-item" data-route="apprendre"><span class="hub-mark" aria-hidden="true">▤</span><span><b>Leçons essentielles</b><small>Comprendre à son rythme</small></span><span aria-hidden="true">↗</span></button>
-        <button class="hub-item" data-route="dico"><span class="hub-mark" aria-hidden="true">✳</span><span><b>Les mots utiles</b><small>Enrichir son vocabulaire</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="vie-publique"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Vie publique et élections</b><small>Décisions, vote et institutions</small></span><span aria-hidden="true">↗</span></button>
       </div>
       <details class="calm-disclosure"><summary>Autres ressources <span aria-hidden="true">＋</span></summary><div class="calm-submenu">
-        <button class="hub-item" data-route="vie-publique"><span class="hub-mark" aria-hidden="true">◎</span><span><b>Vie publique et élections</b><small>Décisions, vote et institutions</small></span><span aria-hidden="true">↗</span></button>
+        <button class="hub-item" data-route="dico"><span class="hub-mark" aria-hidden="true">✳</span><span><b>Les mots utiles</b><small>Enrichir ton vocabulaire</small></span><span aria-hidden="true">↗</span></button>
         <button class="hub-item" data-route="sources"><span class="hub-mark" aria-hidden="true">✓</span><span><b>Sources et méthode</b><small>Comprendre la fiabilité</small></span><span aria-hidden="true">↗</span></button>
       </div></details>`;
   }
