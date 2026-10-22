@@ -10,7 +10,7 @@ Expliquer les institutions, les votes, les budgets, les partis et les décisions
 - 24 questions civiques installables hors ligne (16 visibles pour chaque pays) : règles électorales, lecture d'un programme, budget et dette, sources des résultats, procédure judiciaire et autorités compétentes.
 - Deux archives **datées** de publications institutionnelles : communiqué wallon du 12 octobre 2026 et documents du Conseil de Paris d'octobre 2026. Ces archives ne remplacent pas une veille des informations nouvelles.
 - Des liens vers les sources officielles fédérales, régionales et locales (dont les délibérations communales de Mons en Belgique et du Conseil de Paris en France).
-- Page méthode des dossiers politiques ; **pas encore de base de fiches nominatives de partis et responsables politiques**.
+- Première bibliothèque datée des documents de 17 partis (12 BE correspondant au chiffrage BFP de 2024, 5 FR choisis comme premiers exemples non exhaustifs). **Les dirigeants actuels, mandats et faits judiciaires individuels ne sont toujours pas renseignés**.
 
 ## Structure souhaitée pour chaque future fiche d'un parti
 
@@ -43,4 +43,4 @@ La bibliothèque pédagogique fonctionne hors ligne et change par versions. Les 
 
 ## État de conformité
 
-Les 24 nouvelles fiches sont marquées `pending_external_review`. Le code vérifie leur présence et leurs sources ; **aucune vérification par juriste électoral ou expert indépendant n'a encore eu lieu**. Les sources publiques consultées au 22/10/2026 ne remplacent pas un contrôle des liens et des règles au moment du lancement.
+Les 24 fiches civiques et 32 nouvelles fiches transversales sont marquées `pending_external_review`. Le code vérifie leur présence et leurs sources ; **aucune vérification par juriste électoral ou expert indépendant n'a encore eu lieu**. Les sources publiques consultées au 22/10/2026 ne remplacent pas un contrôle des liens et des règles au moment du lancement.
