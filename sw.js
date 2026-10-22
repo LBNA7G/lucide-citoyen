@@ -1,6 +1,6 @@
-// SAVRÉO v1.5 bêta — cache fiable : préférence au réseau, repli hors ligne.
-const CACHE = 'savreo-assets-v15-20261022';
-const ASSETS = ['./','./index.html','./styles.css?v=15','./curriculum-beta.js?v=15','./civic-pack-01.js?v=15','./party-directory-01.js?v=15','./essentials-pack-02.js?v=15','./world-pack-03.js?v=15','./life-pack-04.js?v=15','./public-pack-05.js?v=15','./app.js?v=15','./icon.svg','./manifest.webmanifest'];
+// SAVRÉO v1.6 bêta — cache fiable : préférence au réseau, repli hors ligne.
+const CACHE = 'savreo-assets-v16-20261022';
+const ASSETS = ['./','./index.html','./styles.css?v=16','./curriculum-beta.js?v=16','./civic-pack-01.js?v=16','./party-directory-01.js?v=16','./essentials-pack-02.js?v=16','./world-pack-03.js?v=16','./life-pack-04.js?v=16','./public-pack-05.js?v=16','./app.js?v=16','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
   self.skipWaiting();
