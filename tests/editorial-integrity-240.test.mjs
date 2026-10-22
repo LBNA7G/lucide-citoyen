@@ -59,10 +59,10 @@ test('the offline cache includes every learning deck in the correct version',()=
  const html=readFileSync('index.html','utf8');
  const sw=readFileSync('sw.js','utf8');
  for(const name of ['essentials-pack-02.js','world-pack-03.js','life-pack-04.js','public-pack-05.js','party-directory-01.js','civic-pack-01.js','app.js']){
-  assert.ok(html.includes(name+'?v=14'),name+' missing from HTML');
-  assert.ok(sw.includes('./'+name+'?v=14'),name+' missing from service worker');
+  assert.ok(html.includes(name+'?v=15'),name+' missing from HTML');
+  assert.ok(sw.includes('./'+name+'?v=15'),name+' missing from service worker');
  }
- assert.match(sw,/savreo-assets-v14/);
+ assert.match(sw,/savreo-assets-v15/);
  assert.match(sw,/req\.method !== 'GET'/);
  assert.match(sw,/pathname\.startsWith\('\/api\/'\)/);
 });
