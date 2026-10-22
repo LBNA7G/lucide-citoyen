@@ -43,4 +43,8 @@ La bibliothèque pédagogique fonctionne hors ligne et change par versions. Les 
 
 ## État de conformité
 
-Les 24 fiches civiques et 32 nouvelles fiches transversales sont marquées `pending_external_review`. Le code vérifie leur présence et leurs sources ; **aucune vérification par juriste électoral ou expert indépendant n'a encore eu lieu**. Les sources publiques consultées au 22/10/2026 ne remplacent pas un contrôle des liens et des règles au moment du lancement.
+Les 24 fiches civiques et les 176 micro-fiches transversales ou de culture générale sont marquées `pending_external_review`. Le code vérifie leur présence et leurs sources ; **aucune vérification par juriste électoral ou expert indépendant n'a encore eu lieu**. Les sources publiques consultées au 22/10/2026 ne remplacent pas un contrôle des liens et des règles au moment du lancement.
+
+## Mise à niveau du catalogue v1.4 bêta
+
+La bibliothèque comprend désormais 240 contenus distincts, enregistrés mais non homologués. Les 96 nouvelles fiches des lots 4 et 5 sont également des **simulations pédagogiques**. Leurs liens donnent des pistes documentaires ; la revue humaine vérifiant l'affirmation précise reste à mener. Voir [guide de revue](EDITORIAL_REVIEW_PLAYBOOK.md) et [protocole d'essai](PILOT_24_YOUNG_USERS.md). Aucun partenariat institutionnel actif n'est revendiqué.
