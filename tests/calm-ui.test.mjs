@@ -27,13 +27,13 @@ test('light and dark primary text tokens meet WCAG AA reference contrast',()=>{
 test('all three theme choices and quick switch implemented',()=>{
   for(const value of ['auto','light','dark'])assert.ok(app.includes("'"+value+"'"),value);
   for(const frag of ['function applyTheme()','function updateTheme(choice)','data-theme-option','theme-quick','prefers-color-scheme'])assert.ok((app+html).includes(frag),frag);
-  assert.ok(html.includes('styles.css?v=12'));
-  assert.ok(html.includes('app.js?v=12'));
-  assert.ok(sw.includes('./styles.css?v=12'));
-  assert.ok(sw.includes('./app.js?v=12'));
-  assert.ok(html.includes('civic-pack-01.js?v=12'));
-  assert.ok(sw.includes('./civic-pack-01.js?v=12'));
-  for(const p of ['party-directory-01.js','essentials-pack-02.js']){assert.ok(sw.includes('./'+p+'?v=12'));assert.ok(html.includes(p+'?v=12'));}
+  assert.ok(html.includes('styles.css?v=13'));
+  assert.ok(html.includes('app.js?v=13'));
+  assert.ok(sw.includes('./styles.css?v=13'));
+  assert.ok(sw.includes('./app.js?v=13'));
+  assert.ok(html.includes('civic-pack-01.js?v=13'));
+  assert.ok(sw.includes('./civic-pack-01.js?v=13'));
+  for(const p of ['party-directory-01.js','essentials-pack-02.js','world-pack-03.js']){assert.ok(sw.includes('./'+p+'?v=13'));assert.ok(html.includes(p+'?v=13'));}
   assert.ok(css.includes('html[data-theme="light"]'));
 });
 test('progressive disclosure and clarity in primary screens',()=>{
