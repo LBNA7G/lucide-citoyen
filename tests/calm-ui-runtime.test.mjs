@@ -238,3 +238,38 @@ test('review screen presents only three urgent items before an expandable backlo
  assert.ok(screen.html.includes('Voir 7 autres révisions'),'remaining reviews should be collapsible');
  assert.ok(screen.html.includes('data-micro-review="ess-01"'),'first review must still be actionable');
 });
+
+test('civic source provenance is visible before any quiz answer and remains candid about review',()=>{
+ const screen=mount('civique');
+ const html=screen.document.getElementById('main').innerHTML;
+ assert.ok(html.includes('Lire les sources et leur fiabilité'));
+ assert.ok(html.includes('Relecture indépendante'));
+ assert.ok(html.includes('non réalisée'));
+ assert.ok(html.includes('Édition 2026-10-22'));
+ const click=screen.handlers.get('click');
+ click({target:{dataset:{civicId:'be-16-europe'},closest(sel){return sel==='[data-civic-id]'?this:null;}}});
+ const next=screen.document.getElementById('main').innerHTML;
+ assert.ok(next.includes('règles du prochain scrutin'),'outdated election rules must have a date caveat');
+ assert.ok(next.includes('elections.fgov.be'));
+});
+
+test('territorial source filters reveal only the selected level and preserve expansion',()=>{
+ const screen=mount('vie-publique');
+ assert.ok(screen.html.includes('Tous les niveaux'));
+ assert.ok(screen.html.includes('PUBLICATION À DÉCRYPTER'));
+ assert.ok(screen.html.includes('Archives')||screen.html.includes('ARCHIVE'));
+ const click=screen.handlers.get('click');
+ const choose={dataset:{publicScope:'local'},closest(sel){return sel==='[data-public-scope]'?this:null;}};
+ click({target:choose});
+ const selected=screen.document.getElementById('main').innerHTML;
+ assert.ok(selected.includes('Commune de Brugelette'));
+ assert.ok(selected.includes('Ville de Mons'));
+ assert.ok(!selected.includes('href="https://news.belgium.be/fr"'));
+ assert.ok(selected.includes('class="calm-disclosure" open'));
+ const country={dataset:{country:'FR'},closest(sel){return sel==='[data-country]'?this:null;}};
+ click({target:country});
+ const french=screen.document.getElementById('main').innerHTML;
+ assert.ok(french.includes('Tous les niveaux'));
+ assert.ok(french.includes('Ville de Paris'));
+ assert.ok(!french.includes('Commune de Brugelette'));
+});
