@@ -1,4 +1,11 @@
-# SAVRÉO — version 1.6.3 bêta
+# SAVRÉO — version 1.6.4 bêta
+## Continuité de service / repli réseau
+- L'ancienne version reste accessible jusqu'à la fermeture des onglets ; aucune activation forcée du service worker.
+- L'installateur vérifie les actifs critiques avant activation et conserve deux générations antérieures de ressources offline, quand elles existent.
+- Le flux de la Vigie conserve localement la dernière consultation officielle en l'identifiant explicitement comme archive si le réseau est indisponible (7 jours maximum).
+- Les actions du serveur et les actualités ne sont jamais servies depuis un cache trompeur. La maintenance préserve `main` et les adresses déjà publiées.
+- La disponibilité absolue ne peut pas être garantie face aux pannes réseau ou d'hébergement.
+
 
 ## 1.6.3 — Accueil sans formulaire écrasant
 - Première utilisation : **une question visible à la fois** dans un conteneur unique, sans carrousel ni animations superflues : prénom ou pseudo (passable), tranche d'âge (requise pour les suggestions), genre (facultatif, choix « ne pas préciser »).
