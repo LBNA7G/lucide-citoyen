@@ -207,10 +207,10 @@
         "Uniquement avec une autorisation des parents."
       ],
       "answer": 1,
-      "why": "L'âge électoral dépend du type d'élection ; vérifie toujours les conditions officielles applicables.",
+      "why": "Le droit de vote à partir de 16 ans concerne ici les élections européennes sous conditions. Il faut vérifier séparément l'obligation de participation et les règles propres à chaque élection et année.",
       "sources": [
         {
-          "label": "SPF Intérieur — électeurs",
+          "label": "SPF Intérieur — conditions d'électorat pour le Parlement européen",
           "url": "https://elections.fgov.be/electeurs"
         }
       ],
@@ -256,8 +256,8 @@
       "why": "Le bulletin blanc ou le choix personnel sont distincts de l'obligation de participation ; certaines règles peuvent varier suivant l'élection.",
       "sources": [
         {
-          "label": "SPF Intérieur — conditions de vote",
-          "url": "https://elections.fgov.be/electeurs"
+          "label": "SPF Intérieur — participation, secret du choix et vote blanc",
+          "url": "https://elections.fgov.be/node/111505"
         }
       ],
       "status": "pending_external_review",
@@ -394,8 +394,8 @@
       "why": "L'âge et la qualité d'électeur se vérifient via les sources officielles.",
       "sources": [
         {
-          "label": "Ministère de l'Intérieur — élections",
-          "url": "https://www.elections.interieur.gouv.fr/"
+          "label": "Service Public — conditions pour s'inscrire et voter",
+          "url": "https://www.service-public.fr/particuliers/vosdroits/F1367"
         }
       ],
       "status": "pending_external_review",
@@ -417,7 +417,7 @@
       "why": "Les conditions et délais varient. Le service officiel aide à vérifier son inscription.",
       "sources": [
         {
-          "label": "Service Public — inscription d'office",
+          "label": "Service Public — inscription d'office à 18 ans",
           "url": "https://www.service-public.fr/particuliers/vosdroits/F1961"
         }
       ],
@@ -555,8 +555,8 @@
       "why": "Les délais et modalités pratiques doivent être confirmés auprès du service électoral.",
       "sources": [
         {
-          "label": "Ministère de l'Intérieur — démarches électorales",
-          "url": "https://www.elections.interieur.gouv.fr/"
+          "label": "Service Public — vote par procuration",
+          "url": "https://www.service-public.fr/particuliers/vosdroits/F1604"
         }
       ],
       "status": "pending_external_review",
