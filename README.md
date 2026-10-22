@@ -1,6 +1,17 @@
-# SAVRÉO — version 0.9
+# SAVRÉO — version 1.0 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Bêta 1.0 — contenus de la vraie vie et vérifications
+
+- **18 situations pédagogiques** au total, dont 9 nouvelles simulations fictives signalées comme telles : droit à l'image, captures hors contexte, faux cadeaux, premiers salaires, recrutement frauduleux, partage de localisation, fausse location, abonnements et budget personnel.
+- **12 leçons** au total, dont 6 nouveaux modules avec quiz, justification de la réponse et références institutionnelles.
+- **6 parcours progressifs**, dont 3 nouveaux ateliers adaptés à l'âge : vérification de l'information (12–15 ans), offres douteuses (16–20 ans), précautions face à une location (21–28 ans). Les thèmes ne sont jamais verrouillés par âge.
+- **Recommandations** tenant compte des intérêts et tranches d'âge, sans profils publics ni collecte d'historique à distance.
+- **Réponses pédagogiques** : mauvaise réponse accompagnée de la bonne option et de son explication.
+- **Progression, apparence et préférences locales** préservées de la 0.9. Ressources hors ligne mises à jour.
+- **Registre éditorial : 40 éléments**, tous en attente de validation indépendante, dont 18 situations, 12 leçons et 10 fiches de droits.
+- Tests fonctionnels, contrôles de source et audit de préparation dans `docs/BETA_1_0_AUDIT.md` ; **validation en conditions réelles et pilote de 24 jeunes non réalisés**.
 
 ## Expérience v0.5
 
