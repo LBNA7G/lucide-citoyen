@@ -99,3 +99,37 @@ test('beta scenarios are accessible across ages without filtering out other cont
    assert.ok(html.includes('Tu dépasses 650 h'), 'old rights case should remain available');
  }
 });
+
+test('simulation and lesson retain XP, review scheduling and answer feedback across rerenders',()=>{
+ const screen=mount('declic','light',true,'12-15');
+ const click=screen.handlers.get('click');
+ const selectedCase={dataset:{case:'beta-photo'},closest(selector){return selector==='[data-case]'?this:null}};
+ click({target:selectedCase});
+ assert.ok(screen.document.getElementById('main').innerHTML.includes("Une photo de toi circule"));
+ const selectAnswer={dataset:{caseChoice:'1'},closest(selector){return selector==='[data-case-choice]'?this:null}};
+ click({target:selectAnswer});
+ click({target:{id:'case-submit',closest(){return null}}});
+ const stateAfter=JSON.parse(screen.store.value);
+ assert.ok(stateAfter.completed.includes('case:beta-photo'));
+ assert.ok(stateAfter.xp>=30);
+ assert.ok(screen.document.getElementById('main').innerHTML.includes('Une publication peut exposer la vie privée'));
+
+ const lesson=mount('lecon/info-context','light',true,'12-15');
+ const submit=lesson.handlers.get('submit');
+ submit({
+   target:{id:'lesson-quiz',querySelector(){return {value:'0'};}},
+   preventDefault(){}
+ });
+ const after=JSON.parse(lesson.store.value);
+ assert.ok(after.completed.includes('lesson:info-context'));
+ assert.ok(after.reviews['info-context']);
+ assert.match(lesson.document.getElementById('main').innerHTML,/Bonne réponse/);
+});
+
+test('a wrong answer shows the actual correct choice in the feedback',()=>{
+ const quiz=mount('lecon/info-context','light',true,'12-15');
+ quiz.handlers.get('submit')({target:{id:'lesson-quiz',querySelector(){return {value:'2'};}},preventDefault(){}});
+ assert.ok(quiz.document.getElementById('main').innerHTML.includes('La bonne réponse est :'));
+ const state=JSON.parse(quiz.store.value);
+ assert.ok(!state.completed.includes('lesson:info-context'));
+});
