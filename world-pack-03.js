@@ -1211,8 +1211,8 @@
       "body": "Une politique annonce un objectif de réduction des accidents. Un bilan ultérieur donne seulement le nombre total de contrôles.",
       "question": "Que manque-t-il pour juger du résultat ?",
       "choices": [
-        "Comparer les résultats, le contexte et les autres causes.",
         "Comparer uniquement les annonces avant et après la mesure.",
+        "Comparer les résultats, le contexte et les autres causes.",
         "Prendre la satisfaction des élus comme indicateur d’effet."
       ],
       "answer": 1,
@@ -1238,8 +1238,8 @@
       "question": "Quel réflexe est intellectuellement cohérent ?",
       "choices": [
         "Ignorer les résultats pour rester cohérent.",
-        "Réviser sa position en précisant les preuves nouvelles.",
-        "Supposer que toute nouvelle information confirme l’idée."
+        "Supposer que toute nouvelle information confirme l’idée.",
+        "Réviser sa position en précisant les preuves nouvelles."
       ],
       "answer": 2,
       "why": "Modifier une conclusion à la lumière d'éléments nouveaux est une force du raisonnement critique.",

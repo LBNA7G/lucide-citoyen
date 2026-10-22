@@ -1003,9 +1003,9 @@
       "body": "Un téléphone acheté récemment cesse de fonctionner et le vendeur refuse toute discussion.",
       "question": "Que rassembler avant la réclamation ?",
       "choices": [
-        "Rassembler achat, échanges et description de la panne.",
+        "Remplacer le produit et jeter les justificatifs.",
         "Évaluer seul la réparation avant de contacter le vendeur.",
-        "Remplacer le produit et jeter les justificatifs."
+        "Rassembler achat, échanges et description de la panne."
       ],
       "answer": 2,
       "why": "Un dossier clair aide à faire valoir les droits applicables, notamment selon la nature de l'achat.",

@@ -1238,8 +1238,8 @@
       "question": "Quelle méthode est préférable ?",
       "choices": [
         "Choisir les valeurs montrant le meilleur résultat.",
-        "Comparer indicateurs, limites et tendance passée.",
-        "Évaluer seulement le nombre de réunions publiques."
+        "Évaluer seulement le nombre de réunions publiques.",
+        "Comparer indicateurs, limites et tendance passée."
       ],
       "answer": 2,
       "why": "Évaluer une politique exige un cadre défini au-delà d'un indicateur choisi arbitrairement.",

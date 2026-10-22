@@ -565,8 +565,8 @@
       "body": "Assurance annuelle, réparations et fêtes peuvent créer un mois difficile même avec un solde habituellement positif.",
       "question": "Quelle méthode anticiper ?",
       "choices": [
-        "Étaler les frais périodiques dans son budget.",
         "N’inscrire que les dépenses du mois précédent.",
+        "Étaler les frais périodiques dans son budget.",
         "Réserver tout son budget aux achats immédiats."
       ],
       "answer": 1,
