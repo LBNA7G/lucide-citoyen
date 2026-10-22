@@ -752,3 +752,29 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
  .civic-topic{align-items:start;flex-direction:column;gap:4px}
  .civic-topic small{min-width:0}
 }
+
+/* SAVRÉO v1.2 — politiques et documents publics : pas de classement ni surcharge */
+.party-library{max-width:690px}
+.party-library>.muted{font-size:13px;line-height:1.75;margin:2px 0 22px}
+.party-records{display:grid;gap:0;border-top:1px solid var(--calm-stroke)}
+.party-record{border-bottom:1px solid var(--calm-stroke)}
+.party-record>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:21px 3px;min-height:60px}
+.party-record>summary::-webkit-details-marker{display:none}
+.party-name{font-size:16px;color:var(--calm-ink);font-weight:730}
+.party-record-label{font-size:12px;color:var(--calm-accent);display:flex;align-items:center;gap:8px;flex:none}
+.party-record[open] .party-record-label>span{transform:rotate(45deg)}
+.party-record-body{padding:0 4px 27px;display:grid;gap:13px}
+.party-record-body .eyebrow{color:var(--calm-accent);font-size:11px}
+.party-record-body p{color:var(--calm-muted);font-size:14px;line-height:1.7;margin:5px 0}
+.party-record-body .party-meta{font-size:12px;border-top:1px solid var(--calm-stroke);padding-top:14px}
+.party-record-body .source-link{display:inline-block;line-height:1.7;overflow-wrap:anywhere;font-size:13px;color:var(--calm-accent);margin:2px 0}
+.party-record-body .calm-disclosure{margin-top:9px}
+.civic-legal-note{max-width:690px;margin:23px 0;color:var(--calm-muted);font-size:13px;line-height:1.7}
+.calm-reading-step.civic-question .civic-progress{margin-bottom:20px}
+.party-record:focus-within{outline-offset:4px}
+@media(max-width:760px){
+ .party-record>summary{align-items:start;gap:8px;padding:20px 2px}
+ .party-record-label{font-size:11px;white-space:nowrap}
+ .party-name{font-size:15px}
+ .party-record-body{padding:0 0 22px}
+}
