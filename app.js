@@ -35,7 +35,28 @@
   let activeDebate = 0;
   let debateFeedback = null;
   let aiFeedback = null, aiBusy = false, aiError = '';
-  let liveNews = {status:'idle',items:[],source:'',checkedAt:'',error:''};
+  // Les dernières publications déjà reçues restent lisibles en cas de panne du réseau,
+  // mais ne sont jamais présentées comme des actualités à jour.
+  const NEWS_CACHE_PREFIX='savreo-news-snapshot-v1-';
+  const NEWS_MAX_AGE=7*24*60*60*1000;
+  let lastNewsAttempt=0;
+  function readNewsSnapshot(country){
+    try{
+      if(!['BE','FR'].includes(country))return null;
+      const saved=JSON.parse(localStorage.getItem(NEWS_CACHE_PREFIX+country)||'null');
+      const age=Date.now()-Date.parse(saved?.checkedAt||'');
+      if(!saved||!Number.isFinite(age)||age<0||age>NEWS_MAX_AGE||!Array.isArray(saved.items))return null;
+      const items=saved.items.filter(n=>n&&typeof n.title==='string'&&typeof n.url==='string'&&/^https:\/\//.test(n.url)).slice(0,12);
+      return items.length?{status:'stale',items,source:String(saved.source||'Archives officielles'),sources:[],checkedAt:saved.checkedAt,error:'',staleNotice:'Copie locale de publications précédemment consultées ; aucune mise à jour réseau confirmée.'}:null;
+    }catch{return null;}
+  }
+  function writeNewsSnapshot(country,data){
+    try{
+      if(!['BE','FR'].includes(country)||!Array.isArray(data.items)||!data.items.length)return;
+      localStorage.setItem(NEWS_CACHE_PREFIX+country,JSON.stringify({checkedAt:data.checkedAt,source:data.source,items:data.items.slice(0,12)}));
+    }catch{}
+  }
+  let liveNews = readNewsSnapshot(state.country)||{status:'idle',items:[],source:'',checkedAt:'',error:''};
   let newsRequest = null;
   let newsRequestCountry = '';
   let newsFilter='all';
@@ -774,9 +795,9 @@
   function dailyMissions(){return [{key:'mission:case:'+dayKey(),name:'Un Déclic',desc:'Réponds à un cas concret',route:'declic'}, {key:'mission:lesson:'+dayKey(),name:'Une leçon',desc:'Apprends une notion utile',route:'apprendre'}, {key:'debate:'+dayKey(),name:'Une objection',desc:'Défends ton raisonnement',route:'debattre'}];}
 
   function newsCards(){
-    if(liveNews.status==='loading')return '<div class="notice" role="status">Consultation du flux officiel en cours…</div>';
+    if(liveNews.status==='loading'&&!liveNews.items.length)return '<div class="notice" role="status">Consultation du flux officiel en cours…</div>';
     if(liveNews.status==='error')return '<div class="notice" role="status"><strong>Flux indisponible :</strong> '+escapeHTML(liveNews.error)+'. Aucun titre fictif ne remplace la source. Consulte les liens institutionnels plus bas.</div>';
-    if(liveNews.status!=='success')return '<div class="notice">Choisis « Consulter les publications » pour vérifier la source officielle.</div>';
+    if(!['success','stale','loading'].includes(liveNews.status))return '<div class="notice">Choisis « Consulter les publications » pour vérifier la source officielle.</div>';
     const checked=new Date(liveNews.checkedAt);
     const checkedLabel=Number.isNaN(checked.getTime())?'date de consultation indisponible':checked.toLocaleString('fr-BE',{dateStyle:'medium',timeStyle:'short'});
     const items=liveNews.items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
@@ -784,6 +805,7 @@
     const periodItems=newsFilter==='recent'?recentItems:items;
     const shown=periodItems.filter(n=>newsScope==='all'||n.scope===newsScope);
     const sourceFailures=(liveNews.sources||[]).filter(x=>!x.available);
+    const staleNotice=liveNews.status!=='success'?'<div class="notice" role="status"><strong>Mode archive :</strong> dernières publications enregistrées sur cet appareil. Impossible de confirmer les nouvelles publications. '+escapeHTML(liveNews.error||'')+' <button type="button" class="news-inline-button" id="load-news">Réessayer la connexion</button></div>':'';
     const territoryFilters=state.country==='BE'?'<div class="news-filter-row" role="group" aria-label="Territoire des publications">'+[['all','Tous territoires'],['federal','Fédéral'],['regional','Wallonie']].map(([id,label])=>'<button type="button" data-news-scope="'+id+'" class="news-filter '+(newsScope===id?'active':'')+'" aria-pressed="'+(newsScope===id)+'">'+label+'</button>').join('')+'</div>':'';
     const filters='<div class="news-filter-row" role="group" aria-label="Période des publications">'+
       [['all','Toutes ('+items.length+')'],['recent','14 derniers jours ('+recentItems.length+')']].map(([id,label])=>'<button type="button" data-news-filter="'+id+'" class="news-filter '+(newsFilter===id?'active':'')+'" aria-pressed="'+(newsFilter===id)+'">'+label+'</button>').join('')+'</div>';
@@ -792,7 +814,7 @@
       const archive=!n.date||(Number.isFinite(age)&&age>14*86400000);
       return '<article class="card feed-card"><span class="pill grey">'+(archive?'PUBLICATION DATÉE · ':'SOURCE OFFICIELLE · ')+escapeHTML(n.date||'date non précisée')+'</span><small class="news-origin">'+escapeHTML(n.source||liveNews.source)+' · '+escapeHTML(n.publicationType||'Statut juridique non vérifié')+'</small><h3>'+escapeHTML(n.title)+'</h3><p>'+escapeHTML(n.summary||'Ouvrir la publication originale pour les détails.')+'</p><p class="news-status">Statut juridique non vérifié · publication ne signifie pas entrée en vigueur.</p><div class="news-actions">'+source('Lire la publication officielle',n.url)+'<button type="button" class="btn ghost small" data-save-news="'+escapeHTML(n.url)+'">'+(state.savedNews.some(x=>x.url===n.url)?'✓ Sauvegardé':'☆ Sauvegarder')+'</button></div></article>';
     }).join('');
-    return '<p class="source-age">'+escapeHTML(liveNews.source)+' · consultation du flux : '+escapeHTML(checkedLabel)+' · titres publiés par leur organisme, pas de vérification des lois par SAVRÉO</p>'+filters+territoryFilters+(sourceFailures.length?'<p class="notice" role="status">Couverture partielle : '+sourceFailures.map(x=>escapeHTML(x.name)+' ('+escapeHTML(x.error||'indisponible')+')').join(' · ')+'</p>':'')+
+    return '<p class="source-age">'+escapeHTML(liveNews.source)+' · consultation du flux : '+escapeHTML(checkedLabel)+' · titres publiés par leur organisme, pas de vérification des lois par SAVRÉO</p>'+staleNotice+filters+territoryFilters+(sourceFailures.length?'<p class="notice" role="status">Couverture partielle : '+sourceFailures.map(x=>escapeHTML(x.name)+' ('+escapeHTML(x.error||'indisponible')+')').join(' · ')+'</p>':'')+
       (shown.length?'<div class="news-read-more"><span>'+shown.length+' publication'+(shown.length>1?'s':'')+' à découvrir</span><small>Ouvre le texte original pour connaître son statut.</small></div><div class="grid two">'+cards+'</div>':'<div class="notice">Aucune publication datée des 14 derniers jours parmi les titres reçus. <button type="button" class="news-inline-button" data-news-filter="all">Voir toutes les publications</button></div>');
   }
   function vigie(){
@@ -818,12 +840,14 @@
     if(page!=='vigie'||typeof fetch!=='function'||typeof AbortController!=='function')return;
     const checked=Date.parse(liveNews.checkedAt||'');
     const expired=liveNews.status==='success'&&(!Number.isFinite(checked)||Date.now()-checked>=10*60*1000);
-    if(liveNews.status==='idle'||expired)fetchNews();
+    if((liveNews.status==='idle'||liveNews.status==='stale'||expired)&&Date.now()-lastNewsAttempt>=60000)fetchNews();
   }
   async function fetchNews(force=false){
     const chosen=state.country;
     if(newsRequest&&newsRequestCountry===chosen)return newsRequest;
-    liveNews={status:'loading',items:[],source:'',checkedAt:'',error:''};
+    lastNewsAttempt=Date.now();
+    const previous=liveNews.items.length?liveNews:readNewsSnapshot(chosen);
+    liveNews=previous?{...previous,status:'loading',error:''}:{status:'loading',items:[],source:'',checkedAt:'',error:''};
     if(page==='vigie')render();
     const pending=Promise.resolve().then(async()=>{
       const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
@@ -833,10 +857,14 @@
         if(!res.ok||!Array.isArray(data.items))throw new Error(data.error||'Flux indisponible.');
         if(state.country===chosen){
           liveNews={status:'success',items:data.items,source:data.source,sources:Array.isArray(data.sources)?data.sources:[],checkedAt:data.checkedAt,error:''};
+          writeNewsSnapshot(chosen,data);
           newsFilter='all';newsScope='all';
         }
       }catch(e){
-        if(state.country===chosen)liveNews={status:'error',items:[],source:'',checkedAt:'',error:e.name==='AbortError'?'Délai de réponse dépassé':String(e.message||'Connexion indisponible').slice(0,130)};
+        if(state.country===chosen){
+          const message=e.name==='AbortError'?'Délai de réponse dépassé':String(e.message||'Connexion indisponible').slice(0,130);
+          liveNews=previous?.items?.length?{...previous,status:'stale',error:message}: {status:'error',items:[],source:'',checkedAt:'',error:message};
+        }
       }finally{
         clearTimeout(timer);
         if(newsRequest===pending){newsRequest=null;newsRequestCountry='';}
@@ -876,7 +904,7 @@
 
   function render(){renderHeader();if(guestPreview&&!state.onboardingDone&&!profileEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=guestExperience();applyTheme();return;}if(!state.onboardingDone || profileEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=onboarding();applyTheme();return;}if(!state.interestsDone || interestsEditing){document.body.classList.add('onboarding-active');el('main').innerHTML=interestsScreen();applyTheme();return;}document.body.classList.remove('onboarding-active');let view; const l=lessons.find(x=>x.id===activeLesson)||lessons[0];switch(page){case 'vie-publique':view=publicHub();break;case 'civique':view=civicSchool();break;case 'dossiers':view=politicalDossiers();break;case 'essentiels':view=essentialSchool();break;case 'parcours':view=journeys();break;case 'reviser':view=reviewPage();break;case 'sources':view=editorialPage();break;case 'explorer':view=explore();break;case 'pratiquer':view=practice();break;case 'apprendre':view=learn();break;case 'lecon':view=lessonView(l);break;case 'debattre':view=debate();break;case 'droits':view=rights();break;case 'vigie':view=vigie();break;case 'declic':view=cases();break;case 'dico':view=dictionary();break;case 'profil':view=profile();break;default:view=welcome();}el('main').innerHTML=view;applyTheme();}
   function navigate(next){page=next; if(next==='declic'){transferChoice=null;transferReveal=false;}if(next==='lecon'){quizSelection=null;quizDone=false;lessonFirstReward=false;}if(next==='reviser'){reviewLessonId='';reviewChoice=null;reviewResult=null;}window.location.hash=(next==='lecon'?'lecon/'+activeLesson:next);render();window.scrollTo({top:0,behavior:'instant'});refreshNewsIfNeeded();}
-  function setCountry(c){if(!['BE','FR'].includes(c))return;state.country=c;liveNews={status:'idle',items:[],source:'',checkedAt:'',error:''};rightFilter='';newsFilter='all';newsScope='all';publicScope='all';publicSourcesOpen=false;activeScenario=null;caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;civicCurrent=null;civicChoice=null;civicReveal=false;civicFirstReward=false;essentialCurrent=null;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;essentialAgeView=null;setStore();render();toast(`Sources et droits : ${c==='BE'?'Belgique':'France'}`)}
+  function setCountry(c){if(!['BE','FR'].includes(c))return;state.country=c;liveNews=readNewsSnapshot(c)||{status:'idle',items:[],source:'',checkedAt:'',error:''};lastNewsAttempt=0;rightFilter='';newsFilter='all';newsScope='all';publicScope='all';publicSourcesOpen=false;activeScenario=null;caseChoice=null;caseReveal=false;caseFirstReward=false;transferChoice=null;transferReveal=false;civicCurrent=null;civicChoice=null;civicReveal=false;civicFirstReward=false;essentialCurrent=null;essentialChoice=null;essentialReveal=false;essentialFirstReward=false;essentialAgeView=null;setStore();render();toast(`Sources et droits : ${c==='BE'?'Belgique':'France'}`)}
   document.addEventListener('click',ev=>{
     if(ev.target.id==='onboarding-back'&&!profileEditing){onboardingStage=Math.max(0,onboardingStage-1);render();return;}
     if(ev.target.id==='onboarding-skip-name'&&!profileEditing){onboardingDraft.firstName='';onboardingStage=1;render();return;}
