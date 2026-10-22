@@ -675,3 +675,7 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
  .word-spot{flex-direction:column;align-items:stretch}
  .word-spot .btn{align-self:start}
 }
+
+/* Thème accessible dès le premier lancement, sans surcharge du formulaire */
+.theme-entry{margin-left:auto;display:grid;place-items:center;width:43px;height:43px;border-radius:50%;border:1px solid var(--calm-stroke);background:var(--calm-surface);color:var(--calm-ink);font-size:19px}
+.theme-entry:hover{border-color:var(--calm-accent)}
