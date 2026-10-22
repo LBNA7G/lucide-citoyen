@@ -10,7 +10,6 @@
   let state = load();
   let guestPreview=false, guestChoice=null, guestReveal=false;
   let onboardingStage=0;
-  let onboardingDraft={firstName:safeName(state.firstName||''),ageGroup:AGE_GROUPS[state.ageGroup]?state.ageGroup:'',gender:GENDERS[state.gender]?state.gender:''};
   let profileEditing = false;
   let interestsEditing = false;
   // Les préférences restent locales et ne sont jamais envoyées au coach IA.
@@ -26,6 +25,7 @@
   ];
   const chosenInterests = () => (Array.isArray(state.interests)?state.interests:[]).filter(id=>INTERESTS.some(t=>t.id===id)).slice(0,3);
   const safeName = name => String(name ?? '').trim().replace(/\s+/g,' ').slice(0,24);
+  let onboardingDraft={firstName:safeName(state.firstName||''),ageGroup:AGE_GROUPS[state.ageGroup]?state.ageGroup:'',gender:GENDERS[state.gender]?state.gender:''};
   state.savedNews = Array.isArray(state.savedNews) ? state.savedNews.slice(0,40) : [];
   state.transferPassed = Array.isArray(state.transferPassed) ? [...new Set(state.transferPassed.filter(x=>typeof x==='string'))].slice(0,80) : [];
   let transferChoice=null, transferReveal=false;
