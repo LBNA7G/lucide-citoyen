@@ -9,7 +9,21 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css?v=81" />
+  <script>
+    try {
+      const settings=JSON.parse(localStorage.getItem('lucide-demo-v1')||'{}');
+      const preference=['auto','light','dark'].includes(settings.theme)?settings.theme:'auto';
+      const theme=preference==='auto'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):preference;
+      document.documentElement.dataset.theme=theme;
+      document.documentElement.style.colorScheme=theme;
+      document.querySelector('meta[name="theme-color"]').setAttribute('content',theme==='light'?'#f6f8f5':'#0b0e18');
+    } catch {
+      const theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      document.documentElement.dataset.theme=theme;
+      document.documentElement.style.colorScheme=theme;
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css?v=9" />
   <title>SAVRÉO — Apprends ce qui compte.</title>
 </head>
 <body>
@@ -24,7 +38,7 @@
         <button type="button" data-page="droits" class="nav-link"><span class="nav-ico" aria-hidden="true">⚖</span> Mes droits</button>
         <button type="button" data-page="profil" class="nav-link"><span class="nav-ico" aria-hidden="true">◉</span> Mon parcours</button>
       </nav>
-      <div class="side-bottom"><span class="status-light"></span> Version découverte <span class="small-muted">v0.8.1</span><p>Apprends à ton rythme. Les sources officielles priment sur les résumés.</p></div>
+      <div class="side-bottom"><span class="status-light"></span> Version découverte <span class="small-muted">v0.9</span><p>Apprends à ton rythme. Les sources officielles priment sur les résumés.</p></div>
     </aside>
     <div class="content-shell">
       <header class="topbar">
@@ -34,6 +48,7 @@
             <button id="be-btn" type="button" class="country active" data-country="BE">🇧🇪 BE</button>
             <button id="fr-btn" type="button" class="country" data-country="FR">🇫🇷 FR</button>
           </div>
+          <button type="button" id="theme-quick" class="theme-quick" title="Changer de thème" aria-label="Changer de thème">☀</button>
           <div class="xp-pill" aria-label="Points de connaissance"><span>✦</span> <strong id="xp-top">0</strong> XP</div>
           <button class="profile-shortcut" type="button" data-page="profil" aria-label="Ouvrir mon parcours"><span aria-hidden="true">◉</span></button>
         </div>
@@ -49,6 +64,6 @@
     <button type="button" data-page="droits" class="bottom-link"><span aria-hidden="true">⚖</span>Mes droits</button>
   </nav>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=81" defer></script>
+  <script src="app.js?v=9" defer></script>
 </body>
 </html>
