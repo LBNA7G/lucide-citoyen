@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "purpose": "SAVRÉO — registre de revue humaine des contenus éducatifs et civiques",
-  "generated_from": "app.js + curriculum-beta.js + civic-pack-01.js + essentials-pack-02.js + world-pack-03.js",
+  "generated_from": "app.js, curriculum-beta.js, civic-pack-01.js, essentials-pack-02.js, world-pack-03.js, life-pack-04.js, public-pack-05.js",
   "review_policy": "pending_external_review jusqu'à relecture documentée et signée par un expert autorisé",
   "items": [
     {
@@ -2515,6 +2515,1734 @@
       "reviewed_at": null,
       "next_review_at": null,
       "notes": "Simulation éducative ; sources institutionnelles de départ et validation externe nécessaires. Ne pas assimiler la provenance de la source à une certification de chaque question."
+    },
+    {
+      "id": "essential:life-01",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "numérique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-02",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vie privée",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-03",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "budget",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-04",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "esprit critique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-05",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "santé",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.who.int/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-06",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "information",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-07",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "expression",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-08",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "données",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-09",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "apprentissage",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-10",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "argent",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-11",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "sécurité",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-12",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "argumentation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-13",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "citoyenneté",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-14",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "consommation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-15",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "numérique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-16",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "culture",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-17",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "emploi",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.studentatwork.be/fr/"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-18",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "argent",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-19",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vie quotidienne",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-20",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "contrat",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-21",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "logement",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wallonie.be/fr/vivre-en-wallonie/habitat-et-energie/louer"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-22",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "emploi",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.studentatwork.be/fr/"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-23",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "numérique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-24",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "citoyenneté",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-25",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "consommation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-26",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "médias",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-27",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "banque",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://safeonweb.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-28",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "santé",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.who.int/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-29",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "économie",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-30",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "expression",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://eures.europa.eu/index_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-31",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "données",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-32",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "mobilité",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-33",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "logement",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wallonie.be/fr/vivre-en-wallonie/habitat-et-energie/louer"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-34",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "budget",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-35",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "crédit",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-36",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "emploi",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.service-public.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-37",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "énergie",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-38",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "impôts",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-39",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "consommation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-40",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "assurance",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-41",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "numérique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.cnil.fr/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-42",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "travail",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://eures.europa.eu/index_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-43",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "logement",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wallonie.be/fr/vivre-en-wallonie/habitat-et-energie/louer"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-44",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "administration",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-45",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "finances",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-46",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "sécurité",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.cybermalveillance.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-47",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "mobilité",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:life-48",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "argent",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.wikifin.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "expert métier ou juriste selon domaine, et enseignant",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-01",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "institutions",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-02",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "citoyenneté",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-03",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "médias",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-04",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "citoyenneté",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://elections.fgov.be"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-05",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "institutions",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-06",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "finances publiques",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-07",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "débat",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.unicef.org/fr/convention-droits-enfant"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-08",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vote",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-09",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "local",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-10",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "sources",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://statbel.fgov.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-11",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "monde",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.un.org/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-12",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "citoyenneté",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-13",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "médias",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-14",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "culture civique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-15",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "statistiques",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://ec.europa.eu/eurostat/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-16",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "esprit critique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "12-15"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-17",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vote",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-18",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "information",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-19",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "institutions",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-20",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "finances",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-21",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vote",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://elections.fgov.be"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-22",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "justice",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-23",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "données",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://statbel.fgov.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-24",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "budget",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.wallonie.be/fr/acteurs-et-institutions/wallonie/gouvernement-de-wallonie/communiques-presse"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-25",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "Europe",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://european-union.europa.eu/principles-countries-history/how-eu-works_fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-26",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "élections",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.dc2024.be/aboutus/download_fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-27",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "responsabilité",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-28",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "médias",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.clemi.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-29",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "participation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-30",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "financement",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://cnccfp.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-31",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "chiffres",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-32",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "politique locale",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "16-20"
+      ],
+      "source_urls": [
+        "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-33",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "décision publique",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-34",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "déficit",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://ec.europa.eu/eurostat/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-35",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "services",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://statbel.fgov.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-36",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "local",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-37",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "finances publiques",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb/educational/html/index.fr.html"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-38",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "institutions",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-39",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "vote",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.elections.interieur.gouv.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-40",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "transparence",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.europarl.europa.eu/portal/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-41",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "comparaison",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://ec.europa.eu/eurostat/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-42",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "financement",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://cnccfp.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-43",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "justice",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-44",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "climat",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://ec.europa.eu/eurostat/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-45",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "politiques",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.insee.fr/fr/accueil"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-46",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "fédéralisme",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.belgium.be/fr/la_belgique/pouvoirs_publics"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-47",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "participation",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://www.vie-publique.fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
+    },
+    {
+      "id": "essential:civic-life-48",
+      "kind": "essential",
+      "country": "ALL",
+      "topic": "information",
+      "classification": "simulation pédagogique",
+      "age_groups": [
+        "21-28"
+      ],
+      "source_urls": [
+        "https://statbel.fgov.be/fr"
+      ],
+      "status": "pending_external_review",
+      "reviewer_role": "juriste institutionnel BE/FR et enseignant citoyenneté",
+      "reviewed_at": null,
+      "next_review_at": null,
+      "notes": "Contenu pédagogique fictif ; source documentaire initiale non suffisante pour une relecture experte ; vérifier juridiction, conformité et pertinence pédagogique avant lancement."
     }
   ]
 }
