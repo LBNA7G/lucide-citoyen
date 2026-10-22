@@ -661,7 +661,7 @@
         <div class="calm-reading-step"><span class="eyebrow">02 · VÉRIFIER</span><h2>${escapeHTML(l.q)}</h2>
           <form id="lesson-quiz">${l.choices.map((c,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${quizSelection===i?'checked':''}/><span>${escapeHTML(c)}</span></label>`).join('')}
           <button class="btn primary" type="submit">Valider ma réponse</button>
-          ${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}" role="status"><strong>${quizSelection===l.answer?(lessonFirstReward?'Leçon réussie · +20 XP':'Bonne réponse · déjà validée'):'La bonne réponse est : '+escapeHTML(l.choices[l.answer])+'.'}</strong> ${escapeHTML(l.why)}</div>`:''}
+          ${quizDone?`<div class="feedback ${quizSelection===l.answer?'good':'attn'}" role="status"><strong>${quizSelection===l.answer?(lessonFirstReward?'Bonne réponse · Leçon réussie · +20 XP':'Bonne réponse · déjà validée'):'La bonne réponse est : '+escapeHTML(l.choices[l.answer])+'.'}</strong> ${escapeHTML(l.why)}</div>`:''}
           </form>
         </div>
         <details class="calm-disclosure calm-inset"><summary>Sources et pour aller plus loin <span aria-hidden="true">＋</span></summary><div class="calm-reading-extra"><p>Repères pédagogiques : les fiches de cette version n’ont pas encore reçu de validation externe indépendante.</p>${resources.map(([name,url])=>source(name,url)).join('')}<p>Explique la notion à voix haute pour vérifier que tu la comprends.</p><button class="calm-card-action" data-route="debattre">M’exercer à argumenter →</button></div></details>
