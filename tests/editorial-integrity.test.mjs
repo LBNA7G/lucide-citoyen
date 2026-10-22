@@ -56,7 +56,7 @@ test('215 modular units have registry records with exactly matching source URLs'
   for(const [id,links] of sources){
     const record=index.get(id);
     assert.ok(record,'missing editorial registry: '+id);
-    const urls=links.map(toUrl);
+    const urls=Array.from(links,toUrl);
     assert.deepEqual(urls,record.source_urls,'outdated source in registry: '+id);
   }
 });
