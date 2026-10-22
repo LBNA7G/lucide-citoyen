@@ -100,6 +100,14 @@
     {label:'Technologie',title:'Les réseaux sociaux nous informent-ils ?',opp:'« Être sur les réseaux toute la journée suffit à comprendre l’actualité. »',help:'Compare rapidité, fiabilité, sources primaires et esprit critique.'},
     {label:'Éducation',title:'L’IA aide-t-elle vraiment à apprendre ?',opp:'« Puisque l’IA sait répondre, il est inutile de mémoriser. »',help:'Interroge la distinction entre obtenir une réponse et comprendre un raisonnement.'}
   ];
+
+  // Ateliers de prise de parole : les réponses personnelles ne sont jamais notées
+  // sur leur opinion ; seul le raisonnement et la nuance sont observés.
+  debates.push(
+    {label:'Réseaux',title:'Peut-on publier une photo sans demander ?',opp:'« Si quelqu’un apparaît dans ma vidéo, c’est mon compte, je poste ce que je veux. »',help:'Distingue création, respect de l’autre, consentement et conséquences de la diffusion.'},
+    {label:'Sécurité',title:'Faut-il faire confiance à une offre trop urgente ?',opp:'« Si je ne réponds pas immédiatement à un recruteur, je vais perdre ma chance. »',help:'Tu peux montrer ton intérêt sans fournir des codes ou des documents sensibles à un inconnu.'},
+    {label:'Logement',title:'Payer pour réserver un appartement ?',opp:'« Tout le monde verse de l’argent à l’avance, sinon le propriétaire loue à quelqu’un d’autre. »',help:'Distinguons une procédure de location encadrée d’une pression à payer sans vérification préalable.'}
+  );
   const SOURCES={
     BE:[
       {name:'Moniteur belge / Justel',topic:'Textes en vigueur',description:'Publications officielles et recherche dans les textes consolidés.',url:'https://www.justice.belgium.be/fr/moniteur_belge'},
@@ -326,6 +334,11 @@
     {id:'travail',icon:'▤',title:'Comprendre l’argent et le travail',desc:'Un cas concret, une notion économique, une mise en pratique.',case:{BE:'be-heures',FR:'fr-apprenti'},lesson:'economy',debate:0},
     {id:'droits',icon:'⚖',title:'Connaître ses droits',desc:'Une situation de société, la règle, puis un débat argumenté.',case:{BE:'be-manif',FR:'fr-manif'},lesson:'lois',debate:2}
   ];
+  JOURNEYS.push(
+    {id:'reflexe-info',icon:'◎',title:'Garder le contrôle de ce que tu partages',desc:'Apprendre à vérifier une capture avant de la relayer.',ageGroups:['12-15'],interestIds:['reseaux','culture'],case:{BE:'beta-capture',FR:'beta-capture'},lesson:'info-context',debate:5},
+    {id:'reflexe-securite',icon:'✳',title:'Déjouer une arnaque en ligne',desc:'Identifier une fausse offre et répondre avec méthode.',ageGroups:['16-20'],interestIds:['reseaux','argent'],case:{BE:'beta-recrutement',FR:'beta-recrutement'},lesson:'online-scams',debate:6},
+    {id:'reflexe-logement',icon:'⌂',title:'Éviter une fausse location',desc:'Vérifier un logement, son annonce et les bons réflexes.',ageGroups:['21-28'],interestIds:['argent','droits'],case:{BE:'beta-appart',FR:'beta-appart'},lesson:'rent-smart',debate:7}
+  );
   const reviewsData=()=>state.reviews && typeof state.reviews==='object' && !Array.isArray(state.reviews)?state.reviews:{};
   const reviewIntervals=[1,3,7,14,30];
   const reviewDate=days=>{const d=new Date(dayKey()+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10);};
@@ -345,10 +358,10 @@
       }).join('');
       return '<article class="card learning-card calm-journey-card"><div class="learning-card-top"><span class="learning-icon" aria-hidden="true">'+j.icon+'</span><span class="pill grey">'+count+'/3 étapes</span></div><h3>'+escapeHTML(j.title)+'</h3><p>'+escapeHTML(j.desc)+'</p><div class="progressbar" role="progressbar" aria-label="Progression du parcours" aria-valuenow="'+count+'" aria-valuemin="0" aria-valuemax="3"><i style="width:'+(count/3*100)+'%"></i></div><div class="journey-steps">'+controls+'</div></article>';
     };
-    const first=JOURNEYS.find(j=>journeyChecks(j).some(Boolean)&&!journeyChecks(j).every(Boolean))||JOURNEYS[0];
+    const first=JOURNEYS.find(j=>journeyChecks(j).some(Boolean)&&!journeyChecks(j).every(Boolean))||JOURNEYS.slice().sort((a,b)=>contentPriority(b)-contentPriority(a))[0];
     return intro('MES PARCOURS','Un objectif, trois étapes.','Une situation, une explication, puis un exercice pour appliquer ce que tu as appris.')+
       '<div class="calm-feature-lesson">'+journeyCard(first)+'</div>'+
-      '<details class="calm-disclosure"><summary>Découvrir les autres parcours <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">'+JOURNEYS.filter(j=>j.id!==first.id).map(journeyCard).join('')+'</div></details>'+
+      '<details class="calm-disclosure"><summary>Découvrir les autres parcours <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">'+JOURNEYS.filter(j=>j.id!==first.id).sort((a,b)=>contentPriority(b)-contentPriority(a)).map(journeyCard).join('')+'</div></details>'+
       '<button class="calm-footer-link" data-route="reviser">Revoir ce que j’ai appris <span aria-hidden="true">→</span></button>'+
       '<details class="calm-disclosure"><summary>À propos des situations proposées <span aria-hidden="true">＋</span></summary><p class="muted small">Ces exercices sont pédagogiques, pas des certifications. Les règles juridiques dépendent du pays et de la situation. Consulte toujours les sources officielles.</p></details>';
   }
