@@ -12,7 +12,7 @@ const worldCode=readFileSync('world-pack-03.js','utf8');
 const lifeCode=readFileSync('life-pack-04.js','utf8');
 const publicCode=readFileSync('public-pack-05.js','utf8');
 
-function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-20',interests=[]){
+function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-20',interests=[],extraState={}){
   const nodes=new Map(), handlers=new Map();
   function node(id){
     if(!nodes.has(id))nodes.set(id,{id,innerHTML:'',textContent:'',title:'',classList:{add(){},remove(){},toggle(){}},setAttribute(){}});
@@ -27,7 +27,7 @@ function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-2
     querySelector(selector){return selector.includes('theme-color')?meta:null;},
     addEventListener(name,cb){handlers.set(name,cb);}
   };
-  const state={firstName:'Lina',ageGroup,country:'BE',theme,interests,interestsDone:profileComplete,onboardingDone:profileComplete};
+  const state={firstName:'Lina',ageGroup,country:'BE',theme,interests,interestsDone:profileComplete,onboardingDone:profileComplete,...extraState};
   const stored={value:JSON.stringify(state)};
   const localStorage={getItem(){return stored.value},setItem(_,v){stored.value=v}};
   const window={
@@ -215,4 +215,26 @@ test('176 micro-lessons stay accessible and age catalogues are not electoral pro
  const choose={dataset:{essentialId:'world-48'},closest(q){return q==='[data-essential-id]'?this:null}};
  screen.handlers.get('click')({target:choose});
  assert.ok(screen.document.getElementById('main').innerHTML.includes('Faire évoluer son avis'));
+});
+
+test('after completing a micro-lesson, the next lesson is an unseen one',()=>{
+ const screen=mount('essentiels','light',true,'12-15');
+ const click=screen.handlers.get('click');
+ const current={dataset:{essentialId:'ess-01'},closest(q){return q==='[data-essential-id]'?this:null}};
+ click({target:current});
+ click({target:{dataset:{essentialChoice:'0'},closest(q){return q==='[data-essential-choice]'?this:null}}});
+ click({target:{id:'essential-check',closest(){return null}}});
+ const after=JSON.parse(screen.store.value);
+ assert.ok(after.microReviews['ess-01'].due,'first review was not scheduled');
+ click({target:{id:'essential-next',closest(){return null}}});
+ const html=screen.document.getElementById('main').innerHTML;
+ assert.ok(html.includes('Une publicité ressemble à un conseil'),'expected an unseen next lesson');
+});
+
+test('review screen presents only three urgent items before an expandable backlog',()=>{
+ const due={};for(let n=1;n<=10;n++)due['ess-'+String(n).padStart(2,'0')]={due:'2020-01-01',stage:0,attempts:1};
+ const screen=mount('reviser','light',true,'12-15',[],{microReviews:due});
+ assert.ok(screen.html.includes('10</strong>'),'due count should include all ten');
+ assert.ok(screen.html.includes('Voir 7 autres révisions'),'remaining reviews should be collapsible');
+ assert.ok(screen.html.includes('data-micro-review="ess-01"'),'first review must still be actionable');
 });
