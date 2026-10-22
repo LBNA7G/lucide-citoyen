@@ -42,7 +42,7 @@ test('Calm UI renders each main page in a fake browser DOM without throwing',()=
    droits:['calm-rights','right-entry','Rechercher un sujet'],
    profil:['theme-selector','calm-country-picker','Historique et points'],
    parcours:['calm-journey-card','Découvrir les autres parcours'],
-   reviser:['révision','calm-disclosure'],
+   reviser:['révision','Aucune révision'],
    apprendre:['calm-lesson-card','Voir toutes les leçons'],
    'lecon/penser':['calm-reading','lesson-quiz','Exemples et détails'],
    sources:['calm-source-point','Consulter les institutions'],
