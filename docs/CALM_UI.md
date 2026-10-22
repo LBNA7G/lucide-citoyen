@@ -18,7 +18,8 @@ Les valeurs d'espacement sont des **hypothèses de conception** soumises aux tes
 - **Automatique par défaut** : suit `prefers-color-scheme`, y compris les changements du système.
 - **Clair** : fond `#f6f8f5`, cartes `#fff`, texte `#14232a`, accent `#285c43`.
 - **Sombre** : fond `#0b0e18`, cartes `#151a28`, texte `#f4f5f8`, accent `#d4fd7b`.
-- Sélection persistante sous la clé locale de progression historique. Bouton rapide dans l'en-tête ; choix à 3 options dans le profil.
+- Sélection persistante sous la clé locale de progression historique. Bouton rapide dans l'en-tête **et au premier lancement** ; choix à 3 options dans le profil.
+- Sur téléphone, le pays des informations se sélectionne depuis le profil et est rappelé sur « Mes droits » ; le compteur XP n'encombre plus l'en-tête.
 - Amorçage dans `index.html` avant chargement CSS pour limiter un flash de thème incorrect.
 - Contrast ratios calculés sur les tokens principaux via `tests/calm-ui.test.mjs`. **Ce n'est pas un audit WCAG complet**.
 
@@ -30,7 +31,7 @@ Les valeurs d'espacement sont des **hypothèses de conception** soumises aux tes
 | Découvrir | Situations, leçons, mots | Actualités institutionnelles, méthodes |
 | Pratiquer | Parcours, révisions, argumentation | Missions quotidiennes |
 | Mes droits | Recherche de droits, titres de fiches | Détails, cas pratique, sources, limites |
-| Profil | Identité et thème ; centres d'intérêt | Historique, XP, confidentialité |
+| Profil | Identité, pays et thème ; centres d'intérêt | Historique, XP, confidentialité |
 | Leçons | Premier concept, quiz | Exemples, détails, références |
 | Situations | Question et choix | Autres scénarios, précautions |
 | Dictionnaire | Mot du jour | Autres mots |
@@ -47,6 +48,12 @@ Les valeurs d'espacement sont des **hypothèses de conception** soumises aux tes
 6. Le vert est une couleur d'interaction, pas une décoration omniprésente ; la sélection possède aussi un libellé/état.
 7. Espacement tactile souhaité autour de 44 px pour les commandes majeures, avec vérification manuelle des exceptions.
 8. Respecter `prefers-reduced-motion`, focus visible et zoom à 200 %.
+
+## Contrôles techniques déjà exécutés
+
+- GitHub Actions : tests unitaires/statiques et tests d'exécution légère simulant les routes principales, le choix du thème et le premier lancement, avec résultat positif.
+- Le test automatisé de contraste mesure uniquement certaines combinaisons de couleurs des tokens, pas l'intégralité des états affichés.
+- Aucune capture d'écran réelle, aucune étude auprès des jeunes et aucun audit de lecteur d'écran n'ont encore été réalisés.
 
 ## Vérifications avant publication (non réalisées)
 
