@@ -327,9 +327,9 @@
       "body": "Une vidéo électorale d'il y a dix ans circule comme une annonce de la semaine.",
       "question": "Quel indice manque ?",
       "choices": [
-        "La date et le contexte du document initial.",
-        "La qualité de la musique.",
-        "Le nombre de partages."
+        "Contrôler la date et le contexte de l’archive.",
+        "Comparer la popularité des commentaires récents.",
+        "Vérifier si le document est repris dans un sondage."
       ],
       "answer": 0,
       "why": "Un document réel ancien peut induire en erreur si sa date est supprimée.",
@@ -353,9 +353,9 @@
       "body": "Dans un vote, les citoyens répondent à une question plutôt que de désigner directement des candidats.",
       "question": "Quel élément faut-il identifier ?",
       "choices": [
-        "La plus grande affiche.",
-        "Le type de scrutin et les effets juridiques de son résultat.",
-        "La préférence du journaliste."
+        "Vérifier le taux de participation uniquement.",
+        "Identifier le scrutin et l’effet légal du résultat.",
+        "Comparer la popularité de ses représentants."
       ],
       "answer": 1,
       "why": "Les règles de consultation et la portée du résultat varient selon le système juridique.",
@@ -379,9 +379,9 @@
       "body": "Deux communes annoncent la même dépense totale mais n'ont pas le même nombre d'habitants.",
       "question": "Quel indicateur peut aider ?",
       "choices": [
-        "La même dépense totale signifie le même effort partout.",
-        "Le nombre d'annonces publiques.",
-        "Une dépense comparable rapportée à la population, avec précautions."
+        "Comparer les montants sans tenir compte des habitants.",
+        "Calculer la dépense totale dans la commune la plus riche.",
+        "Rapporter un montant comparable à la population."
       ],
       "answer": 2,
       "why": "Rapporter un montant à la population donne un autre éclairage sans résumer toute la politique locale.",
@@ -405,9 +405,9 @@
       "body": "Un candidat dit qu'une décision est « catastrophique », mais ne fournit aucun chiffre.",
       "question": "Comment qualifier sa phrase ?",
       "choices": [
-        "Un jugement à discuter avec des arguments et des preuves.",
-        "Une statistique officielle.",
-        "Une décision judiciaire."
+        "Une appréciation à justifier et discuter.",
+        "Une mesure chiffrée vérifiable dans un registre.",
+        "Une annonce officielle avec date d’exécution."
       ],
       "answer": 0,
       "why": "On peut exprimer une appréciation sans qu'elle devienne automatiquement un fait mesuré.",
@@ -431,9 +431,9 @@
       "body": "Une personne ne se présente pas au scrutin ; une autre se rend au bureau et exprime un vote blanc.",
       "question": "Pourquoi les distinguer ?",
       "choices": [
-        "Ils signifient toujours la même chose partout.",
-        "Leurs comportements et leur traitement institutionnel sont différents.",
-        "Le vote blanc désigne toujours un candidat."
+        "Les deux notions désignent un bulletin déposé.",
+        "Les démarches et leurs effets diffèrent selon le scrutin.",
+        "Le vote blanc élit automatiquement une liste vide."
       ],
       "answer": 1,
       "why": "Les modalités et effets du vote blanc et de l'abstention sont encadrés différemment selon le pays et le scrutin.",
@@ -457,9 +457,9 @@
       "body": "Un micro-trottoir interroge 15 personnes sur leurs intentions de vote et affirme représenter un pays.",
       "question": "Quelle limite est évidente ?",
       "choices": [
-        "Un micro-trottoir est un résultat officiel.",
-        "Plus on filme, plus c’est une élection.",
-        "Les participants ne sont pas un échantillon national représentatif."
+        "Les sondés représenteraient tous les électeurs du pays.",
+        "Le nombre de personnes filmées suffit à prédire le vote.",
+        "Un groupe de fête n’est pas un échantillon national."
       ],
       "answer": 2,
       "why": "Un petit groupe recruté par commodité ne décrit pas forcément l'opinion d'une population.",
@@ -483,9 +483,9 @@
       "body": "Un gouvernement annonce un programme et présente ensuite ses résultats.",
       "question": "Quelle vérification institutionnelle est pertinente ?",
       "choices": [
-        "Examiner les mécanismes parlementaires et de contrôle applicables.",
-        "Supposer qu'une conférence de presse est un audit.",
-        "Croire que personne ne peut le questionner."
+        "Identifier les contrôles et les compétences du Parlement.",
+        "Confondre chaque communiqué avec une décision de justice.",
+        "Attendre les élections pour examiner toute dépense."
       ],
       "answer": 0,
       "why": "L'action exécutive s'inscrit dans des procédures de responsabilité et de contrôle qui diffèrent selon les États.",
@@ -509,9 +509,9 @@
       "body": "Une autorité présente un projet de budget et un chiffre de déficit attendu.",
       "question": "Que vérifier pour connaître le résultat final ?",
       "choices": [
-        "Seulement la couverture du document.",
-        "Les données d'exécution et la période réellement observée.",
-        "Un slogan de campagne."
+        "Reprendre les prévisions sans consulter les comptes.",
+        "Lire l’exécution budgétaire et la période concernée.",
+        "Comparer deux slogans de partis opposés."
       ],
       "answer": 1,
       "why": "Prévision, budget adopté et exécution ne sont pas les mêmes étapes d'une dépense publique.",
@@ -535,9 +535,9 @@
       "body": "Un électeur veut comprendre ce qu’il élit et à quel niveau les personnes siègent.",
       "question": "Quelle information lui est utile ?",
       "choices": [
-        "Le nombre de likes des candidats.",
-        "Une opinion d'un autre électeur.",
-        "Le scrutin, les candidats officiels et les compétences du mandat."
+        "Comparer la notoriété des candidats sur les réseaux.",
+        "Chercher des annonces de campagne sans date.",
+        "Consulter la liste officielle et le mandat en jeu."
       ],
       "answer": 2,
       "why": "Vérifier les listes et l'institution permet de comprendre ce qu'un vote peut effectivement choisir.",
@@ -561,9 +561,9 @@
       "body": "Un article rapporte le dépôt d'une plainte contre une personnalité publique.",
       "question": "Quelle formulation reste exacte ?",
       "choices": [
-        "Une plainte a été déposée, sans conclure sur la culpabilité.",
-        "La personne est automatiquement condamnée.",
-        "Le tribunal a forcément rendu un jugement définitif."
+        "Une plainte ne prouve pas la culpabilité.",
+        "Une accusation publique équivaut à un jugement.",
+        "Une plainte signifie que le procès est terminé."
       ],
       "answer": 0,
       "why": "Les étapes judiciaires doivent être distinguées et confirmées avec des sources fiables.",
@@ -587,9 +587,9 @@
       "body": "Deux publications donnent des chiffres différents sur l'emploi des jeunes.",
       "question": "Quelle différence faut-il examiner ?",
       "choices": [
-        "La couleur du graphique.",
-        "Âge, indicateur, méthode, période et territoire.",
-        "Le nombre de commentaires."
+        "Retenir le seul pourcentage affiché dans l’article.",
+        "Vérifier âge, période, indicateur et méthode.",
+        "Comparer la taille des caractères du graphique."
       ],
       "answer": 1,
       "why": "Les indicateurs peuvent porter sur des populations et définitions différentes.",
@@ -613,9 +613,9 @@
       "body": "Un projet local prévoit une aide d'un autre niveau de gouvernement.",
       "question": "Que rechercher pour évaluer la décision ?",
       "choices": [
-        "Le titre du communiqué seulement.",
-        "La popularité des élus.",
-        "Montant, conditions, source et dates de versement."
+        "Lire uniquement le communiqué qui annonce la somme.",
+        "Évaluer la popularité des responsables bénéficiaires.",
+        "Vérifier le montant, les conditions et les versements."
       ],
       "answer": 2,
       "why": "Annoncer une subvention et constater son versement effectif sont deux étapes différentes.",

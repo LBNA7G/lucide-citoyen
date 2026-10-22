@@ -315,9 +315,9 @@
       "body": "Le salaire brut et le montant effectivement versé ne sont pas toujours identiques. Les cotisations et prélèvements expliquent une partie de la différence.",
       "question": "Quel montant comparer avec ton budget ?",
       "choices": [
-        "Le montant net réellement reçu.",
-        "Une estimation d'un ami.",
-        "Uniquement le brut."
+        "Le montant versé après retenues.",
+        "Le salaire convenu avant les retenues.",
+        "Le total des indemnités indiquées."
       ],
       "answer": 0,
       "why": "Pour organiser ses dépenses, mieux vaut partir de l'argent effectivement disponible tout en comprenant les retenues.",
@@ -340,9 +340,9 @@
       "body": "Lorsqu’un rendement est capitalisé, les gains précédents peuvent eux-mêmes générer des gains futurs. Les conditions et les risques comptent.",
       "question": "Que signifie capitalisation ?",
       "choices": [
-        "Il n’existe aucun risque.",
-        "Les rendements sont ajoutés à la base de calcul.",
-        "L’argent double chaque mois."
+        "Les intérêts sont toujours retirés du capital.",
+        "Les intérêts ajoutés peuvent produire des intérêts.",
+        "Les intérêts sont fixés indépendamment du temps."
       ],
       "answer": 1,
       "why": "L’intérêt composé dépend du taux, du temps et des modalités. Il ne garantit pas un rendement.",
@@ -365,9 +365,9 @@
       "body": "Un paiement récurrent semble faible isolément. Sur douze mois, plusieurs prélèvements peuvent peser sur le budget.",
       "question": "Quel calcul aide à décider ?",
       "choices": [
-        "Regarder seulement le premier prélèvement.",
-        "Ignorer la reconduction.",
-        "Additionner les montants sur une année."
+        "Comparer chaque paiement au prix d’un seul repas.",
+        "Vérifier seulement le coût du premier mois.",
+        "Additionner les prélèvements sur une année."
       ],
       "answer": 2,
       "why": "Annualiser les dépenses récurrentes révèle leur coût cumulé et facilite les arbitrages.",
@@ -390,9 +390,9 @@
       "body": "En cas de problème sur un produit ou un service, une preuve d’achat peut aider à retrouver la transaction et à faire valoir ses demandes.",
       "question": "Quel document conserver ?",
       "choices": [
-        "Une preuve d'achat et les conditions utiles.",
-        "Uniquement le logo de la boutique.",
-        "Un commentaire sans date."
+        "Une trace de l’achat et de ses conditions.",
+        "Une garantie automatique sans limite de durée.",
+        "Une attestation que le produit n’a aucun défaut."
       ],
       "answer": 0,
       "why": "Conserver une preuve permet d'établir les circonstances d’une transaction. Les garanties varient suivant les situations.",
@@ -415,9 +415,9 @@
       "body": "Une annonce promet un revenu élevé, mais une personne te demande un virement immédiat pour accéder au poste sans entretien fiable.",
       "question": "Quel est le premier contrôle ?",
       "choices": [
-        "Envoyer tous ses codes.",
-        "Vérifier l'employeur et refuser le paiement sous pression.",
-        "Payer en urgence."
+        "Payer après avoir reçu une promesse par écrit.",
+        "Identifier l’employeur et contester le paiement.",
+        "Envoyer un acompte mais garder sa confirmation."
       ],
       "answer": 1,
       "why": "Les faux recrutements exploitent l'urgence. Le contact officiel de l'entreprise est préférable au canal imposé par l'annonce.",
@@ -440,9 +440,9 @@
       "body": "Plusieurs comptes répètent une affirmation issue d’un seul message anonyme. Le nombre de reprises n’est pas une confirmation indépendante.",
       "question": "Que rechercher ?",
       "choices": [
-        "Plusieurs copies du même post.",
-        "Le titre le plus dramatique.",
-        "Des sources indépendantes et identifiables."
+        "Comparer le nombre de pages où l’histoire apparaît.",
+        "Vérifier les titres des comptes qui la relaient.",
+        "Trouver plusieurs sources réellement indépendantes."
       ],
       "answer": 2,
       "why": "Recouper suppose des informations venant de sources qui n'ont pas seulement copié une même origine.",
@@ -465,9 +465,9 @@
       "body": "Une publication annonce « +50 % » mais ne précise pas si l’on passe de 2 à 3 cas ou de 2 000 à 3 000.",
       "question": "Quelle donnée manque ?",
       "choices": [
-        "Les valeurs initiale et finale.",
-        "Le slogan.",
-        "La photo du porte-parole."
+        "Le montant de départ et celui d’arrivée.",
+        "Le pourcentage affiché par le média concurrent.",
+        "La méthode de présentation du graphique."
       ],
       "answer": 0,
       "why": "Un pourcentage sans effectifs ni période peut créer une impression trompeuse de grandeur.",
@@ -490,9 +490,9 @@
       "body": "Après une campagne publique, un indicateur change. Le changement peut être lié à la campagne, mais d'autres facteurs peuvent intervenir.",
       "question": "Quelle prudence adopter ?",
       "choices": [
-        "Ignorer toute donnée.",
-        "Vérifier d'autres explications et l'évolution dans le temps.",
-        "Affirmer une cause certaine."
+        "Conclure si les deux séries montent ensemble.",
+        "Examiner les facteurs alternatifs et la chronologie.",
+        "Écarter les données qui ne confirment pas l’idée."
       ],
       "answer": 1,
       "why": "Une corrélation ne suffit pas à établir une causalité ; l'analyse dépend de la méthode.",
@@ -515,9 +515,9 @@
       "body": "Une personne t’explique oralement un droit ou une aide, mais oublie les conditions et les démarches propres à ton pays.",
       "question": "Quelle première étape ?",
       "choices": [
-        "Suivre un message sans auteur.",
-        "Communiquer ses codes.",
-        "Retrouver la page du service compétent."
+        "Utiliser l’adresse indiquée dans une discussion.",
+        "S’adresser au premier compte qui propose une aide.",
+        "Retrouver le canal officiel du service compétent."
       ],
       "answer": 2,
       "why": "Les conditions évoluent selon le territoire, la situation et la date ; consulter le service officiel limite les erreurs.",
@@ -540,9 +540,9 @@
       "body": "Une vidéo affirme qu'une astuce fonctionne pour tout le monde, sans citer d’étude ni décrire ses limites.",
       "question": "Quel réflexe est pertinent ?",
       "choices": [
-        "Vérifier des organismes de santé fiables.",
-        "Appliquer automatiquement.",
-        "Le partager sans préciser l'incertitude."
+        "Consulter des sources de santé compétentes.",
+        "Suivre le conseil après de nombreux témoignages.",
+        "Tester une petite quantité avant de se prononcer."
       ],
       "answer": 0,
       "why": "Les conseils de santé nécessitent des preuves et des limites ; une expérience individuelle ne constitue pas une règle universelle.",
@@ -565,9 +565,9 @@
       "body": "Assurance annuelle, réparations et fêtes peuvent créer un mois difficile même avec un solde habituellement positif.",
       "question": "Quelle méthode anticiper ?",
       "choices": [
-        "Considérer chaque solde comme un bénéfice.",
-        "Répartir les dépenses annuelles dans le budget.",
-        "Les oublier jusqu'à la date."
+        "Étaler les frais périodiques dans son budget.",
+        "N’inscrire que les dépenses du mois précédent.",
+        "Réserver tout son budget aux achats immédiats."
       ],
       "answer": 1,
       "why": "Prévoir les dépenses non mensuelles permet de mieux estimer ce qui est réellement disponible.",
@@ -590,9 +590,9 @@
       "body": "Deux offres affichent le même prix, mais l’une contient des frais de livraison ou de résiliation supplémentaires.",
       "question": "Quel indicateur comparer ?",
       "choices": [
-        "Uniquement le prix en gros.",
-        "La couleur de l'interface.",
-        "Le coût total pour le même usage."
+        "Le prix affiché sur la première facture.",
+        "Le tarif d’entrée annoncé par le vendeur.",
+        "Le coût total du même service sur la durée."
       ],
       "answer": 2,
       "why": "La comparaison doit porter sur un service équivalent et inclure les frais supplémentaires pertinents.",

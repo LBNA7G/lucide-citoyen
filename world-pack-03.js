@@ -327,9 +327,9 @@
       "body": "Une vidéo affirme qu’un vaccin sert uniquement à faire disparaître les symptômes une fois malade.",
       "question": "Que faut-il corriger ?",
       "choices": [
-        "La vaccination prépare la réponse immunitaire avant une exposition future.",
-        "Un vaccin est un antibiotique.",
-        "Un vaccin remplace le sommeil."
+        "Préparer la réponse immunitaire à un agent donné.",
+        "Supprimer le besoin de toute protection complémentaire.",
+        "Agir comme un antibiotique après chaque infection."
       ],
       "answer": 0,
       "why": "Les vaccins stimulent la mémoire immunitaire ; effets et indications varient selon les vaccins.",
@@ -353,9 +353,9 @@
       "body": "Un grand-parent utilise un mot différent de celui des jeunes pour le même objet.",
       "question": "Que peut-on en déduire ?",
       "choices": [
-        "La langue est figée pour toujours.",
-        "Le vocabulaire change selon les générations, les milieux et les usages.",
-        "Un seul groupe détient tous les mots corrects."
+        "Les règles d’une langue interdisent toute évolution.",
+        "Les usages, milieux et générations font évoluer les mots.",
+        "Les dictionnaires créent seuls tous les nouveaux usages."
       ],
       "answer": 1,
       "why": "Les langues évoluent avec les pratiques sociales ; comprendre le registre et le contexte aide à communiquer.",
@@ -379,9 +379,9 @@
       "body": "Une photo d'une rue inondée circule avec la mention « aujourd'hui » mais aucun lieu ni auteur vérifiables.",
       "question": "Quelle preuve manque ?",
       "choices": [
-        "Le nombre d'emojis.",
-        "La marque du téléphone du lecteur.",
-        "Le lieu, la date et la provenance de l’image."
+        "La réputation de la personne qui partage l’image.",
+        "Le type de téléphone ayant pris la photo.",
+        "Le lieu, la date et la source de la photo."
       ],
       "answer": 2,
       "why": "Une image peut être réelle tout en illustrant faussement un autre événement ou une autre période.",
@@ -405,9 +405,9 @@
       "body": "Une affirmation grave circule dans un groupe. Personne n'indique comment l'information a été obtenue.",
       "question": "Quelle question est constructive ?",
       "choices": [
-        "D'où vient cette information et qui l'a vérifiée ?",
-        "Qui a le plus d'abonnés ?",
-        "Peut-on la rendre plus spectaculaire ?"
+        "Quelle est l’origine et la preuve de cette information ?",
+        "Comment rendre cette affirmation plus convaincante ?",
+        "Combien de fois cette histoire a-t-elle été racontée ?"
       ],
       "answer": 0,
       "why": "Interroger les preuves sans attaquer les personnes améliore la qualité d'une conversation.",
@@ -431,9 +431,9 @@
       "body": "Un court résumé réduit un conflit historique à l'action d'une seule personne.",
       "question": "Que faut-il aussi rechercher ?",
       "choices": [
-        "Seulement la date de fin.",
+        "La date de l’événement le plus souvent cité.",
         "Les causes politiques, sociales et économiques.",
-        "Uniquement une citation virale."
+        "Le nombre de livres publiés sur le conflit."
       ],
       "answer": 1,
       "why": "Les événements historiques résultent souvent de plusieurs facteurs et de décisions successives.",
@@ -457,9 +457,9 @@
       "body": "Tu lis qu'un fossile découvert serait « la preuve qu'une espèce n'a jamais changé ».",
       "question": "Quelle méthode permet de mieux conclure ?",
       "choices": [
-        "Se fier à une seule phrase.",
-        "Ignorer toutes les découvertes futures.",
-        "Comparer plusieurs fossiles et les connaissances génétiques et géologiques."
+        "Interpréter le fossile isolé comme une preuve totale.",
+        "Remplacer les fossiles par les seuls récits anciens.",
+        "Recouper fossiles, génétique et datation géologique."
       ],
       "answer": 2,
       "why": "Les preuves de l'évolution viennent de sources convergentes, dont fossiles et génétique.",
@@ -483,9 +483,9 @@
       "body": "Un article parle des émissions annuelles, un autre de la quantité de CO₂ déjà présente dans l'atmosphère.",
       "question": "Quelle distinction faire ?",
       "choices": [
-        "Flux annuel et stock accumulé ne sont pas la même grandeur.",
-        "Les deux nombres mesurent toujours la même chose.",
-        "Seules les émissions d'un jour comptent."
+        "L’émission est un flux ; la concentration est un niveau.",
+        "La concentration augmente exactement du montant émis.",
+        "L’émission décrit seulement les pays exportateurs."
       ],
       "answer": 0,
       "why": "Une concentration résulte d'accumulations et d'échanges ; une émission décrit un flux sur une période.",
@@ -509,9 +509,9 @@
       "body": "Deux sondages donnent des résultats proches, mais les échantillons et marges d'erreur diffèrent.",
       "question": "Comment interpréter un écart faible ?",
       "choices": [
-        "Déclarer automatiquement un vainqueur.",
-        "Examiner incertitude, échantillon et méthode avant de conclure.",
-        "Additionner les pourcentages des deux sondages."
+        "Déclarer un vainqueur dès qu’un écart est visible.",
+        "Considérer méthode, échantillon et incertitude.",
+        "Additionner les marges d’erreur comme des suffrages."
       ],
       "answer": 1,
       "why": "Les résultats d'enquête sont des estimations qui dépendent d'une méthodologie.",
@@ -535,9 +535,9 @@
       "body": "Une personne pense que les règles de circulation sont identiques partout dans le monde parce qu'elle voyage dans l'UE.",
       "question": "Quel point vérifier ?",
       "choices": [
-        "Que toutes les frontières ont disparu sur Terre.",
-        "Que l'UE est un pays unique.",
-        "Le territoire et les règles concrètes de déplacement."
+        "Les frontières nationales n’existent plus dans l’UE.",
+        "L’UE applique partout les mêmes règles aux étrangers.",
+        "Vérifier territoire et conditions de déplacement."
       ],
       "answer": 2,
       "why": "L'UE et l'espace Schengen ne couvrent pas exactement les mêmes pays et les règles peuvent prévoir des exceptions.",
@@ -561,9 +561,9 @@
       "body": "Dans un débat, tu répètes une version ridicule de l'idée de ton interlocuteur pour gagner facilement.",
       "question": "Quelle méthode est plus solide ?",
       "choices": [
-        "Présenter loyalement son meilleur argument avant de répondre.",
-        "Modifier ce qu'il a dit.",
-        "Parler plus fort."
+        "Restituer le meilleur argument avant de le critiquer.",
+        "Répondre à la version la plus simple à contredire.",
+        "Ne conserver que les mots qui appuient notre position."
       ],
       "answer": 0,
       "why": "Répondre au meilleur argument réel évite l'homme de paille et donne un échange plus éclairant.",
@@ -587,9 +587,9 @@
       "body": "Un assistant d'IA fournit une citation très précise, mais aucun lien ne permet de la retrouver.",
       "question": "Quelle action effectuer avant de la répéter ?",
       "choices": [
-        "Supposer que le style prouve l'authenticité.",
-        "Retrouver le texte original auprès d'une source fiable.",
-        "Créer une image de la citation."
+        "Croire une citation si son style semble authentique.",
+        "Rechercher la citation dans une source originale.",
+        "Vérifier uniquement la popularité de son auteur."
       ],
       "answer": 1,
       "why": "Un texte généré peut contenir des erreurs ou inventer des références malgré une forme crédible.",
@@ -613,9 +613,9 @@
       "body": "Un salaire progresse de 2 % sur un an tandis que les prix augmentent plus vite.",
       "question": "Quelle conclusion prudente ?",
       "choices": [
-        "Une hausse du salaire nominal garantit un gain réel.",
-        "L’inflation correspond à la dette publique.",
-        "Le salaire réel peut diminuer malgré la hausse nominale."
+        "Les revenus réels montent dès que le brut augmente.",
+        "Une inflation faible garantit un meilleur salaire réel.",
+        "Le salaire réel peut baisser malgré une hausse nominale."
       ],
       "answer": 2,
       "why": "Le pouvoir d'achat dépend de l'évolution du revenu comparée à celle des prix.",

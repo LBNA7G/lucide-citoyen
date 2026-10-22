@@ -327,9 +327,9 @@
       "body": "Une règle de l'école te paraît difficile à comprendre et tu veux exprimer un désaccord.",
       "question": "Quelle démarche est constructive ?",
       "choices": [
-        "Demander le règlement et expliquer ses objections précisément.",
-        "Inventer une règle contraire.",
-        "Menacer les autres élèves."
+        "Lire les règles et formuler une objection précise.",
+        "Comparer l’expérience d’autres écoles sans consulter les règles.",
+        "Demander qu’une sanction soit retirée oralement seulement."
       ],
       "answer": 0,
       "why": "Lire les règles et formuler des arguments améliore une discussion collective.",
@@ -353,9 +353,9 @@
       "body": "Une affiche annonce « gratuit », mais un texte précise que l’offre change après quelques jours.",
       "question": "Que lire avant d'accepter ?",
       "choices": [
-        "Seulement le gros titre.",
-        "Durée, frais futurs et conditions de sortie.",
-        "La couleur du bouton principal."
+        "La réduction avant application des taxes.",
+        "La durée, les frais futurs et la sortie du contrat.",
+        "La comparaison avec le produit le plus cher."
       ],
       "answer": 1,
       "why": "Une gratuité d'essai peut déboucher sur un coût récurrent si les conditions le prévoient.",
@@ -379,9 +379,9 @@
       "body": "Un ami t'envoie soudain un lien étrange avec un message inhabituel.",
       "question": "Quel contrôle est préférable ?",
       "choices": [
-        "Ouvrir et saisir son mot de passe.",
-        "Le transférer pour confirmer.",
-        "Vérifier avec lui par un autre canal avant d’ouvrir."
+        "Ouvrir le lien depuis le message de cet ami.",
+        "Le partager au groupe pour vérifier si d’autres l’ont.",
+        "Contacter l’ami autrement avant d’ouvrir le lien."
       ],
       "answer": 2,
       "why": "Un compte compromis peut envoyer des messages que son propriétaire n'a pas rédigés.",
@@ -405,9 +405,9 @@
       "body": "Un influenceur filme une rue et conclut que tout un pays vit de la même manière.",
       "question": "Quelle nuance apporter ?",
       "choices": [
-        "Une rue ne représente pas nécessairement tout un pays.",
-        "La vidéo prouve une loi générale.",
-        "Tous les habitants vivent exactement pareil."
+        "Une scène isolée ne décrit pas tous les habitants.",
+        "Une scène filmée est forcément représentative.",
+        "Une rue suffit à conclure sur les lois nationales."
       ],
       "answer": 0,
       "why": "L'expérience locale et les représentations médiatiques ne suffisent pas à généraliser.",
@@ -431,9 +431,9 @@
       "body": "Une offre de job donne un tarif à l'oral, mais aucune description des horaires ni du paiement.",
       "question": "Que demander avant d'accepter ?",
       "choices": [
-        "Uniquement l'adresse du café préféré du responsable.",
-        "Les conditions et coordonnées de l’employeur sous une forme conservable.",
-        "Des promesses sans trace."
+        "L’avis des autres candidats sur la mission.",
+        "Des conditions écrites et l’identité de l’employeur.",
+        "Une promesse orale suivie d’une date d’appel."
       ],
       "answer": 1,
       "why": "Conserver les informations essentielles aide à comprendre ses engagements et vérifier le paiement.",
@@ -457,9 +457,9 @@
       "body": "Deux entreprises annoncent le même salaire brut, mais les avantages et retenues diffèrent.",
       "question": "Quel document permet de comprendre ?",
       "choices": [
-        "Le logo le plus moderne.",
-        "Le nombre de commentaires sous l'annonce.",
-        "Une estimation détaillée de la rémunération et des retenues."
+        "Les commentaires des employés sur l’entreprise.",
+        "Le montant indiqué en gros dans l’annonce.",
+        "Une estimation du brut, du net et des retenues."
       ],
       "answer": 2,
       "why": "Un brut identique n'implique pas forcément un montant net ou des avantages identiques.",
@@ -483,9 +483,9 @@
       "body": "Un message réclame le paiement d'une facture sans contrat ni référence identifiable.",
       "question": "Quelle démarche faire ?",
       "choices": [
-        "Vérifier l'émetteur et les bases de la créance avant de payer.",
-        "Payer dans les cinq minutes.",
-        "Communiquer ses codes d'accès."
+        "Identifier l’émetteur et vérifier la somme demandée.",
+        "Payer une partie immédiatement pour suspendre le délai.",
+        "Répondre avec ses coordonnées bancaires complètes."
       ],
       "answer": 0,
       "why": "Une demande de paiement non vérifiée peut correspondre à une erreur ou une fraude.",
@@ -509,9 +509,9 @@
       "body": "Un service de streaming propose un essai à zéro euro puis une facturation automatique.",
       "question": "Que vérifier avant la période d’essai ?",
       "choices": [
-        "La miniature de l'application.",
-        "Le prix ultérieur, la durée et les modalités de résiliation.",
-        "Le nombre de chansons du catalogue."
+        "La valeur estimée des cadeaux de bienvenue.",
+        "Le coût ensuite, la durée et la résiliation.",
+        "Le nombre de personnes ayant souscrit à l’essai."
       ],
       "answer": 1,
       "why": "Comprendre les modalités d'un abonnement évite les renouvellements non anticipés.",
@@ -535,9 +535,9 @@
       "body": "Une annonce demande un acompte avant toute visite et promet les clés le lendemain.",
       "question": "Quel contrôle faire ?",
       "choices": [
-        "Envoyer l'argent pour réserver sans preuve.",
-        "Transmettre immédiatement son identité complète.",
-        "Vérifier le bien, l'identité du bailleur et les modalités avant tout paiement."
+        "Verser une avance si l’annonce paraît sérieuse.",
+        "Envoyer une pièce d’identité avant toute visite.",
+        "Vérifier le bien, le bailleur et le paiement prévu."
       ],
       "answer": 2,
       "why": "Les annonces de location peuvent être détournées ; un virement irréversible sous pression est risqué.",
@@ -561,9 +561,9 @@
       "body": "Ton planning change souvent et tu as du mal à retrouver les heures réellement travaillées.",
       "question": "Quel outil simple utiliser ?",
       "choices": [
-        "Tenir un relevé daté de tes horaires et pauses.",
-        "Se fier uniquement à sa mémoire.",
-        "Supprimer les conversations liées au planning."
+        "Noter précisément les heures travaillées et les pauses.",
+        "Conserver seulement la durée prévue au contrat.",
+        "Demander à un collègue d’estimer les heures à ta place."
       ],
       "answer": 0,
       "why": "Un suivi personnel aide à vérifier la paie et à décrire précisément un éventuel litige.",
@@ -587,9 +587,9 @@
       "body": "Une plateforme propose un second facteur pour protéger un compte.",
       "question": "Quel est son intérêt ?",
       "choices": [
-        "Remplacer toute vigilance contre les fraudes.",
-        "Ajouter un obstacle en cas de mot de passe compromis.",
-        "Partager le compte avec des inconnus."
+        "Remplacer les vérifications habituelles par un code.",
+        "Freiner un accès si le mot de passe est compromis.",
+        "Garantir que tout site utilisant un code est officiel."
       ],
       "answer": 1,
       "why": "Un deuxième facteur réduit certaines prises de contrôle, même s'il n'élimine pas tout risque.",
@@ -613,9 +613,9 @@
       "body": "Une vidéo promet une allocation automatique aux moins de 25 ans sans préciser de région ni d'éligibilité.",
       "question": "Quelle information exiger ?",
       "choices": [
-        "Seulement la vidéo la plus populaire.",
-        "Un paiement à un intermédiaire inconnu.",
-        "Le dispositif officiel, ses conditions, son territoire et sa date."
+        "Se fier aux témoignages des personnes intéressées.",
+        "Passer par un intermédiaire qui promet la validation.",
+        "Contrôler l’aide, sa date, ses conditions et son lieu."
       ],
       "answer": 2,
       "why": "Les aides publiques sont soumises à des critères qui changent selon le pays et la situation.",
