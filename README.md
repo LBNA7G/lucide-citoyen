@@ -1,6 +1,18 @@
-# SAVRÉO — version 1.0 bêta
+# SAVRÉO — version 1.1 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
+
+## Vie publique et apprendre à voter — v1.1 bêta
+
+- **Trois nouvelles portes** dans « Découvrir → Vie publique » : publications institutionnelles, apprentissage électoral et méthode de consultation des dossiers publics.
+- **24 exercices civiques uniques** entièrement fournis dans le cache hors ligne : 8 communs à la Belgique et à la France, 8 propres à la Belgique et 8 à la France (16 accessibles par pays).
+- **Exemples d'archives datées** : publication gouvernementale wallonne du 12 octobre 2026 et documents du Conseil de Paris d'octobre 2026, clairement séparés de l'actualité en direct.
+- **Sources par territoire** : fédéral/régional/local ; plateformes publiques vérifiées pour le Conseil communal de Mons et le Conseil de Paris.
+- **Neutralité éditoriale** : pas de note de parti, pas de matching électoral, pas de tri idéologique à partir du profil, pas d'assimilation d'une accusation à une condamnation.
+- **Registre** : 64 unités pédagogiques uniques hors ligne au total ; toutes les unités pertinentes restent à valider par les experts avant une publication de confiance.
+- **Objectif progressif** : 240 unités hors ligne, sans gonfler les comptes par les quiz et les révisions. Voir [plan détaillé](docs/CONTENT_ROADMAP_240.md).
+- **Règles de contenus sensibles** : voir [politique de neutralité](docs/CIVIC_EDITORIAL_NEUTRALITY.md).
+- **Actualité fraîche** : nécessite internet et vérification datée ; la Vigie préexistante ne couvre pas toutes les villes. Ne jamais présenter une archive comme une information mise à jour en temps réel.
 
 ## Bêta 1.0 — contenus de la vraie vie et vérifications
 
