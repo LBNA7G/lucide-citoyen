@@ -723,13 +723,13 @@
       "topic": "Décryptage",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://www.vie-publique.fr"
+        "https://www.vie-publique.fr/fiches/19534-comment-les-lois-sont-elles-executees"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+      "notes": "Version de la question remaniée : vérifier juridiction, date, lien précis et distracteurs ; toujours en attente de relecture indépendante."
     },
     {
       "id": "civic:fait-opinion",
@@ -873,13 +873,13 @@
       "topic": "Voter",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://elections.fgov.be/node/111505"
+        "https://elections.fgov.be/node/111505?language=fr"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+      "notes": "Version de la question remaniée : vérifier juridiction, date, lien précis et distracteurs ; toujours en attente de relecture indépendante."
     },
     {
       "id": "civic:be-bulletin",
@@ -903,13 +903,13 @@
       "topic": "Résultats",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://elections.fgov.be/informations-generales/resultats"
+        "https://elections.fgov.be/elections-du-9-juin-2024-tableaux-des-resultats?language=fr"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+      "notes": "Version de la question remaniée : vérifier juridiction, date, lien précis et distracteurs ; toujours en attente de relecture indépendante."
     },
     {
       "id": "civic:be-pouvoirs",
@@ -1038,13 +1038,13 @@
       "topic": "Budget",
       "classification": "document pédagogique hors ligne",
       "source_urls": [
-        "https://cnccfp.fr/"
+        "https://cnccfp.fr/publication-de-lavis-de-la-cnccfp-sur-les-comptes-des-partis-politiques-exercice-2024/"
       ],
       "status": "pending_external_review",
       "reviewer_role": "juriste électoral BE ou FR selon juridiction, et éditeur pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier exactitude, dates, contexte, procédure de vote et neutralité. Fiche non certifiée."
+      "notes": "Version de la question remaniée : vérifier juridiction, date, lien précis et distracteurs ; toujours en attente de relecture indépendante."
     },
     {
       "id": "civic:fr-depenses",
