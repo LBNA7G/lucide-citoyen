@@ -810,3 +810,34 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
 .public-scope-picker+.calm-submenu{display:grid;gap:4px}
 @media(max-width:760px){.civic-source-note{margin:8px 0 13px}.public-scope-picker{gap:7px}.public-scope-choice{padding:10px 13px}.civic-proof-links{gap:14px}}
 @media(prefers-reduced-motion:reduce){.public-scope-choice{transition:none}}
+
+/* SAVRÉO 1.6 — progression positive sans surcharge, confort mobile */
+.learning-level{max-width:690px;margin:0 0 34px;padding:18px 20px;border:1px solid var(--calm-stroke);border-radius:17px;background:var(--calm-surface);color:var(--calm-ink)}
+.learning-level-top{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:14px;font-weight:760}
+.learning-level-top>span>span{color:var(--calm-accent);margin-right:7px}
+.learning-level-top b{font-size:15px;font-variant-numeric:tabular-nums}
+.learning-meter{width:100%;height:9px;overflow:hidden;border-radius:999px;background:var(--calm-stroke);margin:14px 0 10px}
+.learning-meter span{display:block;height:100%;border-radius:inherit;background:var(--calm-accent);transition:width 360ms ease-out}
+.learning-level small{color:var(--calm-muted);line-height:1.5;display:block;font-size:12px}
+.reward-symbol{display:inline-flex;align-items:center;justify-content:center;width:39px;height:39px;border-radius:50%;border:1px solid var(--calm-stroke);color:var(--calm-accent);font-size:21px;margin-bottom:12px}
+.reward-subtitle{font-size:13px;line-height:1.7;color:var(--calm-muted);max-width:54ch}
+.case-after-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:20px}
+.case-after-actions>.btn{min-height:47px}
+.case-after-actions>.calm-footer-link{margin:0}
+.news-filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0 19px}
+.news-filter{padding:10px 14px;min-height:44px;background:transparent;border:1px solid var(--calm-stroke);border-radius:999px;color:var(--calm-ink);font-size:13px;cursor:pointer}
+.news-filter.active{border-color:var(--calm-accent);color:var(--calm-accent);font-weight:750;background:var(--calm-surface)}
+.news-filter:focus-visible,.news-inline-button:focus-visible{outline:3px solid var(--calm-accent);outline-offset:3px}
+.news-read-more{display:flex;flex-direction:column;gap:4px;margin:0 0 18px}
+.news-read-more span{font-size:14px;font-weight:750;color:var(--calm-ink)}
+.news-read-more small{color:var(--calm-muted);font-size:12px;line-height:1.6}
+.news-inline-button{padding:5px 3px;border:none;background:transparent;color:var(--calm-accent);font:inherit;text-decoration:underline;cursor:pointer}
+@media(max-width:760px){
+ .learning-level{padding:17px 18px;margin-bottom:30px}
+ .case-after-actions{display:grid;grid-template-columns:1fr;gap:10px}
+ .case-after-actions>.btn{width:100%}
+ .case-after-actions>.calm-footer-link{justify-self:start}
+ .news-filter-row{gap:7px;margin-top:19px}
+ .news-filter{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.learning-meter span,.reward-symbol{transition:none;animation:none}}
