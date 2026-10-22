@@ -1,1 +1,17 @@
-{"name":"SAVRÉO — Apprends ce qui compte","short_name":"SAVRÉO","start_url":"./index.html","display":"standalone","background_color":"#0b0e18","theme_color":"#0b0e18","description":"Culture générale, esprit critique, expression et droits citoyens","icons":[{"src":"icon.svg","type":"image/svg+xml","sizes":"any","purpose":"any"}]}
+{
+  "name": "SAVRÉO — Apprends ce qui compte",
+  "short_name": "SAVRÉO",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f8f5",
+  "theme_color": "#f6f8f5",
+  "description": "Culture générale, esprit critique, expression et droits citoyens",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}
