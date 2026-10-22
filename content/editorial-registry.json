@@ -147,12 +147,14 @@
       "country": "ALL",
       "topic": "Esprit critique",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/ou-les-enfants-et-les-adolescents-sinforment-ils-aujourdhui"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "lesson:argument",
@@ -160,12 +162,14 @@
       "country": "ALL",
       "topic": "Expression",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://edubase.eduscol.education.fr/fiche/16392"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "lesson:lois",
@@ -173,12 +177,15 @@
       "country": "ALL",
       "topic": "Citoyenneté",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://www.lachambre.be/kvvcr/index.cfm?language=fr",
+        "https://www.vie-publique.fr"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "lesson:droits",
@@ -186,12 +193,14 @@
       "country": "ALL",
       "topic": "Droits fondamentaux",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://www.coe.int/fr/web/compass/european-convention-on-human-rights"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "lesson:economy",
@@ -199,12 +208,14 @@
       "country": "ALL",
       "topic": "Économie",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_inflation.fr.html"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "lesson:debate",
@@ -212,12 +223,14 @@
       "country": "ALL",
       "topic": "Débat",
       "classification": "pédagogie",
-      "source_urls": [],
+      "source_urls": [
+        "https://edubase.eduscol.education.fr/fiche/16392"
+      ],
       "status": "pending_external_review",
       "reviewer_role": "enseignant ou expert pédagogique",
       "reviewed_at": null,
       "next_review_at": null,
-      "notes": "Vérifier les énoncés et ajouter la source primaire lorsque nécessaire."
+      "notes": "Références pédagogiques documentées ; validation externe du contenu et adéquation des exemples toujours en attente."
     },
     {
       "id": "right:BE:1",
