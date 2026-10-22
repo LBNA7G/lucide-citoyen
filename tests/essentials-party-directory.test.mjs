@@ -5,10 +5,11 @@ import {readFileSync} from 'node:fs';
 function load(filename,key){const sandbox={window:{}};vm.runInNewContext(readFileSync(filename,'utf8'),sandbox,{timeout:2000});return sandbox.window[key];}
 const essentials=load('essentials-pack-02.js','SAVREO_ESSENTIALS');
 const directory=load('party-directory-01.js','SAVREO_PARTIES');
+const world=load('world-pack-03.js','SAVREO_WORLD');
 const register=JSON.parse(readFileSync('content/editorial-registry.json','utf8'));
 const ids=new Set(register.items.map(x=>x.id));
-test('96 unique educational units, with 32 new reviewed-pending essential cards',()=>{
- assert.equal(register.items.length,96);
+test('144 unique educational units, with 32 essentials and 48 world-knowledge exercises',()=>{
+ assert.equal(register.items.length,144);
  assert.equal(ids.size,register.items.length);
  assert.equal(essentials.items.length,32);
  const counts=new Map([['12-15',0],['16-20',0],['21-28',0]]);
@@ -44,4 +45,22 @@ test('party documents are attributed, dated or explicitly undated, and never ass
   assert.equal(record.financialScore,null);
  }
  assert.ok(directory.parties.some(x=>x.primarySource.url.includes('dc2024.be')));
+});
+
+test('48 new world-knowledge cases are unique, grounded and age balanced',()=>{
+ assert.equal(world.items.length,48);
+ assert.equal(new Set(world.items.map(c=>c.id)).size,48);
+ for(const age of ['12-15','16-20','21-28']) assert.equal(world.items.filter(c=>c.ageGroups.includes(age)).length,16);
+ const positions=[0,0,0];
+ for(const c of world.items){
+  assert.ok(ids.has('essential:'+c.id),'missing register entry '+c.id);
+  assert.equal(c.status,'pending_external_review');
+  assert.equal(c.scenarioType,'simulation pédagogique');
+  assert.equal(c.choices.length,3);
+  assert.ok(c.body.length>45);
+  assert.ok(c.why.length>40);
+  positions[c.answer]++;
+  for(const src of c.sources) assert.match(src.url,/^https:\/\//);
+ }
+ assert.deepEqual(positions,[16,16,16]);
 });
