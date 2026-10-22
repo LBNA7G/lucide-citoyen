@@ -1,8 +1,18 @@
-# SAVRÉO — version 1.1 bêta
+# SAVRÉO — version 1.2 bêta
 
 SAVRÉO — « Apprends ce qui compte. » Une application web mobile pour apprendre à comprendre le monde, développer l'esprit critique, s'exprimer et connaître ses droits, centrée sur la Belgique et la France. Démonstration pédagogique ; aucune orientation partisane.
 
-## Vie publique et apprendre à voter — v1.1 bêta
+## Version 1.2 bêta — nouveaux savoirs et annuaire documentaire
+
+- **32 micro-fiches supplémentaires hors ligne** (11 pour 12–15 ans, 11 pour 16–20 ans, 10 pour 21–28 ans) : vérification de l’information, cybersécurité, argent, consommation, statistiques et institutions. Tous les sujets sont accessibles à toutes les tranches d’âge ; seules les propositions sont orientées.
+- **Réponses réparties entre A/B/C** pour réduire la réussite automatique par clic sur la première option. Chaque fiche contient une explication et au moins une source institutionnelle.
+- **Première bibliothèque documentaire des partis** : 12 partis belges correspondant à l’échantillon complet du chiffrage BFP de 2024, 5 documents français sélectionnés initialement à titre illustratif, **non exhaustifs**. Sources datées et directement attribuées, ordre alphabétique ; aucune note électorale ni classement.
+- **Données non vérifiées laissées vides** : dirigeants, bilan des mandats, procédures et décisions judiciaires, chiffres particuliers et résultats détaillés. L'absence de donnée ne signifie ni absence de fait ni constat de faute.
+- **96 unités pédagogiques uniques hors ligne** au total ; les 17 entrées documentaires partisanes et les archives d’actualité sont comptées séparément. Registre de relecture à 96 entrées, toutes en attente de validation indépendante.
+- **Tests techniques** couvrant le rendu et l’apprentissage hors ligne, le catalogue, les quiz, l’annuaire, les contrastes de base et la conservation de la progression.
+- **Actualités** : le flux en ligne existant est limité aux titres officiels nationaux ; les sources municipales et régionales disposent d’accès directs, pas encore d’agrégation automatique exhaustive.
+
+
 
 - **Trois nouvelles portes** dans « Découvrir → Vie publique » : publications institutionnelles, apprentissage électoral et méthode de consultation des dossiers publics.
 - **24 exercices civiques uniques** entièrement fournis dans le cache hors ligne : 8 communs à la Belgique et à la France, 8 propres à la Belgique et 8 à la France (16 accessibles par pays).
