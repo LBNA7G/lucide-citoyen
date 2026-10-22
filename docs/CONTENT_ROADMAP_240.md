@@ -1,6 +1,6 @@
 # SAVRÉO — plan vers 240 contenus réellement utiles et disponibles hors ligne
 
-Statut au 22 octobre 2026 : **64 unités pédagogiques effectivement intégrées au catalogue** et mises en cache pour l'accès sans réseau dans le navigateur, sous réserve que l'application ait été chargée au préalable et que le cache reste présent. Ne pas prétendre que 240 contenus existent déjà.
+Statut au 22 octobre 2026 : **96 unités pédagogiques effectivement intégrées au catalogue** et mises en cache pour l'accès sans réseau dans le navigateur, sous réserve que l'application ait été chargée au préalable et que le cache reste présent. Ne pas prétendre que 240 contenus existent déjà.
 
 ## Définition honnête d'une unité
 
@@ -11,14 +11,17 @@ Une unité unique = une fiche de droits, un scénario avec correction, une micro
 - 12 leçons : 6 d'origine + 6 modules bêta
 - 10 fiches de droits : 5 belges + 5 françaises
 - 24 fiches civiques : 8 communes aux deux pays, 8 belges et 8 françaises
-- **64 unités uniques** (plus 2 archives d'actualité datées qui ne sont pas comptées comme contenus stables).
+- 32 fiches de savoirs essentiels : médias, cybersécurité, budget, statistiques, santé publique et institutions
+- **96 unités uniques** (plus 2 archives d'actualité datées qui ne sont pas comptées comme contenus stables).
 
 ## Déploiement progressif
 
+**État v1.2 : 96/240 contenus présents dans les fichiers distribués.** Un répertoire séparé de 17 documents de partis (12 BE au chiffrage BFP 2024 et 5 exemples FR) est une bibliothèque documentaire et ne compte pas comme 17 leçons.
+
 | Étape | Nouveau contenu | Cumul | Thèmes dominants | Porte de qualité |
 | --- | ---: | ---: | --- | --- |
-| v1.1 bêta | 24 | **64** | Vote, institutions, budget, médias | Registre + tests automatisés, relectures encore en attente |
-| Lot 2 | 32 | 96 | Droits de la vie quotidienne, contrats, protection des données | Sources primaires valides, revues juridiques BE/FR |
+| v1.1 bêta | 24 | 64 | Vote, institutions, budget, médias | Registre + tests automatisés, relectures encore en attente |
+| v1.2 bêta — lot 2 | 32 | **96** | Vie quotidienne, médias, numérique, argent, institutions | Sources institutionnelles documentées, vérification externe en attente |
 | Lot 3 | 48 | 144 | Sciences, culture générale, histoire, argumentation, IA et information | Relecture pédagogique, diversité de niveaux |
 | Lot 4 | 48 | 192 | Économie, emploi, logement, études et choix du quotidien | Cas concrets, réponses nuancées, accessibilité |
 | Lot 5 | 48 | **240** | Vie publique locale, climat, monde, chiffres et situations approfondies | Tests jeunes, équilibre des sujets et revue éditoriale |
