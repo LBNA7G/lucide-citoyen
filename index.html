@@ -4,53 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b0e18" />
-  <meta name="description" content="LUCIDE — apprendre à penser, argumenter et comprendre ses droits." />
+  <meta name="description" content="SAVRÉO — Apprends ce qui compte. Des connaissances concrètes pour comprendre le monde, défendre tes idées et connaître tes droits." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css?v=4" />
-  <title>LUCIDE — Apprendre. Comprendre. Agir.</title>
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <title>SAVRÉO — Apprends ce qui compte.</title>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="brand" href="#accueil" aria-label="Accueil LUCIDE"><span class="brand-symbol">✳</span><span>LUCIDE<span class="brand-dot">.</span></span></a>
-      <div class="sidebar-kicker">TON ESPACE DE CLARTÉ</div>
+      <a class="brand" href="#accueil" aria-label="Accueil SAVRÉO"><span class="brand-symbol"><img src="icon.svg" alt="" /></span><span>SAVRÉO<span class="brand-dot">.</span></span></a>
+      <div class="sidebar-kicker">APPRENDS CE QUI COMPTE</div>
       <nav class="side-links" aria-label="Navigation principale">
-        <button data-page="accueil" class="nav-link active"><span class="nav-ico">⌂</span> Aujourd'hui</button>
-        <button data-page="declic" class="nav-link"><span class="nav-ico">⚡</span> Déclic · cas réels</button>
-        <button data-page="apprendre" class="nav-link"><span class="nav-ico">▤</span> Apprendre</button>
-        <button data-page="dico" class="nav-link"><span class="nav-ico">✳</span> Le dico</button>
-        <button data-page="debattre" class="nav-link"><span class="nav-ico">◉</span> Débattre</button>
-        <button data-page="droits" class="nav-link"><span class="nav-ico">⚖</span> Mes droits</button>
-        <button data-page="vigie" class="nav-link"><span class="nav-ico">◎</span> Vigie citoyenne</button>
-        <button data-page="profil" class="nav-link"><span class="nav-ico">◈</span> Mon parcours</button>
+        <button type="button" data-page="accueil" class="nav-link active"><span class="nav-ico" aria-hidden="true">⌂</span> Aujourd'hui</button>
+        <button type="button" data-page="explorer" class="nav-link"><span class="nav-ico" aria-hidden="true">◈</span> Découvrir</button>
+        <button type="button" data-page="pratiquer" class="nav-link"><span class="nav-ico" aria-hidden="true">✧</span> Pratiquer</button>
+        <button type="button" data-page="droits" class="nav-link"><span class="nav-ico" aria-hidden="true">⚖</span> Mes droits</button>
+        <button type="button" data-page="profil" class="nav-link"><span class="nav-ico" aria-hidden="true">◉</span> Mon parcours</button>
       </nav>
-      <div class="side-bottom"><span class="status-light"></span> Prototype pédagogique <span class="small-muted">v0.4</span><p>Les contenus juridiques sont informatifs, jamais des conseils personnalisés.</p></div>
+      <div class="side-bottom"><span class="status-light"></span> Version découverte <span class="small-muted">v0.5</span><p>Apprends à ton rythme. Les sources officielles priment sur les résumés.</p></div>
     </aside>
     <div class="content-shell">
       <header class="topbar">
-        <a href="#accueil" class="brand brand-mobile"><span class="brand-symbol">✳</span><span>LUCIDE<span class="brand-dot">.</span></span></a>
+        <a href="#accueil" class="brand brand-mobile" aria-label="Accueil SAVRÉO"><span class="brand-symbol"><img src="icon.svg" alt="" /></span><span>SAVRÉO<span class="brand-dot">.</span></span></a>
         <div class="topbar-right">
           <div class="country-switch" role="group" aria-label="Choisir le pays">
             <button id="be-btn" type="button" class="country active" data-country="BE">🇧🇪 BE</button>
             <button id="fr-btn" type="button" class="country" data-country="FR">🇫🇷 FR</button>
           </div>
-          <div class="xp-pill"><span>✦</span> <strong id="xp-top">0</strong> XP</div>
+          <div class="xp-pill" aria-label="Points de connaissance"><span>✦</span> <strong id="xp-top">0</strong> XP</div>
+          <button class="profile-shortcut" type="button" data-page="profil" aria-label="Ouvrir mon parcours"><span aria-hidden="true">◉</span></button>
         </div>
       </header>
       <main id="main" tabindex="-1"></main>
-      <footer class="footer-note">LUCIDE · Version découverte · Les sources officielles priment sur les résumés pédagogiques.</footer>
+      <footer class="footer-note">SAVRÉO · Apprends ce qui compte. · Sources officielles prioritaires. Contenu pédagogique, pas de conseil juridique personnalisé.</footer>
     </div>
   </div>
   <nav class="bottom-nav" aria-label="Navigation mobile">
-    <button data-page="accueil" class="bottom-link active"><span>⌂</span>Accueil</button>
-    <button data-page="declic" class="bottom-link"><span>⚡</span>Déclic</button>
-    <button data-page="apprendre" class="bottom-link"><span>▤</span>Apprendre</button>
-    <button data-page="debattre" class="bottom-link"><span>◉</span>Débattre</button>
-    <button data-page="droits" class="bottom-link"><span>⚖</span>Droits</button>
-    <button data-page="vigie" class="bottom-link"><span>◎</span>Vigie</button>
+    <button type="button" data-page="accueil" class="bottom-link active"><span aria-hidden="true">⌂</span>Accueil</button>
+    <button type="button" data-page="explorer" class="bottom-link"><span aria-hidden="true">◈</span>Découvrir</button>
+    <button type="button" data-page="pratiquer" class="bottom-link"><span aria-hidden="true">✧</span>Pratiquer</button>
+    <button type="button" data-page="droits" class="bottom-link"><span aria-hidden="true">⚖</span>Mes droits</button>
   </nav>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=4" defer></script>
+  <script src="app.js?v=5" defer></script>
 </body>
 </html>
