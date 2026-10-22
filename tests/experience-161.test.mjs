@@ -76,3 +76,8 @@ test('first-run microsteps separate name, age and optional gender',()=>{
  app.click(event('onboarding-back'));
  assert.match(app.html,/Question 1 sur 3/);
 });
+
+test('legacy profile remains editable without forcing a real name',()=>{
+ const app=boot(true,'profil');
+ assert.match(app.html,/Mon parcours|Ton parcours/i);
+});

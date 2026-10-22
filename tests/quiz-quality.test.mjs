@@ -53,3 +53,9 @@ test('48 reworked pilot items have fewer length clues, without claiming learning
  assert.equal(items.length,48,'pilot questions missing');
  assert.ok(items.filter(longest).length<=24,'pilot still contains too many longer correct options');
 });
+
+test('entire 215-question catalogue stays below the measured baseline length clue cap',()=>{
+ const excess=questions.filter(longest);
+ // Garde-fou sur la forme, pas certification scientifique ou juridique.
+ assert.ok(excess.length<=95,'Answer-length giveaway regressed: '+excess.length+'/215');
+});

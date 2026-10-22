@@ -2,7 +2,7 @@
 Édition 22 octobre 2026. **Guide opérationnel, non avis juridique.**
 ## État vérifié
 - Le dépôt `LBNA7G/lucide-citoyen` est **public** selon la réponse GitHub consultée le 22/10/2026. Un site en Preview ne masque pas les sources publiques de ce dépôt.
-- Le projet Vercel `lucide-citoyen` présente à ce stade `passwordProtection.enabled=false` et `ssoProtection.enabled=false`. Une URL obscure n'est pas un accès confidentiel.
+- Le projet Vercel `lucide-citoyen` est à présent protégé par authentification Vercel **sur Preview uniquement** (`ssoProtection.enabled=true`, `deploymentType=preview`) au 22/10/2026 ; les URL peuvent demander une connexion Vercel autorisée. Le dépôt GitHub est **toujours public** : le code reste visible indépendamment de la protection du site. Une URL obscure n'est pas un accès confidentiel.
 - La branche `feature/savreo-brand-v05` et la PR n°2 restent séparées de `main`. Ne jamais fusionner automatiquement la version de test.
 ## Avant de montrer à un professionnel ou à un panel
 1. Confirmer avec le propriétaire la décision de rendre le dépôt **privé** depuis GitHub → Settings → General → Danger Zone → Change repository visibility. Attention : des copies déjà publiques peuvent perdurer, une simple bascule ne les efface pas. La connexion Vercel doit continuer de fonctionner après le passage en privé.
