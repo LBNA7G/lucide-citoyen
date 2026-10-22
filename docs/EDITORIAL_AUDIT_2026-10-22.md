@@ -56,3 +56,11 @@ Le test `tests/editorial-integrity.test.mjs` contrôle :
 3. Tester le rendu sans connexion, les mises à jour du cache et la persistance de progression sur vrais appareils.
 4. Réaliser le pilote avec 24 jeunes selon le protocole existant et documenter les résultats à J0, J+3 et J+7.
 5. Se garder de toute formule du type « savoirs validés » ou « actualités en temps réel hors ligne » tant que ces critères ne sont pas remplis.
+
+## Suivi après premier lot de 12 QCM
+
+Après le remaniement des questions civiques prioritaires et de quatre références documentaires, le registre contient désormais **133 références génériques sur 248**. Le chiffre initial de **135 sur 248** dans le tableau ci-dessus reste conservé comme état de départ de l'audit.
+
+Douze QCM sur vote, programmes, budgets, aides, résultats et procédures judiciaires ont été réécrits ; ils comportent désormais 3 réponses plus plausibles avec un bon équilibre A/B/C (4/4/4). Sur ces 12 questions, 3 réponses correctes sont encore les plus longues ou ex aequo, contre 8 avant la réécriture. Les fiches sont toujours en attente de validation indépendante.
+
+Les URL des fiches concernées ont été synchronisées avec le registre. Vérifier à nouveau la précision de l'ensemble des pages au moment de la publication et à chaque évolution légale.
