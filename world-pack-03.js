@@ -171,9 +171,9 @@
       "body": "Ton ami explique une idée en cinq phrases. Tu veux vérifier que tu as compris avant de répondre.",
       "question": "Quelle phrase aide le plus ?",
       "choices": [
-        "Reformuler son idée en lui demandant confirmation.",
-        "Répondre en expliquant tout de suite mon désaccord.",
-        "Résumer sa position selon ce que les autres disent."
+        "« Si je te comprends bien, tu dis que… »",
+        "« Voici pourquoi je ne suis pas d’accord. »",
+        "« D’autres personnes pensent comme toi. »"
       ],
       "answer": 0,
       "why": "Reformuler en gardant le sens permet de corriger un malentendu avant un désaccord.",
@@ -977,9 +977,9 @@
       "body": "Une coalition négocie une réforme. Son communiqué ne détaille pas encore le texte législatif.",
       "question": "Quel document attendre pour connaître la règle ?",
       "choices": [
-        "Un accord de coalition équivaut à une loi en vigueur.",
-        "Vérifier l’adoption, la publication et l’application.",
-        "Prendre l’annonce ministérielle comme règle finale."
+        "Le programme conclu entre les partis de la coalition.",
+        "Le texte adopté et publié, avec sa date d’effet.",
+        "Le document de présentation du ministre concerné."
       ],
       "answer": 1,
       "why": "Un accord politique ne remplace pas le processus d'adoption et de publication des normes.",

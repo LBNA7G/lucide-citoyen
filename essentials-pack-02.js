@@ -41,7 +41,7 @@
       "question": "Quelle question poser ?",
       "choices": [
         "Vérifier les avis publiés par des acheteurs.",
-        "Chercher si le créateur bénéficie du produit.",
+        "Chercher si la marque rémunère le créateur.",
         "Comparer la boisson avec des produits similaires."
       ],
       "answer": 1,
@@ -240,9 +240,9 @@
       "body": "Un groupe de vingt personnes peut donner une idée des préférences de ce groupe, sans représenter automatiquement des millions d’habitants.",
       "question": "Quelle limite faut-il dire ?",
       "choices": [
-        "Vérifier comment les répondants ont été choisis.",
-        "Multiplier les chiffres par la taille du pays.",
-        "Conclure pour les gens du même âge que ces amis."
+        "Ces vingt amis ne représentent pas forcément le pays.",
+        "Les réponses prouvent aussi l’avis des personnes absentes.",
+        "Un groupe de vingt personnes peut mesurer tout un pays."
       ],
       "answer": 0,
       "why": "La taille et la sélection des répondants déterminent ce qu’on peut raisonnablement conclure d’un sondage.",
