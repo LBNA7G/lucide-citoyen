@@ -200,6 +200,22 @@
       next:'Apprends à distinguer un document, son commentaire, une interprétation et une preuve.',
       tags:['source primaire','désinformation'],source:[['Eurobaromètre — réseaux sociaux et désinformation (2025)','https://europa.eu/eurobarometer/surveys/detail/3592']]}
   ];
+
+  /* Catalogue optionnel : les anciennes données et les contenus précédents restent lisibles. */
+  const BETA_CATALOG=window.SAVREO_BETA&&typeof window.SAVREO_BETA==='object'?window.SAVREO_BETA:{scenarios:[],lessons:[]};
+  const BETA_SCENARIOS=Array.isArray(BETA_CATALOG.scenarios)?BETA_CATALOG.scenarios.filter(c=>c&&c.kind==='Simulation fictive'&&Array.isArray(c.choices)&&Array.isArray(c.source)):[];
+  const BETA_LESSONS=Array.isArray(BETA_CATALOG.lessons)?BETA_CATALOG.lessons.filter(l=>l&&Array.isArray(l.text)&&Array.isArray(l.sources)):[];
+  const existingCaseIds=new Set(scenarios.map(c=>c.id)),existingLessonIds=new Set(lessons.map(l=>l.id));
+  scenarios.push(...BETA_SCENARIOS.filter(c=>!existingCaseIds.has(c.id)));
+  lessons.push(...BETA_LESSONS.filter(l=>!existingLessonIds.has(l.id)));
+  const ageMatch=item=>Array.isArray(item.ageGroups)&&item.ageGroups.includes(state.ageGroup);
+  const interestsMatch=item=>Array.isArray(item.interestIds)&&item.interestIds.some(id=>chosenInterests().includes(id));
+  const contentPriority=item=>(ageMatch(item)?3:0)+(interestsMatch(item)?5:0);
+  const ageSuggestion=l=>ageMatch(l)?'· Pour ton âge':'';
+  const ageHint=item=>Array.isArray(item.ageGroups)&&item.ageGroups.length?' · '+item.ageGroups.join(', ').replaceAll('12-15','12–15').replaceAll('16-20','16–20').replaceAll('21-28','21–28')+' ans':'';
+  const suggestedCases=()=>byCountry().filter(c=>ageMatch(c)).sort((a,b)=>contentPriority(b)-contentPriority(a));
+  const selectedCaseList=()=>byCountry().slice().sort((a,b)=>contentPriority(b)-contentPriority(a));
+
   const words = [
     {id:'amendement',term:'Amendement',level:'Institutions',easy:'Une modification proposée à un texte en discussion.',use:'« Un amendement a changé le projet avant le vote. »',q:'À quoi sert principalement un amendement ?',opts:['Modifier un texte en cours d’examen.','Publier une loi déjà en vigueur.','Dissoudre automatiquement un Parlement.'],answer:0},
     {id:'promulgation',term:'Promulgation',level:'Institutions',easy:'Une étape juridique par laquelle l’autorité compétente authentifie une loi après son adoption, selon les règles du pays.',use:'« La promulgation ne remplace pas la vérification de l’entrée en vigueur. »',q:'La promulgation signifie-t-elle que toutes les dispositions s’appliquent toujours immédiatement ?',opts:['Oui, sans aucune exception.','Non, il faut aussi vérifier la publication et les dates applicables.','Seulement si la loi est très populaire.'],answer:1},
@@ -229,28 +245,18 @@
   let wordCheck = false;
   const byCountry = () => scenarios.filter(x=>x.country===state.country || x.country==='ALL');
   const todayCase = () => {
-    const list=byCountry();
-    const d=Number(dayKey().replace(/\D/g,''));
-    const interests=chosenInterests();
-    const preferred=interests.flatMap(id=>{
-      const topic=INTERESTS.find(t=>t.id===id);
-      return topic ? (topic.cases[state.country]||[]) : [];
-    });
-    const uniquePreferred=[...new Set(preferred)].map(id=>list.find(c=>c.id===id)).filter(Boolean);
-    const byAge={
-      '12-15':['both-video',state.country==='BE'?'be-manif':'fr-manif'],
-      '16-20':[state.country==='BE'?'be-heures':'fr-apprenti','both-video'],
-      '21-28':[state.country==='BE'?'be-contrat':'fr-salaire',state.country==='BE'?'be-heures':'fr-annonce']
-    };
-    const agePool=(byAge[state.ageGroup]||[]).map(id=>list.find(c=>c.id===id)).filter(Boolean);
-    const pool=uniquePreferred.length?uniquePreferred:agePool.length?agePool:list;
-    return pool[d%pool.length];
+    const all=byCountry();
+    const age=suggestedCases();
+    const personalized=age.filter(c=>interestsMatch(c));
+    const pool=personalized.length?personalized:age.length?age:all;
+    const day=Number(dayKey().replace(/\D/g,''));
+    return pool[day%pool.length];
   };
   const shortSource = s => s.map(([label,url])=>source(label,url)).join(' ');
-  function cases(){const entries=byCountry();const selected=entries.find(x=>x.id===activeScenario)||todayCase();
+  function cases(){const entries=byCountry();const selected=entries.find(x=>x.id===activeScenario)||todayCase();const ordered=entries.filter(x=>x.id!==selected.id).sort((a,b)=>contentPriority(b)-contentPriority(a));
     const options=selected.choices.map((txt,i)=>`<button class="case-option ${caseChoice===i?'selected':''}" data-case-choice="${i}" ${caseReveal?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${escapeHTML(txt)}</span></button>`).join('');
     const result=caseReveal?`<div class="case-reveal ${caseChoice===selected.answer?'right':'wrong'}"><b>${caseChoice===selected.answer?'Bien vu. Tu as déjoué le piège.':'À revoir. Voici ce que disent les sources.'}</b><p>${escapeHTML(selected.why)}</p><div class="step-note">Ton réflexe : ${escapeHTML(selected.next)}</div><div class="source-block"><div class="topic-label">SOURCES DATÉES OU OFFICIELLES</div>${shortSource(selected.source)}</div></div>`:'';
-    return `${intro('DÉCLIC · DES SITUATIONS QUI TE CONCERNENT','Et toi, tu ferais quoi ?','Des cas courts, réels ou simulés et clairement étiquetés. Tu réponds d’abord, tu découvres les preuves ensuite.')}<details class="calm-disclosure calm-before-question"><summary>Changer de situation <span aria-hidden="true">＋</span></summary><div class="chips scenario-picker">${entries.map(x=>`<button class="chip ${selected.id===x.id?'active':''}" data-case="${x.id}">${escapeHTML(x.category)}</button>`).join('')}</div></details><section class="case-story"><div class="story-meta"><span class="pill purple">${escapeHTML(selected.kind)}</span><span>${selected.mins} MIN · ${state.country==='BE'?'BELGIQUE':'FRANCE'}</span></div><div class="story-number">SAVRÉO / ${String(entries.indexOf(selected)+1).padStart(2,'0')}</div><h2>${escapeHTML(selected.punch)}</h2><p class="story-copy">${escapeHTML(selected.setup)}</p><div class="story-question">${escapeHTML(selected.question)}</div><div class="case-options">${options}</div><button class="btn primary" id="case-submit" ${caseChoice===null||caseReveal?'disabled':''}>Vérifier mon réflexe →</button>${result}${caseReveal && caseChoice!==selected.answer?'<button class="btn ghost small" id="case-retry">Réessayer ce cas →</button>':''}</section><details class="calm-disclosure"><summary>Explorer d’autres situations <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${entries.filter(x=>x.id!==selected.id).map(x=>`<button class="case-teaser" data-case="${x.id}"><span class="topic-label">${escapeHTML(x.category)} · ${x.mins} MIN</span><strong>${escapeHTML(x.punch)}</strong><span class="card-action">Voir le cas →</span></button>`).join('')}</div></details><details class="calm-disclosure"><summary>Précautions et vérifications <span aria-hidden="true">＋</span></summary><p class="tool-footer">Scénarios de démonstration : vérification spécialisée en attente. Sources documentées le ${checkedDate}. Les simulations ne sont pas des actualités et une annonce n’est pas une loi.</p></details>`;
+    return `${intro('DÉCLIC · DES SITUATIONS QUI TE CONCERNENT','Et toi, tu ferais quoi ?','Des cas courts, réels ou simulés et clairement étiquetés. Tu réponds d’abord, tu découvres les preuves ensuite.')}<details class="calm-disclosure calm-before-question"><summary>Changer de situation <span aria-hidden="true">＋</span></summary><div class="chips scenario-picker">${entries.map(x=>`<button class="chip ${selected.id===x.id?'active':''}" data-case="${x.id}">${escapeHTML(x.punch)}</button>`).join('')}</div></details><section class="case-story"><div class="story-meta"><span class="pill purple">${escapeHTML(selected.kind)}</span><span>${selected.mins} MIN · ${state.country==='BE'?'BELGIQUE':'FRANCE'}</span></div><div class="story-number">SAVRÉO / ${String(entries.indexOf(selected)+1).padStart(2,'0')}</div><h2>${escapeHTML(selected.punch)}</h2><p class="story-copy">${escapeHTML(selected.setup)}</p><div class="story-question">${escapeHTML(selected.question)}</div><div class="case-options">${options}</div><button class="btn primary" id="case-submit" ${caseChoice===null||caseReveal?'disabled':''}>Vérifier mon réflexe →</button>${result}${caseReveal && caseChoice!==selected.answer?'<button class="btn ghost small" id="case-retry">Réessayer ce cas →</button>':''}</section><details class="calm-disclosure"><summary>Explorer d’autres situations <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${ordered.map(x=>`<button class="case-teaser" data-case="${x.id}"><span class="topic-label">${escapeHTML(x.category)} · ${x.mins} MIN</span><strong>${escapeHTML(x.punch)}</strong><span class="card-action">Voir le cas →</span></button>`).join('')}</div></details><details class="calm-disclosure"><summary>Précautions et vérifications <span aria-hidden="true">＋</span></summary><p class="tool-footer">Scénarios de démonstration : vérification spécialisée en attente. Sources documentées le ${checkedDate}. Les simulations ne sont pas des actualités et une annonce n’est pas une loi.</p></details>`;
   }
   function dictionary(){const w=words.find(x=>x.id===activeWord)||words[0];return `${intro('LE DICO · SANS COMPLEXE','Parle avec précision.','Un mot compliqué, une définition claire, une phrase utile, une question pour le retenir.')}<div class="word-spot"><div><span class="eyebrow">MOT À DÉBLOQUER</span><h2>${escapeHTML(w.term)}</h2><p class="muted">${escapeHTML(w.level)}</p></div><button class="btn ${wordReveal?'ghost':'primary'}" id="word-flip">${wordReveal?'Masquer':'Voir en clair'} →</button></div>${wordReveal?`<div class="card" style="margin-top:12px"><h3>En clair</h3><p class="word-definition">${escapeHTML(w.easy)}</p><div class="quote">${escapeHTML(w.use)}</div><div class="inner-separator"></div><h3>Tu as vraiment compris ?</h3><p>${escapeHTML(w.q)}</p><div class="case-options">${w.opts.map((o,i)=>`<button class="case-option ${wordChoice===i?'selected':''}" data-word-choice="${i}" ${wordCheck?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span>${escapeHTML(o)}</button>`).join('')}</div><button class="btn primary" id="word-submit" ${wordChoice===null||wordCheck?'disabled':''}>Valider →</button>${wordCheck && wordChoice!==w.answer?'<button class="btn ghost small" id="word-retry">Réessayer →</button>':''}${wordCheck?`<div class="feedback ${wordChoice===w.answer?'good':'attn'}">${wordChoice===w.answer?'Bien joué. Tu sais employer ce terme.':'Ce n’est pas encore ça. Relis la définition et essaie un autre mot.'}</div>`:''}</div>`:''}<details class="calm-disclosure"><summary>Tous les mots · ${state.completed.filter(x=>x.startsWith('word:')).length}/${words.length} appris <span aria-hidden="true">＋</span></summary><div class="calm-lesson-list">${words.map(x=>`<button class="word-tile ${w.id===x.id?'selected':''}" data-word="${x.id}"><small>${escapeHTML(x.level)}</small><b>${escapeHTML(x.term)}</b>${state.completed.includes('word:'+x.id)?'<span class="word-check">✓ acquis</span>':'<span>Découvrir →</span>'}</button>`).join('')}</div></details>`;}
 
@@ -301,11 +307,11 @@
   function recommendedLesson(){
     const byAge={'12-15':['penser','debate','argument'],'16-20':['economy','argument','droits'],'21-28':['lois','droits','economy']};
     const fromInterests=chosenInterests().flatMap(id=>INTERESTS.find(t=>t.id===id)?.lessons||[]);
-    const ids=[...new Set([...fromInterests,...(byAge[state.ageGroup]||[])])];
-    return ids.map(id=>lessons.find(l=>l.id===id)).filter(Boolean).find(l=>!state.completed.includes('lesson:'+l.id))
+    const beta=lessons.filter(l=>ageMatch(l)).sort((a,b)=>contentPriority(b)-contentPriority(a));
+    const preferred=[...beta,...[...new Set([...fromInterests,...(byAge[state.ageGroup]||[])])].map(id=>lessons.find(l=>l.id===id)).filter(Boolean)];
+    return preferred.find(l=>!state.completed.includes('lesson:'+l.id))
       || lessons.find(l=>!state.completed.includes('lesson:'+l.id)) || lessons[0];
   }
-
 
   const LESSON_REFERENCES={
     penser:[['CLEMI — esprit critique et informations','https://www.clemi.fr/familles/publications/grandir-dans-un-monde-connecte-ca-sapprend/apprendre-sinformer-et-developper-son-esprit-critique/ou-les-enfants-et-les-adolescents-sinforment-ils-aujourdhui']],
@@ -420,10 +426,10 @@
   }
   function lessonCard(l){
     const checked=state.completed.includes('lesson:'+l.id);
-    return `<article class="card calm-lesson-card"><span class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} min</span><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.summary)}</p><button class="calm-card-action" data-lesson="${l.id}">${checked?'Revoir':'Découvrir'} <span aria-hidden="true">→</span></button></article>`;
+    return `<article class="card calm-lesson-card"><span class="eyebrow">${escapeHTML(l.tag)} · ${l.mins} min ${ageSuggestion(l)}</span><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.summary)}</p><button class="calm-card-action" data-lesson="${l.id}">${checked?'Revoir':'Découvrir'} <span aria-hidden="true">→</span></button></article>`;
   }
   function learn(){
-    const first=recommendedLesson(),more=lessons.filter(l=>l.id!==first.id);
+    const first=recommendedLesson(),more=lessons.filter(l=>l.id!==first.id).sort((a,b)=>contentPriority(b)-contentPriority(a));
     return `${intro('APPRENDRE','Une notion à la fois.','Des explications courtes, puis un quiz pour vérifier ce que tu as compris.')}
       <div class="section-heading calm-section"><h2>Pour commencer</h2></div>
       <div class="calm-feature-lesson">${lessonCard(first)}</div>
@@ -431,7 +437,7 @@
   }
   function lessonView(l){
     const core=l.text[0],more=l.text.slice(1);
-    const resources=(LESSON_REFERENCES[l.id]||[]).filter(([name])=>l.id!=='lois'||(state.country==='BE'?name.startsWith('Belgique'):name.startsWith('France')));
+    const resources=(l.sources||LESSON_REFERENCES[l.id]||[]).filter(([name])=>l.id!=='lois'||(state.country==='BE'?name.startsWith('Belgique'):name.startsWith('France')));
     return `${intro(escapeHTML(l.tag)+' · '+l.mins+' min',escapeHTML(l.title),escapeHTML(l.summary))}
       <article class="calm-reading">
         <div class="calm-reading-step"><span class="eyebrow">01 · COMPRENDRE</span><h2>${escapeHTML(core[0])}</h2><p>${escapeHTML(core[1])}</p></div>
