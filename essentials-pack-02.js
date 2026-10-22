@@ -1,4 +1,4 @@
-/* SAVRÉO — 32 nouvelles fiches pour penser et agir, revue éditoriale en attente. */
+/* SAVRÉO — 32 repères quotidiens ; relecture éditoriale en attente. */
 (function(){'use strict';window.SAVREO_ESSENTIALS={
   "version": "pilot-02",
   "date": "2026-10-22",
@@ -40,11 +40,11 @@
       "body": "Une personne recommande une boisson en vidéo. Elle possède un code promotionnel : sa recommandation peut aussi avoir un objectif commercial.",
       "question": "Quelle question poser ?",
       "choices": [
+        "Son contenu a-t-il beaucoup de commentaires ?",
         "La personne tire-t-elle un avantage de cette recommandation ?",
-        "Quelle est sa couleur préférée ?",
-        "Son contenu a-t-il beaucoup de commentaires ?"
+        "Quelle est sa couleur préférée ?"
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Identifier une relation commerciale aide à distinguer expérience personnelle, information et message promotionnel.",
       "sources": [
         {
@@ -65,11 +65,11 @@
       "body": "Réutiliser le même mot de passe pour plusieurs services augmente les conséquences d'une fuite de données sur l'un d'eux.",
       "question": "Quel réflexe protège le mieux ?",
       "choices": [
-        "Des mots de passe uniques et robustes pour chaque compte.",
         "Le même mot de passe facile.",
-        "Un mot de passe écrit sous une publication."
+        "Un mot de passe écrit sous une publication.",
+        "Des mots de passe uniques et robustes pour chaque compte."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Des mots de passe distincts réduisent les effets d'une compromission. Un gestionnaire de mots de passe peut aider.",
       "sources": [
         {
@@ -115,11 +115,11 @@
       "body": "Une image peut être retouchée, recadrée ou fabriquée avec un outil génératif. Son apparence réaliste ne garantit pas son origine.",
       "question": "Quelle méthode est raisonnable ?",
       "choices": [
+        "Conclure que toutes les images sont fausses.",
         "Chercher l'origine et des sources indépendantes.",
-        "Croire la première légende.",
-        "Conclure que toutes les images sont fausses."
+        "Croire la première légende."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "L'analyse de la provenance et du contexte est plus fiable qu'une impression visuelle, surtout face aux images générées.",
       "sources": [
         {
@@ -140,11 +140,11 @@
       "body": "La liberté d’expression protège la discussion d’idées, mais n’oblige personne à accepter des menaces ou du harcèlement.",
       "question": "Quelle affirmation est juste ?",
       "choices": [
-        "On peut débattre sans menacer ni humilier.",
         "Une opinion autorise toute menace.",
-        "L'accord de tous est obligatoire."
+        "L'accord de tous est obligatoire.",
+        "On peut débattre sans menacer ni humilier."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "La discussion démocratique gagne à séparer les désaccords d'idées des attaques envers les personnes.",
       "sources": [
         {
@@ -190,11 +190,11 @@
       "body": "Deux amis ne sont pas d’accord. En posant une question ouverte, chacun peut expliquer son raisonnement sans devoir gagner une dispute.",
       "question": "Quelle formulation aide ?",
       "choices": [
+        "Tu as tort et c'est tout.",
         "Qu'est-ce qui t'a amené à cette conclusion ?",
-        "Pourquoi es-tu stupide ?",
-        "Tu as tort et c'est tout."
+        "Pourquoi es-tu stupide ?"
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Une question sur les raisons d’une opinion favorise la compréhension et la construction d’arguments.",
       "sources": [
         {
@@ -215,11 +215,11 @@
       "body": "Même si tu effaces un message, une capture ou une copie peut avoir été conservée par quelqu’un d'autre.",
       "question": "Quel réflexe adopter avant de publier ?",
       "choices": [
-        "Réfléchir à ce qu'on accepte de voir circuler.",
         "Tout poster puis tout effacer.",
-        "Partager les mots de passe de ses amis."
+        "Partager les mots de passe de ses amis.",
+        "Réfléchir à ce qu'on accepte de voir circuler."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Une fois qu'un contenu circule, son retrait complet peut être difficile. La prudence avant publication reste utile.",
       "sources": [
         {
@@ -265,11 +265,11 @@
       "body": "Sur un réseau social, un compte imite le logo d’une administration. Un symbole ressemble à l’original mais le lien n'est pas celui de l'institution.",
       "question": "Quel réflexe adopter ?",
       "choices": [
+        "Partager le faux formulaire.",
         "Vérifier le site officiel et son adresse.",
-        "Confier ses données au compte.",
-        "Partager le faux formulaire."
+        "Confier ses données au compte."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "L’identité d’une institution se vérifie à partir de ses canaux reconnus, pas seulement d’un logo facile à copier.",
       "sources": [
         {
@@ -290,11 +290,11 @@
       "body": "Une fiche de paie présente des informations sur la rémunération et les retenues. Elle peut servir à vérifier son paiement ou préparer une démarche.",
       "question": "Que faire après réception ?",
       "choices": [
-        "Comparer les informations au travail réellement effectué.",
         "La supprimer sans la lire.",
-        "Publier tous ses détails sur un réseau."
+        "Publier tous ses détails sur un réseau.",
+        "Comparer les informations au travail réellement effectué."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Les documents de rémunération permettent de garder une trace utile. Les règles exactes diffèrent selon le pays.",
       "sources": [
         {
@@ -340,11 +340,11 @@
       "body": "Lorsqu’un rendement est capitalisé, les gains précédents peuvent eux-mêmes générer des gains futurs. Les conditions et les risques comptent.",
       "question": "Que signifie capitalisation ?",
       "choices": [
+        "Il n’existe aucun risque.",
         "Les rendements sont ajoutés à la base de calcul.",
-        "L’argent double chaque mois.",
-        "Il n’existe aucun risque."
+        "L’argent double chaque mois."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "L’intérêt composé dépend du taux, du temps et des modalités. Il ne garantit pas un rendement.",
       "sources": [
         {
@@ -365,11 +365,11 @@
       "body": "Un paiement récurrent semble faible isolément. Sur douze mois, plusieurs prélèvements peuvent peser sur le budget.",
       "question": "Quel calcul aide à décider ?",
       "choices": [
-        "Additionner les montants sur une année.",
         "Regarder seulement le premier prélèvement.",
-        "Ignorer la reconduction."
+        "Ignorer la reconduction.",
+        "Additionner les montants sur une année."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Annualiser les dépenses récurrentes révèle leur coût cumulé et facilite les arbitrages.",
       "sources": [
         {
@@ -415,11 +415,11 @@
       "body": "Une annonce promet un revenu élevé, mais une personne te demande un virement immédiat pour accéder au poste sans entretien fiable.",
       "question": "Quel est le premier contrôle ?",
       "choices": [
+        "Envoyer tous ses codes.",
         "Vérifier l'employeur et refuser le paiement sous pression.",
-        "Payer en urgence.",
-        "Envoyer tous ses codes."
+        "Payer en urgence."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Les faux recrutements exploitent l'urgence. Le contact officiel de l'entreprise est préférable au canal imposé par l'annonce.",
       "sources": [
         {
@@ -440,11 +440,11 @@
       "body": "Plusieurs comptes répètent une affirmation issue d’un seul message anonyme. Le nombre de reprises n’est pas une confirmation indépendante.",
       "question": "Que rechercher ?",
       "choices": [
-        "Des sources indépendantes et identifiables.",
         "Plusieurs copies du même post.",
-        "Le titre le plus dramatique."
+        "Le titre le plus dramatique.",
+        "Des sources indépendantes et identifiables."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Recouper suppose des informations venant de sources qui n'ont pas seulement copié une même origine.",
       "sources": [
         {
@@ -490,11 +490,11 @@
       "body": "Après une campagne publique, un indicateur change. Le changement peut être lié à la campagne, mais d'autres facteurs peuvent intervenir.",
       "question": "Quelle prudence adopter ?",
       "choices": [
+        "Ignorer toute donnée.",
         "Vérifier d'autres explications et l'évolution dans le temps.",
-        "Affirmer une cause certaine.",
-        "Ignorer toute donnée."
+        "Affirmer une cause certaine."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Une corrélation ne suffit pas à établir une causalité ; l'analyse dépend de la méthode.",
       "sources": [
         {
@@ -515,11 +515,11 @@
       "body": "Une personne t’explique oralement un droit ou une aide, mais oublie les conditions et les démarches propres à ton pays.",
       "question": "Quelle première étape ?",
       "choices": [
-        "Retrouver la page du service compétent.",
         "Suivre un message sans auteur.",
-        "Communiquer ses codes."
+        "Communiquer ses codes.",
+        "Retrouver la page du service compétent."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Les conditions évoluent selon le territoire, la situation et la date ; consulter le service officiel limite les erreurs.",
       "sources": [
         {
@@ -565,11 +565,11 @@
       "body": "Assurance annuelle, réparations et fêtes peuvent créer un mois difficile même avec un solde habituellement positif.",
       "question": "Quelle méthode anticiper ?",
       "choices": [
+        "Considérer chaque solde comme un bénéfice.",
         "Répartir les dépenses annuelles dans le budget.",
-        "Les oublier jusqu'à la date.",
-        "Considérer chaque solde comme un bénéfice."
+        "Les oublier jusqu'à la date."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Prévoir les dépenses non mensuelles permet de mieux estimer ce qui est réellement disponible.",
       "sources": [
         {
@@ -590,11 +590,11 @@
       "body": "Deux offres affichent le même prix, mais l’une contient des frais de livraison ou de résiliation supplémentaires.",
       "question": "Quel indicateur comparer ?",
       "choices": [
-        "Le coût total pour le même usage.",
         "Uniquement le prix en gros.",
-        "La couleur de l'interface."
+        "La couleur de l'interface.",
+        "Le coût total pour le même usage."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "La comparaison doit porter sur un service équivalent et inclure les frais supplémentaires pertinents.",
       "sources": [
         {
@@ -640,11 +640,11 @@
       "body": "Une dépense imprévue peut forcer à s'endetter si aucun argent mobilisable n'est disponible à court terme.",
       "question": "Quel objectif est raisonnable ?",
       "choices": [
+        "Ne rien anticiper.",
         "Prévoir une réserve adaptée à ses dépenses et revenus.",
-        "Investir toutes ses liquidités.",
-        "Ne rien anticiper."
+        "Investir toutes ses liquidités."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Une réserve de précaution peut réduire la dépendance aux crédits de court terme ; son montant dépend de la situation personnelle.",
       "sources": [
         {
@@ -665,11 +665,11 @@
       "body": "Une entreprise ou un bailleur présente des conditions orales différentes de celles écrites dans le document.",
       "question": "Quelle démarche est utile ?",
       "choices": [
-        "Lire et conserver les clauses écrites avant accord.",
         "Signer sans regarder.",
-        "Ne jamais poser de questions."
+        "Ne jamais poser de questions.",
+        "Lire et conserver les clauses écrites avant accord."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Les engagements écrits peuvent avoir des conséquences durables. Les clauses ambiguës méritent d'être clarifiées avant signature.",
       "sources": [
         {
@@ -715,11 +715,11 @@
       "body": "Un média compare deux montants en euros sans rapporter les chiffres à la taille des économies, aux dates ou au périmètre.",
       "question": "Quelle comparaison est plus pertinente ?",
       "choices": [
+        "L'image la plus alarmante.",
         "Indicateur comparable, même période et périmètre.",
-        "Deux nombres isolés.",
-        "L'image la plus alarmante."
+        "Deux nombres isolés."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "Une comparaison de déficits doit préciser le périmètre des administrations, le calendrier et souvent la proportion du PIB.",
       "sources": [
         {
@@ -740,11 +740,11 @@
       "body": "L’inflation ralentit, passant d’un taux élevé à un taux plus bas mais toujours positif. Cela ne signifie pas automatiquement une baisse des prix.",
       "question": "Que comprendre ?",
       "choices": [
-        "Les prix augmentent encore mais à un rythme plus faible.",
         "Tous les prix ont diminué.",
-        "Les salaires augmentent automatiquement."
+        "Les salaires augmentent automatiquement.",
+        "Les prix augmentent encore mais à un rythme plus faible."
       ],
-      "answer": 0,
+      "answer": 2,
       "why": "Une inflation positive plus faible indique un ralentissement de la hausse du niveau général des prix.",
       "sources": [
         {
@@ -790,11 +790,11 @@
       "body": "Un graphique commence l’axe vertical près de la valeur la plus basse. Une petite variation peut visuellement paraître spectaculaire.",
       "question": "Quel contrôle faire ?",
       "choices": [
+        "Ignorer la source.",
         "Lire l'échelle, les unités et les chiffres.",
-        "Ne regarder que les barres.",
-        "Ignorer la source."
+        "Ne regarder que les barres."
       ],
-      "answer": 0,
+      "answer": 1,
       "why": "La mise à l'échelle peut exagérer l'impression d'une différence sans changer les données brutes.",
       "sources": [
         {
