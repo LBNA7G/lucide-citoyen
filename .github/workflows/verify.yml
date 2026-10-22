@@ -1,4 +1,4 @@
-name: Vérifier LUCIDE
+name: Vérifier SAVRÉO
 on:
   push:
     branches: [main]
