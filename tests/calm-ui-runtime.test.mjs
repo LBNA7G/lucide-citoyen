@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 const code=readFileSync('app.js','utf8');
 const curriculumCode=readFileSync('curriculum-beta.js','utf8');
+const civicCode=readFileSync('civic-pack-01.js','utf8');
 
 function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-20',interests=[]){
   const nodes=new Map(), handlers=new Map();
@@ -32,6 +33,7 @@ function mount(route='accueil',theme='light',profileComplete=true,ageGroup='16-2
   const location={hash:'#'+route,protocol:'https:'};
   const context={window,document,navigator:{},location,localStorage,console,setTimeout,clearTimeout,URL,Blob,confirm(){return false}};
   vm.runInNewContext(curriculumCode,context,{timeout:1500,filename:'curriculum-beta.js'});
+  vm.runInNewContext(civicCode,context,{timeout:1500,filename:'civic-pack-01.js'});
   vm.runInNewContext(code,context,{timeout:1500,filename:'app.js'});
   return {html:node('main').innerHTML,root:document.documentElement,handlers,store:stored,window,document};
 }
@@ -48,7 +50,10 @@ test('Calm UI renders each main page in a fake browser DOM without throwing',()=
    apprendre:['calm-lesson-card','Voir toutes les leçons'],
    'lecon/penser':['calm-reading','lesson-quiz','Exemples et détails'],
    sources:['calm-source-point','Consulter les institutions'],
-   vigie:['calm-feed-primary','Limites du radar']
+   vigie:['calm-feed-primary','Limites du radar'],
+   'vie-publique':['civic-spotlight','Apprendre à voter','Notre méthode de neutralité'],
+   civique:['civic-question','Vérifier ma réponse','Parcourir les 16 notions'],
+   dossiers:['civic-method','Les documents institutionnels']
  };
  for(const [route,markers] of Object.entries(expected)){
    const {html,root}=mount(route);
@@ -132,4 +137,28 @@ test('a wrong answer shows the actual correct choice in the feedback',()=>{
  assert.ok(quiz.document.getElementById('main').innerHTML.includes('La bonne réponse est :'));
  const state=JSON.parse(quiz.store.value);
  assert.ok(!(state.completed||[]).includes('lesson:info-context'));
+});
+
+test('civic lesson remains neutral and stores a correct answer locally',()=>{
+ const screen=mount('civique','light',true,'16-20');
+ assert.ok(screen.html.includes('promesse')||screen.html.includes('budget')||screen.html.includes('programme'));
+ const click=screen.handlers.get('click');
+ const choice={dataset:{civicChoice:'1'},closest(selector){return selector==='[data-civic-choice]'?this:null}};
+ click({target:choice});
+ const check={id:'civic-check',closest(){return null}};
+ click({target:check});
+ const displayed=screen.document.getElementById('main').innerHTML;
+ assert.ok(displayed.includes('feedback'));
+ assert.ok(displayed.includes('Lire les sources'));
+ const next={id:'civic-next',closest(){return null}};
+ click({target:next});
+ assert.ok(!screen.document.getElementById('main').innerHTML.includes('Lire les sources'));
+});
+test('Belgian and French civic libraries have the same baseline topic count',()=>{
+ for(const country of ['BE','FR']){
+  const s=mount('civique');
+  const button={dataset:{country},closest(selector){return selector==='[data-country]'?this:null}};
+  s.handlers.get('click')({target:button});
+  assert.ok(s.document.getElementById('main').innerHTML.includes('Parcourir les 16 notions'));
+ }
 });
