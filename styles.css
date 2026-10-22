@@ -168,3 +168,38 @@ main{padding-top:34px}
   .age-choice span{font-size:12px;padding:10px 3px}
 }
 @media(prefers-reduced-motion:reduce){.age-choice span,.gender-choice span{transition:none!important}}
+
+
+/* SAVRÉO v0.7 — choix d'intérêts aéré, adaptatif et accessible */
+.interests-shell .onboarding-head{padding-bottom:24px}
+.interests-shell .onboarding-form{gap:18px}
+.interest-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.interest-choice{display:block;position:relative;min-width:0;cursor:pointer}
+.interest-choice input{position:absolute;inset:0;opacity:0;width:100%;height:100%;z-index:1;margin:0;cursor:pointer}
+.interest-tile{display:flex;flex-direction:column;position:relative;gap:4px;min-height:142px;height:100%;background:#171f2e;border:1px solid #3b485a;border-radius:18px;padding:20px 18px;transition:background .18s,border-color .18s;color:#eef2fa}
+.interest-emoji{font-size:26px;color:var(--lime);line-height:1.2;margin-bottom:10px}
+.interest-tile b{font-size:15px;line-height:1.4}
+.interest-tile small{font-size:12px;line-height:1.5;color:#adb8ca}
+.interest-check{position:absolute;right:14px;top:14px;border-radius:50%;border:1px solid #536174;color:transparent;font-size:12px;width:23px;height:23px;display:grid;place-items:center}
+.interest-choice input:hover+.interest-tile{border-color:#80958e}
+.interest-choice input:checked+.interest-tile{border-color:var(--lime);background:#24352e}
+.interest-choice input:checked+.interest-tile .interest-check{color:#122019;background:var(--lime);border-color:var(--lime)}
+.interest-choice input:focus-visible+.interest-tile{outline:3px solid var(--lime);outline-offset:3px}
+.interest-counter{font-size:13px;color:#b8c5d7;margin:13px 0 0}
+.interest-profile{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid #313d4e}
+.interest-profile b{font-size:14px}
+.interest-profile p{margin:6px 0 0;max-width:440px}
+@media(max-width:760px){
+ .interest-grid{gap:10px}
+ .interest-tile{min-height:132px;padding:17px 14px;border-radius:15px}
+ .interest-emoji{font-size:23px;margin-bottom:8px}
+ .interest-tile b{font-size:14px}
+ .interest-tile small{font-size:11.5px}
+ .interest-profile{flex-direction:column;align-items:stretch}
+ .interest-profile button{align-self:start}
+}
+@media(max-width:350px){
+ .interest-grid{grid-template-columns:1fr}
+ .interest-tile{min-height:98px}
+}
+@media(prefers-reduced-motion:reduce){.interest-tile{transition:none!important}}
