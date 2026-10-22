@@ -778,3 +778,13 @@ html[data-theme="dark"] .bottom-nav{background:#111723}
  .party-name{font-size:15px}
  .party-record-body{padding:0 0 22px}
 }
+
+/* SAVRÉO v1.3 — bibliothèque aérée, lecture mobile par tranche d'âge */
+.micro-age-picker{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+.micro-age-choice{background:transparent;border:1px solid var(--calm-stroke);color:var(--calm-ink);padding:10px 13px;border-radius:999px;min-height:46px;font-size:13px;font-weight:650;cursor:pointer}
+.micro-age-choice.selected{border-color:var(--calm-accent);color:var(--calm-accent);background:var(--calm-surface)}
+.micro-age-choice:focus-visible,.civic-topic:focus-visible{outline:3px solid var(--calm-accent);outline-offset:3px}
+.micro-catalog-count{font-size:12px;color:var(--calm-muted);margin:0 0 15px}
+.micro-next-date{font-size:13px;line-height:1.6;color:var(--calm-muted);margin:12px 0 0}
+@media(max-width:560px){.micro-age-picker{gap:7px}.micro-age-choice{font-size:12px;flex:1;min-width:88px;padding:11px 7px;text-align:center}}
+@media(prefers-reduced-motion:reduce){.micro-age-choice,.party-record>summary{transition:none}}
