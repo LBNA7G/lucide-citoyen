@@ -286,7 +286,7 @@
   ];
   const reviewsData=()=>state.reviews && typeof state.reviews==='object' && !Array.isArray(state.reviews)?state.reviews:{};
   const reviewIntervals=[1,3,7,14,30];
-  const reviewDate=days=>{const d=new Date();d.setUTCHours(12,0,0,0);d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10);};
+  const reviewDate=days=>{const d=new Date(dayKey()+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10);};
   function queueReview(id){const data=reviewsData();if(!data[id]){data[id]={stage:0,due:reviewDate(1),attempts:0};state.reviews=data;setStore();}}
   function dueReviews(){return lessons.filter(l=>reviewsData()[l.id] && reviewsData()[l.id].due<=dayKey());}
   function recordReview(id,correct){const data=reviewsData(),old=data[id];if(!old)return;const stage=correct?Math.min(old.stage+1,4):0;data[id]={stage,due:reviewDate(reviewIntervals[stage]),attempts:(old.attempts||0)+1};state.reviews=data;setStore();}
@@ -381,5 +381,6 @@ document.addEventListener('input',ev=>{if(ev.target.id==='rights-search'){const 
   window.addEventListener('hashchange',()=>{let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(['accueil','explorer','pratiquer','apprendre','debattre','droits','vigie','profil','declic','dico','parcours','reviser','sources'].includes(route))page=route;else page='accueil';render();});
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
   let route=location.hash.slice(1);if(route.startsWith('lecon/')){activeLesson=route.split('/')[1];page='lecon';}else if(['accueil','explorer','pratiquer','apprendre','debattre','droits','vigie','profil','declic','dico','parcours','reviser','sources'].includes(route))page=route;
+  state.completed.filter(x=>x.startsWith('lesson:')).forEach(x=>queueReview(x.slice(7)));
   render();
 })();
